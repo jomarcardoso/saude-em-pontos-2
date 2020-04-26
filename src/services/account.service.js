@@ -1,11 +1,11 @@
 const ACCOUNT_LOCAL_STORAGE = 'saude-em-pontos';
 
-function isCreated() {
-  return localStorage[ACCOUNT_LOCAL_STORAGE];
+function get() {
+  return localStorage.getItem(ACCOUNT_LOCAL_STORAGE);
 }
 
 const AccountService = {
-  isCreated
+  get
 }
 
 export default AccountService;
