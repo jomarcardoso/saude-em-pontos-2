@@ -24,7 +24,8 @@
     "react-helmet": "^6.0.0"
   },
   "devDependencies": {
-    "prettier": "2.0.4"
+    "prettier": "2.0.4",
+    "surge": "^0.21.3"
   },
   "keywords": [
     "gatsby"
@@ -37,7 +38,8 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+    "publicate": "surge ./public saude-em-pontos.surge.sh"
   },
   "repository": {
     "type": "git",

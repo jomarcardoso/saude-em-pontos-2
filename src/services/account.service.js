@@ -1,11 +1,13 @@
 const ACCOUNT_LOCAL_STORAGE = 'saude-em-pontos';
 
 function get() {
-  return JSON.parse(localStorage.getItem(ACCOUNT_LOCAL_STORAGE));
+  return (typeof window !== 'undefined') && JSON.parse(localStorage.getItem(ACCOUNT_LOCAL_STORAGE));
 }
 
 function save(account) {
-  localStorage.setItem(ACCOUNT_LOCAL_STORAGE, JSON.stringify(account));
+  if (typeof window !== 'undefined') {
+    localStorage.setItem(ACCOUNT_LOCAL_STORAGE, JSON.stringify(account));
+  }
 }
 
 const AccountService = {
