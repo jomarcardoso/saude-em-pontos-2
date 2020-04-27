@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import Layout from '../components/layout';
 import Main from '../components/main';
 import Advertise from '../components/advertise';
+import * as serviceWorker from '../serviceWorker';
 
 function Index() {
   const [account, setAccount] = useState(AccountService.get());
@@ -23,6 +24,12 @@ function Index() {
   useEffect(() => {
     AccountService.save(account);
   }, [account]);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      serviceWorker.register();
+    }
+  }, []);
 
   if (rendered && !account) {
     if (!readAdvertise) {

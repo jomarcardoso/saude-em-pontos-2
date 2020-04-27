@@ -39,7 +39,7 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
-    "publicate": "surge ./public saude-em-pontos.surge.sh"
+    "publicate": "yarn build && surge ./public saude-em-pontos.surge.sh"
   },
   "repository": {
     "type": "git",

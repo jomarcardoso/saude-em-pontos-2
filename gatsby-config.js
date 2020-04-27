@@ -5,6 +5,16 @@ module.exports = {
     author: `@gatsbyjs`,
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-offline`,
+      options: {
+        workboxConfig: {
+          globPatterns: ['**/*']
+        },
+        appendScript: `src/sw.js`,
+        precachePages: [`/src/*`],
+      },
+    },
     `gatsby-plugin-sass`,
     `gatsby-theme-material-ui`,
     `gatsby-plugin-react-helmet`,
@@ -23,14 +33,12 @@ module.exports = {
         name: `SAÚDE EM PONTOS`,
         short_name: `Saúde em Pontos`,
         start_url: `/`,
-        background_color: `#32995e`,
-        theme_color: `#4d7a60`,
+        background_color: `#4d7a60`,
+        theme_color: `#37a968`,
         display: `standalone`,
-        icon: `src/images/logo.png`, // This path is relative to the root of the site.
+        icon: `src/images/original.png`,
+        cache_busting_mode: 'none'
       },
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
   ],
 }
