@@ -1,3 +1,4 @@
+// @flow
 import React from "react"
 import PropTypes from "prop-types"
 import Header from "./header"
@@ -29,11 +30,16 @@ const useStyles = makeStyles({
   }
 });
 
+type CurrentPage = 'home' | 'meal' | 'exercise';
+
 const Layout = ({
   children,
   pageName = '',
   showHeader = true,
-  showFooter = true
+  showFooter = true,
+  currentPage ='home'
+}: {
+  currentPage: CurrentPage
 }) => {
   const classes = useStyles();
 
@@ -44,7 +50,7 @@ const Layout = ({
         <Main className={classes.main}>
           {children}
         </Main>
-        {showFooter && <Footer />}
+        {showFooter && <Footer currentPage={currentPage} />}
       </Box>
     </ThemeTopLayout>
   )

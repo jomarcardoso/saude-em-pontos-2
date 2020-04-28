@@ -1,5 +1,6 @@
 import React from 'react';
 import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
+import HomeIcon from '@material-ui/icons/Home';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import RestaurantOutlinedIcon from '@material-ui/icons/RestaurantOutlined';
@@ -16,20 +17,24 @@ const useStyles = makeStyles({
   },
 });
 
-export default function LabelBottomNavigation() {
+export default function Footer({
+  currentPage = 'home'
+}: {
+  currentPage: currentPage
+}) {
   const classes = useStyles();
 
   return (
     <Box borderTop={1} borderColor="text.secondary" component="footer" className={classes.root}>
       <BottomNavigation>
         <Link to="/">
-          <BottomNavigationAction label="Início" icon={<HomeOutlinedIcon />} />
+          <BottomNavigationAction label="Início" icon={currentPage === 'home' ? <HomeIcon color="primary" /> : <HomeOutlinedIcon />} />
         </Link>
         <Link to="/meal">
-          <BottomNavigationAction label="Cadastrar refeição" icon={<RestaurantOutlinedIcon />} />
+          <BottomNavigationAction label="Cadastrar refeição" icon={<RestaurantOutlinedIcon color={currentPage === 'meal' ? 'primary' : ''} />} />
         </Link>
         <Link to="/exercise">
-          <BottomNavigationAction label="Cadastrar exercício" icon={<DirectionsRunOutlinedIcon />} />
+          <BottomNavigationAction label="Cadastrar exercício" icon={<DirectionsRunOutlinedIcon color={currentPage === 'exercise' ? 'primary' : ''} />} />
         </Link>
       </BottomNavigation>
     </Box>

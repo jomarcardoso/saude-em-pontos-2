@@ -5,6 +5,7 @@ module.exports = {
     author: `@gatsbyjs`,
   },
   plugins: [
+    `gatsby-plugin-flow`,
     {
       resolve: `gatsby-plugin-offline`,
       options: {

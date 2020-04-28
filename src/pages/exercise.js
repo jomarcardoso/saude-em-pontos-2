@@ -3,7 +3,7 @@ import Layout from '../components/layout';
 
 export default function Exercise() {
   return (
-    <Layout>
+    <Layout currentPage="exercise">
       Cadastrar exercício
     </Layout>
   )
