@@ -33,8 +33,8 @@ module.exports = {
         name: `SAÚDE EM PONTOS`,
         short_name: `Saúde em Pontos`,
         start_url: `/`,
-        background_color: `#4d7a60`,
-        theme_color: `#37a968`,
+        background_color: `#37a968`,
+        theme_color: `#4d7a60`,
         display: `standalone`,
         icon: `src/images/original.png`,
         cache_busting_mode: 'none'

@@ -9,6 +9,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 import { Link } from "gatsby-theme-material-ui";
 import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
+import CakeIcon from '@material-ui/icons/Cake';
 
 const useStyles = makeStyles({
   list: {
@@ -55,6 +56,14 @@ export default function MenuDrawer({
               <AssignmentIndIcon />
             </ListItemIcon>
             <ListItemText primary="Sobre você" />
+          </Link>
+        </ListItem>
+        <ListItem component="li" button>
+          <Link to="/food" className={classes.anchor} color="inherit">
+            <ListItemIcon>
+              <CakeIcon />
+            </ListItemIcon>
+            <ListItemText primary="Alimentos" />
           </Link>
         </ListItem>
       </List>

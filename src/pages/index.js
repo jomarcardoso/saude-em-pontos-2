@@ -26,7 +26,7 @@ function Index() {
   }, [account]);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    if (rendered) {
       serviceWorker.register();
     }
   }, []);
@@ -34,22 +34,22 @@ function Index() {
   if (rendered && !account) {
     if (!readAdvertise) {
       return (
-        <Main>
+        <Layout showFooter={false} showHeader={false}>
           <Advertise />
           <Typography>
             <Button onClick={() => setReadAdvertise(true)}>Avançar</Button>
           </Typography>
-        </Main>
+        </Layout>
       );
     }
 
     return (
-      <Main>
+      <Layout showFooter={false} showHeader={false}>
         <Quiz updateAccountUser={updateAccountUser} />
         <Typography>
           <Link to="/menu">Tudo pronto</Link>
         </Typography>
-      </Main>
+      </Layout>
     );
   }
 

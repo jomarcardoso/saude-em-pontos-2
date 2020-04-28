@@ -11,9 +11,6 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import MenuDrawer from './menu-drawer';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
   menuButton: {
     marginRight: theme.spacing(2),
   },
