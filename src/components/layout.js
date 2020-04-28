@@ -37,8 +37,9 @@ const Layout = ({
   pageName = '',
   showHeader = true,
   showFooter = true,
-  currentPage ='home'
+  currentPage = 'home'
 }: {
+  pageName: string,
   currentPage: CurrentPage
 }) => {
   const classes = useStyles();

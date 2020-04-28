@@ -5,7 +5,6 @@ import { Link } from "gatsby-theme-material-ui";
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Layout from '../components/layout';
-import Main from '../components/main';
 import Advertise from '../components/advertise';
 import * as serviceWorker from '../serviceWorker';
 

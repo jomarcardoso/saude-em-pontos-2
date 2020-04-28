@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Advertise from '../components/advertise';
 import Layout from '../components/layout';
 
