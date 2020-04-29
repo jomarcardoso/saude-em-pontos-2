@@ -1,8 +1,14 @@
 {
-  "apple": {
-    "glicemicIndex": 52
-  },
-  "pear": {
-    "glicemicIndex": 54
-  }
+  "foods": [
+    {
+      "name": "maçã",
+      "id": 1,
+      "glicemicIndex": 52
+    },
+    {
+      "name": "pêra",
+      "id": 2,
+      "glicemicIndex": 54
+    }
+  ]
 }
