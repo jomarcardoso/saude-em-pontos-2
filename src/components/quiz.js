@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Quiz({ updateAccountUser }) {
+function Quiz({ setUser }) {
   const classes = useStyles();
   const [biotype, setBiotype] = React.useState('female');
   const [objectives, setObjectives] = React.useState('');
@@ -46,7 +46,7 @@ function Quiz({ updateAccountUser }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    updateAccountUser({
+    setUser({
       name: 'Jomar',
       age: 29,
       objectives: [

@@ -33,6 +33,7 @@ export default function Meal({ data }) {
 
   return (
     <Layout currentPage="meal" pageName="Cadastrar refeição">
+      <img src="images/fruits/banana.svg" alt=""/>
       <form action="/" method="post" onSubmit={handleSubmit}>
         <Grid container spacing={3}>
           <Grid item xs={12}>

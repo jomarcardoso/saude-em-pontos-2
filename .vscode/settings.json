@@ -1,3 +1,24 @@
 {
-  "javascript.validate.enable": false
+  // para não dar erro de typescript no flow type
+  "javascript.validate.enable": false,
+
+  // colocar o prettier como formatador
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  // The number of spaces a tab is equal to. This setting is overridden based on the file contents when `editor.detectIndentation` is on.
+  "editor.tabSize": 2,
+
+  // When enabled, will trim trailing whitespace when saving a file.
+  "files.trimTrailingWhitespace": true, // remove os espaços em branco no final
+
+  // Code action kinds to be run on save.
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true // faz as correções pedidas por plugins como o eslint ao salvar
+  },
+
+  // Preferred quote style to use for quick fixes: `single` quotes, `double` quotes, or `auto` infer quote type from existing imports. Requires using TypeScript 2.9 or newer in the workspace.
+  "javascript.preferences.quoteStyle": "single"
 }
