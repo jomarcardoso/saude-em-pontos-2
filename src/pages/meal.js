@@ -33,6 +33,9 @@ const useStyles = makeStyles({
     minWidth: '20px',
     width: '20px',
     marginRight: '10px'
+  },
+  img: {
+    width: '100%'
   }
 });
 
@@ -55,7 +58,7 @@ export default function Meal({ data }) {
               {foods.map((food) => (
                 <MenuItem value={food.id}>
                   <ListItemIcon className={classes.selectIcon}>
-                    <img src={food.image} alt="" />
+                    <img className={classes.img} src={food.image} alt="" />
                   </ListItemIcon>
                   <ListItemText primary={food.name} />
                 </MenuItem>
