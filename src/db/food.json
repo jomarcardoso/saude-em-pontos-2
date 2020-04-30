@@ -3,12 +3,20 @@
     {
       "name": "maçã",
       "id": 1,
-      "glicemicIndex": 52
+      "glicemicIndex": 52,
+      "image": "/images/food/apple.svg"
     },
     {
       "name": "pêra",
       "id": 2,
-      "glicemicIndex": 54
+      "glicemicIndex": 54,
+      "image": "/images/food/pear.svg"
+    },
+    {
+      "name": "banana",
+      "id": 3,
+      "glicemicIndex": 83,
+      "image": "/images/food/banana.svg"
     }
   ]
 }
