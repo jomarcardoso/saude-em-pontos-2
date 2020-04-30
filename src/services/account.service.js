@@ -1,5 +1,14 @@
 const ACCOUNT_LOCAL_STORAGE = 'saude-em-pontos';
 
+export const SHAPE_ACCOUNT = {
+  user: {
+    name: '',
+    age: 0,
+    objectives: []
+  },
+  meals: []
+}
+
 function get() {
   return (typeof window !== 'undefined') && JSON.parse(localStorage.getItem(ACCOUNT_LOCAL_STORAGE));
 }

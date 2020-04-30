@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import Quiz from '../components/quiz';
 import { Link } from "gatsby-theme-material-ui";
 import Typography from '@material-ui/core/Typography';
@@ -6,10 +6,10 @@ import Button from '@material-ui/core/Button';
 import Layout from '../components/layout';
 import Advertise from '../components/advertise';
 import * as serviceWorker from '../serviceWorker';
-import useAccount from '../components/use-account';
+import AccountContext from '../components/account-context';
 
 function Index() {
-  const [account, set] = useAccount();
+  const { account, setAccount } = useContext(AccountContext);
   const [readAdvertise, setReadAdvertise] = useState(false);
   const rendered = typeof window !== 'undefined';
 
@@ -33,7 +33,7 @@ function Index() {
 
     return (
       <Layout showFooter={false} showHeader={false}>
-        <Quiz setUser={set.user} />
+        <Quiz setUser={setAccount.user} />
         <Typography>
           <Link to="/menu">Tudo pronto</Link>
         </Typography>
@@ -42,7 +42,7 @@ function Index() {
   }
 
   return (
-    <Layout pageName="Menu" />
+    <Layout pageName="Menu" account={account} setAccount={setAccount} />
   )
 }
 

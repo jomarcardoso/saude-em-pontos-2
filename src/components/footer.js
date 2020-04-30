@@ -18,7 +18,8 @@ const useStyles = makeStyles({
 });
 
 export default function Footer({
-  currentPage = 'home'
+  currentPage = 'home',
+  account
 }: {
   currentPage: currentPage
 }) {
@@ -30,7 +31,7 @@ export default function Footer({
         <Link to="/">
           <BottomNavigationAction label="Início" icon={currentPage === 'home' ? <HomeIcon color="primary" /> : <HomeOutlinedIcon />} />
         </Link>
-        <Link to="/meal">
+        <Link to="/meal" state={account}>
           <BottomNavigationAction label="Cadastrar refeição" icon={<RestaurantOutlinedIcon color={currentPage === 'meal' ? 'primary' : ''} />} />
         </Link>
         <Link to="/exercise">

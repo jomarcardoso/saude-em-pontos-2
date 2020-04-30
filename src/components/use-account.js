@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import AccountService from '../services/account.service';
 
 export default function useAccount() {
-  const [account, setAccount] = useState(AccountService.get());
+  const [account, _setAccount] = useState(AccountService.get());
 
   function setUser(user) {
-    setAccount({
+    _setAccount({
       ...account,
       user
     });
@@ -15,13 +15,13 @@ export default function useAccount() {
     AccountService.save(account);
   }, [account]);
 
-  const set = {
-    account: setAccount,
+  const setAccount = {
+    account: _setAccount,
     user: setUser,
   }
 
   return [
     account,
-    set
+    setAccount
   ];
 }

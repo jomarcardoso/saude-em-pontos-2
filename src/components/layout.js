@@ -8,6 +8,7 @@ import Box from '@material-ui/core/Box';
 import ThemeTopLayout from "gatsby-theme-material-ui-top-layout/src/components/top-layout";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { makeStyles } from '@material-ui/core/styles';
+import { SHAPE_ACCOUNT } from '../services/account.service';
 
 const theme = createMuiTheme({
     palette: {
@@ -37,7 +38,9 @@ const Layout = ({
   pageName = '',
   showHeader = true,
   showFooter = true,
-  currentPage = 'home'
+  currentPage = 'home',
+  account = SHAPE_ACCOUNT,
+  setAccount
 }: {
   pageName: string,
   currentPage: CurrentPage
@@ -51,7 +54,7 @@ const Layout = ({
         <Main className={classes.main}>
           {children}
         </Main>
-        {showFooter && <Footer currentPage={currentPage} />}
+        {showFooter && <Footer account={account} currentPage={currentPage} />}
       </Box>
     </ThemeTopLayout>
   )
