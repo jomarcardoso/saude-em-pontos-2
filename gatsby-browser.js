@@ -8,3 +8,5 @@ export const wrapRootElement = ({ element }) => {
     </Page>
   )
 }
+
+export const registerServiceWorker = () => true

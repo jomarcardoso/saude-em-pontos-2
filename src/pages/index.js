@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Layout from '../components/layout';
 import Advertise from '../components/advertise';
-import * as serviceWorker from '../serviceWorker';
+// import * as serviceWorker from '../serviceWorker';
 import AccountContext from '../components/account-context';
 
 function Index() {
@@ -13,11 +13,11 @@ function Index() {
   const [readAdvertise, setReadAdvertise] = useState(false);
   const rendered = typeof window !== 'undefined';
 
-  useEffect(() => {
-    if (rendered) {
-      serviceWorker.register();
-    }
-  }, [rendered]);
+  // useEffect(() => {
+  //   if (rendered) {
+  //     serviceWorker.register();
+  //   }
+  // }, [rendered]);
 
   if (rendered && !account) {
     if (!readAdvertise) {

@@ -25,14 +25,11 @@ function useFood() {
 }
 
 export default function Meal({ data }) {
-  const { state } = location;
   const foods = useFood();
 
   function handleSubmit(event) {
     event.preventDefault();
   }
-
-  console.log(state);
 
   return (
     <Layout currentPage="meal" pageName="Cadastrar refeição">
