@@ -9,6 +9,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
+import { CurrentPage } from '../services/account.service';
 
 function useFood() {
   const data = useStaticQuery(graphql`
@@ -48,7 +49,7 @@ export default function Meal({ data }) {
   }
 
   return (
-    <Layout currentPage="meal" pageName="Cadastrar refeição">
+    <Layout currentPage={CurrentPage.MEAL} pageName="Cadastrar refeição">
       <form action="/" method="post" onSubmit={handleSubmit}>
         <Grid container spacing={5}>
           <Grid item xs={12}>

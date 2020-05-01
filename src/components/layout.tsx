@@ -1,4 +1,3 @@
-// @flow
 import React from "react"
 import PropTypes from "prop-types"
 import Header from "./header"
@@ -8,7 +7,7 @@ import Box from '@material-ui/core/Box';
 import ThemeTopLayout from "gatsby-theme-material-ui-top-layout/src/components/top-layout";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { makeStyles } from '@material-ui/core/styles';
-import { SHAPE_ACCOUNT } from '../services/account.service';
+import { CurrentPage } from "../services/account.service";
 
 const theme = createMuiTheme({
     palette: {
@@ -31,19 +30,19 @@ const useStyles = makeStyles({
   }
 });
 
-type CurrentPage = 'home' | 'meal' | 'exercise';
+interface Props {
+  pageName?: String;
+  showHeader?: boolean;
+  showFooter?: boolean;
+  currentPage?: CurrentPage;
+}
 
-const Layout = ({
+const Layout: React.SFC<Props> = ({
   children,
   pageName = '',
   showHeader = true,
   showFooter = true,
-  currentPage = 'home',
-  account = SHAPE_ACCOUNT,
-  setAccount
-}: {
-  pageName: string,
-  currentPage: CurrentPage
+  currentPage = CurrentPage.HOME,
 }) => {
   const classes = useStyles();
 
@@ -54,7 +53,7 @@ const Layout = ({
         <Main className={classes.main}>
           {children}
         </Main>
-        {showFooter && <Footer account={account} currentPage={currentPage} />}
+        {showFooter && <Footer currentPage={currentPage} />}
       </Box>
     </ThemeTopLayout>
   )
