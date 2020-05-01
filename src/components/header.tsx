@@ -1,5 +1,4 @@
-import PropTypes from "prop-types"
-import React, { useState } from "react"
+import React, { useState } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -19,12 +18,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Header = ({ pageName = '' }) => {
+interface Props {
+  pageName: string;
+}
+
+const Header: React.SFC<Props> = ({ pageName = '' }) => {
   const classes = useStyles();
   const [opened, setOpened] = useState(false);
 
-  const toggleDrawer = (open) => (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+  const toggleDrawer = (open) => (event: React.SyntheticEvent) => {
+    if (
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
+    ) {
       return;
     }
 
@@ -34,7 +40,13 @@ const Header = ({ pageName = '' }) => {
   return (
     <AppBar position="static" role="header" className={classes.root}>
       <Toolbar>
-        <IconButton onClick={toggleDrawer(true)} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+        <IconButton
+          onClick={toggleDrawer(true)}
+          edge="start"
+          className={classes.menuButton}
+          color="inherit"
+          aria-label="menu"
+        >
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" className={classes.title}>
@@ -45,20 +57,9 @@ const Header = ({ pageName = '' }) => {
           <MoreVertIcon />
         </IconButton>
       </Toolbar>
-      <MenuDrawer
-        opened={opened}
-        toggleDrawer={toggleDrawer}
-      />
+      <MenuDrawer opened={opened} toggleDrawer={toggleDrawer} />
     </AppBar>
   );
-}
+};
 
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
-
-Header.defaultProps = {
-  siteTitle: ``,
-}
-
-export default Header
+export default Header;

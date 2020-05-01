@@ -10,6 +10,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
+import { SetUser } from '../services/account.service';
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -22,32 +23,37 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Quiz({ setUser }) {
+interface Props {
+  setUser: SetUser;
+}
+
+const Quiz: React.SFC<Props> = ({ setUser }) => {
   const classes = useStyles();
   const [biotype, setBiotype] = React.useState('female');
   const [objectives, setObjectives] = React.useState('');
   const [open, setOpen] = React.useState(false);
 
-  const handleChange = (event) => {
-    setObjectives(event.target.value);
-  };
+  function handleChange(event: React.SyntheticEvent): void {
+    const target = event.target as HTMLInputElement;
+    setObjectives(target.value);
+  }
 
-  const handleClose = () => {
+  function handleClose(): void {
     setOpen(false);
-  };
+  }
 
-  const handleOpen = () => {
+  function handleOpen(): void {
     setOpen(true);
+  }
+
+  const handleChangeObjectives = (event: React.SyntheticEvent): void => {
+    const target = event.target as HTMLInputElement;
+    setBiotype(target.value);
   };
 
-  const handleChangeObjectives = (event) => {
-    setBiotype(event.target.value);
-  };
-
-  function handleSubmit(event) {
+  function handleSubmit(event: React.SyntheticEvent): void {
     event.preventDefault();
 
-    console.log(setUser);
     setUser({
       name: 'Jomar',
       age: 29,
@@ -120,6 +126,6 @@ function Quiz({ setUser }) {
       </form>
     </div>
   );
-}
+};
 
 export default Quiz;

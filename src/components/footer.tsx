@@ -22,10 +22,7 @@ interface Props {
   currentPage: CurrentPage;
 }
 
-const Footer: React.SFC<Props> = ({
-  currentPage = CurrentPage.HOME,
-  account,
-}) => {
+const Footer: React.SFC<Props> = ({ currentPage = CurrentPage.HOME }) => {
   const classes = useStyles();
 
   return (
@@ -48,7 +45,7 @@ const Footer: React.SFC<Props> = ({
             }
           />
         </Link>
-        <Link to="/meal" state={account}>
+        <Link to="/meal">
           <BottomNavigationAction
             label="Cadastrar refeição"
             icon={

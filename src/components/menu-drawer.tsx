@@ -7,7 +7,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
-import { Link } from "gatsby-theme-material-ui";
+import { Link } from 'gatsby-theme-material-ui';
 import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
 import CakeIcon from '@material-ui/icons/Cake';
 
@@ -24,14 +24,16 @@ const useStyles = makeStyles({
     alignItems: 'inherit',
     '&:hover': {
       textDecoration: 'none',
-    }
-  }
+    },
+  },
 });
 
-export default function MenuDrawer({
-  opened,
-  toggleDrawer
-}) {
+interface Props {
+  opened: boolean;
+  toggleDrawer(boolean): void;
+}
+
+const MenuDrawer: React.SFC<Props> = ({ opened, toggleDrawer }) => {
   const classes = useStyles();
 
   const list = (
@@ -96,4 +98,6 @@ export default function MenuDrawer({
       </Drawer>
     </div>
   );
-}
+};
+
+export default MenuDrawer;

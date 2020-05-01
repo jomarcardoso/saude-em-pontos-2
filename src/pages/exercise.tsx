@@ -2,10 +2,10 @@ import React from 'react';
 import Layout from '../components/layout';
 import { CurrentPage } from '../services/account.service';
 
-export default function Exercise() {
+const ExercisePage: React.SFC = () => {
   return (
-    <Layout currentPage={CurrentPage.EXERCISE}>
-      Cadastrar exercício
-    </Layout>
-  )
-}
+    <Layout currentPage={CurrentPage.EXERCISE}>Cadastrar exercício</Layout>
+  );
+};
+
+export default ExercisePage;

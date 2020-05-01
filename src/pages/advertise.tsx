@@ -1,13 +1,13 @@
-import React from 'react'
+import React from 'react';
 import Advertise from '../components/advertise';
 import Layout from '../components/layout';
 
-function AdvertisePage() {
+const AdvertisePage: React.SFC = () => {
   return (
     <Layout pageName="Esclarecimentos">
       <Advertise />
     </Layout>
-  )
-}
+  );
+};
 
 export default AdvertisePage;

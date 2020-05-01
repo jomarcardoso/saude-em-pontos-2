@@ -12,8 +12,10 @@ interface User {
   objectives: Array<Ojective>;
 }
 
+export type SetUser = (User) => void;
+
 export interface SetAccount {
-  user(User): void;
+  user: SetUser;
 }
 
 export interface Account {
