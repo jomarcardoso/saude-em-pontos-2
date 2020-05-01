@@ -1,7 +1,4 @@
 {
-  // para não dar erro de typescript no flow type
-  "javascript.validate.enable": false,
-
   // colocar o prettier como formatador
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[javascript]": {
@@ -18,6 +15,8 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": true // faz as correções pedidas por plugins como o eslint ao salvar
   },
+
+  "editor.formatOnSave": true,
 
   // Preferred quote style to use for quick fixes: `single` quotes, `double` quotes, or `auto` infer quote type from existing imports. Requires using TypeScript 2.9 or newer in the workspace.
   "javascript.preferences.quoteStyle": "single"

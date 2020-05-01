@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from '../components/layout';
-import { useStaticQuery, graphql } from "gatsby";
+import { useStaticQuery, graphql } from 'gatsby';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -14,11 +14,11 @@ import { CurrentPage } from '../services/account.service';
 function useFood() {
   const data = useStaticQuery(graphql`
     query {
-      file(relativePath: {eq: "food.json"}) {
+      file(relativePath: { eq: "food.json" }) {
         childDbJson {
           foods {
-            name,
-            id,
+            name
+            id
             image
           }
         }
@@ -33,11 +33,11 @@ const useStyles = makeStyles({
   selectIcon: {
     minWidth: '20px',
     width: '20px',
-    marginRight: '10px'
+    marginRight: '10px',
   },
   img: {
-    width: '100%'
-  }
+    width: '100%',
+  },
 });
 
 export default function Meal({ data }) {
@@ -74,5 +74,5 @@ export default function Meal({ data }) {
         </Grid>
       </form>
     </Layout>
-  )
+  );
 }

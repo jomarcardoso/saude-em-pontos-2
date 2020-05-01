@@ -14,7 +14,7 @@ const useStyles = makeStyles({
   root: {
     position: 'sticky',
     bottom: 0,
-    overflow: 'hidden'
+    overflow: 'hidden',
   },
 });
 
@@ -24,25 +24,53 @@ interface Props {
 
 const Footer: React.SFC<Props> = ({
   currentPage = CurrentPage.HOME,
-  account
+  account,
 }) => {
   const classes = useStyles();
 
   return (
-    <Box borderTop={1} borderColor="text.secondary" component="footer" className={classes.root}>
+    <Box
+      borderTop={1}
+      borderColor="text.secondary"
+      component="footer"
+      className={classes.root}
+    >
       <BottomNavigation>
         <Link to="/">
-          <BottomNavigationAction label="Início" icon={currentPage === CurrentPage.HOME ? <HomeIcon color="primary" /> : <HomeOutlinedIcon />} />
+          <BottomNavigationAction
+            label="Início"
+            icon={
+              currentPage === CurrentPage.HOME ? (
+                <HomeIcon color="primary" />
+              ) : (
+                <HomeOutlinedIcon />
+              )
+            }
+          />
         </Link>
         <Link to="/meal" state={account}>
-          <BottomNavigationAction label="Cadastrar refeição" icon={<RestaurantOutlinedIcon color={currentPage === CurrentPage.MEAL ? 'primary' : ''} />} />
+          <BottomNavigationAction
+            label="Cadastrar refeição"
+            icon={
+              <RestaurantOutlinedIcon
+                color={currentPage === CurrentPage.MEAL ? 'primary' : ''}
+              />
+            }
+          />
         </Link>
         <Link to="/exercise">
-          <BottomNavigationAction label="Cadastrar exercício" icon={<DirectionsRunOutlinedIcon color={currentPage === CurrentPage.EXERCISE ? 'primary' : ''} />} />
+          <BottomNavigationAction
+            label="Cadastrar exercício"
+            icon={
+              <DirectionsRunOutlinedIcon
+                color={currentPage === CurrentPage.EXERCISE ? 'primary' : ''}
+              />
+            }
+          />
         </Link>
       </BottomNavigation>
     </Box>
   );
-}
+};
 
 export default Footer;
