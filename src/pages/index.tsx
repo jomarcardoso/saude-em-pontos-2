@@ -6,11 +6,11 @@ import Button from '@material-ui/core/Button';
 import Layout from '../components/layout';
 import Advertise from '../components/advertise';
 import AccountContext from '../components/account-context';
-import { Account } from '../services/account.service';
+import { Account, SHAPE_ACCOUNT } from '../services/account.service';
 
 function Index() {
   const {
-    account,
+    account = SHAPE_ACCOUNT,
     setAccount,
   }: {
     account: Account;
@@ -18,8 +18,8 @@ function Index() {
   } = useContext(AccountContext);
   const [readAdvertise, setReadAdvertise] = useState(false);
   const rendered = typeof window !== 'undefined';
-  console.log(account);
-  const registeredUser = Object.keys(account.user).length;
+  console.log(setAccount);
+  const registeredUser = account.user.name;
 
   if (rendered && !registeredUser) {
     if (!readAdvertise) {

@@ -32,17 +32,18 @@ export const SHAPE_ACCOUNT: Account = {
   meals: [],
 };
 
-function get() {
-  return (
-    typeof window !== 'undefined' &&
-    JSON.parse(localStorage.getItem(ACCOUNT_LOCAL_STORAGE))
-  );
+function get(): Account {
+  if (typeof window === 'undefined') return SHAPE_ACCOUNT;
+
+  const account =
+    JSON.parse(localStorage.getItem(ACCOUNT_LOCAL_STORAGE)) ?? SHAPE_ACCOUNT;
+
+  return account;
 }
 
-function save(account) {
-  if (typeof window !== 'undefined') {
-    localStorage.setItem(ACCOUNT_LOCAL_STORAGE, JSON.stringify(account));
-  }
+function save(account): void {
+  if (typeof window === 'undefined') return;
+  localStorage.setItem(ACCOUNT_LOCAL_STORAGE, JSON.stringify(account));
 }
 
 const AccountService = {

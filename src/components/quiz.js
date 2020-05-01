@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -46,14 +46,13 @@ function Quiz({ setUser }) {
 
   function handleSubmit(event) {
     event.preventDefault();
+
+    console.log(setUser);
     setUser({
       name: 'Jomar',
       age: 29,
-      objectives: [
-        'health',
-        'muscle'
-      ]
-    })
+      objectives: ['health', 'muscle'],
+    });
   }
 
   return (
@@ -68,40 +67,59 @@ function Quiz({ setUser }) {
         <div>
           <FormControl component="fieldset">
             <FormLabel component="legend">Gender</FormLabel>
-            <RadioGroup aria-label="Biotipo" name="gender1" value={biotype} onChange={handleChange}>
-              <FormControlLabel value="ectomorph" control={<Radio />} label="Ectomorfo" />
-              <FormControlLabel value="mesomorph" control={<Radio />} label="Mesomorfo" />
-              <FormControlLabel value="endomorph" control={<Radio />} label="Endomorfo" />
+            <RadioGroup
+              aria-label="Biotipo"
+              name="gender1"
+              value={biotype}
+              onChange={handleChange}
+            >
+              <FormControlLabel
+                value="ectomorph"
+                control={<Radio />}
+                label="Ectomorfo"
+              />
+              <FormControlLabel
+                value="mesomorph"
+                control={<Radio />}
+                label="Mesomorfo"
+              />
+              <FormControlLabel
+                value="endomorph"
+                control={<Radio />}
+                label="Endomorfo"
+              />
             </RadioGroup>
           </FormControl>
         </div>
         <div>
-        <FormControl className={classes.formControl}>
-          <InputLabel id="demo-controlled-open-select-label">Objetivos</InputLabel>
-          <Select
-            labelId="demo-controlled-open-select-label"
-            id="demo-controlled-open-select"
-            open={open}
-            onClose={handleClose}
-            onOpen={handleOpen}
-            value={objectives}
-            onChange={handleChangeObjectives}
-          >
-            <MenuItem value="">
-              <em>Nenhuma das opções</em>
-            </MenuItem>
-            <MenuItem value="lose-weight">Emagrecer</MenuItem>
-            <MenuItem value="health">Saúde</MenuItem>
-            <MenuItem value="muscle">Músculação</MenuItem>
-          </Select>
-        </FormControl>
+          <FormControl className={classes.formControl}>
+            <InputLabel id="demo-controlled-open-select-label">
+              Objetivos
+            </InputLabel>
+            <Select
+              labelId="demo-controlled-open-select-label"
+              id="demo-controlled-open-select"
+              open={open}
+              onClose={handleClose}
+              onOpen={handleOpen}
+              value={objectives}
+              onChange={handleChangeObjectives}
+            >
+              <MenuItem value="">
+                <em>Nenhuma das opções</em>
+              </MenuItem>
+              <MenuItem value="lose-weight">Emagrecer</MenuItem>
+              <MenuItem value="health">Saúde</MenuItem>
+              <MenuItem value="muscle">Músculação</MenuItem>
+            </Select>
+          </FormControl>
         </div>
         <Button variant="contained" color="primary" type="submit">
           Pronto
         </Button>
       </form>
     </div>
-  )
+  );
 }
 
 export default Quiz;
