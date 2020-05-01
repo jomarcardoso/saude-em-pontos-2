@@ -2,18 +2,21 @@
   "foods": [
     {
       "name": "maçã",
+      "enName": "apple",
       "id": 1,
       "glicemicIndex": 52,
       "image": "/images/food/apple.svg"
     },
     {
       "name": "pêra",
+      "enName": "pear",
       "id": 2,
       "glicemicIndex": 54,
       "image": "/images/food/pear.svg"
     },
     {
       "name": "banana",
+      "enName": "banana",
       "id": 3,
       "glicemicIndex": 83,
       "image": "/images/food/banana.svg"
