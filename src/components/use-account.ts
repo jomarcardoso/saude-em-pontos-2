@@ -1,13 +1,7 @@
 import { useState, useEffect } from 'react';
-import AccountService, {
-  Account,
-  SetAccount,
-} from '../services/account.service';
+import AccountService, { AccountAndSet } from '../services/account.service';
 
-export default function useAccount(): {
-  account: Account;
-  setAccount: SetAccount;
-} {
+export default function useAccount(): AccountAndSet {
   const [account, _setAccount] = useState(AccountService.get());
 
   function setUser(user): void {

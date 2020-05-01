@@ -11,7 +11,7 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import { CurrentPage } from '../services/account.service';
 
-function useFood() {
+const useFood: any = () => {
   const data = useStaticQuery(graphql`
     query {
       file(relativePath: { eq: "food.json" }) {
@@ -27,7 +27,7 @@ function useFood() {
   `);
 
   return data.file.childDbJson.foods;
-}
+};
 
 const useStyles = makeStyles({
   selectIcon: {
@@ -40,13 +40,11 @@ const useStyles = makeStyles({
   },
 });
 
-interface Props {}
-
-const Meal: React.SFC<Props> = () => {
+const Meal: React.SFC = () => {
   const foods = useFood();
   const classes = useStyles();
 
-  function handleSubmit(event) {
+  function handleSubmit(event: React.SyntheticEvent): void {
     event.preventDefault();
   }
 

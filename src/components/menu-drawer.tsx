@@ -30,7 +30,7 @@ const useStyles = makeStyles({
 
 interface Props {
   opened: boolean;
-  toggleDrawer(boolean): void;
+  toggleDrawer(event: React.SyntheticEvent): void;
 }
 
 const MenuDrawer: React.SFC<Props> = ({ opened, toggleDrawer }) => {

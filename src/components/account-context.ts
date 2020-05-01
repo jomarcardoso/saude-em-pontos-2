@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { SHAPE_ACCOUNT } from '../services/account.service';
+import { AccountAndSet, SHAPE_ACCOUNT } from '../services/account.service';
 
-const AccountContext = createContext(SHAPE_ACCOUNT);
+const AccountContext = createContext<AccountAndSet>({ account: SHAPE_ACCOUNT });
 export default AccountContext;

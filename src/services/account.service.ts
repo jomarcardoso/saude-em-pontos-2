@@ -23,6 +23,11 @@ export interface Account {
   meals: Array<Meal>;
 }
 
+export interface AccountAndSet {
+  account: Account;
+  setAccount?: SetAccount;
+}
+
 export enum CurrentPage {
   HOME,
   MEAL,

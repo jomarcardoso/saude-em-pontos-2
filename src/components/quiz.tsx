@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -11,6 +11,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import { SetUser } from '../services/account.service';
+import AccountContext from './account-context';
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -23,11 +24,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-interface Props {
-  setUser: SetUser;
-}
-
-const Quiz: React.SFC<Props> = ({ setUser }) => {
+const Quiz: React.SFC = () => {
+  const { setAccount } = useContext(AccountContext);
   const classes = useStyles();
   const [biotype, setBiotype] = React.useState('female');
   const [objectives, setObjectives] = React.useState('');
@@ -46,7 +44,7 @@ const Quiz: React.SFC<Props> = ({ setUser }) => {
     setOpen(true);
   }
 
-  const handleChangeObjectives = (event: React.SyntheticEvent): void => {
+  const handleChangeObjectives = (event: React.ChangeEvent): void => {
     const target = event.target as HTMLInputElement;
     setBiotype(target.value);
   };
@@ -54,7 +52,7 @@ const Quiz: React.SFC<Props> = ({ setUser }) => {
   function handleSubmit(event: React.SyntheticEvent): void {
     event.preventDefault();
 
-    setUser({
+    setAccount.user({
       name: 'Jomar',
       age: 29,
       objectives: ['health', 'muscle'],

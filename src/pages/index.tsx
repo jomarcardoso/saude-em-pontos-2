@@ -8,7 +8,7 @@ import Advertise from '../components/advertise';
 import AccountContext from '../components/account-context';
 import { Account, SHAPE_ACCOUNT } from '../services/account.service';
 
-function Index() {
+const Index: React.SFC = () => {
   const {
     account = SHAPE_ACCOUNT,
     setAccount,
@@ -27,7 +27,9 @@ function Index() {
         <Layout showFooter={false} showHeader={false}>
           <Advertise />
           <Typography>
-            <Button onClick={() => setReadAdvertise(true)}>Avançar</Button>
+            <Button onClick={(): void => setReadAdvertise(true)}>
+              Avançar
+            </Button>
           </Typography>
         </Layout>
       );
@@ -35,7 +37,7 @@ function Index() {
 
     return (
       <Layout showFooter={false} showHeader={false}>
-        <Quiz setUser={setAccount.user} />
+        <Quiz />
         <Typography>
           <Link to="/menu">Tudo pronto</Link>
         </Typography>
@@ -44,6 +46,6 @@ function Index() {
   }
 
   return <Layout pageName="Menu" />;
-}
+};
 
 export default Index;
