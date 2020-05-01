@@ -17,6 +17,8 @@ exports.createPages = ({ graphql, actions }) => {
               id
               image
               enName
+              glicemicIndex
+              calories
             }
           }
         }
@@ -32,7 +34,7 @@ exports.createPages = ({ graphql, actions }) => {
     result.data.file.childDbJson.foods.forEach((edge) => {
       createPage({
         // Path for this page — required
-        path: `${edge.enName}`,
+        path: `food/${edge.enName}`,
         component: foodPage,
         context: edge,
       });
