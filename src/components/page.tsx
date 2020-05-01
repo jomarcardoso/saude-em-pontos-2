@@ -2,7 +2,7 @@ import React from 'react';
 import useAccount from './use-account';
 import AccountContext from './account-context';
 
-export default function Page({ children }) {
+const Page: React.SFC = ({ children }) => {
   const { account, setAccount } = useAccount();
 
   return (
@@ -10,4 +10,6 @@ export default function Page({ children }) {
       {children}
     </AccountContext.Provider>
   );
-}
+};
+
+export default Page;

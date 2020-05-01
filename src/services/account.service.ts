@@ -6,12 +6,18 @@ export enum Ojective {
   LOSE_WEIGHT = 'Perder peso',
 }
 
+interface User {
+  name: string;
+  age: number;
+  objectives: Array<Ojective>;
+}
+
+export interface SetAccount {
+  user(User): void;
+}
+
 export interface Account {
-  user: {
-    name: string;
-    age: number;
-    objectives: Array<Ojective>;
-  };
+  user: User;
   meals: Array<Meal>;
 }
 
