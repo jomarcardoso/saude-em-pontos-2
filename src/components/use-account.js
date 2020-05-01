@@ -7,7 +7,7 @@ export default function useAccount() {
   function setUser(user) {
     _setAccount({
       ...account,
-      user
+      user,
     });
   }
 
@@ -18,10 +18,10 @@ export default function useAccount() {
   const setAccount = {
     account: _setAccount,
     user: setUser,
-  }
+  };
 
-  return [
+  return {
     account,
-    setAccount
-  ];
+    setAccount,
+  };
 }

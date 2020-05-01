@@ -40,7 +40,9 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Meal({ data }) {
+interface Props {}
+
+const Meal: React.SFC<Props> = () => {
   const foods = useFood();
   const classes = useStyles();
 
@@ -75,4 +77,6 @@ export default function Meal({ data }) {
       </form>
     </Layout>
   );
-}
+};
+
+export default Meal;

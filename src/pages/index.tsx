@@ -1,18 +1,27 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext } from 'react';
 import Quiz from '../components/quiz';
-import { Link } from "gatsby-theme-material-ui";
+import { Link } from 'gatsby-theme-material-ui';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Layout from '../components/layout';
 import Advertise from '../components/advertise';
 import AccountContext from '../components/account-context';
+import { Account } from '../services/account.service';
 
 function Index() {
-  const { account, setAccount } = useContext(AccountContext);
+  const {
+    account,
+    setAccount,
+  }: {
+    account: Account;
+    setAccount: string;
+  } = useContext(AccountContext);
   const [readAdvertise, setReadAdvertise] = useState(false);
   const rendered = typeof window !== 'undefined';
+  console.log(account);
+  const registeredUser = Object.keys(account.user).length;
 
-  if (rendered && !account) {
+  if (rendered && !registeredUser) {
     if (!readAdvertise) {
       return (
         <Layout showFooter={false} showHeader={false}>
@@ -34,9 +43,7 @@ function Index() {
     );
   }
 
-  return (
-    <Layout pageName="Menu" account={account} setAccount={setAccount} />
-  )
+  return <Layout pageName="Menu" />;
 }
 
 export default Index;
