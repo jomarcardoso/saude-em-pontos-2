@@ -1,0 +1,6 @@
+script:
+  - npm run build
+deploy:
+  provider: surge
+  project: ./public/
+  domain: saude-em-pontos.surge.sh/
