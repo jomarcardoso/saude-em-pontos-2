@@ -7,5 +7,6 @@ script:
   - yarn build
 deploy:
   provider: surge
-  project: ./public/
-  domain: saude-em-pontos.surge.sh/
+  project: ./public
+  domain: saude-em-pontos.surge.sh
+  skip_cleanup: true
