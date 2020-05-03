@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { create } from 'react-test-renderer';
-import withForm from './with-form.component';
+import withForm from './use-form.component';
 
 function Form({
   children,
@@ -45,7 +45,9 @@ describe('withForm', () => {
     });
 
     it('(Form, { initialErrors: test="test error" })', () => {
-      const WithForm = withForm(Form, { initialErrors: { test: 'test error' } });
+      const WithForm = withForm(Form, {
+        initialErrors: { test: 'test error' },
+      });
       const wrapper = create(<WithForm />).toJSON();
 
       expect(wrapper).toMatchSnapshot();
@@ -67,7 +69,9 @@ describe('withForm', () => {
 
     it('(Form), props: data-test="test-dataAttribute"', () => {
       const WithForm = withForm(Form);
-      const wrapper = create(<WithForm data-test="test-dataAttribute" />).toJSON();
+      const wrapper = create(
+        <WithForm data-test="test-dataAttribute" />
+      ).toJSON();
 
       expect(wrapper).toMatchSnapshot();
     });

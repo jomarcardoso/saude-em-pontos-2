@@ -39,6 +39,7 @@
   ],
   "license": "MIT",
   "scripts": {
+    "lint": "eslint src/**/*.js --fix",
     "flow": "flow",
     "build": "gatsby build",
     "develop": "gatsby develop",

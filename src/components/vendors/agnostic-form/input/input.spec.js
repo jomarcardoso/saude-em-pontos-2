@@ -1,7 +1,7 @@
 import React from 'react';
 import { create } from 'react-test-renderer';
 import { render, fireEvent } from '@testing-library/react';
-import Field from './field.component';
+import Field from './input';
 
 function Select(props) {
   return <select className="Select-test" {...props} />;
@@ -38,7 +38,9 @@ describe('<Field />', () => {
     });
 
     it('props: className="test" render={Input}', () => {
-      const wrapper = create(<Field className="test" render={Input} />).toJSON();
+      const wrapper = create(
+        <Field className="test" render={Input} />
+      ).toJSON();
 
       expect(wrapper).toMatchSnapshot();
     });
@@ -74,7 +76,9 @@ describe('<Field />', () => {
     });
 
     it('props: render={Select} className="test"', () => {
-      const wrapper = create(<Field render={Select} className="test" />).toJSON();
+      const wrapper = create(
+        <Field render={Select} className="test" />
+      ).toJSON();
 
       expect(wrapper).toMatchSnapshot();
     });
@@ -98,7 +102,9 @@ describe('<Field />', () => {
     it('props: { setErrorByName, required, error="test", render: Select } => calls', () => {
       const mockFn = jest.fn();
 
-      render(<Field required setErrorByName={mockFn} error="test" render={Select} />);
+      render(
+        <Field required setErrorByName={mockFn} error="test" render={Select} />
+      );
       expect(mockFn).toHaveBeenCalled();
     });
 
@@ -108,13 +114,15 @@ describe('<Field />', () => {
     `, () => {
       const mockFn = jest.fn();
 
-      render(<Field
-        required
-        setErrorByName={mockFn}
-        error="test"
-        render={Select}
-        invalidMessageEmptyField="test"
-      />);
+      render(
+        <Field
+          required
+          setErrorByName={mockFn}
+          error="test"
+          render={Select}
+          invalidMessageEmptyField="test"
+        />
+      );
       expect(mockFn).not.toHaveBeenCalled();
     });
 
@@ -123,7 +131,15 @@ describe('<Field />', () => {
     `, () => {
       const mockFn = jest.fn();
 
-      render(<Field required setErrorByName={mockFn} error="test" render={Select} noValidate />);
+      render(
+        <Field
+          required
+          setErrorByName={mockFn}
+          error="test"
+          render={Select}
+          noValidate
+        />
+      );
       expect(mockFn).not.toHaveBeenCalled();
     });
 
@@ -140,12 +156,14 @@ describe('<Field />', () => {
     `, () => {
       const mockFn = jest.fn();
 
-      render(<Field
-        required
-        setErrorByName={mockFn}
-        invalidMessageEmptyField="test"
-        render={Input}
-      />);
+      render(
+        <Field
+          required
+          setErrorByName={mockFn}
+          invalidMessageEmptyField="test"
+          render={Input}
+        />
+      );
       expect(mockFn).toHaveBeenCalledWith(undefined, 'test');
     });
 
@@ -159,27 +177,38 @@ describe('<Field />', () => {
     it('props: { setErrorByName, error, render: Input } => does with ""', () => {
       const mockFn = jest.fn();
 
-      render(<Field setErrorByName={mockFn} error="test" render={Input} required />);
+      render(
+        <Field setErrorByName={mockFn} error="test" render={Input} required />
+      );
       expect(mockFn).toHaveBeenCalledWith(undefined, 'O campo está vazio');
     });
 
     it('props: { setErrorByName, error, required, render: Input } => does not call', () => {
       const mockFn = jest.fn();
 
-      render(<Field setErrorByName={mockFn} error="O campo está vazio" render={Input} required />);
+      render(
+        <Field
+          setErrorByName={mockFn}
+          error="O campo está vazio"
+          render={Input}
+          required
+        />
+      );
       expect(mockFn).not.toHaveBeenCalled();
     });
 
     it('props: { setErrorByName, error, render: Input } => does with ""', () => {
       const mockFn = jest.fn();
 
-      render(<Field
-        setErrorByName={mockFn}
-        invalidMessage="test"
-        error="test"
-        value=""
-        render={Input}
-      />);
+      render(
+        <Field
+          setErrorByName={mockFn}
+          invalidMessage="test"
+          error="test"
+          value=""
+          render={Input}
+        />
+      );
       expect(mockFn).toHaveBeenCalledWith(undefined, '');
     });
   });
@@ -187,9 +216,9 @@ describe('<Field />', () => {
   describe('props.onChange', () => {
     it('props: { onChange, render: Input } onchange => calls', () => {
       const mockFn = jest.fn();
-      const {
-        getByTestId,
-      } = render(<Field onChange={mockFn} data-testid="onchange1" render={Input} />);
+      const { getByTestId } = render(
+        <Field onChange={mockFn} data-testid="onchange1" render={Input} />
+      );
 
       fireEvent.change(getByTestId('onchange1'), { target: { value: 'test' } });
       expect(mockFn).toHaveBeenCalled();
@@ -198,7 +227,9 @@ describe('<Field />', () => {
     it('props: { onChange, render: Input } => does not call', () => {
       const mockFn = jest.fn();
 
-      render(<Field onChange={mockFn} data-testid="onchange2" render={Input} />);
+      render(
+        <Field onChange={mockFn} data-testid="onchange2" render={Input} />
+      );
       expect(mockFn).not.toHaveBeenCalled();
     });
   });
@@ -206,11 +237,17 @@ describe('<Field />', () => {
   describe('props.setValueByName', () => {
     it('props: { setValueByName render: Input } => calls', () => {
       const mockFn = jest.fn();
-      const {
-        getByTestId,
-      } = render(<Field setValueByName={mockFn} data-testid="setValueByName1" render={Input} />);
+      const { getByTestId } = render(
+        <Field
+          setValueByName={mockFn}
+          data-testid="setValueByName1"
+          render={Input}
+        />
+      );
 
-      fireEvent.change(getByTestId('setValueByName1'), { target: { name: 'test', value: 'test' } });
+      fireEvent.change(getByTestId('setValueByName1'), {
+        target: { name: 'test', value: 'test' },
+      });
       expect(mockFn).toHaveBeenCalled();
     });
 
@@ -223,47 +260,53 @@ describe('<Field />', () => {
 
     it('props: { setValueByName, render: Input, name: "test" } => calls', () => {
       const mockFn = jest.fn();
-      const {
-        getByTestId,
-      } = render(<Field
-        setValueByName={mockFn}
-        data-testid="setValueByName3"
-        name="test"
-        render={Input}
-      />);
+      const { getByTestId } = render(
+        <Field
+          setValueByName={mockFn}
+          data-testid="setValueByName3"
+          name="test"
+          render={Input}
+        />
+      );
 
-      fireEvent.change(getByTestId('setValueByName3'), { target: { name: 'test', value: 'test' } });
+      fireEvent.change(getByTestId('setValueByName3'), {
+        target: { name: 'test', value: 'test' },
+      });
       expect(mockFn).toHaveBeenCalledWith('test', 'test');
     });
 
     it('props: { setValueByName, name: "test", render: "Input" } => calls', () => {
       const mockFn = jest.fn();
-      const {
-        getByTestId,
-      } = render(<Field
-        setValueByName={mockFn}
-        data-testid="setValueByName4"
-        name="test"
-        render={Input}
-      />);
+      const { getByTestId } = render(
+        <Field
+          setValueByName={mockFn}
+          data-testid="setValueByName4"
+          name="test"
+          render={Input}
+        />
+      );
 
-      fireEvent.change(getByTestId('setValueByName4'), { target: { name: 'test', value: '' } });
+      fireEvent.change(getByTestId('setValueByName4'), {
+        target: { name: 'test', value: '' },
+      });
       expect(mockFn).not.toHaveBeenCalled();
     });
 
     it('props: { setValueByName, render: Input, name: "test", value: "test" } => calls', () => {
       const mockFn = jest.fn();
-      const {
-        getByTestId,
-      } = render(<Field
-        setValueByName={mockFn}
-        data-testid="setValueByName5"
-        name="test"
-        value="test"
-        render={Input}
-      />);
+      const { getByTestId } = render(
+        <Field
+          setValueByName={mockFn}
+          data-testid="setValueByName5"
+          name="test"
+          value="test"
+          render={Input}
+        />
+      );
 
-      fireEvent.change(getByTestId('setValueByName5'), { target: { name: 'test', value: 'test' } });
+      fireEvent.change(getByTestId('setValueByName5'), {
+        target: { name: 'test', value: 'test' },
+      });
       expect(mockFn).not.toHaveBeenCalled();
     });
   });
@@ -271,13 +314,13 @@ describe('<Field />', () => {
   describe('props.setVisibleErrorByName', () => {
     it('props: { setVisibleErrorByName, render: Input } onClick => does not call', () => {
       const mockFn = jest.fn();
-      const {
-        getByTestId,
-      } = render(<Field
-        setVisibleErrorByName={mockFn}
-        data-testid="setVisibleErrorByName1"
-        render={Input}
-      />);
+      const { getByTestId } = render(
+        <Field
+          setVisibleErrorByName={mockFn}
+          data-testid="setVisibleErrorByName1"
+          render={Input}
+        />
+      );
 
       fireEvent.click(getByTestId('setVisibleErrorByName1'));
       expect(mockFn).not.toHaveBeenCalled();
@@ -285,13 +328,13 @@ describe('<Field />', () => {
 
     it('props: { setVisibleErrorByName, render: Input } onBlur => does not call', () => {
       const mockFn = jest.fn();
-      const {
-        getByTestId,
-      } = render(<Field
-        setVisibleErrorByName={mockFn}
-        data-testid="setVisibleErrorByName2"
-        render={Input}
-      />);
+      const { getByTestId } = render(
+        <Field
+          setVisibleErrorByName={mockFn}
+          data-testid="setVisibleErrorByName2"
+          render={Input}
+        />
+      );
 
       fireEvent.blur(getByTestId('setVisibleErrorByName2'));
       expect(mockFn).not.toHaveBeenCalled();
@@ -299,14 +342,14 @@ describe('<Field />', () => {
 
     it('props: { setVisibleErrorByName, render: Input, error: "test" } onBlur => calls', () => {
       const mockFn = jest.fn();
-      const {
-        getByTestId,
-      } = render(<Field
-        error="test"
-        setVisibleErrorByName={mockFn}
-        data-testid="setVisibleErrorByName3"
-        render={Input}
-      />);
+      const { getByTestId } = render(
+        <Field
+          error="test"
+          setVisibleErrorByName={mockFn}
+          data-testid="setVisibleErrorByName3"
+          render={Input}
+        />
+      );
 
       fireEvent.blur(getByTestId('setVisibleErrorByName3'));
       expect(mockFn).toHaveBeenCalled();
@@ -316,15 +359,15 @@ describe('<Field />', () => {
       props: { setVisibleErrorByName, render: Input, error: "test", visibleError } onBlur => calls
     `, () => {
       const mockFn = jest.fn();
-      const {
-        getByTestId,
-      } = render(<Field
-        error="test"
-        visibleError
-        setVisibleErrorByName={mockFn}
-        data-testid="setVisibleErrorByName4"
-        render={Input}
-      />);
+      const { getByTestId } = render(
+        <Field
+          error="test"
+          visibleError
+          setVisibleErrorByName={mockFn}
+          data-testid="setVisibleErrorByName4"
+          render={Input}
+        />
+      );
 
       fireEvent.blur(getByTestId('setVisibleErrorByName4'));
       expect(mockFn).toHaveBeenCalled();
@@ -332,14 +375,14 @@ describe('<Field />', () => {
 
     it('props: { setVisibleErrorByName, render: Input, visibleError } onBlur => calls', () => {
       const mockFn = jest.fn();
-      const {
-        getByTestId,
-      } = render(<Field
-        visibleError
-        setVisibleErrorByName={mockFn}
-        data-testid="setVisibleErrorByName5"
-        render={Input}
-      />);
+      const { getByTestId } = render(
+        <Field
+          visibleError
+          setVisibleErrorByName={mockFn}
+          data-testid="setVisibleErrorByName5"
+          render={Input}
+        />
+      );
 
       fireEvent.focus(getByTestId('setVisibleErrorByName5'));
       expect(mockFn).toHaveBeenCalled();
@@ -347,14 +390,14 @@ describe('<Field />', () => {
 
     it('props: { setVisibleErrorByName, render: Input, visibleError } onBlur => calls', () => {
       const mockFn = jest.fn();
-      const {
-        getByTestId,
-      } = render(<Field
-        visibleError
-        setVisibleErrorByName={mockFn}
-        data-testid="setVisibleErrorByName6"
-        render={Input}
-      />);
+      const { getByTestId } = render(
+        <Field
+          visibleError
+          setVisibleErrorByName={mockFn}
+          data-testid="setVisibleErrorByName6"
+          render={Input}
+        />
+      );
 
       fireEvent.focus(getByTestId('setVisibleErrorByName6'));
       expect(mockFn).toHaveBeenCalledWith(undefined, false);
@@ -362,14 +405,14 @@ describe('<Field />', () => {
 
     it('props: { setVisibleErrorByName, render: Input, error: "test" } onBlur => calls', () => {
       const mockFn = jest.fn();
-      const {
-        getByTestId,
-      } = render(<Field
-        error="test"
-        setVisibleErrorByName={mockFn}
-        data-testid="setVisibleErrorByName7"
-        render={Input}
-      />);
+      const { getByTestId } = render(
+        <Field
+          error="test"
+          setVisibleErrorByName={mockFn}
+          data-testid="setVisibleErrorByName7"
+          render={Input}
+        />
+      );
 
       fireEvent.blur(getByTestId('setVisibleErrorByName7'));
       expect(mockFn).toHaveBeenCalledWith(undefined, true);

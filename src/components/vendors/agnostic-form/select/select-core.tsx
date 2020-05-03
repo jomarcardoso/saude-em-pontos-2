@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FieldCore from '../field/field-core';
+import FieldCore from '../input/input-core';
 
 const _emptyOptionAttributes = { value: '', children: '' };
 const _defaultValue = '';

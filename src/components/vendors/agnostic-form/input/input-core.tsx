@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { isEmptyString, isFunction } from '../../../services/validate';
+import { isEmptyString, isFunction } from '../../../../services/validate';
 
 const MESSAGE_EMPTY_FIELD = 'O campo está vazio';
 
@@ -23,7 +23,7 @@ interface Props {
   required: boolean;
 }
 
-const FieldCore: React.SFC<Props> = ({
+const InputCore: React.SFC<Props> = ({
   onBlur,
   onFocus,
   onChange,
@@ -95,7 +95,6 @@ const FieldCore: React.SFC<Props> = ({
   function validate() {
     if (noValidate) return;
     const { required = false, value = '' } = restProps;
-    console.log(value);
 
     const empty = isEmptyString(value.trim());
 
@@ -133,4 +132,4 @@ const FieldCore: React.SFC<Props> = ({
   });
 };
 
-export default FieldCore;
+export default InputCore;
