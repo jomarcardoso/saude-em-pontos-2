@@ -11,7 +11,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { CurrentPage } from '../services/page.service';
 import { Food } from '../services/food.service';
 import useForm from '../components/form/with-form/use-form';
-import Field from '../components/form/field/field';
 import Selectoi from '../components/form/select/select';
 import Select from '@material-ui/core/Select';
 
@@ -53,34 +52,39 @@ const Meal: React.SFC = () => {
     event.preventDefault();
   }
 
+  const options = foods.map((food) => ({
+    ...food,
+    value: String(food.id),
+  }));
+
   return (
     <Layout currentPage={CurrentPage.MEAL} pageName="Cadastrar refeição">
       <form action="/" method="post" onSubmit={handleSubmit}>
         <Grid container spacing={5}>
           <Grid item xs={12}>
-            <Field form={form} name="oi" />
+            <InputLabel id="food">Alimento</InputLabel>
             <Selectoi
               form={form}
               name="ai"
-              options={[
-                {
-                  value: '1',
-                  children: 'um',
-                },
-              ]}
-            />
-            <InputLabel id="food">Alimento</InputLabel>
-            <Select labelId="food" id="select" value={0}>
-              <MenuItem value={0} />
-              {foods.map((food) => (
-                <MenuItem value={food.id}>
+              render={(selectProps) => (
+                <Select labelId="food" id="select" value={0} {...selectProps}>
+                  {selectProps.children}
+                </Select>
+              )}
+              renderOptions={(optionProps) => (
+                <MenuItem value={optionProps.value}>
                   <ListItemIcon className={classes.selectIcon}>
-                    <img className={classes.img} src={food.image} alt="" />
+                    <img
+                      className={classes.img}
+                      src={optionProps.image}
+                      alt=""
+                    />
                   </ListItemIcon>
-                  <ListItemText primary={food.name} />
+                  <ListItemText primary={optionProps.name} />
                 </MenuItem>
-              ))}
-            </Select>
+              )}
+              options={options}
+            />
           </Grid>
           <Grid item xs={12}>
             <Button type="submit" variant="contained" color="primary">

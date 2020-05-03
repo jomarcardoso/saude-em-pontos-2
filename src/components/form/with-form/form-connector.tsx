@@ -30,13 +30,22 @@ interface Props {
 
 const FormConnector: React.SFC<Props> = ({
   name,
-  form: { values, errors, visibleErrors, ...restForm },
+  form: {
+    values,
+    errors,
+    visibleErrors,
+    setVisibleErrorByName,
+    setErrorByName,
+    setValueByName,
+  },
   render,
   ...props
 }) => {
   return render({
-    ...restForm,
     ...props,
+    setVisibleErrorByName,
+    setErrorByName,
+    setValueByName,
     value: values[name],
     error: errors[name],
     visibleError: visibleErrors[name],

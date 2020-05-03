@@ -6,7 +6,9 @@ function Select(props) {
   return (
     <FormConnector
       {...props}
-      render={(connectorProps) => <SelectCore {...connectorProps} />}
+      render={(connectorProps) => (
+        <SelectCore render={props.render} {...connectorProps} />
+      )}
     />
   );
 }

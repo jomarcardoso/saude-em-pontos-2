@@ -95,6 +95,7 @@ const FieldCore: React.SFC<Props> = ({
   function validate() {
     if (noValidate) return;
     const { required = false, value = '' } = restProps;
+    console.log(value);
 
     const empty = isEmptyString(value.trim());
 
