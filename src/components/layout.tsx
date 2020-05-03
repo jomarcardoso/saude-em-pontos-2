@@ -6,7 +6,7 @@ import Box from '@material-ui/core/Box';
 import ThemeTopLayout from 'gatsby-theme-material-ui-top-layout/src/components/top-layout';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
-import { CurrentPage } from '../services/account.service';
+import { CurrentPage } from '../services/page.service';
 
 const theme = createMuiTheme({
   palette: {
@@ -40,7 +40,7 @@ const Layout: React.SFC<Props> = ({
   pageName = '',
   showHeader = true,
   showFooter = true,
-  currentPage = CurrentPage.HOME,
+  currentPage = CurrentPage.NONE,
 }) => {
   const classes = useStyles();
 

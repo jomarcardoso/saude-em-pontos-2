@@ -28,12 +28,6 @@ export interface AccountAndSet {
   setAccount?: SetAccount;
 }
 
-export enum CurrentPage {
-  HOME,
-  MEAL,
-  EXERCISE,
-}
-
 const ACCOUNT_LOCAL_STORAGE = 'saude-em-pontos';
 
 export const SHAPE_ACCOUNT: Account = {

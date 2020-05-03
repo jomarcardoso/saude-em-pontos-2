@@ -8,7 +8,7 @@ import Box from '@material-ui/core/Box';
 import DirectionsRunOutlinedIcon from '@material-ui/icons/DirectionsRunOutlined';
 import { Link } from 'gatsby';
 import { makeStyles } from '@material-ui/core/styles';
-import { CurrentPage } from '../services/account.service';
+import { CurrentPage } from '../services/page.service';
 
 const useStyles = makeStyles({
   root: {
@@ -22,7 +22,7 @@ interface Props {
   currentPage: CurrentPage;
 }
 
-const Footer: React.SFC<Props> = ({ currentPage = CurrentPage.HOME }) => {
+const Footer: React.SFC<Props> = ({ currentPage = CurrentPage.NONE }) => {
   const classes = useStyles();
 
   return (

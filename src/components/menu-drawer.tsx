@@ -1,8 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
+import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -61,30 +61,22 @@ const MenuDrawer: React.SFC<Props> = ({ opened, toggleDrawer }) => {
           </Link>
         </ListItem>
         <ListItem component="li" button>
-          <Link to="/food" className={classes.anchor} color="inherit">
+          <Link to="/meal" className={classes.anchor} color="inherit">
             <ListItemIcon>
               <CakeIcon />
             </ListItemIcon>
-            <ListItemText primary="Alimentos" />
+            <ListItemText primary="Cadastrar refeição" />
           </Link>
         </ListItem>
       </List>
       <Divider />
       <List>
         <ListItem component="li" button>
-          <Link to="/advertise" className={classes.anchor} color="inherit">
+          <Link to="/foods" className={classes.anchor} color="inherit">
             <ListItemIcon>
-              <QuestionAnswerIcon />
+              <CakeIcon />
             </ListItemIcon>
-            <ListItemText primary="Esclarecimentos" />
-          </Link>
-        </ListItem>
-        <ListItem component="li" button>
-          <Link to="/quiz" className={classes.anchor} color="inherit">
-            <ListItemIcon>
-              <AssignmentIndIcon />
-            </ListItemIcon>
-            <ListItemText primary="Sobre você" />
+            <ListItemText primary="Lista de alimentos" />
           </Link>
         </ListItem>
       </List>

@@ -9,7 +9,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
-import { CurrentPage } from '../services/account.service';
+import { CurrentPage } from '../services/page.service';
 import { Food } from '../services/food.service';
 
 const useFood = (): Array<Food> => {
