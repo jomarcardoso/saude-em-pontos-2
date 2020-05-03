@@ -1,18 +1,13 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/core/styles';
-import Select from '@material-ui/core/Select';
 import { CurrentPage } from '../services/page.service';
 import { Food } from '../services/food.service';
 import { useForm } from '../components/vendors/agnostic-components/form/use-form';
-import AgnosticSelect from '../components/vendors/agnostic-components/form/select';
 import Layout from '../components/layout';
+import Select from '../components/form/select';
 
 const useFood = (): Array<Food> => {
   const data = useStaticQuery(graphql`
@@ -32,20 +27,8 @@ const useFood = (): Array<Food> => {
   return data.file.childDbJson.foods;
 };
 
-const useStyles = makeStyles({
-  selectIcon: {
-    minWidth: '20px',
-    width: '20px',
-    marginRight: '10px',
-  },
-  img: {
-    width: '100%',
-  },
-});
-
 const Meal: React.SFC = () => {
   const foods = useFood();
-  const classes = useStyles();
   const form = useForm();
 
   function handleSubmit(event: React.SyntheticEvent): void {
@@ -63,28 +46,7 @@ const Meal: React.SFC = () => {
         <Grid container spacing={5}>
           <Grid item xs={12}>
             <InputLabel id="food">Alimento</InputLabel>
-            <AgnosticSelect
-              form={form}
-              name="ai"
-              render={(selectProps) => (
-                <Select labelId="food" id="select" value={0} {...selectProps}>
-                  {selectProps.children}
-                </Select>
-              )}
-              renderOptions={(optionProps) => (
-                <MenuItem value={optionProps.value}>
-                  <ListItemIcon className={classes.selectIcon}>
-                    <img
-                      className={classes.img}
-                      src={optionProps.image}
-                      alt=""
-                    />
-                  </ListItemIcon>
-                  <ListItemText primary={optionProps.name} />
-                </MenuItem>
-              )}
-              options={options}
-            />
+            <Select options={options} name="food" form={form} />
           </Grid>
           <Grid item xs={12}>
             <Button type="submit" variant="contained" color="primary">

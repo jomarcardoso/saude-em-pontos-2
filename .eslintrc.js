@@ -13,6 +13,9 @@ module.exports = {
   parserOptions: {
     project: './tsconfig.json',
   },
+  rules: {
+    'linebreak-style': 0,
+  }
   globals: {
     __PATH_PREFIX__: true,
   },
