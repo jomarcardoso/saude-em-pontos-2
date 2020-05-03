@@ -7,6 +7,7 @@ import Layout from '../components/layout';
 import Advertise from '../components/advertise';
 import AccountContext from '../components/account-context';
 import { Account, SHAPE_ACCOUNT } from '../services/account.service';
+import { CurrentPage } from '../services/page.service';
 
 const Index: React.SFC = () => {
   const {
@@ -45,7 +46,7 @@ const Index: React.SFC = () => {
     );
   }
 
-  return <Layout pageName="Menu" />;
+  return <Layout currentPage={CurrentPage.HOME} pageName="Menu" />;
 };
 
 export default Index;

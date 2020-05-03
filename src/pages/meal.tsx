@@ -11,6 +11,8 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import { CurrentPage } from '../services/page.service';
 import { Food } from '../services/food.service';
+import useForm from '../components/form/with-form/use-form';
+import Field from '../components/form/field/field';
 
 const useFood = (): Array<Food> => {
   const data = useStaticQuery(graphql`
@@ -44,6 +46,7 @@ const useStyles = makeStyles({
 const Meal: React.SFC = () => {
   const foods = useFood();
   const classes = useStyles();
+  const form = useForm();
 
   function handleSubmit(event: React.SyntheticEvent): void {
     event.preventDefault();
@@ -54,6 +57,7 @@ const Meal: React.SFC = () => {
       <form action="/" method="post" onSubmit={handleSubmit}>
         <Grid container spacing={5}>
           <Grid item xs={12}>
+            <Field form={form} name="oi" />
             <InputLabel id="food">Alimento</InputLabel>
             <Select labelId="food" id="select" value={0}>
               <MenuItem value={0} />

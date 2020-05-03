@@ -50,7 +50,7 @@ const Footer: React.SFC<Props> = ({ currentPage = CurrentPage.NONE }) => {
             label="Cadastrar refeição"
             icon={
               <RestaurantOutlinedIcon
-                color={currentPage === CurrentPage.MEAL ? 'primary' : ''}
+                color={currentPage === CurrentPage.MEAL ? 'primary' : 'inherit'}
               />
             }
           />
@@ -60,7 +60,9 @@ const Footer: React.SFC<Props> = ({ currentPage = CurrentPage.NONE }) => {
             label="Cadastrar exercício"
             icon={
               <DirectionsRunOutlinedIcon
-                color={currentPage === CurrentPage.EXERCISE ? 'primary' : ''}
+                color={
+                  currentPage === CurrentPage.EXERCISE ? 'primary' : 'inherit'
+                }
               />
             }
           />
