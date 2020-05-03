@@ -2,7 +2,6 @@ import React from 'react';
 import Layout from '../components/layout';
 import { useStaticQuery, graphql } from 'gatsby';
 import InputLabel from '@material-ui/core/InputLabel';
-import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -13,6 +12,8 @@ import { CurrentPage } from '../services/page.service';
 import { Food } from '../services/food.service';
 import useForm from '../components/form/with-form/use-form';
 import Field from '../components/form/field/field';
+import Selectoi from '../components/form/select/select';
+import Select from '@material-ui/core/Select';
 
 const useFood = (): Array<Food> => {
   const data = useStaticQuery(graphql`
@@ -58,6 +59,16 @@ const Meal: React.SFC = () => {
         <Grid container spacing={5}>
           <Grid item xs={12}>
             <Field form={form} name="oi" />
+            <Selectoi
+              form={form}
+              name="ai"
+              options={[
+                {
+                  value: '1',
+                  children: 'um',
+                },
+              ]}
+            />
             <InputLabel id="food">Alimento</InputLabel>
             <Select labelId="food" id="select" value={0}>
               <MenuItem value={0} />

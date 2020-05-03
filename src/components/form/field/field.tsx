@@ -1,52 +1,6 @@
 import React from 'react';
 import FieldCore from './field-core';
-
-interface Render {
-  value: string;
-  error: string;
-  visibleError: boolean;
-  setVisibleErrorByName(name: string, visible: boolean): void;
-  setErrorByName(name: string, error: string): void;
-  setValueByName(name: string, value: string): void;
-}
-
-interface Form {
-  values: {
-    [key: string]: string;
-  };
-  errors: {
-    [key: string]: string;
-  };
-  visibleErrors: {
-    [key: string]: boolean;
-  };
-  setVisibleErrorByName(name: string, visible: boolean): void;
-  setErrorByName(name: string, error: string): void;
-  setValueByName(name: string, value: string): void;
-}
-
-interface Props {
-  form: Form;
-  name: string;
-  render(Render): React.ReactElement;
-}
-
-const FormConnector: React.SFC<Props> = ({
-  name,
-  form: { values, errors, visibleErrors, ...restForm },
-  render,
-  ...props
-}) => {
-  console.log(values?.[name]);
-  return render({
-    ...restForm,
-    ...props,
-    value: values[name],
-    error: errors[name],
-    visibleError: visibleErrors[name],
-    name,
-  });
-};
+import FormConnector from '../with-form/form-connector';
 
 function Field(props) {
   return (
