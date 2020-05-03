@@ -40,17 +40,15 @@ const FormConnector: React.SFC<Props> = ({
   },
   render,
   ...props
-}) => {
-  return render({
-    ...props,
-    setVisibleErrorByName,
-    setErrorByName,
-    setValueByName,
-    value: values[name],
-    error: errors[name],
-    visibleError: visibleErrors[name],
-    name,
-  });
-};
+}) => render({
+  ...props,
+  setVisibleErrorByName,
+  setErrorByName,
+  setValueByName,
+  value: values[name],
+  error: errors[name],
+  visibleError: visibleErrors[name],
+  name,
+});
 
 export default FormConnector;

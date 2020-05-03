@@ -48,23 +48,23 @@ const Footer: React.SFC<Props> = ({ currentPage = CurrentPage.NONE }) => {
         <Link to="/meal">
           <BottomNavigationAction
             label="Cadastrar refeição"
-            icon={
+            icon={(
               <RestaurantOutlinedIcon
                 color={currentPage === CurrentPage.MEAL ? 'primary' : 'inherit'}
               />
-            }
+            )}
           />
         </Link>
         <Link to="/exercise">
           <BottomNavigationAction
             label="Cadastrar exercício"
-            icon={
+            icon={(
               <DirectionsRunOutlinedIcon
                 color={
                   currentPage === CurrentPage.EXERCISE ? 'primary' : 'inherit'
                 }
               />
-            }
+            )}
           />
         </Link>
       </BottomNavigation>

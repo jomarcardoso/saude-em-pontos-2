@@ -29,17 +29,19 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.30.0",
     "@typescript-eslint/parser": "^2.30.0",
+    "eslint-config-airbnb-typescript": "^7.2.1",
     "eslint-config-react-app": "^5.2.1",
     "flow-bin": "^0.123.0",
     "prettier": "2.0.4",
-    "surge": "^0.21.3"
+    "surge": "^0.21.3",
+    "typescript": "^3.8.3"
   },
   "keywords": [
     "gatsby"
   ],
   "license": "MIT",
   "scripts": {
-    "lint": "eslint src/**/*.js --fix",
+    "lint": "eslint src/**/*.{js,ts,tsx} --fix",
     "flow": "flow",
     "build": "gatsby build",
     "develop": "gatsby develop",

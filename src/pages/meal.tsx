@@ -1,5 +1,4 @@
 import React from 'react';
-import Layout from '../components/layout';
 import { useStaticQuery, graphql } from 'gatsby';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -8,11 +7,12 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
+import Select from '@material-ui/core/Select';
 import { CurrentPage } from '../services/page.service';
 import { Food } from '../services/food.service';
 import useForm from '../components/form/use-form/use-form';
 import Selectoi from '../components/form/select/select';
-import Select from '@material-ui/core/Select';
+import Layout from '../components/layout';
 
 const useFood = (): Array<Food> => {
   const data = useStaticQuery(graphql`

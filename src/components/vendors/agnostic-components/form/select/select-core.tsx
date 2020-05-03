@@ -50,9 +50,7 @@ export default function SelectCore({
 
   return (
     <FieldCore
-      render={(renderProps) =>
-        render({ children: _contentOptions(), ...renderProps })
-      }
+      render={(renderProps) => render({ children: _contentOptions(), ...renderProps })}
       {...props}
     />
   );
@@ -67,7 +65,7 @@ SelectCore.propTypes = {
     PropTypes.shape({
       value: PropTypes.string,
       children: PropTypes.elementType,
-    })
+    }),
   ),
 };
 

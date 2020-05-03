@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    // "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    // "forceConsistentCasingInFileNames": true,
+    "jsx": "react",
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "include": ["src", "index.d.ts"]
+}

@@ -43,13 +43,11 @@ const InputCore: React.SFC<Props> = ({
   const { name = '' } = restProps;
 
   function hideError() {
-    if (isFunction(setVisibleErrorByName) && visibleError)
-      setVisibleErrorByName(name, false);
+    if (isFunction(setVisibleErrorByName) && visibleError) { setVisibleErrorByName(name, false); }
   }
 
   function showError() {
-    if (isFunction(setVisibleErrorByName) && !visibleError)
-      setVisibleErrorByName(name, true);
+    if (isFunction(setVisibleErrorByName) && !visibleError) { setVisibleErrorByName(name, true); }
   }
 
   function toggleShowError() {

@@ -42,8 +42,7 @@ export const SHAPE_ACCOUNT: Account = {
 function get(): Account {
   if (typeof window === 'undefined') return SHAPE_ACCOUNT;
 
-  const account =
-    JSON.parse(localStorage.getItem(ACCOUNT_LOCAL_STORAGE)) ?? SHAPE_ACCOUNT;
+  const account = JSON.parse(localStorage.getItem(ACCOUNT_LOCAL_STORAGE)) ?? SHAPE_ACCOUNT;
 
   return account;
 }

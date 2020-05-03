@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react';
-import Quiz from '../components/quiz';
 import { Link } from 'gatsby-theme-material-ui';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import Quiz from '../components/quiz';
 import Layout from '../components/layout';
 import Advertise from '../components/advertise';
 import AccountContext from '../components/account-context';

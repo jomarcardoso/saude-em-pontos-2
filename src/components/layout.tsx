@@ -1,11 +1,11 @@
 import React from 'react';
+import Box from '@material-ui/core/Box';
+import ThemeTopLayout from 'gatsby-theme-material-ui-top-layout/src/components/top-layout';
+import { createMuiTheme, makeStyles } from '@material-ui/core/styles';
 import Header from './header';
 import Main from './main';
 import Footer from './footer';
-import Box from '@material-ui/core/Box';
-import ThemeTopLayout from 'gatsby-theme-material-ui-top-layout/src/components/top-layout';
-import { createMuiTheme } from '@material-ui/core/styles';
-import { makeStyles } from '@material-ui/core/styles';
+
 import { CurrentPage } from '../services/page.service';
 
 const theme = createMuiTheme({

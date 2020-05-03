@@ -27,11 +27,11 @@ const Header: React.SFC<Props> = ({ pageName = '' }) => {
   const [opened, setOpened] = useState(false);
 
   const toggleDrawer = (open: boolean): void => (
-    event: React.SyntheticEvent
+    event: React.SyntheticEvent,
   ): void => {
     if (
-      event.type === 'keydown' &&
-      (event.key === 'Tab' || event.key === 'Shift')
+      event.type === 'keydown'
+      && (event.key === 'Tab' || event.key === 'Shift')
     ) {
       return;
     }

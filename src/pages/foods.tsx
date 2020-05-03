@@ -1,14 +1,14 @@
 import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
-import { Food } from '../services/food.service';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import { Link } from 'gatsby-theme-material-ui';
 import { makeStyles } from '@material-ui/core/styles';
-import Layout from '../components/layout';
 import Divider from '@material-ui/core/Divider';
+import Layout from '../components/layout';
+import { Food } from '../services/food.service';
 
 const useFood = (): Array<Food> => {
   const data = useStaticQuery(graphql`
@@ -50,7 +50,7 @@ const useStyles = makeStyles({
 const Foods: React.SFC = () => {
   const foods = useFood();
   const classes = useStyles();
-  const orderedFood = foods.sort(function (a, b) {
+  const orderedFood = foods.sort((a, b) => {
     if (a.name > b.name) {
       return 1;
     }

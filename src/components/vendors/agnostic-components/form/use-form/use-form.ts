@@ -3,7 +3,7 @@ import { isArray, isString } from '../../../services/validate';
 
 function objectMap(object, operation) {
   return Object.assign(
-    ...Object.entries(object).map(([key, value]) => operation(value, key))
+    ...Object.entries(object).map(([key, value]) => operation(value, key)),
   );
 }
 
@@ -14,7 +14,7 @@ const useForm = ({
 } = {}) => {
   const [errors, setErrors] = useState({ ...initialErrors } || {});
   const [visibleErrors, setVisibleErrors] = useState(
-    { ...initialVisibleErrors } || {}
+    { ...initialVisibleErrors } || {},
   );
   const [values, setValues] = useState({ ...initialValues } || {});
 
