@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { isEmptyString, isFunction } from '../../../../services/validate';
+import { isEmptyString, isFunction } from '../../../../../services/validate';
 
 const MESSAGE_EMPTY_FIELD = 'O campo está vazio';
 
@@ -43,11 +43,15 @@ const InputCore: React.SFC<Props> = ({
   const { name = '' } = restProps;
 
   function hideError() {
-    if (isFunction(setVisibleErrorByName) && visibleError) { setVisibleErrorByName(name, false); }
+    if (isFunction(setVisibleErrorByName) && visibleError) {
+      setVisibleErrorByName(name, false);
+    }
   }
 
   function showError() {
-    if (isFunction(setVisibleErrorByName) && !visibleError) { setVisibleErrorByName(name, true); }
+    if (isFunction(setVisibleErrorByName) && !visibleError) {
+      setVisibleErrorByName(name, true);
+    }
   }
 
   function toggleShowError() {

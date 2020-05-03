@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { create } from 'react-test-renderer';
-import withForm from './use-form.component';
+import withForm from './use-form';
 
 function Form({
   children,

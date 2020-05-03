@@ -10,8 +10,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Select from '@material-ui/core/Select';
 import { CurrentPage } from '../services/page.service';
 import { Food } from '../services/food.service';
-import useForm from '../components/form/use-form/use-form';
-import Selectoi from '../components/form/select/select';
+import { useForm } from '../components/vendors/agnostic-components/form/use-form';
+import AgnosticSelect from '../components/vendors/agnostic-components/form/select';
 import Layout from '../components/layout';
 
 const useFood = (): Array<Food> => {
@@ -63,7 +63,7 @@ const Meal: React.SFC = () => {
         <Grid container spacing={5}>
           <Grid item xs={12}>
             <InputLabel id="food">Alimento</InputLabel>
-            <Selectoi
+            <AgnosticSelect
               form={form}
               name="ai"
               render={(selectProps) => (
