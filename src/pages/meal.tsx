@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import InputLabel from '@material-ui/core/InputLabel';
 import Button from '@material-ui/core/Button';
@@ -8,6 +8,7 @@ import { Food } from '../services/food.service';
 import { useForm } from '../components/vendors/agnostic-components/form/use-form';
 import Layout from '../components/layout';
 import Select from '../components/form/select';
+import InputNumber from '../components/vendors/agnostic-components/form/input-number';
 
 const useFood = (): Array<Food> => {
   const data = useStaticQuery(graphql`
@@ -29,7 +30,10 @@ const useFood = (): Array<Food> => {
 
 const Meal: React.SFC = () => {
   const foods = useFood();
-  const form = useForm();
+  const formFood = useForm();
+  const formQuantity = useForm();
+  const arrayOfValues = Object.values(formFood.values);
+  console.log(formFood.values);
 
   function handleSubmit(event: React.SyntheticEvent): void {
     event.preventDefault();
@@ -40,14 +44,36 @@ const Meal: React.SFC = () => {
     value: String(food.id),
   }));
 
+  useEffect(() => {
+    if (!arrayOfValues.every((value) => value)) return;
+
+    formFood.setValueByName(`food${arrayOfValues.length}`, '');
+  }, [formFood]);
+
   return (
     <Layout currentPage={CurrentPage.MEAL} pageName="Cadastrar refeição">
       <form action="/" method="post" onSubmit={handleSubmit}>
         <Grid container spacing={5}>
-          <Grid item xs={12}>
-            <InputLabel id="food">Alimento</InputLabel>
-            <Select options={options} name="food" form={form} />
-          </Grid>
+          {arrayOfValues.map((value, index) => (
+            <>
+              <Grid item xs={12}>
+                <InputLabel id={`food-${index}`}>
+                  Alimento {index + 1}
+                </InputLabel>
+                <Select
+                  options={options}
+                  name={`food${index}`}
+                  form={formFood}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <InputLabel id={`quantity-${index}`}>
+                  Quantidade {index + 1}
+                </InputLabel>
+                <InputNumber name={`quantity${index}`} form={formQuantity} />
+              </Grid>
+            </>
+          ))}
           <Grid item xs={12}>
             <Button type="submit" variant="contained" color="primary">
               Cadastrar refeição

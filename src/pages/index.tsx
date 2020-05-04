@@ -19,7 +19,6 @@ const Index: React.SFC = () => {
   } = useContext(AccountContext);
   const [readAdvertise, setReadAdvertise] = useState(false);
   const rendered = typeof window !== 'undefined';
-  console.log(setAccount);
   const registeredUser = account.user.name;
 
   if (rendered && !registeredUser) {

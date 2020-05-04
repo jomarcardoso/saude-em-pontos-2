@@ -116,7 +116,6 @@ const InputCore: React.SFC<Props> = ({
   }
 
   function handleChange(e) {
-    console.log(setValueByName);
     if (isFunction(onChange)) onChange(e);
     const { value = '' } = e.target;
 

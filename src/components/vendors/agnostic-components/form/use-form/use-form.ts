@@ -33,7 +33,7 @@ const useForm = ({
     }));
   }
 
-  function setValueByName(name, value) {
+  function setValueByName(name: string, value) {
     handleValues({ [name]: value });
   }
 
