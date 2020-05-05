@@ -8,7 +8,7 @@ import { Food } from '../services/food.service';
 import { useForm } from '../components/vendors/agnostic-components/form/use-form';
 import Layout from '../components/layout';
 import Select from '../components/form/select';
-import InputNumber from '../components/vendors/agnostic-components/form/input-number';
+import InputNumber from '../components/form/input-number';
 import AccountContext from '../components/account-context';
 import { Meal, Portion } from 'src/services/meal.service';
 

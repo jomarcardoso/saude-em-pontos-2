@@ -6,7 +6,9 @@ function InputNumber(props) {
   return (
     <FormConnector
       {...props}
-      render={(connectorProps) => <InputNumberCore {...connectorProps} />}
+      render={(connectorProps) => (
+        <InputNumberCore render={props.render} {...connectorProps} />
+      )}
     />
   );
 }

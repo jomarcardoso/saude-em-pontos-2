@@ -124,6 +124,8 @@ const InputCore: React.SFC<Props> = ({
 
   useEffect(validate);
 
+  console.log(render);
+
   return render({
     onFocus: handleFocus,
     onChange: handleChange,
