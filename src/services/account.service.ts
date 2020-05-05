@@ -1,4 +1,4 @@
-import { Meal } from './meal.service';
+import MealService, { Meal, SetMeal } from './meal.service';
 
 export enum Ojective {
   HEALTH = 'Saúde',
@@ -16,6 +16,7 @@ export type SetUser = (User) => void;
 
 export interface SetAccount {
   user: SetUser;
+  meal: SetMeal;
 }
 
 export interface Account {
@@ -42,8 +43,10 @@ export const SHAPE_ACCOUNT: Account = {
 function get(): Account {
   if (typeof window === 'undefined') return SHAPE_ACCOUNT;
 
-  const account = JSON.parse(localStorage.getItem(ACCOUNT_LOCAL_STORAGE)) ?? SHAPE_ACCOUNT;
+  const account =
+    JSON.parse(localStorage.getItem(ACCOUNT_LOCAL_STORAGE)) ?? SHAPE_ACCOUNT;
 
+  account.meals = account.meals.map((meal) => MealService.format(meal));
   return account;
 }
 

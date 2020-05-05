@@ -11,6 +11,13 @@ export default function useAccount(): AccountAndSet {
     });
   }
 
+  function setMeal(meal): void {
+    _setAccount({
+      ...account,
+      meals: [...account.meals, meal],
+    });
+  }
+
   useEffect(() => {
     AccountService.save(account);
   }, [account]);
@@ -18,6 +25,7 @@ export default function useAccount(): AccountAndSet {
   const setAccount = {
     account: _setAccount,
     user: setUser,
+    meal: setMeal,
   };
 
   return {
