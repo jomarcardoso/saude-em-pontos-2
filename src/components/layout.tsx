@@ -10,10 +10,45 @@ import { CurrentPage } from '../services/page.service';
 
 const theme = createMuiTheme({
   palette: {
+    secondary: {
+      main: '#406539',
+    },
     primary: {
-      main: '#4d7a60',
+      main: '#B2372A',
+    },
+    background: {
+      default: '#F0F4ED',
+      // default: '#F7EEEE',
     },
     // type: 'dark',
+  },
+  typography: {
+    h1: {
+      fontSize: '22px',
+      fontWeight: 500,
+      textTransform: 'uppercase',
+    },
+    h2: {
+      fontSize: '22px',
+      fontWeight: 400,
+      textTransform: 'uppercase',
+    },
+    h3: {
+      fontSize: '18px',
+      fontWeight: 500,
+    },
+    h4: {
+      fontSize: '18px',
+      fontWeight: 400,
+    },
+    h5: {
+      fontSize: '14px',
+      fontWeight: 500,
+    },
+    h6: {
+      fontSize: '14px',
+      fontWeight: 400,
+    },
   },
 });
 

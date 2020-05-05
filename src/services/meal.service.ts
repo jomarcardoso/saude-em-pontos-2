@@ -1,4 +1,4 @@
-interface Portion {
+export interface Portion {
   food: string;
   quantity: number;
 }
