@@ -3,6 +3,10 @@ import { Link } from 'gatsby-theme-material-ui';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
 import Quiz from '../components/quiz';
 import Layout from '../components/layout';
 import Advertise from '../components/advertise';
@@ -20,6 +24,7 @@ const Index: React.SFC = () => {
   }: {
     account: Account;
   } = useContext(AccountContext);
+
   const [readAdvertise, setReadAdvertise] = useState(false);
   const rendered = typeof window !== 'undefined';
   const registeredUser = account.user.name;
@@ -48,21 +53,27 @@ const Index: React.SFC = () => {
     );
   }
 
-  console.log(account.meals);
-
   return (
     <Layout currentPage={CurrentPage.HOME} pageName="Menu">
       <Grid container spacing={4}>
         {account.meals.map((meal) => (
           <Grid item xs={12} sm={6}>
             <Card>
-              <CardHeader title={TimeService.toLongSring(meal.date)} />
+              <CardHeader
+                color="textSecondary"
+                title={TimeService.toLongSring(meal.date)}
+              />
               <CardContent>
-                <Typography variant="body2" color="textSecondary" component="p">
-                  This impressive paella is a perfect party dish and a fun meal
-                  to cook together with your guests. Add 1 cup of frozen peas
-                  along with the mussels, if you like.
-                </Typography>
+                <List>
+                  {/* {meal.portions.map((portion) => (
+                  <ListItem key={portion.food}>
+                    <ListItemIcon className={classes.selectIcon}>
+                      <img className={classes.img} src={mage} alt="" />
+                    </ListItemIcon>
+                    <ListItemText primary={portion.food} />
+                  </ListItem>
+                ))} */}
+                </List>
               </CardContent>
             </Card>
           </Grid>

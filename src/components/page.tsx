@@ -1,14 +1,19 @@
 import React from 'react';
-import useAccount from './use-account';
+import useAccount from '../hooks/use-account';
+import useFoods from '../hooks/use-food';
 import AccountContext from './account-context';
+import FoodsContext from '../contexts/foods-context';
 
 const Page: React.SFC = ({ children }) => {
-  const { account, setAccount } = useAccount();
+  const foods = useFoods();
+  const { account, setAccount } = useAccount(foods);
 
   return (
-    <AccountContext.Provider value={{ account, setAccount }}>
-      {children}
-    </AccountContext.Provider>
+    <FoodsContext.Provider value={foods}>
+      <AccountContext.Provider value={{ account, setAccount }}>
+        {children}
+      </AccountContext.Provider>
+    </FoodsContext.Provider>
   );
 };
 

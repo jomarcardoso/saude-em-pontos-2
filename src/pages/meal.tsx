@@ -3,7 +3,6 @@ import { useStaticQuery, graphql } from 'gatsby';
 import InputLabel from '@material-ui/core/InputLabel';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import IconButton from '@material-ui/core/IconButton';
 import FormControl from '@material-ui/core/FormControl';
 import { CurrentPage } from '../services/page.service';
 import { Food } from '../services/food.service';
@@ -12,9 +11,10 @@ import Layout from '../components/layout';
 import Select from '../components/form/select';
 import InputNumber from '../components/form/input-number';
 import AccountContext from '../components/account-context';
-import { Meal, Portion } from '../services/meal.service';
+import { Meal, Portion, PortionData } from '../services/meal.service';
 import { makeStyles } from '@material-ui/core/styles';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import FoodsContext from '../contexts/foods-context';
 
 const useStyles = makeStyles({
   formControl: {
@@ -22,27 +22,9 @@ const useStyles = makeStyles({
   },
 });
 
-const useFood = (): Array<Food> => {
-  const data = useStaticQuery(graphql`
-    query {
-      file(relativePath: { eq: "food.json" }) {
-        childDbJson {
-          foods {
-            name
-            id
-            image
-          }
-        }
-      }
-    }
-  `);
-
-  return data.file.childDbJson.foods;
-};
-
 const MealPage: React.SFC = () => {
   const classes = useStyles();
-  const foods = useFood();
+  const foods = useContext(FoodsContext);
   const formFood = useForm();
   const formQuantity = useForm();
   const arrayOfValues = Object.values(formFood.values);
@@ -51,19 +33,14 @@ const MealPage: React.SFC = () => {
   function handleSubmit(event: React.SyntheticEvent): void {
     event.preventDefault();
 
-    const arrayFoods: Array<Portion> = Object.values(formFood.values)
-      .map((filteredFood, index) => ({
-        food: filteredFood,
+    const portionsData: Array<PortionData> = Object.values(formFood.values)
+      .map((food, index) => ({
+        foodId: Number(food),
         quantity: formQuantity.values[`quantity${index}`],
       }))
-      .filter(({ food }) => food);
+      .filter(({ foodId }) => foodId);
 
-    const meal: Meal = {
-      portions: arrayFoods,
-      date: new Date(),
-    };
-
-    setAccount.meal(meal);
+    setAccount.meal(portionsData);
   }
 
   const options = foods.map((food) => ({
