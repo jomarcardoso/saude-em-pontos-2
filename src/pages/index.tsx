@@ -7,14 +7,16 @@ import Divider from '@material-ui/core/Divider';
 import Quiz from '../components/quiz';
 import Layout from '../components/layout';
 import Advertise from '../components/advertise';
-import AccountContext from '../components/account-context';
+import AccountContext from '../contexts/account-context';
 import { Account, SHAPE_ACCOUNT } from '../services/account.service';
 import { CurrentPage } from '../services/page.service';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
-import Avatar from '@material-ui/core/Avatar';
 import TimeService from '../services/vendors/time.service';
+import Avatar from '@material-ui/core/Avatar';
+import Badge from '@material-ui/core/Badge';
+import Image from '../components/image';
 
 const Index: React.SFC = () => {
   const {
@@ -65,13 +67,18 @@ const Index: React.SFC = () => {
               <CardContent>
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
-                    <Grid container spacing={1}>
+                    <Grid container spacing={2}>
                       {meal.portions.map((portion) => (
                         <Grid item xs={3}>
-                          <img
-                            src={portion.food.image}
-                            alt={portion.food.name}
-                          />
+                          <Badge
+                            badgeContent={portion.quantity}
+                            color="secondary"
+                          >
+                            <Image
+                              src={portion.food.image}
+                              alt={portion.food.name}
+                            />
+                          </Badge>
                         </Grid>
                       ))}
                     </Grid>

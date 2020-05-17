@@ -1,7 +1,7 @@
 import React from 'react';
 import useAccount from '../hooks/use-account';
 import useFoods from '../hooks/use-food';
-import AccountContext from './account-context';
+import AccountContext from '../contexts/account-context';
 import FoodsContext from '../contexts/foods-context';
 
 const Page: React.SFC = ({ children }) => {
