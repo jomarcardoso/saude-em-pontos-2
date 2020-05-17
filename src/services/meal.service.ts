@@ -34,9 +34,7 @@ function format({
   mealData: MealData;
   foods: Array<Food>;
 }): Meal {
-  console.log('antes do format', mealData);
-
-  const oi = {
+  return {
     ...mealData,
     portions: mealData?.portions?.map((portion) => {
       return {
@@ -46,25 +44,16 @@ function format({
     }),
     date: mealData?.date ? new Date(mealData?.date) : new Date(),
   };
-
-  console.log('depois do format', oi);
-
-  return oi;
 }
 
 function unFormat(meal: Meal): MealData {
-  console.log('antes do unformat', meal);
-
-  const oi = {
+  return {
     date: meal.date.toString(),
     portions: meal.portions.map(({ food: { id: foodId }, quantity }) => ({
       foodId,
       quantity,
     })),
   };
-
-  console.log('depois do unformat', oi);
-  return oi;
 }
 
 const MealService = {

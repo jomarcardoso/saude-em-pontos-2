@@ -11,16 +11,19 @@ import { CurrentPage } from '../services/page.service';
 const theme = createMuiTheme({
   palette: {
     secondary: {
-      main: '#406539',
+      main: '#040404',
     },
     primary: {
       main: '#B2372A',
     },
     background: {
-      default: '#F0F4ED',
+      default: '#fff',
       // default: '#F7EEEE',
     },
     // type: 'dark',
+    text: {
+      primary: '#000',
+    },
   },
   typography: {
     h1: {
