@@ -7,7 +7,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import { Link } from 'gatsby-theme-material-ui';
 import { makeStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
-import Layout from '../components/layout';
+import Layout from '../components/layout/layout';
 import { Food } from '../services/food.service';
 
 const useFood = (): Array<Food> => {

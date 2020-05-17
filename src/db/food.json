@@ -23,6 +23,22 @@
       "glicemicIndex": 83,
       "image": "/images/food/banana.svg",
       "calories": 89
+    },
+    {
+      "name": "Arroz Branco",
+      "enName": "white-rice",
+      "id": 4,
+      "glicemicIndex": 73,
+      "image": "/images/food/rice.svg",
+      "calories": 130
+    },
+    {
+      "name": "Feijão",
+      "enName": "bean",
+      "id": 5,
+      "glicemicIndex": 29,
+      "image": "/images/food/bean.svg",
+      "calories": 76
     }
   ]
 }

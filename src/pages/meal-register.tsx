@@ -6,7 +6,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Grid from '@material-ui/core/Grid';
 import { CurrentPage } from '../services/page.service';
 import { useForm } from '../components/vendors/agnostic-components/form/use-form';
-import Layout from '../components/layout';
+import Layout from '../components/layout/layout';
 import Select from '../components/form/select';
 import InputNumber from '../components/form/input-number';
 import AccountContext from '../contexts/account-context';

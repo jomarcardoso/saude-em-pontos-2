@@ -3,12 +3,10 @@ import Grid from '@material-ui/core/Grid';
 import Table from '@material-ui/core/Table';
 import { Typography } from '@material-ui/core';
 import { Food } from '../services/food.service';
-import Layout from '../components/layout';
+import Layout from '../components/layout/layout';
 
 const FoodPage: React.SFC = ({
-  pageContext: {
-    image, name, glicemicIndex, calories,
-  },
+  pageContext: { image, name, glicemicIndex, calories },
 }: {
   pageContext: Food;
 }) => (

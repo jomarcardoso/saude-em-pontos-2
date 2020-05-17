@@ -8,7 +8,7 @@ import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
 import Box from '@material-ui/core/Box';
 import Quiz from '../components/quiz';
-import Layout from '../components/layout';
+import Layout from '../components/layout/layout';
 import Advertise from '../components/advertise';
 import AccountContext from '../contexts/account-context';
 import { Account, SHAPE_ACCOUNT } from '../services/account.service';
@@ -110,8 +110,10 @@ const Index: React.SFC = () => {
                             display="flex"
                             justifyContent="space-between"
                           >
-                            <span>Calorias:</span>
-                            <span>{meal.calories}</span>
+                            <Typography variant="subtitle1">
+                              Calorias:
+                            </Typography>
+                            <Typography>{meal.calories}</Typography>
                           </Box>
                         </ListItem>
                       </List>
