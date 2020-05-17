@@ -1,9 +1,12 @@
 import React, { useState, useContext } from 'react';
-import { Link } from 'gatsby-theme-material-ui';
+import { Link } from 'gatsby';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
+import Box from '@material-ui/core/Box';
 import Quiz from '../components/quiz';
 import Layout from '../components/layout';
 import Advertise from '../components/advertise';
@@ -14,9 +17,20 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import TimeService from '../services/vendors/time.service';
+import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import Badge from '@material-ui/core/Badge';
 import Image from '../components/image';
+
+const useStyles = makeStyles({
+  listItem: {
+    paddingLeft: 0,
+    paddingRight: 0,
+  },
+  listItemcontent: {
+    flex: 1,
+  },
+});
 
 const Index: React.SFC = () => {
   const {
@@ -28,6 +42,7 @@ const Index: React.SFC = () => {
   const [readAdvertise, setReadAdvertise] = useState(false);
   const rendered = typeof window !== 'undefined';
   const registeredUser = account.user.name;
+  const classes = useStyles();
 
   if (rendered && !registeredUser) {
     if (!readAdvertise) {
@@ -64,33 +79,46 @@ const Index: React.SFC = () => {
                 color="textSecondary"
                 title={TimeService.toLongSring(meal.date)}
               />
-              <CardContent>
-                <Grid container spacing={2}>
-                  <Grid item xs={12}>
-                    <Grid container spacing={2}>
-                      {meal.portions.map((portion) => (
-                        <Grid item xs={3}>
-                          <Badge
-                            badgeContent={portion.quantity}
-                            color="secondary"
+              <Link to="/meal" state={{ meal }}>
+                <CardContent>
+                  <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                      <Grid container spacing={2}>
+                        {meal.portions.map((portion) => (
+                          <Grid item xs={3}>
+                            <Badge
+                              badgeContent={portion.quantity}
+                              color="secondary"
+                            >
+                              <Image
+                                src={portion.food.image}
+                                alt={portion.food.name}
+                              />
+                            </Badge>
+                          </Grid>
+                        ))}
+                      </Grid>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Divider />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <List dense disablePadding>
+                        <ListItem className={classes.listItem}>
+                          <Box
+                            className={classes.listItemcontent}
+                            display="flex"
+                            justifyContent="space-between"
                           >
-                            <Image
-                              src={portion.food.image}
-                              alt={portion.food.name}
-                            />
-                          </Badge>
-                        </Grid>
-                      ))}
+                            <span>Calorias:</span>
+                            <span>{meal.calories}</span>
+                          </Box>
+                        </ListItem>
+                      </List>
                     </Grid>
                   </Grid>
-                  <Grid item xs={12}>
-                    <Divider />
-                  </Grid>
-                  <Grid item xs={12}>
-                    çlkjçalsdf
-                  </Grid>
-                </Grid>
-              </CardContent>
+                </CardContent>
+              </Link>
             </Card>
           </Grid>
         ))}

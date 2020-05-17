@@ -4,6 +4,7 @@ import PortionService, { Portion, PortionData } from './portion.service';
 export interface Meal {
   date: Date;
   portions: Array<Portion>;
+  calories: number;
 }
 
 export interface MealData {
@@ -18,6 +19,12 @@ export const SHAPE_MEAL_DATA = {
 
 export type SetMeal = (Meal) => void;
 
+function calculateCalories(portions: Array<Portion> = []): number {
+  return portions.reduce((sum, portion) => {
+    return sum + portion.calories;
+  }, 0);
+}
+
 function format({
   mealData = SHAPE_MEAL_DATA,
   foods = [],
@@ -25,11 +32,14 @@ function format({
   mealData: MealData;
   foods: Array<Food>;
 }): Meal {
+  const portions = mealData?.portions?.map((portionData) =>
+    PortionService.format({ portionData, foods })
+  );
+
   return {
     ...mealData,
-    portions: mealData?.portions?.map((portionData) =>
-      PortionService.format({ portionData, foods })
-    ),
+    portions,
+    calories: calculateCalories(portions),
     date: mealData?.date ? new Date(mealData?.date) : new Date(),
   };
 }

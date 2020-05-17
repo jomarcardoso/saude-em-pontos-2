@@ -45,7 +45,7 @@ const Footer: React.SFC<Props> = ({ currentPage = CurrentPage.NONE }) => {
             }
           />
         </Link>
-        <Link to="/meal">
+        <Link to="/meal-register">
           <BottomNavigationAction
             label="Cadastrar refeição"
             icon={

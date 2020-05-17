@@ -10,6 +10,7 @@ const get = (): Array<Food> => {
             name
             id
             image
+            calories
           }
         }
       }

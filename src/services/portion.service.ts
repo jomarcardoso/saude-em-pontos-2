@@ -3,6 +3,7 @@ import { Food } from './food.service';
 export interface Portion {
   food: Food;
   quantity: number;
+  calories: number;
 }
 
 export interface PortionData {
@@ -17,9 +18,13 @@ function format({
   portionData: PortionData;
   foods: Array<Food>;
 }): Portion {
+  const food = foods[portionData.foodId - 1];
+  console.log(food, portionData.quantity);
+
   return {
-    food: foods[portionData.foodId - 1],
+    food,
     quantity: portionData.quantity,
+    calories: food.calories * portionData.quantity,
   };
 }
 
