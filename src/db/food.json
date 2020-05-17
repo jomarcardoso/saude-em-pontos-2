@@ -4,14 +4,15 @@
       "name": "Maçã",
       "enName": "apple",
       "id": 1,
-      "glicemicIndex": 52,
-      "image": "/images/food/apple.svg"
+      "glicemicIndex": 38,
+      "image": "/images/food/apple.svg",
+      "calories": 52
     },
     {
       "name": "Pêra",
       "enName": "pear",
       "id": 2,
-      "glicemicIndex": 54,
+      "glicemicIndex": 38,
       "image": "/images/food/pear.svg",
       "calories": 57
     },
@@ -20,7 +21,8 @@
       "enName": "banana",
       "id": 3,
       "glicemicIndex": 83,
-      "image": "/images/food/banana.svg"
+      "image": "/images/food/banana.svg",
+      "calories": 89
     }
   ]
 }

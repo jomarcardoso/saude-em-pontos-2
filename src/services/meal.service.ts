@@ -1,14 +1,5 @@
 import { Food } from './food.service';
-
-interface Portion {
-  food: Food;
-  quantity: number;
-}
-
-export interface PortionData {
-  foodId: number;
-  quantity: number;
-}
+import PortionService, { Portion, PortionData } from './portion.service';
 
 export interface Meal {
   date: Date;
@@ -36,12 +27,9 @@ function format({
 }): Meal {
   return {
     ...mealData,
-    portions: mealData?.portions?.map((portion) => {
-      return {
-        food: foods[portion.foodId - 1],
-        quantity: portion.quantity,
-      };
-    }),
+    portions: mealData?.portions?.map((portionData) =>
+      PortionService.format({ portionData, foods })
+    ),
     date: mealData?.date ? new Date(mealData?.date) : new Date(),
   };
 }
@@ -49,10 +37,7 @@ function format({
 function unFormat(meal: Meal): MealData {
   return {
     date: meal.date.toString(),
-    portions: meal.portions.map(({ food: { id: foodId }, quantity }) => ({
-      foodId,
-      quantity,
-    })),
+    portions: meal.portions.map(PortionService.unFormat),
   };
 }
 
