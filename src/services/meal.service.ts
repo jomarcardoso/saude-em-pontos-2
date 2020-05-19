@@ -18,6 +18,13 @@ export const SHAPE_MEAL_DATA = {
   portions: [],
 };
 
+export const SHAPE_MEAL: Meal = {
+  calories: 0,
+  date: new Date(),
+  id: 0,
+  portions: [],
+};
+
 export type SetMeal = (Meal) => void;
 
 function calculateCalories(portions: Array<Portion> = []): number {

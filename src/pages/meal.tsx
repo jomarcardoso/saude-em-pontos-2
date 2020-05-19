@@ -8,7 +8,7 @@ import TimeService from '../services/vendors/time.service';
 import { SHAPE_ACCOUNT } from '../services/account.service';
 import AccountContext from '../contexts/account-context';
 import { Account } from '../services/account.service';
-import { Meal } from '../services/meal.service';
+import { Meal, SHAPE_MEAL } from '../services/meal.service';
 
 export default function MealPage(location) {
   const id = Number(location?.location?.hash?.replace('#', '') ?? 0);
@@ -17,7 +17,7 @@ export default function MealPage(location) {
   }: {
     account: Account;
   } = useContext(AccountContext);
-  const meal: Meal = location?.state?.meal ?? account.meals[id];
+  const meal: Meal = account.meals[id] ?? SHAPE_MEAL;
 
   function renderResults() {
     return (
