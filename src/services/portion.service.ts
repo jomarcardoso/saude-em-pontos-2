@@ -19,7 +19,6 @@ function format({
   foods: Array<Food>;
 }): Portion {
   const food = foods[portionData.foodId - 1];
-  console.log(food, portionData.quantity);
 
   return {
     food,

@@ -2,6 +2,7 @@ import { Food } from './food.service';
 import PortionService, { Portion, PortionData } from './portion.service';
 
 export interface Meal {
+  id: number;
   date: Date;
   portions: Array<Portion>;
   calories: number;
@@ -28,9 +29,11 @@ function calculateCalories(portions: Array<Portion> = []): number {
 function format({
   mealData = SHAPE_MEAL_DATA,
   foods = [],
+  index = 0,
 }: {
   mealData: MealData;
   foods: Array<Food>;
+  index: number;
 }): Meal {
   const portions = mealData?.portions?.map((portionData) =>
     PortionService.format({ portionData, foods })
@@ -38,6 +41,7 @@ function format({
 
   return {
     ...mealData,
+    id: index,
     portions,
     calories: calculateCalories(portions),
     date: mealData?.date ? new Date(mealData?.date) : new Date(),

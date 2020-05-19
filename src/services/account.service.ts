@@ -56,8 +56,8 @@ function format({
   return {
     user: accountData?.user ?? SHAPE_ACCOUNT.user,
     meals:
-      accountData?.meals?.map((mealData) =>
-        MealService.format({ mealData, foods })
+      accountData?.meals?.map((mealData, index) =>
+        MealService.format({ mealData, foods, index })
       ) ?? SHAPE_ACCOUNT.meals,
   };
 }

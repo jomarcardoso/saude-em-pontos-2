@@ -73,13 +73,13 @@ const Index: React.SFC = () => {
       <Grid container spacing={3}>
         {account.meals.map((meal) => (
           <Grid item xs={6} sm={4}>
-            <Card variant="outlined">
-              <CardHeader
-                avatar={<Avatar aria-label="recipe">R</Avatar>}
-                color="textSecondary"
-                title={TimeService.toLongSring(meal.date)}
-              />
-              <Link to="/meal" state={{ meal }}>
+            <Link to={`/meal#${meal.id}`} state={{ meal }}>
+              <Card variant="outlined">
+                <CardHeader
+                  avatar={<Avatar aria-label="recipe">R</Avatar>}
+                  color="textSecondary"
+                  title={TimeService.toLongSring(meal.date)}
+                />
                 <CardContent>
                   <Grid container spacing={2}>
                     <Grid item xs={12}>
@@ -120,8 +120,8 @@ const Index: React.SFC = () => {
                     </Grid>
                   </Grid>
                 </CardContent>
-              </Link>
-            </Card>
+              </Card>
+            </Link>
           </Grid>
         ))}
       </Grid>
