@@ -6,40 +6,40 @@ import { Food } from '../services/food.service';
 import Layout from '../components/layout/layout';
 
 const FoodPage: React.SFC = ({
-  pageContext: { image, name, gi, calories },
+  pageContext: { image, name, gi, calories, carbohydrates, gl },
 }: {
   pageContext: Food;
-}) => (
-  <Layout pageName={name}>
-    <Grid container spacing={5} justify="center">
-      <Grid item xs={8} sm={6} md={4}>
-        <img src={image} />
-      </Grid>
-      <Grid item xs={12}>
-        <Grid container spacing={1} justify="space-between">
-          <Grid item>
-            <Typography variant="h6" component="h2">
-              Índice Glicêmico
-            </Typography>
-          </Grid>
-          <Grid item>
-            <Typography>{gi}</Typography>
-          </Grid>
+}) => {
+  function renderQuality({ name, value }) {
+    return (
+      <Grid container spacing={1} justify="space-between">
+        <Grid item>
+          <Typography variant="h6" component="h2">
+            {name}
+          </Typography>
         </Grid>
+        <Grid item>
+          <Typography>{value}</Typography>
+        </Grid>
+      </Grid>
+    );
+  }
 
-        <Grid container spacing={1} justify="space-between">
-          <Grid item>
-            <Typography variant="h6" component="h2">
-              Calorias
-            </Typography>
-          </Grid>
-          <Grid item>
-            <Typography>{calories}</Typography>
-          </Grid>
+  return (
+    <Layout pageName={name}>
+      <Grid container spacing={5} justify="center">
+        <Grid item xs={8} sm={6} md={4}>
+          <img src={image} />
+        </Grid>
+        <Grid item xs={12}>
+          {renderQuality({ name: 'Índice Glicêmico', value: gi })}
+          {renderQuality({ name: 'Calorias', value: calories })}
+          {renderQuality({ name: 'Carboidratos', value: carbohydrates })}
+          {renderQuality({ name: 'Carga Glicêmica', value: gl })}
         </Grid>
       </Grid>
-    </Grid>
-  </Layout>
-);
+    </Layout>
+  );
+};
 
 export default FoodPage;

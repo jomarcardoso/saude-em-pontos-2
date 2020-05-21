@@ -16,6 +16,8 @@ exports.createPages = ({ graphql, actions }) => {
               enName
               gi
               calories
+              gl
+              carbohydrates
             }
           }
         }

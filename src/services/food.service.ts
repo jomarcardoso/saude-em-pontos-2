@@ -6,4 +6,6 @@ export interface Food {
   gi: number;
   calories: number;
   acidification: number;
+  carbohydrates: number;
+  gl: number;
 }
