@@ -11,6 +11,7 @@ const get = (): Array<Food> => {
             id
             image
             calories
+            gi
           }
         }
       }

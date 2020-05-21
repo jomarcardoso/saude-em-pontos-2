@@ -4,6 +4,7 @@ export interface Portion {
   food: Food;
   quantity: number;
   calories: number;
+  gi: number;
 }
 
 export interface PortionData {
@@ -19,11 +20,14 @@ function format({
   foods: Array<Food>;
 }): Portion {
   const food = foods[portionData.foodId - 1];
+  const calories = food.calories * portionData.quantity;
+  const gi = calories * food.gi;
 
   return {
     food,
     quantity: portionData.quantity,
-    calories: food.calories * portionData.quantity,
+    calories,
+    gi,
   };
 }
 

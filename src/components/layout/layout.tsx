@@ -28,14 +28,14 @@ const theme = createMuiTheme({
   },
   typography: {
     h1: {
-      fontSize: '22px',
+      fontSize: '32px',
       fontWeight: 500,
-      textTransform: 'uppercase',
+      textTransform: 'capitalize',
     },
     h2: {
       fontSize: '22px',
-      fontWeight: 400,
-      textTransform: 'uppercase',
+      fontWeight: 500,
+      textTransform: 'capitalize',
     },
     h3: {
       fontSize: '18px',

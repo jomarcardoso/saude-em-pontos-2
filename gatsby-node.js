@@ -14,7 +14,7 @@ exports.createPages = ({ graphql, actions }) => {
               id
               image
               enName
-              glicemicIndex
+              gi
               calories
             }
           }

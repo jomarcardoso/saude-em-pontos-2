@@ -3,7 +3,7 @@ export interface Food {
   name: string;
   enName: string;
   image: string;
-  glicemicIndex: number;
+  gi: number;
   calories: number;
   acidification: number;
 }

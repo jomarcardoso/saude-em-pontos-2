@@ -1,34 +1,40 @@
 {
   "foods": [
     {
-      "name": "Maçã",
+      "name": "Maçã Fugi",
       "enName": "apple",
       "id": 1,
-      "glicemicIndex": 38,
+      "gi": 25,
+      "gl": 3,
       "image": "/images/food/apple.svg",
-      "calories": 52
+      "calories": 52,
+      "carbohydrates": 10
     },
     {
       "name": "Pêra",
       "enName": "pear",
       "id": 2,
-      "glicemicIndex": 38,
+      "gi": 38,
       "image": "/images/food/pear.svg",
       "calories": 57
     },
     {
-      "name": "Banana",
-      "enName": "banana",
+      "name": "Banana Prata",
+      "enName": "silver-banana",
       "id": 3,
-      "glicemicIndex": 83,
+      "gi": 39,
+      "gl": 8,
       "image": "/images/food/banana.svg",
-      "calories": 89
+      "calories": 89,
+      "carbohydrates": 28
     },
     {
       "name": "Arroz Branco",
       "enName": "white-rice",
       "id": 4,
-      "glicemicIndex": 73,
+      "gi": 81,
+      "gl": 18,
+      "carbohydrates": 32,
       "image": "/images/food/rice.svg",
       "calories": 130
     },
@@ -36,9 +42,69 @@
       "name": "Feijão",
       "enName": "bean",
       "id": 5,
-      "glicemicIndex": 29,
+      "gi": 29,
       "image": "/images/food/bean.svg",
       "calories": 76
+    },
+    {
+      "name": "Banana Nanica",
+      "enName": "nanica-banana",
+      "id": 6,
+      "gi": 70,
+      "gl": 14,
+      "image": "/images/food/banana.svg",
+      "calories": 89,
+      "carbohydrates": 28
+    },
+    {
+      "name": "Banana Mysore",
+      "enName": "mysore-banana",
+      "id": 7,
+      "gi": 87,
+      "gl": 6,
+      "image": "/images/food/banana.svg",
+      "calories": 89,
+      "carbohydrates": 12
+    },
+    {
+      "name": "Suco de Laranja",
+      "enName": "oragen-juice",
+      "id": 8,
+      "gi": 41,
+      "gl": 6,
+      "image": "/images/food/orange-juice.svg",
+      "calories": 0,
+      "carbohydrates": 14
+    },
+    {
+      "name": "Polenta",
+      "enName": "polenta",
+      "id": 9,
+      "gi": 74,
+      "gl": 11,
+      "image": "/images/food/polenta.svg",
+      "calories": 0,
+      "carbohydrates": 21
+    },
+    {
+      "name": "Pão Francês",
+      "enName": "bread-roll",
+      "id": 10,
+      "gi": 100,
+      "gl": 14,
+      "image": "/images/food/bread-roll.svg",
+      "calories": 0,
+      "carbohydrates": 40
+    },
+    {
+      "name": "Morango",
+      "enName": "strawberry",
+      "id": 11,
+      "gi": 53,
+      "gl": 2,
+      "image": "/images/food/strawberry.svg",
+      "calories": 0,
+      "carbohydrates": 5
     }
   ]
 }

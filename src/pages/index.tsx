@@ -22,15 +22,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Badge from '@material-ui/core/Badge';
 import Image from '../components/image';
 
-const useStyles = makeStyles({
-  listItem: {
-    paddingLeft: 0,
-    paddingRight: 0,
-  },
-  listItemcontent: {
-    flex: 1,
-  },
-});
+const useStyles = makeStyles({});
 
 const Index: React.SFC = () => {
   const {
@@ -70,7 +62,7 @@ const Index: React.SFC = () => {
 
   return (
     <Layout currentPage={CurrentPage.HOME} pageName="Menu">
-      <Grid container spacing={3}>
+      <Grid container spacing={2}>
         {account.meals.map((meal) => (
           <Grid item xs={6} sm={4}>
             <Link to={`/meal#${meal.id}`} state={{ meal }}>
@@ -85,7 +77,7 @@ const Index: React.SFC = () => {
                     <Grid item xs={12}>
                       <Grid container spacing={2}>
                         {meal.portions.map((portion) => (
-                          <Grid item xs={3}>
+                          <Grid item xs={4} sm={3}>
                             <Badge
                               badgeContent={portion.quantity}
                               color="secondary"
@@ -103,20 +95,10 @@ const Index: React.SFC = () => {
                       <Divider />
                     </Grid>
                     <Grid item xs={12}>
-                      <List dense disablePadding>
-                        <ListItem className={classes.listItem}>
-                          <Box
-                            className={classes.listItemcontent}
-                            display="flex"
-                            justifyContent="space-between"
-                          >
-                            <Typography variant="subtitle1">
-                              Calorias:
-                            </Typography>
-                            <Typography>{meal.calories}</Typography>
-                          </Box>
-                        </ListItem>
-                      </List>
+                      <Box display="flex" justifyContent="space-between">
+                        <Typography variant="subtitle1">Calorias:</Typography>
+                        <Typography>{meal.calories}</Typography>
+                      </Box>
                     </Grid>
                   </Grid>
                 </CardContent>
