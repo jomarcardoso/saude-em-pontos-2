@@ -8,9 +8,9 @@ function objectMap(object, operation) {
 }
 
 const useForm = ({
-  initialValues,
-  initialErrors,
-  initialVisibleErrors,
+  initialValues = {},
+  initialErrors = {},
+  initialVisibleErrors = {},
 } = {}) => {
   const [errors, setErrors] = useState({ ...initialErrors } || {});
   const [visibleErrors, setVisibleErrors] = useState(
@@ -83,13 +83,15 @@ const useForm = ({
 
   return {
     clearValues,
-    values,
-    errors,
-    visibleErrors,
-    setValueByName,
-    setErrorByName,
-    setVisibleErrorByName,
     validateForm,
+    inputs: {
+      values,
+      errors,
+      visibleErrors,
+      setValueByName,
+      setErrorByName,
+      setVisibleErrorByName,
+    },
   };
 };
 

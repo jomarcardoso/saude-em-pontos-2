@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
-import TextField from '@material-ui/core/TextField';
-import Radio from '@material-ui/core/Radio';
+// import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
@@ -11,6 +10,11 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import AccountContext from '../contexts/account-context';
+import { useForm } from './vendors/agnostic-components/form';
+import InputNumber from './form/input-number';
+import Input from './form/input';
+import Radio from './form/radio';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -24,11 +28,21 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Quiz: React.SFC = () => {
-  const { setAccount } = useContext(AccountContext);
+  const {
+    setAccount,
+    account: { user },
+  } = useContext(AccountContext);
   const classes = useStyles();
   const [biotype, setBiotype] = React.useState('female');
   const [objectives, setObjectives] = React.useState('');
   const [open, setOpen] = React.useState(false);
+  const { inputs } = useForm({
+    initialValues: {
+      age: user.age,
+      name: user.name,
+      biotype: user.biotype,
+    },
+  });
 
   function handleChange(event: React.SyntheticEvent): void {
     const target = event.target as HTMLInputElement;
@@ -58,42 +72,69 @@ const Quiz: React.SFC = () => {
     });
   }
 
+  console.log(inputs.values);
+
   return (
     <div>
       <form action="/" method="get" onSubmit={handleSubmit}>
-        <div>
-          <TextField id="name" label="Nome" />
-        </div>
-        <div>
-          <TextField id="age" label="Idade" />
-        </div>
-        <div>
-          <FormControl component="fieldset">
-            <FormLabel component="legend">Gender</FormLabel>
-            <RadioGroup
-              aria-label="Biotipo"
-              name="gender1"
-              value={biotype}
-              onChange={handleChange}
-            >
-              <FormControlLabel
-                value="ectomorph"
-                control={<Radio />}
-                label="Ectomorfo"
-              />
-              <FormControlLabel
-                value="mesomorph"
-                control={<Radio />}
-                label="Mesomorfo"
-              />
-              <FormControlLabel
-                value="endomorph"
-                control={<Radio />}
-                label="Endomorfo"
-              />
-            </RadioGroup>
-          </FormControl>
-        </div>
+        <Grid container spacing={4} justify="center">
+          <Grid item xs={12}>
+            <div>
+              <Input form={inputs} name="name" label="Nome" />
+            </div>
+          </Grid>
+          <Grid item xs={12}>
+            <div>
+              <InputNumber form={inputs} name="age" label="Idade" />
+            </div>
+          </Grid>
+          <Grid item xs={12}>
+            <FormControl component="fieldset">
+              <FormLabel component="legend">Biotipo</FormLabel>
+              <RadioGroup
+                aria-label="Biotipo"
+                name="gender1"
+                value={biotype}
+                onChange={handleChange}
+              >
+                <FormControlLabel
+                  value="ectomorph"
+                  control={
+                    <Radio
+                      form={inputs}
+                      name="biotype"
+                      defaultValue="ectomorph"
+                    />
+                  }
+                  label="Ectomorfo"
+                />
+                <FormControlLabel
+                  value="mesomorph"
+                  control={
+                    <Radio
+                      form={inputs}
+                      name="biotype"
+                      defaultValue="mesomorph"
+                    />
+                  }
+                  label="Mesomorfo"
+                />
+                <FormControlLabel
+                  value="endomorph"
+                  control={
+                    <Radio
+                      form={inputs}
+                      name="biotype"
+                      defaultValue="endomorph"
+                    />
+                  }
+                  label="Endomorfo"
+                />
+              </RadioGroup>
+            </FormControl>
+          </Grid>
+        </Grid>
+        <div></div>
         <div>
           <FormControl className={classes.formControl}>
             <InputLabel id="demo-controlled-open-select-label">

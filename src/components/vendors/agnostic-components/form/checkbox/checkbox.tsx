@@ -1,16 +1,16 @@
 import React from 'react';
-import InputCore from './input-core';
+import CheckboxCore from './checkbox-core';
 import FormConnector from '../use-form/form-connector';
 
-function Field(props) {
+function Checkbox(props) {
   return (
     <FormConnector
       {...props}
       render={(connectorProps) => (
-        <InputCore render={props.render} {...connectorProps} />
+        <CheckboxCore render={props.render} {...connectorProps} />
       )}
     />
   );
 }
 
-export default Field;
+export default Checkbox;

@@ -1,16 +1,16 @@
 import React from 'react';
-import InputCore from './input-core';
+import RadioCore from './radio-core';
 import FormConnector from '../use-form/form-connector';
 
-function Field(props) {
+function Radio(props) {
   return (
     <FormConnector
       {...props}
       render={(connectorProps) => (
-        <InputCore render={props.render} {...connectorProps} />
+        <RadioCore render={props.render} {...connectorProps} />
       )}
     />
   );
 }
 
-export default Field;
+export default Radio;

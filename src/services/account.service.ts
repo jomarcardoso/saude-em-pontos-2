@@ -1,19 +1,6 @@
 import MealService, { Meal, SetMeal, MealData } from './meal.service';
 import { Food } from './food.service';
-
-export enum Ojective {
-  HEALTH = 'Saúde',
-  MUSCLE = 'Músculatura',
-  LOSE_WEIGHT = 'Perder peso',
-}
-
-interface User {
-  name: string;
-  age: number;
-  objectives: Array<Ojective>;
-}
-
-export type SetUser = (User) => void;
+import { SetUser, User } from './user.service';
 
 export interface SetAccount {
   user: SetUser;

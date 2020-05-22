@@ -94,7 +94,7 @@
       "gl": 14,
       "image": "/images/food/bread-roll.svg",
       "calories": 0,
-      "carbohydrates": 40
+      "carbohydrates": 20
     },
     {
       "name": "Morango",
@@ -104,7 +104,7 @@
       "gl": 2,
       "image": "/images/food/strawberry.svg",
       "calories": 0,
-      "carbohydrates": 5
+      "carbohydrates": 6
     }
   ]
 }

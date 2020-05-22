@@ -26,16 +26,18 @@ const MealPage: React.SFC = () => {
   const foods = useContext(FoodsContext);
   const formFood = useForm();
   const formQuantity = useForm();
-  const arrayOfValues = Object.values(formFood.values);
+  const arrayOfValues = Object.values(formFood.inputs.values);
   const { account, setAccount } = useContext(AccountContext);
 
   function handleSubmit(event: React.SyntheticEvent): void {
     event.preventDefault();
 
-    const portionsData: Array<PortionData> = Object.values(formFood.values)
+    const portionsData: Array<PortionData> = Object.values(
+      formFood.inputs.values
+    )
       .map((food, index) => ({
         foodId: Number(food),
-        quantity: formQuantity.values[`quantity${index}`],
+        quantity: formQuantity.inputs.values[`quantity${index}`],
       }))
       .filter(({ foodId }) => foodId);
 
@@ -50,7 +52,7 @@ const MealPage: React.SFC = () => {
   useEffect(() => {
     if (!arrayOfValues.every((value) => value)) return;
 
-    formFood.setValueByName(`food${arrayOfValues.length}`, '');
+    formFood.inputs.setValueByName(`food${arrayOfValues.length}`, '');
   }, [formFood]);
 
   return (
@@ -73,7 +75,7 @@ const MealPage: React.SFC = () => {
                         <Select
                           options={options}
                           name={`food${index}`}
-                          form={formFood}
+                          form={formFood.inputs}
                           label={`Alimento ${index + 1}`}
                         />
                       </FormControl>
@@ -82,7 +84,7 @@ const MealPage: React.SFC = () => {
                       <InputNumber
                         label={`Quantidade ${index + 1}`}
                         name={`quantity${index}`}
-                        form={formQuantity}
+                        form={formQuantity.inputs}
                       />
                     </Grid>
                     <Grid item xs={2}>

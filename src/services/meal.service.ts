@@ -6,7 +6,9 @@ export interface Meal {
   date: Date;
   portions: Array<Portion>;
   calories: number;
-  gi;
+  gi: number;
+  gc: number;
+  carbohydrates: number;
 }
 
 export interface MealData {
