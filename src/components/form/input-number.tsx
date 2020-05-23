@@ -1,12 +1,25 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
-import AgnosticInputNumber from '../vendors/agnostic-components/form/input-number';
+import AgnosticInputNumber, {
+  InputNumberProps,
+} from '../vendors/agnostic-components/form/input-number';
+import { makeStyles } from '@material-ui/core/styles';
 
-const InputNumber: React.SFC = (props) => {
+const useStyles = makeStyles({
+  root: {
+    display: 'flex',
+  },
+});
+
+const InputNumber: React.SFC<InputNumberProps> = (props) => {
+  const classes = useStyles();
+
   return (
     <AgnosticInputNumber
       {...props}
-      render={(agnosticProps) => <TextField {...agnosticProps} />}
+      render={(agnosticProps) => (
+        <TextField classes={classes} {...agnosticProps} />
+      )}
     />
   );
 };

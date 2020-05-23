@@ -1,9 +1,13 @@
 import React, { useEffect } from 'react';
 
 import { isFunction } from '../../../../../services/validate';
+import { InputProps } from '../input/input-core';
+
 const MESSAGE_REQUIRED_FIELD = 'Campo obrigatório';
 
-export default function Checkbox({
+type CheckboxProps = InputProps & React.HTMLProps<HTMLInputElement>;
+
+const CheckboxCore: React.SFC<CheckboxProps> = ({
   error,
   render = (props) => <input {...props} />,
   setErrorByName,
@@ -15,7 +19,7 @@ export default function Checkbox({
   setVisibleErrorByName,
   visibleError,
   ...props
-}) {
+}) => {
   const { name } = props;
 
   function _hideError() {
@@ -56,5 +60,11 @@ export default function Checkbox({
     if (checked && !value) setValueByName(name, true);
   }, []);
 
-  return render({ onChange: _handleChange, checked: value, ...props });
-}
+  return render({
+    onChange: _handleChange,
+    checked: value as boolean,
+    ...props,
+  });
+};
+
+export default CheckboxCore;

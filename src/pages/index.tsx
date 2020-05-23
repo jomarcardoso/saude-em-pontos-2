@@ -62,9 +62,9 @@ const Index: React.SFC = () => {
 
   return (
     <Layout currentPage={CurrentPage.HOME} pageName="Menu">
-      <Grid container spacing={2}>
+      <Grid container spacing={4}>
         {account.meals.map((meal) => (
-          <Grid item xs={6} sm={4}>
+          <Grid item xs={12} sm={6}>
             <Link to={`/meal#${meal.id}`} state={{ meal }}>
               <Card variant="outlined">
                 <CardHeader
@@ -77,7 +77,7 @@ const Index: React.SFC = () => {
                     <Grid item xs={12}>
                       <Grid container spacing={2}>
                         {meal.portions.map((portion) => (
-                          <Grid item xs={4} sm={3}>
+                          <Grid item xs={3}>
                             <Badge
                               badgeContent={portion.quantity}
                               color="secondary"

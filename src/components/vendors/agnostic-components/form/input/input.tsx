@@ -1,8 +1,8 @@
 import React from 'react';
 import InputCore from './input-core';
-import FormConnector from '../use-form/form-connector';
+import FormConnector, { FormConnectorProps } from '../form/form-connector';
 
-function Field(props) {
+const Field: React.SFC<FormConnectorProps> = (props) => {
   return (
     <FormConnector
       {...props}
@@ -11,6 +11,6 @@ function Field(props) {
       )}
     />
   );
-}
+};
 
 export default Field;

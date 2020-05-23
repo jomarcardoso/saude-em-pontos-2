@@ -1,29 +1,31 @@
 import React, { useEffect } from 'react';
 import { isEmptyString, isFunction } from '../../../../../services/validate';
+import { FieldProps } from '../form/use-form';
 
 const MESSAGE_EMPTY_FIELD = 'O campo está vazio';
 
-interface Props {
-  onBlur?(event: Event): void;
-  onFocus?(event: Event): void;
-  onChange?(event: Event): void;
-  onKeyPress?(event: Event): void;
-  error(event: Event): void;
-  visibleError: boolean;
-  invalidMessage: string;
-  invalidMessageEmptyField: string;
-  setVisibleErrorByName(name: string, visible: boolean): void;
-  setErrorByName(name: string, error: string): void;
-  setValueByName(name: string, value: string): void;
-  noValidate: boolean;
-  render?(): React.ReactElement;
-  value: string;
-  type?: string;
-  name: string;
-  required: boolean;
+// export interface InputProps extends FieldProps {
+//   onBlur?(event: Event): void;
+//   onFocus?(event: Event): void;
+//   onChange?(event: Event): void;
+//   onKeyPress?(event: Event): void;
+//   invalidMessageEmptyField?: string;
+//   noValidate?: boolean;
+//   render?(props: React.HTMLProps<HTMLInputElement>): React.ReactElement;
+//   type?: string;
+//   required?: boolean;
+//   invalidMessage?: string;
+// }
+
+type InputElementProps = React.HTMLProps<HTMLInputElement> & FieldProps;
+
+export interface InputProps extends InputElementProps {
+  invalidMessage?: string;
+  invalidMessageEmptyField?: string;
+  render?(props: React.HTMLProps<HTMLInputElement>): React.ReactElement;
 }
 
-const InputCore: React.SFC<Props> = ({
+const InputCore: React.SFC<InputProps> = ({
   onBlur,
   onFocus,
   onChange,
@@ -98,7 +100,7 @@ const InputCore: React.SFC<Props> = ({
     if (noValidate) return;
     const { required = false, value = '' } = restProps;
 
-    const empty = isEmptyString(value.trim());
+    const empty = isEmptyString(String(value).trim());
 
     if (required && empty) {
       setEmptyMessageValidation();

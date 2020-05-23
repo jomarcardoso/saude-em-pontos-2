@@ -1,9 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
 import CheckboxCore from '../checkbox/checkbox-core';
+import { InputProps } from '../input/input-core';
 
-export default function RadioButton({ value, setValueByName, ...props }) {
+const RadioButton: React.SFC<InputProps> = ({
+  value,
+  setValueByName,
+  type = 'radio',
+  ...props
+}) => {
   let _value = false;
   const { defaultValue } = props;
 
@@ -18,16 +22,6 @@ export default function RadioButton({ value, setValueByName, ...props }) {
       {...props}
     />
   );
-}
-
-RadioButton.propTypes = {
-  setValueByName: PropTypes.func.isRequired,
-  defaultValue: PropTypes.string.isRequired,
-  value: PropTypes.string,
-  type: PropTypes.string,
 };
 
-RadioButton.defaultProps = {
-  value: '',
-  type: 'radio',
-};
+export default RadioButton;

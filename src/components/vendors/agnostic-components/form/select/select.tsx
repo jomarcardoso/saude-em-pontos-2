@@ -1,6 +1,6 @@
 import React from 'react';
 import SelectCore from './select-core';
-import FormConnector from '../use-form/form-connector';
+import FormConnector from '../form/form-connector';
 
 function Select(props) {
   return (

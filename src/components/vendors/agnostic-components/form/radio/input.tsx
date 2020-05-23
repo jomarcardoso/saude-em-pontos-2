@@ -1,6 +1,6 @@
 import React from 'react';
 import RadioCore from './radio-core';
-import FormConnector from '../use-form/form-connector';
+import FormConnector from '../form/form-connector';
 
 function Radio(props) {
   return (

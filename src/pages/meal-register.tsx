@@ -5,7 +5,7 @@ import FormControl from '@material-ui/core/FormControl';
 import IconButton from '@material-ui/core/IconButton';
 import Grid from '@material-ui/core/Grid';
 import { CurrentPage } from '../services/page.service';
-import { useForm } from '../components/vendors/agnostic-components/form/use-form';
+import { useForm } from '../components/vendors/agnostic-components/form';
 import Layout from '../components/layout/layout';
 import Select from '../components/form/select';
 import InputNumber from '../components/form/input-number';
@@ -26,18 +26,18 @@ const MealPage: React.SFC = () => {
   const foods = useContext(FoodsContext);
   const formFood = useForm();
   const formQuantity = useForm();
-  const arrayOfValues = Object.values(formFood.inputs.values);
+  const arrayOfValues = Object.values(formFood.fields.values);
   const { account, setAccount } = useContext(AccountContext);
 
   function handleSubmit(event: React.SyntheticEvent): void {
     event.preventDefault();
 
     const portionsData: Array<PortionData> = Object.values(
-      formFood.inputs.values
+      formFood.fields.values
     )
       .map((food, index) => ({
         foodId: Number(food),
-        quantity: formQuantity.inputs.values[`quantity${index}`],
+        quantity: formQuantity.fields.values[`quantity${index}`],
       }))
       .filter(({ foodId }) => foodId);
 
@@ -52,7 +52,7 @@ const MealPage: React.SFC = () => {
   useEffect(() => {
     if (!arrayOfValues.every((value) => value)) return;
 
-    formFood.inputs.setValueByName(`food${arrayOfValues.length}`, '');
+    formFood.fields.setValueByName(`food${arrayOfValues.length}`, '');
   }, [formFood]);
 
   return (
@@ -75,7 +75,7 @@ const MealPage: React.SFC = () => {
                         <Select
                           options={options}
                           name={`food${index}`}
-                          form={formFood.inputs}
+                          fields={formFood.fields}
                           label={`Alimento ${index + 1}`}
                         />
                       </FormControl>
@@ -84,7 +84,7 @@ const MealPage: React.SFC = () => {
                       <InputNumber
                         label={`Quantidade ${index + 1}`}
                         name={`quantity${index}`}
-                        form={formQuantity.inputs}
+                        fields={formQuantity.fields}
                       />
                     </Grid>
                     <Grid item xs={2}>

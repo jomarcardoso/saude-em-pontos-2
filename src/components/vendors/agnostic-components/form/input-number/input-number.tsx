@@ -1,8 +1,8 @@
 import React from 'react';
 import InputNumberCore from './input-number-core';
-import FormConnector from '../use-form/form-connector';
+import FormConnector, { FormConnectorProps } from '../form/form-connector';
 
-function InputNumber(props) {
+const InputNumber: React.SFC<FormConnectorProps> = (props) => {
   return (
     <FormConnector
       {...props}
@@ -11,6 +11,6 @@ function InputNumber(props) {
       )}
     />
   );
-}
+};
 
 export default InputNumber;

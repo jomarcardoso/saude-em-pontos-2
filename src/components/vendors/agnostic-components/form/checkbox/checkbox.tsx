@@ -1,6 +1,6 @@
 import React from 'react';
 import CheckboxCore from './checkbox-core';
-import FormConnector from '../use-form/form-connector';
+import FormConnector from '../form/form-connector';
 
 function Checkbox(props) {
   return (

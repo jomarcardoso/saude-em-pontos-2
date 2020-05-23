@@ -1,6 +1,37 @@
 import { useState } from 'react';
 import { isArray, isString } from '../../../../../services/validate';
 
+export interface FieldProps {
+  name: string;
+  error(event: Event): void;
+  visibleError: boolean;
+  value: string | number | boolean;
+  setVisibleErrorByName(name: string, visible: boolean): void;
+  setErrorByName(name: string, error: string): void;
+  setValueByName(name: string, value: string | number | boolean): void;
+}
+
+export interface Fields {
+  values: {
+    [key: string]: string;
+  };
+  errors: {
+    [key: string]: string;
+  };
+  visibleErrors: {
+    [key: string]: boolean;
+  };
+  setVisibleErrorByName(name: string, visible: boolean): void;
+  setErrorByName(name: string, error: string): void;
+  setValueByName(name: string, value: string): void;
+}
+
+export interface Form {
+  fields: Fields;
+  clear(): void;
+  validate(): boolean;
+}
+
 function objectMap(object, operation) {
   return Object.assign(
     ...Object.entries(object).map(([key, value]) => operation(value, key))
@@ -11,7 +42,7 @@ const useForm = ({
   initialValues = {},
   initialErrors = {},
   initialVisibleErrors = {},
-} = {}) => {
+} = {}): Form => {
   const [errors, setErrors] = useState({ ...initialErrors } || {});
   const [visibleErrors, setVisibleErrors] = useState(
     { ...initialVisibleErrors } || {}
@@ -67,14 +98,14 @@ const useForm = ({
     return Object.values(errors).every((e) => !e.length);
   }
 
-  function clearValues() {
+  function clear() {
     setValues({});
     setErrors({});
     setVisibleErrors({});
     handleErrors({});
   }
 
-  function validateForm() {
+  function validate() {
     if (isValidForm()) return true;
     showAllErrors();
 
@@ -82,9 +113,9 @@ const useForm = ({
   }
 
   return {
-    clearValues,
-    validateForm,
-    inputs: {
+    clear,
+    validate,
+    fields: {
       values,
       errors,
       visibleErrors,
