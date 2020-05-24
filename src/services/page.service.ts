@@ -3,4 +3,5 @@ export enum CurrentPage {
   HOME,
   MEAL,
   EXERCISE,
+  AMINO_ACIDS_CALCULATOR,
 }

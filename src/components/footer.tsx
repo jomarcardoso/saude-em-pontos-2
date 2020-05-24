@@ -6,9 +6,11 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import RestaurantOutlinedIcon from '@material-ui/icons/RestaurantOutlined';
 import Box from '@material-ui/core/Box';
 import DirectionsRunOutlinedIcon from '@material-ui/icons/DirectionsRunOutlined';
+import SvgIcon from '@material-ui/core/SvgIcon';
 import { Link } from 'gatsby';
 import { makeStyles } from '@material-ui/core/styles';
 import { CurrentPage } from '../services/page.service';
+import CalculatorFilledSVG from '../images/icons/filled/calculator.svg';
 
 const useStyles = makeStyles({
   root: {
@@ -66,6 +68,22 @@ const Footer: React.SFC<Props> = ({ currentPage = CurrentPage.NONE }) => {
                   currentPage === CurrentPage.EXERCISE ? 'primary' : 'secondary'
                 }
               />
+            }
+          />
+        </Link>
+        <Link to="/amino-acids-calculator">
+          <BottomNavigationAction
+            label="Cadastrar exercício"
+            icon={
+              <SvgIcon
+                color={
+                  currentPage === CurrentPage.AMINO_ACIDS_CALCULATOR
+                    ? 'primary'
+                    : 'secondary'
+                }
+              >
+                <CalculatorFilledSVG />
+              </SvgIcon>
             }
           />
         </Link>

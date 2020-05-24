@@ -11,7 +11,7 @@ module.exports = {
       resolve: `gatsby-plugin-offline`,
       options: {
         workboxConfig: {
-          globPatterns: ['**/*']
+          globPatterns: ['**/*'],
         },
         precachePages: [`/src/*`],
       },
@@ -19,6 +19,7 @@ module.exports = {
     `gatsby-plugin-sass`,
     `gatsby-theme-material-ui`,
     `gatsby-plugin-react-helmet`,
+    'gatsby-plugin-react-svg',
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -46,8 +47,8 @@ module.exports = {
         theme_color: `#4d7a60`,
         display: `standalone`,
         icon: `src/images/original.png`,
-        cache_busting_mode: 'none'
+        cache_busting_mode: 'none',
       },
     },
   ],
-}
+};

@@ -18,3 +18,6 @@
 
 - [farinha de milho](https://www.flaticon.com/premium-icon/corn_1676841?term=corn&page=1&position=65)
 - [feijão](https://www.flaticon.com/premium-icon/red-beans_2079330?term=bean&page=1&position=60)
+- [presunto](https://www.flaticon.com/premium-icon/ham_2069197?term=ham&page=1&position=11)
+- [alface](https://www.flaticon.com/premium-icon/lettuce_1682268?term=lettuce&page=4&position=91)
+- [alho](https://www.flaticon.com/premium-icon/garlic_2518056?term=garlic&page=1&position=71)

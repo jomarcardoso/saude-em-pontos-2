@@ -112,7 +112,8 @@ const foods: Array<Food> = [
   {
     id: 12,
     name: 'pastel',
-    enName: 'pastry',
+    enName: 'pasty',
+    image: '/images/food/pasty.svg',
     description: 'pastel de carne, frito',
     aminoAcids: {
       tryptophan: 0.12,
@@ -139,6 +140,7 @@ const foods: Array<Food> = [
     id: 13,
     name: 'alho',
     enName: 'garlic',
+    image: '/images/food/garlic.svg',
     description: 'Alho-poró, cru',
     aminoAcids: {
       tryptophan: 0.01,
@@ -165,6 +167,7 @@ const foods: Array<Food> = [
     id: 14,
     enName: 'lettuce',
     name: 'alface',
+    image: '/images/food/lettuce.svg',
     description: 'Alface, roxa, crua',
     aminoAcids: {
       tryptophan: 0,
@@ -191,6 +194,7 @@ const foods: Array<Food> = [
     id: 15,
     name: 'Presunto',
     enName: 'ham',
+    image: '/images/food/ham.svg',
     description: 'Presunto, sem capa de gordura',
     aminoAcids: {
       tryptophan: 0.15,
