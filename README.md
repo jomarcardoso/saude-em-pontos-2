@@ -11,6 +11,8 @@
 
 - http://www.intranet.fcf.usp.br/tabela/lista.asp?base=r
 - https://www.diabetes.org.br/publico/images/pdf/2016/nutr-2002-foster-powell-5-56.pdf
+- [Tabela Brasileira de Composição de Alimentos](https://www.cfn.org.br/wp-content/uploads/2017/03/taco_4_edicao_ampliada_e_revisada.pdf)
+- [amino ácidos](https://www.scielo.br/pdf/rbz/v30n3/5247.pdf)
 
 # Ícones futuros
 

@@ -34,6 +34,7 @@
     "flow-bin": "^0.123.0",
     "prettier": "2.0.4",
     "surge": "^0.21.3",
+    "ts-node": "^8.10.1",
     "typescript": "^3.8.3"
   },
   "keywords": [
@@ -41,6 +42,7 @@
   ],
   "license": "MIT",
   "scripts": {
+    "data": "ts-node ./src/db/food.ts",
     "lint": "eslint src/**/*.{js,ts,tsx} --fix",
     "flow": "flow",
     "build": "gatsby build",
