@@ -29,12 +29,12 @@ interface Props {
   name;
 }
 
-const Select: React.SFC<Props> = ({ form, options, name }) => {
+const Select: React.SFC<Props> = ({ fields, options, name }) => {
   const classes = useStyles();
 
   return (
     <AgnosticSelect
-      form={form}
+      fields={fields}
       name={name}
       render={(selectProps) => (
         <MaterialSelect
@@ -44,7 +44,6 @@ const Select: React.SFC<Props> = ({ form, options, name }) => {
           }}
           labelId="food"
           id="select"
-          value={0}
           {...selectProps}
         >
           {selectProps.children}
