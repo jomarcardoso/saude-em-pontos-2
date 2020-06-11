@@ -1,8 +1,12 @@
 import React from 'react';
-import InputNumberCore from './input-number-core';
+import InputNumberCore, {
+  InputNumberProps as InputNumberCoreProps,
+} from './input-number-core';
 import FormConnector, { FormConnectorProps } from '../form/form-connector';
 
-const InputNumber: React.SFC<FormConnectorProps> = (props) => {
+export type InputNumberProps = InputNumberCoreProps & FormConnectorProps;
+
+const InputNumber: React.SFC<InputNumberProps> = (props) => {
   return (
     <FormConnector
       {...props}

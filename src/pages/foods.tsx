@@ -1,5 +1,4 @@
-import React from 'react';
-import { graphql, useStaticQuery } from 'gatsby';
+import React, { useContext } from 'react';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -9,24 +8,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
 import Layout from '../components/layout/layout';
 import { Food } from '../services/food.service';
-
-const useFood = (): Array<Food> => {
-  const data = useStaticQuery(graphql`
-    query {
-      file(relativePath: { eq: "food.json" }) {
-        childDbJson {
-          foods {
-            name
-            enName
-            image
-          }
-        }
-      }
-    }
-  `);
-
-  return data.file.childDbJson.foods;
-};
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import FoodsContext from '../contexts/foods-context';
 
 const useStyles = makeStyles({
   selectIcon: {
@@ -45,10 +33,13 @@ const useStyles = makeStyles({
       textDecoration: 'none',
     },
   },
+  listItem: {
+    padding: 0,
+  },
 });
 
 const Foods: React.SFC = () => {
-  const foods = useFood();
+  const foods = useContext(FoodsContext);
   const classes = useStyles();
   const orderedFood = foods.sort((a, b) => {
     if (a.name > b.name) {
@@ -63,25 +54,43 @@ const Foods: React.SFC = () => {
 
   return (
     <Layout pageName="Alimentos">
-      <List component="nav" aria-label="main mailbox folders" dense>
-        {orderedFood.map(({ name, image, enName }) => (
-          <li>
-            <ListItem>
-              <Link
-                to={`/food/${enName}`}
-                className={classes.anchor}
-                color="inherit"
-              >
-                <ListItemIcon className={classes.selectIcon}>
-                  <img className={classes.img} src={image} alt="" />
-                </ListItemIcon>
-                <ListItemText primary={name} />
-              </Link>
-            </ListItem>
-            <Divider />
-          </li>
-        ))}
-      </List>
+      <TableContainer>
+        <Table size="small" aria-label="a dense table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Medida 100g</TableCell>
+              <TableCell align="right">Calorias</TableCell>
+              <TableCell align="right">Índice Glicêmico</TableCell>
+              <TableCell align="right">Acidificação</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {orderedFood.map(
+              ({ name, image, enName, calories, acidification, gi, gl }) => (
+                <TableRow key={name}>
+                  <TableCell component="th" scope="row">
+                    <ListItem className={classes.listItem}>
+                      <Link
+                        to={`/food/${enName}`}
+                        className={classes.anchor}
+                        color="inherit"
+                      >
+                        <ListItemIcon className={classes.selectIcon}>
+                          <img className={classes.img} src={image} alt="" />
+                        </ListItemIcon>
+                        <ListItemText primary={name} />
+                      </Link>
+                    </ListItem>
+                  </TableCell>
+                  <TableCell align="right">{calories}</TableCell>
+                  <TableCell align="right">{gi}</TableCell>
+                  <TableCell align="right">{acidification}</TableCell>
+                </TableRow>
+              )
+            )}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </Layout>
   );
 };

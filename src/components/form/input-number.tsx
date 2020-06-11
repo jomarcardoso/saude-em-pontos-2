@@ -1,7 +1,7 @@
 import React from 'react';
-import TextField from '@material-ui/core/TextField';
+import TextField, { TextFieldProps } from '@material-ui/core/TextField';
 import AgnosticInputNumber, {
-  InputNumberProps,
+  InputNumberProps as AgnosticInputNumberProps,
 } from '../vendors/agnostic-components/form/input-number';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -11,13 +11,15 @@ const useStyles = makeStyles({
   },
 });
 
+type InputNumberProps = AgnosticInputNumberProps & TextFieldProps;
+
 const InputNumber: React.SFC<InputNumberProps> = (props) => {
   const classes = useStyles();
 
   return (
     <AgnosticInputNumber
       {...props}
-      render={(agnosticProps) => (
+      render={(agnosticProps: TextFieldProps) => (
         <TextField classes={classes} {...agnosticProps} />
       )}
     />

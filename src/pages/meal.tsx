@@ -70,6 +70,7 @@ export default function MealPage(location) {
         <Grid item xs={12}>
           {renderResults()}
         </Grid>
+        <Grid item xs={12}></Grid>
       </Grid>
     </Layout>
   );
