@@ -8,6 +8,7 @@ const get = (): Array<Food> => {
         childDbJson {
           foods {
             name
+            enName
             id
             image
             calories

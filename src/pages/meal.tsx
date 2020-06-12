@@ -10,13 +10,26 @@ import AccountContext from '../contexts/account-context';
 import { Account } from '../services/account.service';
 import { Meal, SHAPE_MEAL } from '../services/meal.service';
 import { makeStyles } from '@material-ui/core/styles';
+import ResumedPortion from '../components/resumed-portion';
+import Box from '@material-ui/core/box';
+
+enum Status {
+  ok = 'success.main',
+  warn = 'warning.main',
+  danger = 'error.main',
+}
 
 const useStyles = makeStyles({
   result: {
     display: 'flex',
+    flex: 1,
   },
   card: {
     flex: 1,
+  },
+  portionsContainer: {
+    backgroundColor: '#efefef',
+    padding: '30px',
   },
 });
 
@@ -30,19 +43,29 @@ export default function MealPage(location) {
   } = useContext(AccountContext);
   const meal: Meal = account.meals[id] ?? SHAPE_MEAL;
 
-  function renderResult({ name, value }) {
+  function renderResult({
+    name,
+    value,
+    status,
+  }: {
+    name: string;
+    value: number | string;
+    status: Status;
+  }) {
     return (
       <Grid item xs={6} sm={4} className={classes.result}>
-        <Card variant="outlined" className={classes.card}>
-          <CardContent>
-            <Typography component="p" variant="h1" align="center">
-              {value}
-            </Typography>
-            <Typography component="h3" variant="h6" align="center">
-              {name}
-            </Typography>
-          </CardContent>
-        </Card>
+        <Box borderColor={status} border={1} className={classes.result}>
+          <Card className={classes.card}>
+            <CardContent>
+              <Typography component="p" variant="h1" align="center">
+                {value}
+              </Typography>
+              <Typography component="h3" variant="h6" align="center">
+                {name}
+              </Typography>
+            </CardContent>
+          </Card>
+        </Box>
       </Grid>
     );
   }
@@ -50,10 +73,20 @@ export default function MealPage(location) {
   function renderResults() {
     return (
       <Grid container spacing={2}>
-        {renderResult({ name: 'Calorias Totais', value: meal.calories })}
+        {renderResult({
+          name: 'Calorias Totais',
+          value: meal.calories,
+          status: Status.ok,
+        })}
         {renderResult({
           name: 'Índice Glicêmico médio',
           value: meal.gi,
+          status: Status.warn,
+        })}
+        {renderResult({
+          name: 'Acidificação',
+          value: meal.gi,
+          status: Status.danger,
         })}
       </Grid>
     );
@@ -70,7 +103,15 @@ export default function MealPage(location) {
         <Grid item xs={12}>
           {renderResults()}
         </Grid>
-        <Grid item xs={12}></Grid>
+        <Grid item xs={12}>
+          <Box className={classes.portionsContainer}>
+            <Grid container spacing={2} component="ul" justify="center">
+              {meal.portions.map((portion) => (
+                <ResumedPortion xs={6} sm={4} md={3} lg={2} portion={portion} />
+              ))}
+            </Grid>
+          </Box>
+        </Grid>
       </Grid>
     </Layout>
   );

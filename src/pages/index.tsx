@@ -3,8 +3,6 @@ import { Link } from 'gatsby';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
 import Box from '@material-ui/core/Box';
 import Quiz from '../components/quiz';
@@ -19,8 +17,7 @@ import CardContent from '@material-ui/core/CardContent';
 import TimeService from '../services/vendors/time.service';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
-import Badge from '@material-ui/core/Badge';
-import Image from '../components/image';
+import ResumedPortion from '../components/resumed-portion';
 
 const useStyles = makeStyles({});
 
@@ -77,17 +74,7 @@ const Index: React.SFC = () => {
                     <Grid item xs={12}>
                       <Grid container spacing={2}>
                         {meal.portions.map((portion) => (
-                          <Grid item xs={3}>
-                            <Badge
-                              badgeContent={portion.quantity}
-                              color="secondary"
-                            >
-                              <Image
-                                src={portion.food.image}
-                                alt={portion.food.name}
-                              />
-                            </Badge>
-                          </Grid>
+                          <ResumedPortion portion={portion} xs={4} />
                         ))}
                       </Grid>
                     </Grid>

@@ -7,8 +7,9 @@ export interface Meal {
   portions: Array<Portion>;
   calories: number;
   gi: number;
-  gc: number;
+  gl: number;
   carbohydrates: number;
+  acidification: number;
 }
 
 export interface MealData {
@@ -27,6 +28,9 @@ export const SHAPE_MEAL: Meal = {
   id: 0,
   portions: [],
   gi: 0,
+  acidification: 0,
+  gl: 0,
+  carbohydrates: 0,
 };
 
 export type SetMeal = (Meal) => void;
@@ -37,9 +41,31 @@ function calculateCalories(portions: Array<Portion> = []): number {
   }, 0);
 }
 
-function calculategi(portions: Array<Portion> = []): number {
+function calculateCarbohidrates(portions: Array<Portion> = []): number {
+  return portions.reduce((sum, portion) => {
+    return sum + portion.calories;
+  }, 0);
+}
+
+function calculateGI(portions: Array<Portion> = []): number {
   const sum = portions.reduce((sum, portion) => {
-    return sum + portion.gi;
+    return sum + portion.food.gi;
+  }, 0);
+
+  return sum / portions.length;
+}
+
+function calculateGC(portions: Array<Portion> = []): number {
+  const sum = portions.reduce((sum, portion) => {
+    return sum + portion.food.gl;
+  }, 0);
+
+  return sum / portions.length;
+}
+
+function calculateAcidification(portions: Array<Portion> = []) {
+  const sum = portions.reduce((sum, portion) => {
+    return sum + portion.food.acidification;
   }, 0);
 
   return sum / portions.length;
@@ -64,7 +90,10 @@ function format({
     portions,
     calories: calculateCalories(portions),
     date: mealData?.date ? new Date(mealData?.date) : new Date(),
-    gi: calculategi(portions),
+    gi: calculateGI(portions),
+    acidification: calculateAcidification(portions),
+    gl: calculateGC(portions),
+    carbohydrates: calculateCarbohidrates(portions),
   };
 }
 
