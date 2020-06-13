@@ -3,21 +3,16 @@ import { Link } from 'gatsby';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import Divider from '@material-ui/core/Divider';
-import Box from '@material-ui/core/Box';
-import Quiz from '../components/quiz';
-import Layout from '../components/layout/layout';
 import Advertise from '../components/advertise';
 import AccountContext from '../contexts/account-context';
 import { Account, SHAPE_ACCOUNT } from '../services/account.service';
 import { CurrentPage } from '../services/page.service';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardContent from '@material-ui/core/CardContent';
-import TimeService from '../services/vendors/time.service';
 import { makeStyles } from '@material-ui/core/styles';
-import Avatar from '@material-ui/core/Avatar';
-import ResumedPortion from '../components/resumed-portion';
+import Divider from '@material-ui/core/Divider';
+import Box from '@material-ui/core/Box';
+import Quiz from '../components/quiz';
+import Layout from '../components/layout/layout';
+import MealCard from '../components/meal-card';
 
 const useStyles = makeStyles({});
 
@@ -62,35 +57,7 @@ const Index: React.SFC = () => {
       <Grid container spacing={4}>
         {account.meals.map((meal) => (
           <Grid item xs={12} sm={6}>
-            <Link to={`/meal#${meal.id}`} state={{ meal }}>
-              <Card variant="outlined">
-                <CardHeader
-                  avatar={<Avatar aria-label="recipe">R</Avatar>}
-                  color="textSecondary"
-                  title={TimeService.toLongSring(meal.date)}
-                />
-                <CardContent>
-                  <Grid container spacing={2}>
-                    <Grid item xs={12}>
-                      <Grid container spacing={2}>
-                        {meal.portions.map((portion) => (
-                          <ResumedPortion portion={portion} xs={4} />
-                        ))}
-                      </Grid>
-                    </Grid>
-                    <Grid item xs={12}>
-                      <Divider />
-                    </Grid>
-                    <Grid item xs={12}>
-                      <Box display="flex" justifyContent="space-between">
-                        <Typography variant="subtitle1">Calorias:</Typography>
-                        <Typography>{meal.calories}</Typography>
-                      </Box>
-                    </Grid>
-                  </Grid>
-                </CardContent>
-              </Card>
-            </Link>
+            <MealCard meal={meal} />
           </Grid>
         ))}
       </Grid>

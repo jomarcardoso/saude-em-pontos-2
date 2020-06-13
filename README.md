@@ -13,6 +13,7 @@
 - https://www.diabetes.org.br/publico/images/pdf/2016/nutr-2002-foster-powell-5-56.pdf
 - [Tabela Brasileira de Composição de Alimentos](https://www.cfn.org.br/wp-content/uploads/2017/03/taco_4_edicao_ampliada_e_revisada.pdf)
 - [amino ácidos](https://www.scielo.br/pdf/rbz/v30n3/5247.pdf)
+- [site com busca de alimentos dos aminoácidos](https://tools.myfooddata.com/nutrition-comparison.php?foods=173735&serv=100g&qty=1)
 
 # Ícones futuros
 

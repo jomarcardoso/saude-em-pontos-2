@@ -1,0 +1,52 @@
+import React from 'react';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardContent from '@material-ui/core/CardContent';
+import TimeService from '../services/vendors/time.service';
+import Avatar from '@material-ui/core/Avatar';
+import ResumedPortion from '../components/resumed-portion';
+import Grid from '@material-ui/core/Grid';
+import { Link } from 'gatsby';
+import Typography from '@material-ui/core/Typography';
+import { Meal } from '../services/meal.service';
+
+interface Props {
+  meal: Meal;
+}
+
+const MealCard: React.SFC<Props> = ({ meal }) => {
+  return (
+    <Link to={`/meal#${meal.id}`} state={{ meal }}>
+      <Card variant="outlined">
+        <CardHeader
+          avatar={<Avatar aria-label="recipe">R</Avatar>}
+          color="textSecondary"
+          title={TimeService.toLongSring(meal.date)}
+        />
+        <CardContent>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <Grid container spacing={2}>
+                {meal.portions.map((portion) => (
+                  <ResumedPortion portion={portion} xs={4} />
+                ))}
+              </Grid>
+            </Grid>
+          </Grid>
+        </CardContent>
+        <CardContent>
+          <Grid container spacing={2} justify="space-between">
+            <Grid item>
+              <Typography variant="subtitle1">Calorias:</Typography>
+            </Grid>
+            <Grid item>
+              <Typography>{meal.calories}</Typography>
+            </Grid>
+          </Grid>
+        </CardContent>
+      </Card>
+    </Link>
+  );
+};
+
+export default MealCard;

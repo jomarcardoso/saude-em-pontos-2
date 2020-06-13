@@ -15,6 +15,28 @@ const get = (): Array<Food> => {
             gi
             gl
             carbohydrates
+            aminoAcids {
+              methionine
+              leucine
+              isoleucine
+              lysine
+              phenylalanine
+              threonine
+              tryptophan
+              valine
+              arginine
+              histidine
+              proline
+              glycine
+              asparagine
+              glutamine
+              cystine
+              alanine
+              asparticAcid
+              glutamicAcid
+              serine
+              tyrosine
+            }
           }
         }
       }

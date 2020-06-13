@@ -18,6 +18,28 @@ exports.createPages = ({ graphql, actions }) => {
               calories
               gl
               carbohydrates
+              aminoAcids {
+                methionine
+                leucine
+                isoleucine
+                lysine
+                phenylalanine
+                threonine
+                tryptophan
+                valine
+                arginine
+                histidine
+                proline
+                glycine
+                asparagine
+                glutamine
+                cystine
+                alanine
+                asparticAcid
+                glutamicAcid
+                serine
+                tyrosine
+              }
             }
           }
         }
