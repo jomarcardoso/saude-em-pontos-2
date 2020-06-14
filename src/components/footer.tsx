@@ -33,6 +33,7 @@ const Footer: React.SFC<Props> = ({ currentPage = CurrentPage.NONE }) => {
       borderColor="text.secondary"
       component="footer"
       className={classes.root}
+      zIndex={1}
     >
       <BottomNavigation>
         <Link to="/">

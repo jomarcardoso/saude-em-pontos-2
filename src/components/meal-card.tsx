@@ -9,12 +9,22 @@ import Grid from '@material-ui/core/Grid';
 import { Link } from 'gatsby';
 import Typography from '@material-ui/core/Typography';
 import { Meal } from '../services/meal.service';
+import { makeStyles } from '@material-ui/core/styles';
+import { Box } from '@material-ui/core';
+
+const useStyles = makeStyles({
+  content: {
+    backgroundColor: 'info.main',
+  },
+});
 
 interface Props {
   meal: Meal;
 }
 
 const MealCard: React.SFC<Props> = ({ meal }) => {
+  const classes = useStyles();
+
   return (
     <Link to={`/meal#${meal.id}`} state={{ meal }}>
       <Card variant="outlined">
@@ -23,17 +33,19 @@ const MealCard: React.SFC<Props> = ({ meal }) => {
           color="textSecondary"
           title={TimeService.toLongSring(meal.date)}
         />
-        <CardContent>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <Grid container spacing={2}>
-                {meal.portions.map((portion) => (
-                  <ResumedPortion portion={portion} xs={4} />
-                ))}
+        <Box bgcolor="divider">
+          <CardContent>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <Grid container spacing={2}>
+                  {meal.portions.map((portion) => (
+                    <ResumedPortion portion={portion} xs={4} />
+                  ))}
+                </Grid>
               </Grid>
             </Grid>
-          </Grid>
-        </CardContent>
+          </CardContent>
+        </Box>
         <CardContent>
           <Grid container spacing={2} justify="space-between">
             <Grid item>
