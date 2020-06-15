@@ -12,19 +12,29 @@ import { CurrentPage } from '../../services/page.service';
 const theme = createMuiTheme({
   palette: {
     secondary: {
-      main: '#040404',
+      // main: '#BEB2C8',
+      main: '#1D1E20',
+    },
+    divider: '#d7d6d6',
+    grey: {
+      '600': '#e7e6e6',
     },
     primary: {
-      main: '#B2372A',
+      main: '#4d7a60',
     },
     background: {
-      default: '#fff',
-      // default: '#F7EEEE',
+      // default: '#fff',
+      // paper: '#D7D6D6',
+      // paper: '#BEB2C8',
     },
     // type: 'dark',
     text: {
-      primary: '#000',
+      primary: '#1D1E20',
+      secondary: '#2D2E30',
     },
+  },
+  shape: {
+    borderRadius: 4,
   },
   typography: {
     h1: {

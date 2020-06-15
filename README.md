@@ -2,6 +2,10 @@
 
 [![Build Status](https://travis-ci.org/jomarcardoso/saude-em-pontos-2.svg?branch=master)](https://travis-ci.org/jomarcardoso/saude-em-pontos-2)
 
+## Cores
+
+- [Paleta](https://coolors.co/4d7a60-5d5e60-8d8d92-beb2c8-d7d6d6)
+
 ## Frutas
 
 - https://www.flaticon.com/packs/fruits-and-vegetables-6?k=1588129484491

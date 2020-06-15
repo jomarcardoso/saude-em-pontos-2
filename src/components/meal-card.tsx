@@ -33,7 +33,7 @@ const MealCard: React.SFC<Props> = ({ meal }) => {
           color="textSecondary"
           title={TimeService.toLongSring(meal.date)}
         />
-        <Box bgcolor="divider">
+        <Box bgcolor="grey.600">
           <CardContent>
             <Grid container spacing={2}>
               <Grid item xs={12}>
@@ -47,12 +47,17 @@ const MealCard: React.SFC<Props> = ({ meal }) => {
           </CardContent>
         </Box>
         <CardContent>
-          <Grid container spacing={2} justify="space-between">
+          <Grid
+            container
+            spacing={2}
+            justify="space-between"
+            alignItems="flex-end"
+          >
             <Grid item>
-              <Typography variant="subtitle1">Calorias:</Typography>
+              <Typography variant="h3">Calorias:</Typography>
             </Grid>
             <Grid item>
-              <Typography>{meal.calories}</Typography>
+              <Typography variant="h4">{meal.calories}</Typography>
             </Grid>
           </Grid>
         </CardContent>
