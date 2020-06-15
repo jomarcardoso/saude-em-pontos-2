@@ -1,6 +1,5 @@
 import React, { useEffect, useContext } from 'react';
 import InputLabel from '@material-ui/core/InputLabel';
-import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import IconButton from '@material-ui/core/IconButton';
 import Layout from '../components/layout/layout';
@@ -10,8 +9,6 @@ import { PortionData } from '../services/portion.service';
 import { makeStyles } from '@material-ui/core/styles';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import FoodsContext from '../contexts/foods-context';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import TimeService from '../services/vendors/time.service';
@@ -22,21 +19,10 @@ import { Meal, SHAPE_MEAL } from '../services/meal.service';
 import ResumedPortion from '../components/resumed-portion';
 import Box from '@material-ui/core/box';
 import { useForm } from '../components/vendors/agnostic-components/form';
-
-enum Status {
-  ok = 'success.main',
-  warn = 'warning.main',
-  danger = 'error.main',
-}
+import SubmitComponent from '../components/submit';
+import ScoreComponent from '../components/score';
 
 const useStyles = makeStyles({
-  result: {
-    display: 'flex',
-    flex: 1,
-  },
-  card: {
-    flex: 1,
-  },
   portionsContainer: {
     backgroundColor: '#efefef',
     padding: '30px',
@@ -57,27 +43,25 @@ export default function MealPage(location) {
   } = useContext(AccountContext);
   const meal: Meal = account.meals[id] ?? SHAPE_MEAL;
   const foods = useContext(FoodsContext);
-  const initialValuesFoods = meal.portions.reduce(
-    (previous, portion, index) => {
-      return {
-        ...previous,
-        [`food${index}`]: String(portion.food.id),
-      };
+  const initialValues = meal.portions.reduce((previous, portion, index) => {
+    return {
+      ...previous,
+      [`food${index}`]: String(portion.food.id),
+      [`quantity${index}`]: String(portion.quantity),
+    };
+  }, {});
+  const form = useForm({ initialValues });
+  const formQuantity = useForm({ initialValues });
+  const arrayOfValues = Object.entries(form.fields.values).reduce(
+    (previous, [key, value]) => {
+      if (/^food/.test(key)) {
+        return [...previous, value];
+      }
+
+      return [...previous];
     },
-    {}
+    []
   );
-  const initialValuesQuantity = meal.portions.reduce(
-    (previous, portion, index) => {
-      return {
-        ...previous,
-        [`quantity${index}`]: String(portion.quantity),
-      };
-    },
-    {}
-  );
-  const formFood = useForm({ initialValues: initialValuesFoods });
-  const formQuantity = useForm({ initialValues: initialValuesQuantity });
-  const arrayOfValues = Object.values(formFood.fields.values);
   const options = foods.map((food) => ({
     ...food,
     value: String(food.id),
@@ -86,9 +70,7 @@ export default function MealPage(location) {
   function handleSubmit(event: React.SyntheticEvent): void {
     event.preventDefault();
 
-    const portionsData: Array<PortionData> = Object.values(
-      formFood.fields.values
-    )
+    const portionsData: Array<PortionData> = Object.values(form.fields.values)
       .map((food, index) => ({
         foodId: Number(food),
         quantity: formQuantity.fields.values[`quantity${index}`],
@@ -101,57 +83,8 @@ export default function MealPage(location) {
   useEffect(() => {
     if (!arrayOfValues.every((value) => value)) return;
 
-    formFood.fields.setValueByName(`food${arrayOfValues.length}`, '');
-  }, [formFood]);
-
-  function renderResult({
-    name,
-    value,
-    status,
-  }: {
-    name: string;
-    value: number | string;
-    status: Status;
-  }) {
-    return (
-      <Grid item xs={6} sm={4} className={classes.result}>
-        <Box borderColor={status} border={1} className={classes.result}>
-          <Card className={classes.card}>
-            <CardContent>
-              <Typography component="p" variant="h1" align="center">
-                {value}
-              </Typography>
-              <Typography component="h3" variant="h6" align="center">
-                {name}
-              </Typography>
-            </CardContent>
-          </Card>
-        </Box>
-      </Grid>
-    );
-  }
-
-  function renderResults() {
-    return (
-      <Grid container spacing={2}>
-        {renderResult({
-          name: 'Calorias Totais',
-          value: meal.calories,
-          status: Status.ok,
-        })}
-        {renderResult({
-          name: 'Índice Glicêmico médio',
-          value: meal.gi,
-          status: Status.warn,
-        })}
-        {renderResult({
-          name: 'Acidificação',
-          value: meal.gi,
-          status: Status.danger,
-        })}
-      </Grid>
-    );
-  }
+    form.fields.setValueByName(`food${arrayOfValues.length}`, '');
+  }, [form]);
 
   return (
     <Layout pageName="Refeição">
@@ -173,7 +106,7 @@ export default function MealPage(location) {
                         <Select
                           options={options}
                           name={`food${index}`}
-                          fields={formFood.fields}
+                          fields={form.fields}
                           label={`Alimento ${index + 1}`}
                         />
                       </FormControl>
@@ -200,9 +133,7 @@ export default function MealPage(location) {
             </Grid>
           </Grid>
           <Grid item xs={12}>
-            <Button type="submit" variant="contained" color="primary">
-              Cadastrar refeição
-            </Button>
+            <SubmitComponent>Cadastrar refeição</SubmitComponent>
           </Grid>
         </Grid>
       </form>
@@ -213,7 +144,7 @@ export default function MealPage(location) {
           </Typography>
         </Grid>
         <Grid item xs={12}>
-          {renderResults()}
+          <ScoreComponent meal={meal} />
         </Grid>
         <Grid item xs={12}>
           <Box className={classes.portionsContainer}>
