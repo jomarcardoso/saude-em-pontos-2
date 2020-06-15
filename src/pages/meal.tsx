@@ -8,7 +8,7 @@ import { SHAPE_ACCOUNT } from '../services/account.service';
 import AccountContext from '../contexts/account-context';
 import { Meal, SHAPE_MEAL } from '../services/meal.service';
 import ResumedPortion from '../components/resumed-portion';
-import Box from '@material-ui/core/box';
+import Box from '@material-ui/core/Box';
 import ScoreComponent from '../components/score';
 import MealRegisterComponent from '../components/meal-register';
 import { CurrentPage } from '../services/page.service';

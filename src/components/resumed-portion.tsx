@@ -1,9 +1,9 @@
 import React from 'react';
 import Badge from '@material-ui/core/Badge';
 import Image from '../components/image';
-import Grid, { GridProps } from '@material-ui/core/grid';
+import Grid, { GridProps } from '@material-ui/core/Grid';
 import { Portion } from '../services/portion.service';
-import Card from '@material-ui/core/card';
+import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 
 interface Props extends GridProps {

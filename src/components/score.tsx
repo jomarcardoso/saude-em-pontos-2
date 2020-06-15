@@ -4,7 +4,7 @@ import CardContent from '@material-ui/core/CardContent';
 import { Meal } from '../services/meal.service';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/box';
+import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 
 enum Status {
