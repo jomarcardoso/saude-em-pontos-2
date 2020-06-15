@@ -1,7 +1,6 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import Table from '@material-ui/core/Table';
-import { Typography } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
 import { Food } from '../services/food.service';
 import Layout from '../components/layout/layout';
 
