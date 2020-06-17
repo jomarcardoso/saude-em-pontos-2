@@ -1,26 +1,45 @@
 import { useState, useEffect } from 'react';
-import AccountService, { AccountAndSet } from '../services/account.service';
+import AccountService, {
+  AccountAndSet,
+  SetAccount,
+} from '../services/account.service';
 import { Food } from '../services/food.service';
-import MealService, { Meal, PortionData } from '../services/meal.service';
+import MealService, { Meal, MealData } from '../services/meal.service';
+import { User } from 'src/services/user.service';
 
 export default function useAccount(foods: Array<Food>): AccountAndSet {
   const [account, _setAccount] = useState(AccountService.get(foods));
 
-  function setUser(user): void {
+  function setUser(user: User): void {
     _setAccount({
       ...account,
       user,
     });
   }
 
-  function setMeal(portionsData: Array<PortionData>): void {
+  function setMeal(mealData: MealData): void {
+    const id = mealData.id ?? account.meals.length;
+
     const meal: Meal = MealService.format({
       mealData: {
-        date: '',
-        portions: portionsData,
+        ...mealData,
+        id,
       },
       foods,
     });
+
+    const editing = mealData.id;
+    if (editing) {
+      const indexToChange = account.meals.findIndex(({ id }) => id === 2);
+      account.meals[indexToChange] = meal;
+
+      _setAccount({
+        ...account,
+        meals: account.meals,
+      });
+
+      return;
+    }
 
     _setAccount({
       ...account,
@@ -32,7 +51,7 @@ export default function useAccount(foods: Array<Food>): AccountAndSet {
     AccountService.save(account);
   }, [account]);
 
-  const setAccount = {
+  const setAccount: SetAccount = {
     account: _setAccount,
     user: setUser,
     meal: setMeal,

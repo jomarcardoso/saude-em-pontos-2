@@ -10,9 +10,9 @@ import FoodsContext from '../contexts/foods-context';
 import { makeStyles } from '@material-ui/core/styles';
 import SubmitComponent from '../components/submit';
 import Grid from '@material-ui/core/Grid';
-import { Account } from '../services/account.service';
+import { SetAccount } from '../services/account.service';
 import { useForm } from '../components/vendors/agnostic-components/form';
-import { Meal } from '../services/meal.service';
+import { MealData } from '../services/meal.service';
 
 const useStyles = makeStyles({
   formControl: {
@@ -21,10 +21,11 @@ const useStyles = makeStyles({
 });
 
 interface Props {
-  meal: Meal;
+  mealData: MealData;
+  setAccount: SetAccount;
 }
 
-const MealRegisterComponent: React.SFC<Props> = ({ meal, setAccount }) => {
+const MealRegisterComponent: React.SFC<Props> = ({ mealData, setAccount }) => {
   const classes = useStyles();
   const foods = useContext(FoodsContext);
 
@@ -33,16 +34,15 @@ const MealRegisterComponent: React.SFC<Props> = ({ meal, setAccount }) => {
     value: String(food.id),
   }));
 
-  const initialValues = meal.portions.reduce((previous, portion, index) => {
+  const initialValues = mealData.portions.reduce((previous, portion, index) => {
     return {
       ...previous,
-      [`food${index}`]: String(portion.food.id),
+      [`food${index}`]: String(portion.foodId),
       [`quantity${index}`]: String(portion.quantity),
     };
   }, {});
 
   const form = useForm({ initialValues });
-  const formQuantity = useForm({ initialValues });
 
   const arrayOfValues = Object.entries(form.fields.values).reduce(
     (previous, [key, value]) => {
@@ -58,14 +58,20 @@ const MealRegisterComponent: React.SFC<Props> = ({ meal, setAccount }) => {
   function handleSubmit(event: React.SyntheticEvent): void {
     event.preventDefault();
 
-    const portionsData: Array<PortionData> = Object.values(form.fields.values)
+    const portions: Array<PortionData> = Object.values(form.fields.values)
       .map((food, index) => ({
         foodId: Number(food),
-        quantity: formQuantity.fields.values[`quantity${index}`],
+        quantity: Number(form.fields.values[`quantity${index}`]),
       }))
       .filter(({ foodId }) => foodId);
 
-    setAccount.meal(portionsData);
+    setAccount.meal({
+      portions,
+      date: mealData?.date
+        ? new Date(mealData?.date).toString()
+        : new Date().toString(),
+      id: mealData?.id ?? 0,
+    });
   }
 
   useEffect(() => {
@@ -102,7 +108,7 @@ const MealRegisterComponent: React.SFC<Props> = ({ meal, setAccount }) => {
                     <InputNumber
                       label={`Quantidade ${index + 1}`}
                       name={`quantity${index}`}
-                      fields={formQuantity.fields}
+                      fields={form.fields}
                     />
                   </Grid>
                   <Grid item xs={2}>

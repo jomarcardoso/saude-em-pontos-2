@@ -6,7 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import TimeService from '../services/vendors/time.service';
 import { SHAPE_ACCOUNT } from '../services/account.service';
 import AccountContext from '../contexts/account-context';
-import { Meal, SHAPE_MEAL } from '../services/meal.service';
+import MealService, { Meal, SHAPE_MEAL } from '../services/meal.service';
 import ResumedPortion from '../components/resumed-portion';
 import Box from '@material-ui/core/Box';
 import ScoreComponent from '../components/score';
@@ -23,13 +23,15 @@ export default function MealPage(location) {
   const classes = useStyles();
   const id = Number(location?.location?.hash?.replace('#', '') ?? 0);
   const { account = SHAPE_ACCOUNT, setAccount } = useContext(AccountContext);
-  const meal: Meal = account.meals[id] ?? SHAPE_MEAL;
+  const meal: Meal =
+    account.meals.find(({ id: mealId }) => mealId === id) ?? SHAPE_MEAL;
+  const mealData = MealService.unFormat(meal);
 
   return (
     <Layout pageName="Refeição" currentPage={CurrentPage.MEAL}>
       <Grid container spacing={5}>
         <Grid item xs={12}>
-          <MealRegisterComponent meal={meal} setAccount={setAccount} />
+          <MealRegisterComponent mealData={mealData} setAccount={setAccount} />
         </Grid>
         <Grid item xs={12}>
           <Typography component="h2" variant="h2">

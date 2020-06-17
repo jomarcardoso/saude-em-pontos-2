@@ -15,6 +15,7 @@ import InputNumber from './form/input-number';
 import Input from './form/input';
 import Radio from './form/radio';
 import Grid from '@material-ui/core/Grid';
+import { Biotype } from '../services/user.service';
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -65,7 +66,12 @@ const Quiz: React.SFC = () => {
   function handleSubmit(event: React.SyntheticEvent): void {
     event.preventDefault();
 
-    setAccount.user(inputs.values);
+    setAccount.user({
+      age: 29,
+      biotype: Biotype.ECTOMORPH,
+      name: 'Jomar',
+      objectives: [],
+    });
   }
 
   return (
@@ -147,29 +153,6 @@ const Quiz: React.SFC = () => {
             </Grid>
           </Grid>
         </Grid>
-        {/* <div>
-          <FormControl className={classes.formControl}>
-            <InputLabel id="demo-controlled-open-select-label">
-              Objetivos
-            </InputLabel>
-            <Select
-              labelId="demo-controlled-open-select-label"
-              id="demo-controlled-open-select"
-              open={open}
-              onClose={handleClose}
-              onOpen={handleOpen}
-              value={objectives}
-              onChange={handleChangeObjectives}
-            >
-              <MenuItem value="">
-                <em>Nenhuma das opções</em>
-              </MenuItem>
-              <MenuItem value="lose-weight">Emagrecer</MenuItem>
-              <MenuItem value="health">Saúde</MenuItem>
-              <MenuItem value="muscle">Músculação</MenuItem>
-            </Select>
-          </FormControl>
-        </div> */}
       </form>
     </div>
   );

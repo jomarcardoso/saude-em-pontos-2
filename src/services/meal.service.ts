@@ -13,11 +13,13 @@ export interface Meal {
 }
 
 export interface MealData {
+  id: number;
   date: string;
   portions: Array<PortionData>;
 }
 
-export const SHAPE_MEAL_DATA = {
+export const SHAPE_MEAL_DATA: MealData = {
+  id: 1,
   date: '',
   portions: [],
 };
@@ -33,7 +35,7 @@ export const SHAPE_MEAL: Meal = {
   carbohydrates: 0,
 };
 
-export type SetMeal = (Meal) => void;
+export type SetMeal = (mealData: MealData) => void;
 
 function calculateCalories(portions: Array<Portion> = []): number {
   return portions.reduce((sum, portion) => {
@@ -74,11 +76,9 @@ function calculateAcidification(portions: Array<Portion> = []) {
 function format({
   mealData = SHAPE_MEAL_DATA,
   foods = [],
-  index = 0,
 }: {
   mealData: MealData;
   foods: Array<Food>;
-  index: number;
 }): Meal {
   const portions = mealData?.portions?.map((portionData) =>
     PortionService.format({ portionData, foods })
@@ -86,7 +86,7 @@ function format({
 
   return {
     ...mealData,
-    id: index,
+    id: mealData.id,
     portions,
     calories: calculateCalories(portions),
     date: mealData?.date ? new Date(mealData?.date) : new Date(),
@@ -99,6 +99,7 @@ function format({
 
 function unFormat(meal: Meal): MealData {
   return {
+    id: meal.id,
     date: meal.date.toString(),
     portions: meal.portions.map(PortionService.unFormat),
   };

@@ -4,7 +4,7 @@ enum Ojective {
   LOSE_WEIGHT = 'Perder peso',
 }
 
-enum Biotype {
+export enum Biotype {
   ECTOMORPH = 'Ectomorfo',
   ENDOMORPH = 'Endomorfo',
   MESOMORPH = 'Mesomorfo',
@@ -17,4 +17,4 @@ export interface User {
   biotype: Biotype;
 }
 
-export type SetUser = (User) => void;
+export type SetUser = (user: User) => void;
