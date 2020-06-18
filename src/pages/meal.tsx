@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Layout from '../components/layout/layout';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -21,7 +21,8 @@ const useStyles = makeStyles({
 
 export default function MealPage(location) {
   const classes = useStyles();
-  const id = Number(location?.location?.hash?.replace('#', '') ?? 0);
+  const initialId = Number(location?.location?.hash?.replace('#', '') ?? 0);
+  const [id, setId] = useState(initialId);
   const { account = SHAPE_ACCOUNT, setAccount } = useContext(AccountContext);
   const meal: Meal =
     account.meals.find(({ id: mealId }) => mealId === id) ?? SHAPE_MEAL;
@@ -31,7 +32,11 @@ export default function MealPage(location) {
     <Layout pageName="Refeição" currentPage={CurrentPage.MEAL}>
       <Grid container spacing={5}>
         <Grid item xs={12}>
-          <MealRegisterComponent mealData={mealData} setAccount={setAccount} />
+          <MealRegisterComponent
+            mealData={mealData}
+            setAccount={setAccount}
+            setId={setId}
+          />
         </Grid>
         <Grid item xs={12}>
           <Typography component="h2" variant="h2">

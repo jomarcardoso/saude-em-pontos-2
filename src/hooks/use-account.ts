@@ -17,8 +17,8 @@ export default function useAccount(foods: Array<Food>): AccountAndSet {
     });
   }
 
-  function setMeal(mealData: MealData): void {
-    const id = mealData.id ?? account.meals.length;
+  function setMeal(mealData: MealData): number {
+    const id = mealData.id || account.meals.length + 1;
 
     const meal: Meal = MealService.format({
       mealData: {
@@ -30,7 +30,9 @@ export default function useAccount(foods: Array<Food>): AccountAndSet {
 
     const editing = mealData.id;
     if (editing) {
-      const indexToChange = account.meals.findIndex(({ id }) => id === 2);
+      const indexToChange = account.meals.findIndex(
+        ({ id: mealIndex }) => mealIndex === id
+      );
       account.meals[indexToChange] = meal;
 
       _setAccount({
@@ -38,13 +40,15 @@ export default function useAccount(foods: Array<Food>): AccountAndSet {
         meals: account.meals,
       });
 
-      return;
+      return id;
     }
 
     _setAccount({
       ...account,
       meals: [...account.meals, meal],
     });
+
+    return id;
   }
 
   useEffect(() => {
