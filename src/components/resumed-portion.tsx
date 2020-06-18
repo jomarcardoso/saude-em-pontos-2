@@ -5,15 +5,30 @@ import Grid, { GridProps } from '@material-ui/core/Grid';
 import { Portion } from '../services/portion.service';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+  box: {
+    display: 'flex',
+  },
+  card: {
+    display: 'flex',
+    alignItems: 'flex-end',
+    flex: 1,
+    justifyContent: 'center',
+  },
+});
 
 interface Props extends GridProps {
   portion: Portion;
 }
 
 const ResumedPortion: React.SFC<Props> = ({ portion, ...props }) => {
+  const classes = useStyles();
+
   return (
-    <Grid item {...props}>
-      <Card variant="outlined">
+    <Grid item {...props} className={classes.box}>
+      <Card variant="outlined" className={classes.card}>
         <CardContent>
           <Badge badgeContent={portion.quantity} color="secondary">
             <Image src={portion.food.image} alt={portion.food.name} />

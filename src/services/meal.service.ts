@@ -35,7 +35,7 @@ export const SHAPE_MEAL: Meal = {
   carbohydrates: 0,
 };
 
-export type SetMeal = (mealData: MealData) => void;
+export type SetMeal = (mealData: MealData) => number;
 
 function calculateCalories(portions: Array<Portion> = []): number {
   return portions.reduce((sum, portion) => {
