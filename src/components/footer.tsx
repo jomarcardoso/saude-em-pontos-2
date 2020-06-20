@@ -60,34 +60,6 @@ const Footer: React.SFC<Props> = ({ currentPage = CurrentPage.NONE }) => {
             }
           />
         </Link>
-        <Link to="/exercise">
-          <BottomNavigationAction
-            label="Cadastrar exercício"
-            icon={
-              <DirectionsRunOutlinedIcon
-                color={
-                  currentPage === CurrentPage.EXERCISE ? 'primary' : 'secondary'
-                }
-              />
-            }
-          />
-        </Link>
-        <Link to="/amino-acids-calculator">
-          <BottomNavigationAction
-            label="Cadastrar exercício"
-            icon={
-              <SvgIcon
-                color={
-                  currentPage === CurrentPage.AMINO_ACIDS_CALCULATOR
-                    ? 'primary'
-                    : 'secondary'
-                }
-              >
-                <CalculatorFilledSVG />
-              </SvgIcon>
-            }
-          />
-        </Link>
       </BottomNavigation>
     </Box>
   );

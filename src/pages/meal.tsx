@@ -55,6 +55,11 @@ export default function MealPage(location) {
             </Grid>
           </Box>
         </Grid>
+        <Grid item xs={12}>
+          <Typography variant="h1" component="h2">
+            Tabela de aminoácidos
+          </Typography>
+        </Grid>
       </Grid>
     </Layout>
   );

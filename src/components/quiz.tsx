@@ -67,9 +67,9 @@ const Quiz: React.SFC = () => {
     event.preventDefault();
 
     setAccount.user({
-      age: 29,
+      age: Number(inputs.values.age),
       biotype: Biotype.ECTOMORPH,
-      name: 'Jomar',
+      name: inputs.values.name,
       objectives: [],
     });
   }

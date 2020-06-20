@@ -26,3 +26,4 @@
 - [presunto](https://www.flaticon.com/premium-icon/ham_2069197?term=ham&page=1&position=11)
 - [alface](https://www.flaticon.com/premium-icon/lettuce_1682268?term=lettuce&page=4&position=91)
 - [alho](https://www.flaticon.com/premium-icon/garlic_2518056?term=garlic&page=1&position=71)
+- [cenoura](https://www.flaticon.com/premium-icon/carrots_924384?term=carrot&page=1&position=54)

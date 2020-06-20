@@ -45,7 +45,7 @@ const ScoreComponent: React.SFC<Props> = ({ meal }) => {
           <Card className={classes.card}>
             <CardContent>
               <Typography component="p" variant="h1" align="center">
-                {value}
+                {Math.round(Number(value))}
               </Typography>
               <Typography component="h3" variant="h6" align="center">
                 {name}
