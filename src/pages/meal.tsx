@@ -28,6 +28,8 @@ export default function MealPage(location) {
     account.meals.find(({ id: mealId }) => mealId === id) ?? SHAPE_MEAL;
   const mealData = MealService.unFormat(meal);
 
+  console.log(meal);
+
   return (
     <Layout pageName="Refeição" currentPage={CurrentPage.MEAL}>
       <Grid container spacing={5}>

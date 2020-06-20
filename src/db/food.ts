@@ -2,6 +2,7 @@ import {
   Food,
   UnitOfMeasurement,
   PraticalUnitOfMeasurement,
+  SHAPE_AMINO_ACIDS,
 } from '../services/food.service';
 import fs from 'fs';
 import path from 'path';
@@ -21,7 +22,7 @@ const foods: Array<Food> = [
       correspondingMeasure: 192,
       praticalUnitOfMeasurement: PraticalUnitOfMeasurement.unity,
     },
-    aminoAcids: {},
+    aminoAcids: SHAPE_AMINO_ACIDS,
   },
   {
     name: 'Pêra',
@@ -30,6 +31,7 @@ const foods: Array<Food> = [
     gi: 38,
     image: '/images/food/pear.svg',
     calories: 57,
+    aminoAcids: SHAPE_AMINO_ACIDS,
   },
   {
     name: 'Banana Prata',
@@ -40,6 +42,7 @@ const foods: Array<Food> = [
     image: '/images/food/banana.svg',
     calories: 89,
     carbohydrates: 28,
+    aminoAcids: SHAPE_AMINO_ACIDS,
   },
   {
     name: 'Arroz Branco',
@@ -74,6 +77,8 @@ const foods: Array<Food> = [
       glycine: 122,
       proline: 127,
       serine: 141,
+      asparagine: 0,
+      glutamine: 0,
     },
   },
   {
@@ -107,6 +112,8 @@ const foods: Array<Food> = [
       glycine: 346,
       proline: 376,
       serine: 482,
+      asparagine: 0,
+      glutamine: 0,
     },
   },
   {
@@ -118,6 +125,7 @@ const foods: Array<Food> = [
     image: '/images/food/banana.svg',
     calories: 89,
     carbohydrates: 28,
+    aminoAcids: SHAPE_AMINO_ACIDS,
   },
   {
     name: 'Banana Mysore',
@@ -128,6 +136,7 @@ const foods: Array<Food> = [
     image: '/images/food/banana.svg',
     calories: 89,
     carbohydrates: 12,
+    aminoAcids: SHAPE_AMINO_ACIDS,
   },
   {
     name: 'Suco de Laranja',
@@ -138,6 +147,7 @@ const foods: Array<Food> = [
     image: '/images/food/orange-juice.svg',
     calories: 0,
     carbohydrates: 14,
+    aminoAcids: SHAPE_AMINO_ACIDS,
   },
   {
     name: 'Polenta',
@@ -148,6 +158,7 @@ const foods: Array<Food> = [
     image: '/images/food/polenta.svg',
     calories: 0,
     carbohydrates: 21,
+    aminoAcids: SHAPE_AMINO_ACIDS,
   },
   {
     name: 'Pão Francês',
@@ -158,6 +169,7 @@ const foods: Array<Food> = [
     image: '/images/food/bread-roll.svg',
     calories: 0,
     carbohydrates: 20,
+    aminoAcids: SHAPE_AMINO_ACIDS,
   },
   {
     name: 'Morango',
@@ -168,6 +180,7 @@ const foods: Array<Food> = [
     image: '/images/food/strawberry.svg',
     calories: 0,
     carbohydrates: 6,
+    aminoAcids: SHAPE_AMINO_ACIDS,
   },
   {
     id: 12,
@@ -194,6 +207,8 @@ const foods: Array<Food> = [
       glycine: 300,
       proline: 180,
       serine: 470,
+      asparagine: 0,
+      glutamine: 0,
     },
   },
   {
@@ -221,6 +236,8 @@ const foods: Array<Food> = [
       glycine: 50,
       proline: 30,
       serine: 40,
+      asparagine: 0,
+      glutamine: 0,
     },
   },
   {
@@ -248,6 +265,8 @@ const foods: Array<Food> = [
       glycine: 40,
       proline: 30,
       serine: 30,
+      asparagine: 0,
+      glutamine: 0,
     },
   },
   {
@@ -275,6 +294,8 @@ const foods: Array<Food> = [
       glycine: 730,
       proline: 650,
       serine: 680,
+      asparagine: 0,
+      glutamine: 0,
     },
   },
   {
@@ -338,6 +359,8 @@ const foods: Array<Food> = [
       glycine: 47,
       proline: 54,
       serine: 54,
+      asparagine: 0,
+      glutamine: 0,
     },
   },
 ];
