@@ -2,8 +2,7 @@
   "compilerOptions": {
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "jsx": "react",
-    "baseUrl": "./"
+    "jsx": "react"
   },
   "include": ["src", "index.d.ts"]
 }

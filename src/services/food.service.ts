@@ -78,3 +78,26 @@ export interface Food {
     correspondingMeasure: number;
   };
 }
+
+export enum TRANSLATED_AMINO_ACIDS {
+  alanine = 'Alanina',
+  arginine = 'Arginina',
+  asparagine = 'Aspargina',
+  asparticAcid = 'Ácido Aspártico',
+  cystine = 'Cistina',
+  glutamicAcid = 'Ácido Glutâmico',
+  glutamine = 'Glutamina',
+  glycine = 'Glicina',
+  histidine = 'Histidina',
+  isoleucine = 'Isoleucina',
+  leucine = 'Leucina',
+  lysine = 'Lisina',
+  methionine = 'Metionina',
+  phenylalanine = 'Fenilalanina',
+  proline = 'Prolina',
+  serine = 'Serina',
+  threonine = 'Treonina',
+  tryptophan = 'Triptofano',
+  tyrosine = 'Tirosina',
+  valine = 'Valina',
+}

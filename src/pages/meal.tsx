@@ -12,6 +12,7 @@ import Box from '@material-ui/core/Box';
 import ScoreComponent from '../components/score';
 import MealRegisterComponent from '../components/meal-register';
 import { CurrentPage } from '../services/page.service';
+import AminoAcidsTable from '../components/aminoacids-table';
 
 const useStyles = makeStyles({
   portionsContainer: {
@@ -27,8 +28,6 @@ export default function MealPage(location) {
   const meal: Meal =
     account.meals.find(({ id: mealId }) => mealId === id) ?? SHAPE_MEAL;
   const mealData = MealService.unFormat(meal);
-
-  console.log(meal);
 
   return (
     <Layout pageName="Refeição" currentPage={CurrentPage.MEAL}>
@@ -61,6 +60,7 @@ export default function MealPage(location) {
           <Typography variant="h1" component="h2">
             Tabela de aminoácidos
           </Typography>
+          <AminoAcidsTable aminoAcids={meal.aminoAcids} />
         </Grid>
       </Grid>
     </Layout>

@@ -74,8 +74,6 @@ const MealRegisterComponent: React.SFC<Props> = ({
       }))
       .filter(({ foodId }) => foodId);
 
-    console.log(arrayOfValues, portions);
-
     const id = setAccount.meal({
       portions,
       date: mealData?.date
