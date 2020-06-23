@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { isArray, isString } from '../../../../../services/validate';
+import { isArray, isString } from '../../../../../services/vendors/validate';
 
 export interface FieldProps {
   name: string;
@@ -30,6 +30,7 @@ export interface Form {
   fields: Fields;
   clear(): void;
   validate(): boolean;
+  removeFieldByName(name: string): void;
 }
 
 function objectMap(object, operation) {
@@ -112,7 +113,15 @@ const useForm = ({
     return false;
   }
 
+  function removeFieldByName(name: string): void {
+    const newValues = { ...values };
+
+    delete newValues[name];
+    setValues(newValues);
+  }
+
   return {
+    removeFieldByName,
     clear,
     validate,
     fields: {

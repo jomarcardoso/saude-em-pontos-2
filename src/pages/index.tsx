@@ -8,13 +8,15 @@ import AccountContext from '../contexts/account-context';
 import { Account, SHAPE_ACCOUNT } from '../services/account.service';
 import { CurrentPage } from '../services/page.service';
 import { makeStyles } from '@material-ui/core/styles';
-import Divider from '@material-ui/core/Divider';
-import Box from '@material-ui/core/Box';
 import Quiz from '../components/quiz';
 import Layout from '../components/layout/layout';
 import MealCard from '../components/meal-card';
 
-const useStyles = makeStyles({});
+const useStyles = makeStyles({
+  card: {
+    display: 'flex',
+  },
+});
 
 const Index: React.SFC = () => {
   const {
@@ -56,7 +58,7 @@ const Index: React.SFC = () => {
     <Layout currentPage={CurrentPage.HOME} pageName="Menu">
       <Grid container spacing={4}>
         {account.meals.map((meal) => (
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={6} className={classes.card}>
             <MealCard meal={meal} />
           </Grid>
         ))}

@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react';
-import { isEmptyString, isFunction } from '../../../../../services/validate';
+import {
+  isEmptyString,
+  isFunction,
+} from '../../../../../services/vendors/validate';
 import { FieldProps } from '../form/use-form';
 
 const MESSAGE_EMPTY_FIELD = 'O campo está vazio';

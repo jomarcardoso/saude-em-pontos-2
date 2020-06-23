@@ -64,6 +64,14 @@ const MealRegisterComponent: React.SFC<Props> = ({
 
   const arrayOfValues = Object.values(foodForm.fields.values);
 
+  console.log('foodForm', foodForm);
+  function handleClickRemove(index) {
+    console.log('remover', index);
+
+    foodForm.removeFieldByName(`food${index}`);
+    quantityForm.removeFieldByName(`quantity${index}`);
+  }
+
   function handleSubmit(event: React.SyntheticEvent): void {
     event.preventDefault();
 
@@ -127,6 +135,7 @@ const MealRegisterComponent: React.SFC<Props> = ({
                       variant="outlined"
                       color="secondary"
                       aria-label={`remover alimento ${index + 1}`}
+                      onClick={() => handleClickRemove(index)}
                     >
                       <DeleteForeverIcon />
                     </IconButton>

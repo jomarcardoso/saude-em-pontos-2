@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import { isFunction } from '../../../../../services/validate';
+import { isFunction } from '../../../../../services/vendors/validate';
 import { InputProps } from '../input/input-core';
 
 const MESSAGE_REQUIRED_FIELD = 'Campo obrigatório';

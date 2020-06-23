@@ -16,6 +16,18 @@ const useStyles = makeStyles({
   content: {
     backgroundColor: 'info.main',
   },
+  cardLink: {
+    display: 'flex',
+    flex: 1,
+  },
+  card: {
+    display: 'flex',
+    flex: 1,
+    flexDirection: 'column',
+  },
+  cardBody: {
+    flex: 1,
+  },
 });
 
 interface Props {
@@ -26,14 +38,14 @@ const MealCard: React.SFC<Props> = ({ meal }) => {
   const classes = useStyles();
 
   return (
-    <Link to={`/meal#${meal.id}`} state={{ meal }}>
-      <Card variant="outlined">
+    <Link to={`/meal#${meal.id}`} state={{ meal }} className={classes.cardLink}>
+      <Card variant="outlined" className={classes.card}>
         <CardHeader
           avatar={<Avatar aria-label="recipe">R</Avatar>}
           color="textSecondary"
           title={TimeService.toLongSring(meal.date)}
         />
-        <Box bgcolor="grey.600">
+        <Box bgcolor="grey.600" className={classes.cardBody}>
           <CardContent>
             <Grid container spacing={2}>
               <Grid item xs={12}>

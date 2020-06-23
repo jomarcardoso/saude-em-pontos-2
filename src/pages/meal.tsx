@@ -57,10 +57,16 @@ export default function MealPage(location) {
           </Box>
         </Grid>
         <Grid item xs={12}>
-          <Typography variant="h1" component="h2">
-            Tabela de aminoácidos
-          </Typography>
-          <AminoAcidsTable aminoAcids={meal.aminoAcids} />
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <Typography variant="h1" component="h2">
+                Tabela de aminoácidos
+              </Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <AminoAcidsTable aminoAcids={meal.aminoAcids} />
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
     </Layout>

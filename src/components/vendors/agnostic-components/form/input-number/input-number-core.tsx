@@ -1,6 +1,6 @@
 import React from 'react';
 import InputCore, { InputProps } from '../input/input-core';
-import { isNumber } from '../../../../../services/validate';
+import { isNumber } from '../../../../../services/vendors/validate';
 
 // FIXME: if filled with "e"
 function putNumberMask(number) {
