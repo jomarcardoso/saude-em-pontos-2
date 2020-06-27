@@ -18,11 +18,11 @@ interface EssencialAminoAcids {
   threonine: number;
   tryptophan: number;
   valine: number;
+  histidine: number;
 }
 
 interface NonEssencialAminoAcids {
   arginine: number;
-  histidine: number;
   proline: number;
   glycine: number;
   asparagine: number;
@@ -82,7 +82,7 @@ export interface Food {
 export enum TRANSLATED_AMINO_ACIDS {
   alanine = 'Alanina',
   arginine = 'Arginina',
-  asparagine = 'Aspargina',
+  asparagine = 'Asparagina',
   asparticAcid = 'Ácido Aspártico',
   cystine = 'Cistina',
   glutamicAcid = 'Ácido Glutâmico',

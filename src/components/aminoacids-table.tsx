@@ -29,21 +29,66 @@ interface Props {
 
 const AminoAcidsTable: React.SFC<Props> = ({ aminoAcids }) => {
   const classes = useStyles();
-  const aminoAcidsArray = Object.entries(aminoAcids);
-  const abundantAminoAcidFromPortion = Object.values(
-    aminoAcids
-  ).reduce((previous, current) => Math.max(previous, current));
+  const essentialAminoAcids = [
+    {
+      name: TRANSLATED_AMINO_ACIDS['tryptophan'],
+      quantity: aminoAcids.tryptophan / 280,
+    },
+    {
+      name: TRANSLATED_AMINO_ACIDS['phenylalanine'],
+      quantity: aminoAcids.phenylalanine / 875,
+    },
+    {
+      name: TRANSLATED_AMINO_ACIDS['leucine'],
+      quantity: aminoAcids.leucine / 2730,
+    },
+    {
+      name: TRANSLATED_AMINO_ACIDS['valine'],
+      quantity: aminoAcids.valine / 1820,
+    },
+    {
+      name: TRANSLATED_AMINO_ACIDS['isoleucine'],
+      quantity: aminoAcids.isoleucine / 1400,
+    },
+    {
+      name: TRANSLATED_AMINO_ACIDS['lysine'],
+      quantity: aminoAcids.lysine / 2100,
+    },
+    {
+      name: TRANSLATED_AMINO_ACIDS['threonine'],
+      quantity: aminoAcids.threonine / 1050,
+    },
+    {
+      name: TRANSLATED_AMINO_ACIDS['methionine'],
+      quantity: aminoAcids.methionine / 728,
+    },
+    {
+      name: TRANSLATED_AMINO_ACIDS['histidine'],
+      quantity: aminoAcids.histidine / 700,
+    },
+  ];
+  const abundantAminoAcidFromPortion = essentialAminoAcids.reduce(
+    (previous, current) => Math.max(previous, current.quantity),
+    0
+  );
 
-  function renderRow([aminoAcid, quantity]) {
-    const lowQuantity = quantity >= abundantAminoAcidFromPortion / 5;
-    const regularQuantity = quantity >= (abundantAminoAcidFromPortion / 5) * 2;
-    const highQuantity = quantity >= (abundantAminoAcidFromPortion / 5) * 3;
-    const veryHighQuantity = quantity >= (abundantAminoAcidFromPortion / 5) * 4;
+  function renderRow({ name, quantity }) {
+    const veryLowQuantity = quantity >= abundantAminoAcidFromPortion / 5;
+    const lowQuantity = quantity >= (abundantAminoAcidFromPortion / 5) * 2;
+    const regularQuantity = quantity >= (abundantAminoAcidFromPortion / 5) * 3;
+    const highQuantity = quantity >= (abundantAminoAcidFromPortion / 5) * 4;
 
     return (
-      <TableRow key={aminoAcid}>
+      <TableRow key={name}>
         <TableCell component="th" scope="row">
-          {TRANSLATED_AMINO_ACIDS[aminoAcid]}
+          {name}
+        </TableCell>
+        <TableCell className={classes.cell} align="right">
+          {veryLowQuantity ? (
+            <Box className={classes.bar} bgcolor="primary.main" />
+          ) : (
+            <Box className={classes.bar} />
+          )}
         </TableCell>
         <TableCell className={classes.cell} align="right">
           {lowQuantity ? (
@@ -66,13 +111,6 @@ const AminoAcidsTable: React.SFC<Props> = ({ aminoAcids }) => {
             <Box className={classes.bar} />
           )}
         </TableCell>
-        <TableCell className={classes.lastCell} align="right">
-          {veryHighQuantity ? (
-            <Box className={classes.bar} bgcolor="primary.main" />
-          ) : (
-            <Box className={classes.bar} />
-          )}
-        </TableCell>
       </TableRow>
     );
   }
@@ -90,7 +128,7 @@ const AminoAcidsTable: React.SFC<Props> = ({ aminoAcids }) => {
               <TableCell align="right">4</TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>{aminoAcidsArray.map(renderRow)}</TableBody>
+          <TableBody>{essentialAminoAcids.map(renderRow)}</TableBody>
         </Table>
       </TableContainer>
     </Paper>

@@ -369,7 +369,7 @@ const foods: Array<Food> = [
       methionine: 190,
       cystine: 70,
       phenylalanine: 500,
-      tyrosine: 0.36,
+      tyrosine: 360,
       valine: 500,
       arginine: 410,
       histidine: 180,
@@ -479,6 +479,7 @@ const foods: Array<Food> = [
       correspondingMeasure: 905,
       praticalUnitOfMeasurement: PraticalUnitOfMeasurement.unity,
     },
+    image: '/images/food/pineapple.svg',
     aminoAcids: {
       alanine: 33,
       arginine: 19,
