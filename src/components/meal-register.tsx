@@ -48,7 +48,7 @@ const MealRegisterComponent: React.SFC<Props> = ({
         quantity: [...previous.quantity, quantity],
       };
     },
-    { foodId: [''], quantity: [''] }
+    { foodId: [], quantity: [] }
   );
 
   const foodForm = useForm({ initialValues });
@@ -79,14 +79,11 @@ const MealRegisterComponent: React.SFC<Props> = ({
   }
 
   useEffect(() => {
-    console.log(foodForm.fields);
-    if (!isArray(foodForm.fields.values.foodId)) return;
-    if (!foodForm.fields.values.foodId.every((value) => value)) return;
+    const { foodId } = foodForm.fields.values;
+    if (!isArray(foodId)) return;
+    if (!foodId.every((value) => value)) return;
 
-    foodForm.fields.setValueByName(
-      `foodId${foodForm.fields.values.foodId.length}`,
-      ''
-    );
+    foodForm.fields.setValueByName(`foodId${foodId.length}`, '');
   }, [foodForm]);
 
   return (
