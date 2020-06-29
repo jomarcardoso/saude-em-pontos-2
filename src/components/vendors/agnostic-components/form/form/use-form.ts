@@ -65,7 +65,23 @@ const useForm = ({
     }));
   }
 
+  function setArrayValueByName(name, value) {
+    const index = name.match(/\d/g).join();
+    const nameWithNoIndex = name.match(/\D/g).join('');
+    const arrayValues = [...values[nameWithNoIndex]];
+
+    arrayValues[index] = value;
+    handleValues({ [nameWithNoIndex]: arrayValues });
+  }
+
   function setValueByName(name: string, value) {
+    const elementFromArray = /\d$/.test(name);
+
+    if (elementFromArray) {
+      setArrayValueByName(name, value);
+      return;
+    }
+
     handleValues({ [name]: value });
   }
 

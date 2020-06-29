@@ -13,6 +13,7 @@ import Grid from '@material-ui/core/Grid';
 import { SetAccount } from '../services/account.service';
 import { useForm } from '../components/vendors/agnostic-components/form';
 import { MealData } from '../services/meal.service';
+import { isArray } from '../services/vendors/validate';
 
 const useStyles = makeStyles({
   formControl: {
@@ -39,46 +40,30 @@ const MealRegisterComponent: React.SFC<Props> = ({
     value: String(food.id),
   }));
 
-  const initialValueFoods = mealData.portions.reduce(
-    (previous, portion, index) => {
+  const initialValues = mealData.portions.reduce(
+    (previous, { foodId, quantity }) => {
       return {
         ...previous,
-        [`food${index}`]: String(portion.foodId),
+        foodId: [...previous.foodId, foodId],
+        quantity: [...previous.quantity, quantity],
       };
     },
-    {}
+    { foodId: [''], quantity: [''] }
   );
 
-  const initialValueQuantities = mealData.portions.reduce(
-    (previous, portion, index) => {
-      return {
-        ...previous,
-        [`quantity${index}`]: portion.quantity,
-      };
-    },
-    {}
-  );
+  const foodForm = useForm({ initialValues });
 
-  const foodForm = useForm({ initialValues: initialValueFoods });
-  const quantityForm = useForm({ initialValues: initialValueQuantities });
-
-  const arrayOfValues = Object.values(foodForm.fields.values);
-
-  console.log('foodForm', foodForm);
   function handleClickRemove(index) {
-    console.log('remover', index);
-
     foodForm.removeFieldByName(`food${index}`);
-    quantityForm.removeFieldByName(`quantity${index}`);
   }
 
   function handleSubmit(event: React.SyntheticEvent): void {
     event.preventDefault();
 
-    const portions: Array<PortionData> = Object.values(foodForm.fields.values)
+    const portions: Array<PortionData> = foodForm.fields.values.foodId
       .map((foodId, index) => ({
         foodId: Number(foodId),
-        quantity: Number(quantityForm.fields.values[`quantity${index}`]),
+        quantity: Number(foodForm.fields.values.quantity[index]),
       }))
       .filter(({ foodId }) => foodId);
 
@@ -94,9 +79,14 @@ const MealRegisterComponent: React.SFC<Props> = ({
   }
 
   useEffect(() => {
-    if (!arrayOfValues.every((value) => value)) return;
+    console.log(foodForm.fields);
+    if (!isArray(foodForm.fields.values.foodId)) return;
+    if (!foodForm.fields.values.foodId.every((value) => value)) return;
 
-    foodForm.fields.setValueByName(`food${arrayOfValues.length}`, '');
+    foodForm.fields.setValueByName(
+      `foodId${foodForm.fields.values.foodId.length}`,
+      ''
+    );
   }, [foodForm]);
 
   return (
@@ -104,7 +94,7 @@ const MealRegisterComponent: React.SFC<Props> = ({
       <Grid container spacing={5}>
         <Grid item xs={12}>
           <Grid container spacing={3}>
-            {arrayOfValues.map((value, index) => (
+            {foodForm.fields.values.foodId.map((value, index) => (
               <Grid item xs={12}>
                 <Grid container spacing={1} alignItems="flex-end">
                   <Grid item xs={6}>
@@ -117,7 +107,7 @@ const MealRegisterComponent: React.SFC<Props> = ({
                       </InputLabel>
                       <Select
                         options={options}
-                        name={`food${index}`}
+                        name={`foodId${index}`}
                         fields={foodForm.fields}
                         label={`Alimento ${index + 1}`}
                       />
@@ -127,7 +117,7 @@ const MealRegisterComponent: React.SFC<Props> = ({
                     <InputNumber
                       label={`Quantidade ${index + 1}`}
                       name={`quantity${index}`}
-                      fields={quantityForm.fields}
+                      fields={foodForm.fields}
                     />
                   </Grid>
                   <Grid item xs={2}>

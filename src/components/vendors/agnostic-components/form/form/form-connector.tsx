@@ -19,16 +19,27 @@ const FormConnector: React.SFC<FormConnectorProps> = ({
   },
   render,
   ...props
-}) =>
-  render({
+}) => {
+  let value = values[name];
+  const elementFromArray = /\d$/.test(name);
+
+  if (elementFromArray) {
+    const index = Number(name.match(/\d/g).join(''));
+    const nameWithNoIndex = name.match(/\D/g).join('');
+
+    value = values?.[nameWithNoIndex]?.[index];
+  }
+
+  return render({
     ...props,
     setVisibleErrorByName,
     setErrorByName,
     setValueByName,
-    value: values[name],
+    value,
     error: errors[name],
     visibleError: visibleErrors[name],
     name,
   });
+};
 
 export default FormConnector;

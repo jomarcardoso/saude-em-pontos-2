@@ -15,15 +15,15 @@ const theme = createMuiTheme({
       // main: '#BEB2C8',
       main: '#1D1E20',
     },
-    divider: '#d7d6d6',
+    divider: '#d6d6d6',
     grey: {
-      '600': '#e7e6e6',
+      '600': '#e6e6e6',
     },
     primary: {
       main: '#4d7a60',
     },
     background: {
-      // default: '#fff',
+      default: '#fdffff',
       // paper: '#D7D6D6',
       // paper: '#BEB2C8',
     },
@@ -48,20 +48,20 @@ const theme = createMuiTheme({
       textTransform: 'capitalize',
     },
     h3: {
-      fontSize: '18px',
+      fontSize: '20px',
       fontWeight: 500,
     },
     h4: {
       fontSize: '18px',
-      fontWeight: 400,
+      fontWeight: 500,
     },
     h5: {
-      fontSize: '14px',
+      fontSize: '16px',
       fontWeight: 500,
     },
     h6: {
       fontSize: '14px',
-      fontWeight: 400,
+      fontWeight: 500,
     },
   },
 });

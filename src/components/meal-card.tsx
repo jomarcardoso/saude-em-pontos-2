@@ -43,7 +43,11 @@ const MealCard: React.SFC<Props> = ({ meal }) => {
         <CardHeader
           avatar={<Avatar aria-label="recipe">R</Avatar>}
           color="textSecondary"
-          title={TimeService.toLongSring(meal.date)}
+          title={
+            <Typography variant="h6">
+              {TimeService.toLongSring(meal.date)}
+            </Typography>
+          }
         />
         <Box bgcolor="grey.600" className={classes.cardBody}>
           <CardContent>
