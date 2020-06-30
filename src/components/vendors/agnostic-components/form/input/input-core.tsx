@@ -7,25 +7,17 @@ import { FieldProps } from '../form/use-form';
 
 const MESSAGE_EMPTY_FIELD = 'O campo está vazio';
 
-// export interface InputProps extends FieldProps {
-//   onBlur?(event: Event): void;
-//   onFocus?(event: Event): void;
-//   onChange?(event: Event): void;
-//   onKeyPress?(event: Event): void;
-//   invalidMessageEmptyField?: string;
-//   noValidate?: boolean;
-//   render?(props: React.HTMLProps<HTMLInputElement>): React.ReactElement;
-//   type?: string;
-//   required?: boolean;
-//   invalidMessage?: string;
-// }
-
-type InputElementProps = React.HTMLProps<HTMLInputElement> & FieldProps;
+type InputElementProps = React.HTMLProps<HTMLInputElement> &
+  FieldProps &
+  React.HTMLProps<HTMLSelectElement>;
 
 export interface InputProps extends InputElementProps {
   invalidMessage?: string;
   invalidMessageEmptyField?: string;
-  render?(props: React.HTMLProps<HTMLInputElement>): React.ReactElement;
+  render?(
+    props: React.HTMLProps<HTMLInputElement> &
+      React.HTMLProps<HTMLSelectElement>
+  ): React.ReactElement;
 }
 
 const InputCore: React.SFC<InputProps> = ({

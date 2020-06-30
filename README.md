@@ -27,3 +27,5 @@
 - [alface](https://www.flaticon.com/premium-icon/lettuce_1682268?term=lettuce&page=4&position=91)
 - [alho](https://www.flaticon.com/premium-icon/garlic_2518056?term=garlic&page=1&position=71)
 - [cenoura](https://www.flaticon.com/premium-icon/carrots_924384?term=carrot&page=1&position=54)
+- [abacate](https://www.flaticon.com/premium-icon/avocado_2079291?term=avocado&page=1&position=49)
+- [granola/aveia](https://www.flaticon.com/premium-icon/breakfast_1652097?term=oats&page=1&position=38)

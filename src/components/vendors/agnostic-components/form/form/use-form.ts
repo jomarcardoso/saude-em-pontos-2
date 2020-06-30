@@ -3,7 +3,7 @@ import { isArray, isString } from '../../../../../services/vendors/validate';
 
 export interface FieldProps {
   name: string;
-  error(event: Event): void;
+  error: string;
   visibleError: boolean;
   value: string | number | boolean;
   setVisibleErrorByName(name: string, visible: boolean): void;
@@ -11,13 +11,15 @@ export interface FieldProps {
   setValueByName(name: string, value: string | number | boolean): void;
 }
 
+type Errors = {
+  [key: string]: string;
+};
+
 export interface Fields {
   values: {
     [key: string]: string;
   };
-  errors: {
-    [key: string]: string;
-  };
+  errors: Errors;
   visibleErrors: {
     [key: string]: boolean;
   };
@@ -33,7 +35,7 @@ export interface Form {
   removeFieldByName(name: string): void;
 }
 
-function objectMap(object, operation) {
+function objectMap(object: Object, operation) {
   return Object.assign(
     ...Object.entries(object).map(([key, value]) => operation(value, key))
   );
@@ -112,7 +114,13 @@ const useForm = ({
   }
 
   function isValidForm() {
-    return Object.values(errors).every((e) => !e.length);
+    return !Object.values(errors).some((field) => {
+      if (isArray(field)) {
+        return field.some((fieldItem) => fieldItem.length);
+      }
+
+      return field.length;
+    });
   }
 
   function clear() {

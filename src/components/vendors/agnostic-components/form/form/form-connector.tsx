@@ -1,9 +1,13 @@
 import { Fields, FieldProps } from './use-form';
+import { SelectProps } from '../select/select-core';
 
-export interface FormConnectorProps extends React.HTMLProps<HTMLInputElement> {
+type NativeInputSelect = React.HTMLProps<HTMLInputElement> &
+  React.HTMLProps<HTMLSelectElement>;
+
+export interface FormConnectorProps extends NativeInputSelect {
   fields: Fields;
   render?(
-    props: React.HTMLProps<HTMLInputElement> & FieldProps
+    props: NativeInputSelect & FieldProps & SelectProps
   ): React.ReactElement;
 }
 

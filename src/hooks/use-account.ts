@@ -5,7 +5,7 @@ import AccountService, {
 } from '../services/account.service';
 import { Food } from '../services/food.service';
 import MealService, { Meal, MealData } from '../services/meal.service';
-import { User } from 'src/services/user.service';
+import { User } from '../services/user.service';
 
 export default function useAccount(foods: Array<Food>): AccountAndSet {
   const [account, _setAccount] = useState(AccountService.get(foods));

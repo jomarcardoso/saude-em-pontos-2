@@ -23,9 +23,9 @@ const RenderSelect: React.SFC = ({ children, ...restProps }) => {
   return <select {...restProps}>{children}</select>;
 };
 
-interface SelectProps extends InputProps {
+export interface SelectProps extends InputProps {
   options: Array<OptionProps>;
-  renderOptions: React.SFC;
+  renderOptions?: React.SFC;
 }
 
 const SelectCore: React.SFC<SelectProps> = ({
