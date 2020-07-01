@@ -11,6 +11,7 @@ const useStyles = makeStyles({
     display: 'flex',
   },
   selectIcon: {
+    alignItems: 'center',
     minWidth: '20px',
     width: '20px',
     marginRight: '10px',

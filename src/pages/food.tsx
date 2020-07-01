@@ -3,9 +3,10 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { Food } from '../services/food.service';
 import Layout from '../components/layout/layout';
+import AminoAcidsTable from '../components/aminoacids-table';
 
 const FoodPage: React.SFC = ({
-  pageContext: { image, name, gi, calories, carbohydrates, gl },
+  pageContext: { image, name, gi, calories, carbohydrates, gl, aminoAcids },
 }: {
   pageContext: Food;
 }) => {
@@ -35,6 +36,18 @@ const FoodPage: React.SFC = ({
           {renderQuality({ name: 'Calorias', value: calories })}
           {renderQuality({ name: 'Carboidratos', value: carbohydrates })}
           {renderQuality({ name: 'Carga Glicêmica', value: gl })}
+        </Grid>
+        <Grid item xs={12}>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <Typography variant="h1" component="h2">
+                Tabela de aminoácidos
+              </Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <AminoAcidsTable aminoAcids={aminoAcids} />
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
     </Layout>
