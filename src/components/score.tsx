@@ -29,6 +29,19 @@ interface Props {
 
 const ScoreComponent: React.SFC<Props> = ({ meal }) => {
   const classes = useStyles();
+  const getAcidificationStatus = () => {
+    if (meal.gi > 75) return Status.danger;
+    if (meal.gi > 50) return Status.warn;
+
+    return Status.ok;
+  };
+
+  const getCaloriesStatus = () => {
+    if (meal.calories > 600) return Status.danger;
+    if (meal.calories > 300) return Status.warn;
+
+    return Status.ok;
+  };
 
   function renderResult({
     name,
@@ -41,7 +54,12 @@ const ScoreComponent: React.SFC<Props> = ({ meal }) => {
   }) {
     return (
       <Grid item xs={6} sm={4} className={classes.result}>
-        <Box borderColor={status} border={1} className={classes.result}>
+        <Box
+          borderColor={status}
+          border={2}
+          className={classes.result}
+          borderRadius={4}
+        >
           <Card className={classes.card}>
             <CardContent>
               <Typography component="p" variant="h1" align="center">
@@ -62,12 +80,12 @@ const ScoreComponent: React.SFC<Props> = ({ meal }) => {
       {renderResult({
         name: 'Calorias Totais',
         value: meal.calories,
-        status: Status.ok,
+        status: getCaloriesStatus(),
       })}
       {renderResult({
-        name: 'Índice Glicêmico médio',
+        name: 'Índice Glicêmico',
         value: meal.gi,
-        status: Status.warn,
+        status: getAcidificationStatus(),
       })}
       {renderResult({
         name: 'Acidificação',

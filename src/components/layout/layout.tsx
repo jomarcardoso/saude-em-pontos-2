@@ -32,6 +32,15 @@ const theme = createMuiTheme({
       primary: '#1D1E20',
       secondary: '#2D2E30',
     },
+    success: {
+      main: '#4d7a60',
+    },
+    warning: {
+      main: '#7a794d',
+    },
+    error: {
+      main: '#7a4d4d',
+    },
   },
   shape: {
     borderRadius: 4,
