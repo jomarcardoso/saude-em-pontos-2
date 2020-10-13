@@ -2,18 +2,20 @@ import React, { useEffect, useContext } from 'react';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import IconButton from '@material-ui/core/IconButton';
-import Select from '../components/form/select';
-import InputNumber from '../components/form/input-number';
 import { PortionData } from '../services/portion.service';
+import Button from '@material-ui/core/Button';
+import MenuItem from '@material-ui/core/MenuItem';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import FoodsContext from '../contexts/foods-context';
 import { makeStyles } from '@material-ui/core/styles';
 import SubmitComponent from '../components/submit';
 import Grid from '@material-ui/core/Grid';
+import Select from '@material-ui/core/Select';
+import TextField from '@material-ui/core/TextField';
 import { SetAccount } from '../services/account.service';
-import { useForm } from '../components/vendors/agnostic-components/form';
 import { MealData } from '../services/meal.service';
 import { isArray } from '../services/vendors/validate';
+import { Formik, Form, Field, FieldArray } from 'formik';
 
 const useStyles = makeStyles({
   formControl: {
@@ -34,39 +36,19 @@ const MealRegisterComponent: React.SFC<Props> = ({
 }) => {
   const classes = useStyles();
   const foods = useContext(FoodsContext);
+  let { portions } = mealData;
 
-  const options = foods.map((food) => ({
-    ...food,
-    value: String(food.id),
-  }));
-
-  const initialValues = mealData.portions.reduce(
-    (previous, { foodId, quantity }) => {
-      return {
-        ...previous,
-        foodId: [...previous.foodId, foodId],
-        quantity: [...previous.quantity, quantity],
-      };
-    },
-    { foodId: [], quantity: [] }
-  );
-
-  const foodForm = useForm({ initialValues });
-
-  function handleClickRemove(index) {
-    foodForm.removeFieldByName(`food${index}`);
+  if (!portions.length) {
+    portions = [
+      {
+        foodId: 0,
+        quantity: 0,
+      },
+    ];
   }
 
-  function handleSubmit(event: React.SyntheticEvent): void {
+  function handleSubmit({ portions }): void {
     event.preventDefault();
-
-    const portions: Array<PortionData> = foodForm.fields.values.foodId
-      .map((foodId, index) => ({
-        foodId: Number(foodId),
-        quantity: Number(foodForm.fields.values.quantity[index]),
-      }))
-      .filter(({ foodId }) => foodId);
-
     const id = setAccount.meal({
       portions,
       date: mealData?.date
@@ -74,69 +56,91 @@ const MealRegisterComponent: React.SFC<Props> = ({
         : new Date().toString(),
       id: mealData?.id ?? 0,
     });
-
     setId(id);
   }
 
-  useEffect(() => {
-    const { foodId } = foodForm.fields.values;
-    if (!isArray(foodId)) return;
-    if (!foodId.every((value) => value)) return;
-
-    foodForm.fields.setValueByName(`foodId${foodId.length}`, '');
-  }, [foodForm]);
-
   return (
-    <form action="/" method="post" onSubmit={handleSubmit}>
-      <Grid container spacing={5}>
-        <Grid item xs={12}>
-          <Grid container spacing={3}>
-            {foodForm.fields.values.foodId.map((value, index) => (
-              <Grid item xs={12}>
-                <Grid container spacing={1} alignItems="flex-end">
-                  <Grid item xs={6}>
-                    <FormControl
-                      variant="standard"
-                      className={classes.formControl}
-                    >
-                      <InputLabel id={`food-${index}`}>
-                        Alimento {index + 1}
-                      </InputLabel>
-                      <Select
-                        options={options}
-                        name={`foodId${index}`}
-                        fields={foodForm.fields}
-                        label={`Alimento ${index + 1}`}
-                      />
-                    </FormControl>
-                  </Grid>
-                  <Grid item xs={4}>
-                    <InputNumber
-                      label={`Quantidade ${index + 1}`}
-                      name={`quantity${index}`}
-                      fields={foodForm.fields}
-                    />
-                  </Grid>
-                  <Grid item xs={2}>
-                    <IconButton
-                      variant="outlined"
-                      color="secondary"
-                      aria-label={`remover alimento ${index + 1}`}
-                      onClick={() => handleClickRemove(index)}
-                    >
-                      <DeleteForeverIcon />
-                    </IconButton>
+    <Formik
+      initialValues={{ portions }}
+      onSubmit={handleSubmit}
+      render={({ values: { portions }, handleBlur, handleChange }) => (
+        <Form action="/" method="post">
+          <FieldArray
+            name="portions"
+            render={({ push }) => (
+              <Grid container spacing={5}>
+                <Grid item xs={12}>
+                  <Grid container spacing={3}>
+                    {portions.map((value, index) => (
+                      <Grid item xs={12}>
+                        <Grid container spacing={1} alignItems="flex-end">
+                          <Grid item xs={6}>
+                            <FormControl
+                              variant="standard"
+                              className={classes.formControl}
+                            >
+                              <InputLabel id={`food-${index}`}>
+                                Alimento {index + 1}
+                              </InputLabel>
+                              <Select
+                                name={`portions[${index}].foodId`}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                value={portions[index].foodId}
+                              >
+                                {foods.map(({ id, name }) => (
+                                  <MenuItem value={id}>{name}</MenuItem>
+                                ))}
+                              </Select>
+                            </FormControl>
+                          </Grid>
+                          <Grid item xs={4}>
+                            <TextField
+                              type="number"
+                              label={`Quantidade ${index + 1}`}
+                              name={`portions[${index}].quantity`}
+                              onChange={handleChange}
+                              onBlur={handleBlur}
+                              value={portions[index].quantity}
+                            />
+                          </Grid>
+                          <Grid item xs={2}>
+                            <IconButton
+                              variant="outlined"
+                              color="secondary"
+                              aria-label={`remover alimento ${index + 1}`}
+                              onClick={() => handleClickRemove(index)}
+                            >
+                              <DeleteForeverIcon />
+                            </IconButton>
+                          </Grid>
+                        </Grid>
+                      </Grid>
+                    ))}
+                    <Grid item xs={12}>
+                      <Button
+                        variant="outlined"
+                        onClick={() =>
+                          push({
+                            foodId: 0,
+                            quantity: 0,
+                          })
+                        }
+                      >
+                        Adicionar
+                      </Button>
+                    </Grid>
                   </Grid>
                 </Grid>
+                <Grid item xs={12}>
+                  <SubmitComponent>Cadastrar refeição</SubmitComponent>
+                </Grid>
               </Grid>
-            ))}
-          </Grid>
-        </Grid>
-        <Grid item xs={12}>
-          <SubmitComponent>Cadastrar refeição</SubmitComponent>
-        </Grid>
-      </Grid>
-    </form>
+            )}
+          />
+        </Form>
+      )}
+    />
   );
 };
 

@@ -4,11 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Advertise from '../components/advertise';
 import AccountContext from '../contexts/account-context';
-import {
-  Account,
-  AccountAndSet,
-  SHAPE_ACCOUNT,
-} from '../services/account.service';
+import { AccountAndSet, SHAPE_ACCOUNT } from '../services/account.service';
 import { CurrentPage } from '../services/page.service';
 import { makeStyles } from '@material-ui/core/styles';
 import Layout from '../components/layout/layout';
