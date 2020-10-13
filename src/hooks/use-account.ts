@@ -5,17 +5,9 @@ import AccountService, {
 } from '../services/account.service';
 import { Food } from '../services/food.service';
 import MealService, { Meal, MealData } from '../services/meal.service';
-import { User } from '../services/user.service';
 
 export default function useAccount(foods: Array<Food>): AccountAndSet {
   const [account, _setAccount] = useState(AccountService.get(foods));
-
-  function setUser(user: User): void {
-    _setAccount({
-      ...account,
-      user,
-    });
-  }
 
   function setMeal(mealData: MealData): number {
     const id = mealData.id || account.meals.length + 1;
@@ -51,13 +43,20 @@ export default function useAccount(foods: Array<Food>): AccountAndSet {
     return id;
   }
 
+  function setHasReadAdvertise(hasReadAdvertise: boolean): void {
+    _setAccount({
+      ...account,
+      hasReadAdvertise,
+    });
+  }
+
   useEffect(() => {
     AccountService.save(account);
   }, [account]);
 
   const setAccount: SetAccount = {
-    account: _setAccount,
-    user: setUser,
+    // account: _setAccount,
+    hasReadAdvertise: setHasReadAdvertise,
     meal: setMeal,
   };
 

@@ -1,14 +1,16 @@
-import React, { useState, useContext } from 'react';
-import { Link } from 'gatsby';
+import React, { useContext } from 'react';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Advertise from '../components/advertise';
 import AccountContext from '../contexts/account-context';
-import { Account, SHAPE_ACCOUNT } from '../services/account.service';
+import {
+  Account,
+  AccountAndSet,
+  SHAPE_ACCOUNT,
+} from '../services/account.service';
 import { CurrentPage } from '../services/page.service';
 import { makeStyles } from '@material-ui/core/styles';
-import Quiz from '../components/quiz';
 import Layout from '../components/layout/layout';
 import MealCard from '../components/meal-card';
 
@@ -19,36 +21,20 @@ const useStyles = makeStyles({
 });
 
 const Index: React.SFC = () => {
-  const {
-    account = SHAPE_ACCOUNT,
-  }: {
-    account: Account;
-  } = useContext(AccountContext);
-
-  const [readAdvertise, setReadAdvertise] = useState(false);
+  const { account = SHAPE_ACCOUNT, setAccount }: AccountAndSet = useContext(
+    AccountContext
+  );
   const rendered = typeof window !== 'undefined';
-  const registeredUser = account.user.name;
   const classes = useStyles();
 
-  if (rendered && !registeredUser) {
-    if (!readAdvertise) {
-      return (
-        <Layout showFooter={false} showHeader={false}>
-          <Advertise />
-          <Typography>
-            <Button onClick={(): void => setReadAdvertise(true)}>
-              Avançar
-            </Button>
-          </Typography>
-        </Layout>
-      );
-    }
-
+  if (rendered && !account.hasReadAdvertise) {
     return (
       <Layout showFooter={false} showHeader={false}>
-        <Quiz />
+        <Advertise />
         <Typography>
-          <Link to="/menu">Tudo pronto</Link>
+          <Button onClick={(): void => setAccount.hasReadAdvertise(true)}>
+            Avançar
+          </Button>
         </Typography>
       </Layout>
     );

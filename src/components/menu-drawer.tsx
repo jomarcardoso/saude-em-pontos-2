@@ -53,14 +53,6 @@ const MenuDrawer: React.SFC<Props> = ({ opened, toggleDrawer }) => {
           </Link>
         </ListItem>
         <ListItem component="li" button>
-          <Link to="/quiz" className={classes.anchor} color="inherit">
-            <ListItemIcon>
-              <AssignmentIndIcon />
-            </ListItemIcon>
-            <ListItemText primary="Sobre você" />
-          </Link>
-        </ListItem>
-        <ListItem component="li" button>
           <Link to="/meal" className={classes.anchor} color="inherit">
             <ListItemIcon>
               <CakeIcon />

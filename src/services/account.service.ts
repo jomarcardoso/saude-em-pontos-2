@@ -1,19 +1,20 @@
 import MealService, { Meal, SetMeal, MealData } from './meal.service';
 import { Food } from './food.service';
-import { SetUser, User } from './user.service';
+
+export type SetHasReadAdvertise = (hasReadAdvertise: boolean) => void;
 
 export interface SetAccount {
-  user: SetUser;
+  hasReadAdvertise: SetHasReadAdvertise;
   meal: SetMeal;
 }
 
 export interface Account {
-  user: User;
+  hasReadAdvertise: boolean;
   meals: Array<Meal>;
 }
 
 export interface AccountData {
-  user: User;
+  hasReadAdvertise: boolean;
   meals: Array<MealData>;
 }
 
@@ -25,11 +26,7 @@ export interface AccountAndSet {
 const ACCOUNT_LOCAL_STORAGE = 'saude-em-pontos';
 
 export const SHAPE_ACCOUNT: Account = {
-  user: {
-    name: '',
-    age: 0,
-    objectives: [],
-  },
+  hasReadAdvertise: false,
   meals: [],
 };
 
@@ -41,7 +38,8 @@ function format({
   foods: Array<Food>;
 }): Account {
   return {
-    user: accountData?.user ?? SHAPE_ACCOUNT.user,
+    hasReadAdvertise:
+      accountData.hasReadAdvertise ?? SHAPE_ACCOUNT.hasReadAdvertise,
     meals:
       accountData?.meals?.map((mealData, index) =>
         MealService.format({ mealData, foods, index })
@@ -63,7 +61,7 @@ function get(foods: Array<Food>): Account {
 
 function unFormat(account: Account): AccountData {
   return {
-    user: account.user,
+    hasReadAdvertise: account.hasReadAdvertise,
     meals: account.meals.map((meal) => MealService.unFormat(meal)),
   };
 }
