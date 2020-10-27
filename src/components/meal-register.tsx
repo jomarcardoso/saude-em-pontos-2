@@ -45,6 +45,18 @@ const MealRegisterComponent: React.SFC<Props> = ({
     ];
   }
 
+  function handleRemove({ index = 0, remove }) {
+    console.log(index, remove);
+    remove(index);
+  }
+
+  function handleAdd(push) {
+    push({
+      foodId: 0,
+      quantity: 0,
+    });
+  }
+
   function handleSubmit({ portions }): void {
     event.preventDefault();
     const id = setAccount.meal({
@@ -65,7 +77,7 @@ const MealRegisterComponent: React.SFC<Props> = ({
         <Form action="/" method="post">
           <FieldArray
             name="portions"
-            render={({ push }) => (
+            render={({ push, remove }) => (
               <Grid container spacing={5}>
                 <Grid item xs={12}>
                   <Grid container spacing={3}>
@@ -107,7 +119,7 @@ const MealRegisterComponent: React.SFC<Props> = ({
                               variant="outlined"
                               color="secondary"
                               aria-label={`remover alimento ${index + 1}`}
-                              onClick={() => handleClickRemove(index)}
+                              onClick={() => handleRemove({ index, remove })}
                             >
                               <DeleteForeverIcon />
                             </IconButton>
@@ -118,12 +130,7 @@ const MealRegisterComponent: React.SFC<Props> = ({
                     <Grid item xs={12}>
                       <Button
                         variant="outlined"
-                        onClick={() =>
-                          push({
-                            foodId: 0,
-                            quantity: 0,
-                          })
-                        }
+                        onClick={() => handleAdd(push)}
                       >
                         Adicionar
                       </Button>
