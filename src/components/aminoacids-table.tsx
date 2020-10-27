@@ -27,7 +27,7 @@ interface Props {
   aminoAcids: AminoAcids;
 }
 
-const AminoAcidsTable: React.SFC<Props> = ({ aminoAcids }) => {
+const AminoAcidsTable: React.SFC<Props> = ({ aminoAcids = {} }) => {
   const classes = useStyles();
   const essentialAminoAcids = [
     {
