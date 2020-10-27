@@ -14,6 +14,7 @@ import TextField from '@material-ui/core/TextField';
 import { SetAccount } from '../services/account.service';
 import { MealData } from '../services/meal.service';
 import { Formik, Form, FieldArray } from 'formik';
+import Photo from './photo';
 
 const useStyles = makeStyles({
   formControl: {
@@ -79,6 +80,9 @@ const MealRegisterComponent: React.SFC<Props> = ({
             name="portions"
             render={({ push, remove }) => (
               <Grid container spacing={5}>
+                <Grid item xs={12}>
+                  <Photo />
+                </Grid>
                 <Grid item xs={12}>
                   <Grid container spacing={3}>
                     {portions.map((value, index) => (

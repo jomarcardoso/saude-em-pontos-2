@@ -14238,6 +14238,11 @@ wbuf@^1.1.0, wbuf@^1.7.3:
   dependencies:
     minimalistic-assert "^1.0.0"
 
+webcam-easy@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/webcam-easy/-/webcam-easy-1.0.5.tgz#67b4f20848317ab0e9b8513878b8fe31163cdc91"
+  integrity sha512-YSXB21kfnwdrlPX/u1O5r8pbHxCaw3bsxhmvS1S9ixK/8n8LzxOduylqwVUSjYGSVJRhopJUN77SOh3Z0QgaIQ==
+
 webpack-dev-middleware@^3.7.2:
   version "3.7.2"
   resolved "https://registry.yarnpkg.com/webpack-dev-middleware/-/webpack-dev-middleware-3.7.2.tgz#0019c3db716e3fa5cecbf64f2ab88a74bab331f3"
