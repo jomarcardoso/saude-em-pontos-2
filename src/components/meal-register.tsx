@@ -1,8 +1,7 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import IconButton from '@material-ui/core/IconButton';
-import { PortionData } from '../services/portion.service';
 import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
@@ -14,8 +13,7 @@ import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
 import { SetAccount } from '../services/account.service';
 import { MealData } from '../services/meal.service';
-import { isArray } from '../services/vendors/validate';
-import { Formik, Form, Field, FieldArray } from 'formik';
+import { Formik, Form, FieldArray } from 'formik';
 
 const useStyles = makeStyles({
   formControl: {

@@ -8,7 +8,6 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 import { Link } from 'gatsby';
-import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
 import CakeIcon from '@material-ui/icons/Cake';
 
 const useStyles = makeStyles({

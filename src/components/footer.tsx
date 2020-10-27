@@ -5,12 +5,9 @@ import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import RestaurantOutlinedIcon from '@material-ui/icons/RestaurantOutlined';
 import Box from '@material-ui/core/Box';
-import DirectionsRunOutlinedIcon from '@material-ui/icons/DirectionsRunOutlined';
-import SvgIcon from '@material-ui/core/SvgIcon';
 import { Link } from 'gatsby';
 import { makeStyles } from '@material-ui/core/styles';
 import { CurrentPage } from '../services/page.service';
-import CalculatorFilledSVG from '../images/icons/filled/calculator.svg';
 
 const useStyles = makeStyles({
   root: {

@@ -17,6 +17,9 @@ const useStyles = makeStyles({
     flex: 1,
     justifyContent: 'center',
   },
+  badge: {
+    flex: 1,
+  },
 });
 
 interface Props extends GridProps {
@@ -29,8 +32,13 @@ const ResumedPortion: React.SFC<Props> = ({ portion, ...props }) => {
   return (
     <Grid item {...props} className={classes.box}>
       <Card variant="outlined" className={classes.card}>
-        <CardContent>
-          <Badge badgeContent={portion.quantity} color="secondary">
+        <CardContent className={classes.card}>
+          <Badge
+            className={classes.badge}
+            badgeContent={portion.quantity}
+            color="secondary"
+            component="div"
+          >
             <Image src={portion.food.image} alt={portion.food.name} />
           </Badge>
         </CardContent>
