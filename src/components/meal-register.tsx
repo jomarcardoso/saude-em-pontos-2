@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import IconButton from '@material-ui/core/IconButton';
@@ -35,7 +35,8 @@ const MealRegisterComponent: React.SFC<Props> = ({
 }) => {
   const classes = useStyles();
   const foods = useContext(FoodsContext);
-  let { portions } = mealData;
+  let { portions, picture: pictureData = '' } = mealData;
+  const [picture, setPicture] = useState(pictureData);
 
   if (!portions.length) {
     portions = [
@@ -66,6 +67,7 @@ const MealRegisterComponent: React.SFC<Props> = ({
         ? new Date(mealData?.date).toString()
         : new Date().toString(),
       id: mealData?.id ?? 0,
+      picture,
     });
     setId(id);
   }
@@ -81,7 +83,8 @@ const MealRegisterComponent: React.SFC<Props> = ({
             render={({ push, remove }) => (
               <Grid container spacing={5}>
                 <Grid item xs={12}>
-                  <Photo />
+                  <Photo setPicture={setPicture} />
+                  <img src={picture} />
                 </Grid>
                 <Grid item xs={12}>
                   <Grid container spacing={3}>

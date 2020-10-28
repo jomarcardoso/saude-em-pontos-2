@@ -11,18 +11,21 @@ export interface Meal {
   carbohydrates: number;
   acidification: number;
   aminoAcids: AminoAcids;
+  picture: string;
 }
 
 export interface MealData {
   id: number;
   date: string;
   portions: Array<PortionData>;
+  picture: string;
 }
 
 export const SHAPE_MEAL_DATA: MealData = {
   id: 1,
   date: '',
   portions: [],
+  picture: '',
 };
 
 export const SHAPE_MEAL: Meal = {
@@ -35,6 +38,7 @@ export const SHAPE_MEAL: Meal = {
   gl: 0,
   carbohydrates: 0,
   aminoAcids: SHAPE_AMINO_ACIDS,
+  picture: '',
 };
 
 export type SetMeal = (mealData: MealData) => number;
@@ -187,6 +191,7 @@ function unFormat(meal: Meal): MealData {
     id: meal.id,
     date: meal.date.toString(),
     portions: meal.portions.map(PortionService.unFormat),
+    picture: meal.picture,
   };
 }
 

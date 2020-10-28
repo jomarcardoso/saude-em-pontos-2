@@ -59,6 +59,13 @@ const useStyles = makeStyles({
     display: 'flex',
     flex: 1,
   },
+  cameraHudTop: {
+    alignSelf: 'flex-start',
+  },
+  cameraCloseButton: {
+    width: '44px',
+    height: 'auto',
+  },
   cameraVideo: {
     position: 'absolute',
     top: 0,
@@ -73,7 +80,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Photo: React.FC = () => {
+const Photo: React.FC = ({ setPicture }) => {
   const classes = useStyles();
   const [openedCamera, setOpenedCamera] = useState(false);
   const [dataUri, setDataUri] = useState('');
@@ -89,7 +96,10 @@ const Photo: React.FC = () => {
     (event: Event) => {
       event.preventDefault();
 
-      const dataUri = webcamRef.current.getScreenshot();
+      const dataUri = webcamRef.current.getScreenshot({
+        width: 320,
+        height: 320,
+      });
 
       console.log(dataUri);
 
@@ -131,6 +141,19 @@ const Photo: React.FC = () => {
     setDataUri('');
   }
 
+  function handleClose(event: Event) {
+    event.preventDefault();
+
+    setOpenedCamera(false);
+  }
+
+  function handleConfirm(event: Event) {
+    event.preventDefault();
+
+    setPicture(dataUri);
+    setOpenedCamera(false);
+  }
+
   return (
     <div>
       {openedCamera && (
@@ -153,7 +176,7 @@ const Photo: React.FC = () => {
                     />
                   </a>
                   <a
-                    onClick={handleFlip}
+                    onClick={handleConfirm}
                     href="#confirm-picture"
                     className={classes.cameraButtonFlip}
                   >
@@ -177,6 +200,14 @@ const Photo: React.FC = () => {
                 videoConstraints={videoConstraints}
               />
               <div className={classes.cameraHud}>
+                <div className={classes.cameraHudTop}>
+                  <a onClick={handleClose} href="#close-camera">
+                    <CloseIcon
+                      className={classes.cameraCloseButton}
+                      color="inherit"
+                    />
+                  </a>
+                </div>
                 <div className={classes.cameraHudBottom}>
                   <a
                     href="#load-image"
