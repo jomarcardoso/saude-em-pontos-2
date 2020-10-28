@@ -1,8 +1,10 @@
-import Webcam from 'webcam-easy';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 import LoopIcon from '@material-ui/icons/Loop';
 import { makeStyles } from '@material-ui/core/styles';
+import CheckIcon from '@material-ui/icons/Check';
+import Webcam from 'react-webcam';
+import CloseIcon from '@material-ui/icons/Close';
 
 const useStyles = makeStyles({
   camera: {
@@ -50,6 +52,7 @@ const useStyles = makeStyles({
     position: 'relative',
   },
   cameraHudBottom: {
+    minHeight: '54px',
     alignSelf: 'flex-end',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -62,37 +65,47 @@ const useStyles = makeStyles({
     left: 0,
     width: '100%',
     height: '100%',
+    display: 'flex',
+  },
+  cameraPicture: {
+    flex: 1,
+    alignSelf: 'center',
   },
 });
 
-let sizeDimension = { x: 320, y: 480 };
-
 const Photo: React.FC = () => {
   const classes = useStyles();
-  const webcamEl = useRef(null);
-  const canvasEl = useRef(null);
-  const snapSoundEl = useRef(null);
-  let webcam = null;
-  const [shooted, setShooted] = useState(false);
   const [openedCamera, setOpenedCamera] = useState(false);
+  const [dataUri, setDataUri] = useState('');
+  const [videoConstraints, setVideoConstraints] = useState({
+    width: 320,
+    height: 320,
+    facingMode: 'environment',
+  });
 
-  function handleShot(event: Event) {
-    event.preventDefault();
-    if (!webcam) return;
+  const webcamRef = React.useRef(null);
 
-    let picture = webcam.snap();
+  const capture = React.useCallback(
+    (event: Event) => {
+      event.preventDefault();
 
-    document.querySelector('#download-photo').href = picture;
-    setShooted(true);
-  }
+      const dataUri = webcamRef.current.getScreenshot();
+
+      console.log(dataUri);
+
+      setDataUri(dataUri);
+    },
+    [webcamRef]
+  );
 
   function handleOpenCamera(event: Event) {
     event.preventDefault();
 
-    sizeDimension = {
-      x: window.outerWidth,
-      y: window.outerHeight,
-    };
+    setVideoConstraints({
+      ...videoConstraints,
+      height: window.innerHeight,
+      width: window.innerWidth,
+    });
 
     setOpenedCamera(true);
   }
@@ -100,74 +113,96 @@ const Photo: React.FC = () => {
   function handleFlip(event: Event) {
     event.preventDefault();
 
-    if (!webcam) return;
+    let facingMode = 'environment';
 
-    webcam.flip();
-    webcam.start();
+    if (videoConstraints.facingMode === 'environment') {
+      facingMode = 'user';
+    }
+
+    setVideoConstraints({
+      ...videoConstraints,
+      facingMode,
+    });
   }
 
-  useEffect(() => {
-    if (!openedCamera) return;
+  function handleReject(event: Event) {
+    event.preventDefault();
 
-    webcam = new Webcam(
-      webcamEl.current,
-      'user',
-      canvasEl.current,
-      snapSoundEl.current
-    );
-
-    webcam
-      .start()
-      .then((result) => {
-        console.log('webcam started');
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [openedCamera]);
+    setDataUri('');
+  }
 
   return (
     <div>
       {openedCamera && (
         <div className={classes.camera}>
-          <video
-            id="webcam"
-            ref={webcamEl}
-            autoPlay
-            playsInline
-            width={sizeDimension.x}
-            height={sizeDimension.y}
-            // className={shooted ? 'cameraVideo d-none' : 'cameraVideo'}
-            className={classes.cameraVideo}
-          />
-          <canvas
-            id="canvas"
-            ref={canvasEl}
-            className={!shooted ? 'd-none' : ''}
-          />
-          <a id="download-photo"></a>
-          <div className={classes.cameraHud}>
-            <div className={classes.cameraHudBottom}>
-              <a href="#load-image" className={classes.cameraButtonFlip}></a>
-              <a
-                onClick={handleShot}
-                href="#shot-a-picture"
-                className={classes.cameraButtonShot}
-              >
-                <span className="d-none">tirar foto</span>
-              </a>
-              <a
-                onClick={handleFlip}
-                href="#flip-camera"
-                className={classes.cameraButtonFlip}
-              >
-                <LoopIcon
-                  className={classes.cameraButtonFlipIcon}
-                  color="inherit"
-                />
-              </a>
-            </div>
-          </div>
+          {dataUri ? (
+            <>
+              <div className={classes.cameraVideo}>
+                <img src={dataUri} className={classes.cameraPicture} />
+              </div>
+              <div className={classes.cameraHud}>
+                <div className={classes.cameraHudBottom}>
+                  <a
+                    href="#reject-picutre"
+                    className={classes.cameraButtonFlip}
+                    onClick={handleReject}
+                  >
+                    <CloseIcon
+                      className={classes.cameraButtonFlipIcon}
+                      color="inherit"
+                    />
+                  </a>
+                  <a
+                    onClick={handleFlip}
+                    href="#confirm-picture"
+                    className={classes.cameraButtonFlip}
+                  >
+                    <CheckIcon
+                      className={classes.cameraButtonFlipIcon}
+                      color="inherit"
+                    />
+                  </a>
+                </div>
+              </div>
+            </>
+          ) : (
+            <>
+              <Webcam
+                className={classes.cameraVideo}
+                audio={false}
+                height={videoConstraints.height}
+                ref={webcamRef}
+                screenshotQuality={0.7}
+                width={videoConstraints.width}
+                videoConstraints={videoConstraints}
+              />
+              <div className={classes.cameraHud}>
+                <div className={classes.cameraHudBottom}>
+                  <a
+                    href="#load-image"
+                    className={classes.cameraButtonFlip}
+                  ></a>
+                  <a
+                    onClick={capture}
+                    href="#shot-a-picture"
+                    className={classes.cameraButtonShot}
+                  >
+                    <span className="d-none">tirar foto</span>
+                  </a>
+                  <a
+                    onClick={handleFlip}
+                    href="#flip-camera"
+                    className={classes.cameraButtonFlip}
+                  >
+                    <LoopIcon
+                      className={classes.cameraButtonFlipIcon}
+                      color="inherit"
+                    />
+                  </a>
+                </div>
+              </div>
+            </>
+          )}
         </div>
       )}
       <a href="#open-camera" onClick={handleOpenCamera}>
