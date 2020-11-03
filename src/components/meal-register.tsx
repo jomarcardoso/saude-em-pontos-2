@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import IconButton from '@material-ui/core/IconButton';
+import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
@@ -14,6 +15,7 @@ import TextField from '@material-ui/core/TextField';
 import { SetAccount } from '../services/account.service';
 import { MealData } from '../services/meal.service';
 import { Formik, Form, FieldArray } from 'formik';
+import InputImage from './input-image';
 import Photo from './photo';
 
 const useStyles = makeStyles({
@@ -36,7 +38,9 @@ const MealRegisterComponent: React.SFC<Props> = ({
   const classes = useStyles();
   const foods = useContext(FoodsContext);
   let { portions, picture: pictureData = '' } = mealData;
-  const [picture, setPicture] = useState(pictureData);
+  // const [picture, setPicture] = useState(pictureData);
+
+  // console.log(pictureData);
 
   if (!portions.length) {
     portions = [
@@ -59,8 +63,11 @@ const MealRegisterComponent: React.SFC<Props> = ({
     });
   }
 
-  function handleSubmit({ portions }): void {
+  function handleSubmit({ portions, picture = '' } = {}): void {
     event.preventDefault();
+
+    console.log(picture);
+
     const id = setAccount.meal({
       portions,
       date: mealData?.date
@@ -74,21 +81,28 @@ const MealRegisterComponent: React.SFC<Props> = ({
 
   return (
     <Formik
-      initialValues={{ portions }}
+      initialValues={{ portions, picture: pictureData }}
       onSubmit={handleSubmit}
-      render={({ values: { portions }, handleBlur, handleChange }) => (
+      render={({ values, handleBlur, handleChange, setValues }) => (
         <Form action="/" method="post">
           <FieldArray
             name="portions"
             render={({ push, remove }) => (
               <Grid container spacing={5}>
                 <Grid item xs={12}>
-                  <Photo setPicture={setPicture} />
-                  <img src={picture} />
+                  <InputImage
+                    image={values.picture}
+                    setImage={(picture) => {
+                      setValues({
+                        ...values,
+                        picture,
+                      });
+                    }}
+                  />
                 </Grid>
                 <Grid item xs={12}>
                   <Grid container spacing={3}>
-                    {portions.map((value, index) => (
+                    {values.portions.map((value, index) => (
                       <Grid item xs={12}>
                         <Grid container spacing={1} alignItems="flex-end">
                           <Grid item xs={6}>
@@ -103,7 +117,7 @@ const MealRegisterComponent: React.SFC<Props> = ({
                                 name={`portions[${index}].foodId`}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                value={portions[index].foodId}
+                                value={values.portions[index].foodId}
                               >
                                 {foods.map(({ id, name }) => (
                                   <MenuItem value={id}>{name}</MenuItem>
@@ -118,7 +132,7 @@ const MealRegisterComponent: React.SFC<Props> = ({
                               name={`portions[${index}].quantity`}
                               onChange={handleChange}
                               onBlur={handleBlur}
-                              value={portions[index].quantity}
+                              value={values.portions[index].quantity}
                             />
                           </Grid>
                           <Grid item xs={2}>
