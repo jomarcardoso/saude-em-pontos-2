@@ -6,38 +6,69 @@ import {
   PraticalUnitOfMeasurement,
   SHAPE_AMINO_ACIDS,
 } from '../services/food.service';
-// import newFoods from './newFoods';
+import { coconut as coconutData, egg as eggData } from './src';
 
-// function format(food): Food {
-//   return {
-//     enName: food.names[0],
-//     aminoAcids: {
-//       alanine: food.ALA_G,
-//       arginine: food.ARG_G,
-//       asparagine: food.ASP_G,
-//       asparticAcid: food.ASP_G,
-//       cystine: food.CYS_G,
-//       glutamicAcid: food.GLU_G,
-//       glutamine: 0,
-//       glycine: food.GLY_G,
-//       histidine: food.HISTN_G,
-//       isoleucine: food.ILE_G,
-//       leucine: food.LEU_G,
-//       lysine: food.LYS_G,
-//       methionine: food.MET_G,
-//       phenylalanine: food.PHE_G,
-//       proline: food.PRO_G,
-//       serine: food.SER_G,
-//       threonine: food.THR_G,
-//       tryptophan: food.TRP_G,
-//       tyrosine: food.TYR_G,
-//       valine: food.VAL_G,
-//     },
-//     carbohydrates: food.CHOCDF[0],
-//     proteins: Number(food.PROCNT[0]),
-//     totalFat: Number(food.FAT[0]),
-//   };
-// }
+interface FoodMyFoodData {
+  name1: string;
+  ALA_G: number; // alanine
+  ARG_G: number; // arginine
+  ASP_G: number; // asparticAcid
+  CYS_G: number; // cystine
+  GLU_G: number; // glutamicAcid
+  GLUTAM: number; // glutamine
+  GLY_G: number; // glycine
+  HISTN_G: number; // histidine
+  ILE_G: number; // isoleucine
+  LEU_G: number; // leucine
+  LYS_G: number; // lysine
+  MET_G: number; // methionine
+  PHE_G: number; // phenylalanine
+  PRO_G: number; // proline
+  SER_G: number; // serine
+  THR_G: number; // threonine
+  TRP_G: number; // tryptophan
+  TYR_G: number; // tyrosine
+  VAL_G: number; // valine
+  CHOCDF: number; // carbohydrates
+  PROCNT: number; // proteins
+  FAT: number; // totalFat
+  ENERC_KCAL: number; // calories
+  FASAT: number; // saturedFats
+}
+
+function format(
+  food: FoodMyFoodData
+): Omit<Food, 'id' | 'name' | 'acidification'> {
+  return {
+    saturedFats: food.FASAT,
+    calories: food.ENERC_KCAL,
+    enName: food.name1.toLowerCase(),
+    aminoAcids: {
+      alanine: food.ALA_G,
+      arginine: food.ARG_G,
+      asparticAcid: food.ASP_G,
+      cystine: food.CYS_G,
+      glutamicAcid: food.GLU_G,
+      glutamine: 0,
+      glycine: food.GLY_G,
+      histidine: food.HISTN_G,
+      isoleucine: food.ILE_G,
+      leucine: food.LEU_G,
+      lysine: food.LYS_G,
+      methionine: food.MET_G,
+      phenylalanine: food.PHE_G,
+      proline: food.PRO_G,
+      serine: food.SER_G,
+      threonine: food.THR_G,
+      tryptophan: food.TRP_G,
+      tyrosine: food.TYR_G,
+      valine: food.VAL_G,
+    },
+    carbohydrates: food.CHOCDF,
+    proteins: Number(food.PROCNT),
+    totalFat: Number(food.FAT),
+  };
+}
 
 const foods: Array<Food> = [
   {
@@ -73,7 +104,6 @@ const foods: Array<Food> = [
       glycine: 9,
       proline: 6,
       serine: 10,
-      asparagine: 0,
       glutamine: 0,
     },
   },
@@ -103,7 +133,6 @@ const foods: Array<Food> = [
       glycine: 13,
       proline: 21,
       serine: 15,
-      asparagine: 0,
       glutamine: 0,
     },
     unitOfMeasurement: UnitOfMeasurement.gram,
@@ -140,7 +169,6 @@ const foods: Array<Food> = [
       glycine: 28,
       proline: 38,
       serine: 40,
-      asparagine: 0,
       glutamine: 0,
     },
     unitOfMeasurement: UnitOfMeasurement.gram,
@@ -182,7 +210,6 @@ const foods: Array<Food> = [
       glycine: 122,
       proline: 127,
       serine: 141,
-      asparagine: 0,
       glutamine: 0,
     },
   },
@@ -228,7 +255,6 @@ const foods: Array<Food> = [
       glycine: 346,
       proline: 376,
       serine: 482,
-      asparagine: 0,
       glutamine: 0,
     },
   },
@@ -260,7 +286,6 @@ const foods: Array<Food> = [
       glycine: 28,
       proline: 38,
       serine: 40,
-      asparagine: 0,
       glutamine: 0,
     },
   },
@@ -292,7 +317,6 @@ const foods: Array<Food> = [
       glycine: 28,
       proline: 38,
       serine: 40,
-      asparagine: 0,
       glutamine: 0,
     },
   },
@@ -324,7 +348,6 @@ const foods: Array<Food> = [
       glycine: 9,
       proline: 44,
       serine: 13,
-      asparagine: 0,
       glutamine: 0,
     },
     oneMeasure: {
@@ -361,7 +384,6 @@ const foods: Array<Food> = [
       glycine: 59,
       proline: 125,
       serine: 68,
-      asparagine: 0,
       glutamine: 0,
     },
     oneMeasure: {
@@ -398,7 +420,6 @@ const foods: Array<Food> = [
       glycine: 309,
       proline: 926,
       serine: 416,
-      asparagine: 0,
       glutamine: 0,
     },
     oneMeasure: {
@@ -443,7 +464,6 @@ const foods: Array<Food> = [
       glycine: 300,
       proline: 180,
       serine: 470,
-      asparagine: 0,
       glutamine: 0,
     },
   },
@@ -472,7 +492,6 @@ const foods: Array<Food> = [
       glycine: 50,
       proline: 30,
       serine: 40,
-      asparagine: 0,
       glutamine: 0,
     },
   },
@@ -501,7 +520,6 @@ const foods: Array<Food> = [
       glycine: 40,
       proline: 30,
       serine: 30,
-      asparagine: 0,
       glutamine: 0,
     },
   },
@@ -530,7 +548,6 @@ const foods: Array<Food> = [
       glycine: 730,
       proline: 650,
       serine: 680,
-      asparagine: 0,
       glutamine: 0,
     },
   },
@@ -547,7 +564,6 @@ const foods: Array<Food> = [
     aminoAcids: {
       alanine: 33,
       arginine: 19,
-      asparagine: 19,
       asparticAcid: 121,
       cystine: 14,
       glutamicAcid: 79,
@@ -596,7 +612,6 @@ const foods: Array<Food> = [
       glycine: 47,
       proline: 54,
       serine: 54,
-      asparagine: 0,
       glutamine: 0,
     },
   },
@@ -624,7 +639,6 @@ const foods: Array<Food> = [
       glycine: 104,
       proline: 98,
       serine: 114,
-      asparagine: 0,
       glutamine: 0,
     },
     unitOfMeasurement: UnitOfMeasurement.gram,
@@ -679,61 +693,40 @@ const foods: Array<Food> = [
       glycine: 147,
       proline: 96,
       serine: 151,
-      asparagine: 0,
-      glutamine: 0,
-    },
-  },
-  {
-    id: 20,
-    enName: 'coconut',
-    name: 'Coco',
-    calories: 592,
-    totalFat: 47,
-    proteins: 5.3,
-    carbohydrates: 44.4,
-    saturedFats: 41.7,
-    minerals: {
-      calcium: 27,
-      iron: 3.4,
-      potassium: 554,
-      magnesium: 92,
-      phosphorus: 211,
-      sodium: 37,
-      zinc: 2.1,
-      copper: 0.8,
-      manganese: 2.8,
-    },
-    vitamins: {
-      c: 1.5,
-      b1: 0.1,
-      b2: 0.1,
-    },
-    aminoAcids: {
-      tryptophan: 62,
-      threonine: 193,
-      isoleucine: 208,
-      leucine: 393,
-      lysine: 204,
-      methionine: 99,
-      cystine: 105,
-      phenylalanine: 269,
-      tyrosine: 164,
-      valine: 321,
-      histidine: 122,
-      arginine: 870,
-      alanine: 271,
-      asparticAcid: 518,
-      glutamicAcid: 1212,
-      glycine: 251,
-      proline: 219,
-      serine: 274,
-      asparagine: 0,
       glutamine: 0,
     },
   },
 ];
 
+const coconut: Food = {
+  ...format(coconutData),
+  id: 20,
+  name: 'Coco ralado',
+  image: '/images/food/coconut.svg',
+  oneMeasure: {
+    correspondingMeasure: PraticalUnitOfMeasurement.cup,
+    praticalUnitOfMeasurement: 100, // revisar quando de coco vai em um copo
+  },
+  unitOfMeasurement: UnitOfMeasurement.gram,
+};
+
+foods.push(coconut);
+
+const egg: Food = {
+  ...format(eggData),
+  id: 21,
+  name: 'Ovo',
+  image: '/images/food/egg.svg',
+  oneMeasure: {
+    correspondingMeasure: PraticalUnitOfMeasurement.unity,
+    praticalUnitOfMeasurement: 50,
+  },
+  unitOfMeasurement: UnitOfMeasurement.gram,
+};
+
+foods.push(egg);
+
 fs.writeFileSync(
   path.resolve(__dirname, 'food.json'),
-  JSON.stringify({ foods }),
+  JSON.stringify({ foods })
 );

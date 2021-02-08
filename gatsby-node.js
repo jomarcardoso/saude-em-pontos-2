@@ -31,7 +31,6 @@ exports.createPages = ({ graphql, actions }) => {
                 histidine
                 proline
                 glycine
-                asparagine
                 glutamine
                 cystine
                 alanine

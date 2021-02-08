@@ -1,6 +1,6 @@
 {
   // colocar o prettier como formatador
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },

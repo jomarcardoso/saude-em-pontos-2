@@ -1,10 +1,13 @@
 {
   "compilerOptions": {
-    "noImplicitAny": true,
-    "noImplicitReturns": true,
+    // "noImplicitAny": true,
+    // "noImplicitReturns": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "jsx": "react"
   },
-  "include": ["src", "index.d.ts"]
+  "include": [
+    "src",
+    "index.d.ts"
+  ]
 }

@@ -28,7 +28,6 @@ const useFoods = (): Array<Food> => {
               histidine
               proline
               glycine
-              asparagine
               glutamine
               cystine
               alanine

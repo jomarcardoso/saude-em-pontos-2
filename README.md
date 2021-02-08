@@ -18,7 +18,7 @@
 - [Tabela Brasileira de Composição de Alimentos](https://www.cfn.org.br/wp-content/uploads/2017/03/taco_4_edicao_ampliada_e_revisada.pdf)
 - [amino ácidos](https://www.scielo.br/pdf/rbz/v30n3/5247.pdf)
 - [site com busca de alimentos dos aminoácidos](https://tools.myfooddata.com/nutrition-comparison.php?foods=173735&serv=100g&qty=1)
-- [json de alimento](https://tools.myfooddata.com/ajax/data-update.php?name=Dried%20Coconut)
+- [json de alimento](https://tools.myfooddata.com/api/food/Eggs)
 
 # Ícones futuros
 

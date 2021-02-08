@@ -25,7 +25,6 @@ interface NonEssencialAminoAcids {
   arginine: number;
   proline: number;
   glycine: number;
-  asparagine: number;
   glutamine: number;
   cystine: number;
   alanine: number;
@@ -40,7 +39,6 @@ export type AminoAcids = EssencialAminoAcids & NonEssencialAminoAcids;
 export const SHAPE_AMINO_ACIDS: AminoAcids = {
   alanine: 0,
   arginine: 0,
-  asparagine: 0,
   asparticAcid: 0,
   cystine: 0,
   glutamicAcid: 0,
@@ -124,7 +122,6 @@ export interface Food {
 export enum TRANSLATED_AMINO_ACIDS {
   alanine = 'Alanina',
   arginine = 'Arginina',
-  asparagine = 'Asparagina',
   asparticAcid = 'Ácido Aspártico',
   cystine = 'Cistina',
   glutamicAcid = 'Ácido Glutâmico',

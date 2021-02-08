@@ -42,7 +42,6 @@ function format({
     glutamicAcid: food.aminoAcids.glutamicAcid * portionData.quantity,
     cystine: food.aminoAcids.cystine * portionData.quantity,
     asparticAcid: food.aminoAcids.asparticAcid * portionData.quantity,
-    asparagine: food.aminoAcids.asparagine * portionData.quantity,
     arginine: food.aminoAcids.arginine * portionData.quantity,
   };
 
