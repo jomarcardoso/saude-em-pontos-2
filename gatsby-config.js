@@ -16,6 +16,7 @@ module.exports = {
         precachePages: [`/src/*`],
       },
     },
+    // 'gatsby-plugin-eslint',
     `gatsby-plugin-sass`,
     `gatsby-theme-material-ui`,
     `gatsby-plugin-react-helmet`,

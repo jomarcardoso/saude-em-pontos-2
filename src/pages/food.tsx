@@ -5,8 +5,16 @@ import { Food } from '../services/food.service';
 import Layout from '../components/layout/layout';
 import AminoAcidsTable from '../components/aminoacids-table';
 
-const FoodPage: React.SFC = ({
-  pageContext: { image, name, gi, calories, carbohydrates, gl, aminoAcids },
+const FoodPage: React.FC = ({
+  pageContext: {
+    image,
+    name: foodName,
+    gi,
+    calories,
+    carbohydrates,
+    gl,
+    aminoAcids,
+  },
 }: {
   pageContext: Food;
 }) => {
@@ -26,10 +34,10 @@ const FoodPage: React.SFC = ({
   }
 
   return (
-    <Layout pageName={name}>
+    <Layout pageName={foodName}>
       <Grid container spacing={5} justify="center">
         <Grid item xs={8} sm={6} md={4}>
-          <img src={image} />
+          <img src={image} alt="" />
         </Grid>
         <Grid item xs={12}>
           {renderQuality({ name: 'Índice Glicêmico', value: gi })}

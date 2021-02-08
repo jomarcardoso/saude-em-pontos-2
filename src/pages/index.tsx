@@ -2,11 +2,11 @@ import React, { useContext } from 'react';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
 import Advertise from '../components/advertise';
 import AccountContext from '../contexts/account-context';
 import { AccountAndSet, SHAPE_ACCOUNT } from '../services/account.service';
 import { CurrentPage } from '../services/page.service';
-import { makeStyles } from '@material-ui/core/styles';
 import Layout from '../components/layout/layout';
 import MealCard from '../components/meal-card';
 
@@ -18,7 +18,7 @@ const useStyles = makeStyles({
 
 const Index: React.SFC = () => {
   const { account = SHAPE_ACCOUNT, setAccount }: AccountAndSet = useContext(
-    AccountContext
+    AccountContext,
   );
   const rendered = typeof window !== 'undefined';
   const classes = useStyles();

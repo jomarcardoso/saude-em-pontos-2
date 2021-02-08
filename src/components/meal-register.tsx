@@ -1,22 +1,20 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import IconButton from '@material-ui/core/IconButton';
-import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
-import FoodsContext from '../contexts/foods-context';
 import { makeStyles } from '@material-ui/core/styles';
-import SubmitComponent from '../components/submit';
 import Grid from '@material-ui/core/Grid';
 import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
+import { Formik, Form, FieldArray } from 'formik';
 import { SetAccount } from '../services/account.service';
 import { MealData } from '../services/meal.service';
-import { Formik, Form, FieldArray } from 'formik';
+import SubmitComponent from './submit';
+import FoodsContext from '../contexts/foods-context';
 import InputImage from './input-image';
-import Photo from './photo';
 
 const useStyles = makeStyles({
   formControl: {
@@ -76,6 +74,7 @@ const MealRegisterComponent: React.SFC<Props> = ({
       id: mealData?.id ?? 0,
       picture,
     });
+
     setId(id);
   }
 

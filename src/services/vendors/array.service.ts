@@ -8,7 +8,9 @@
 export function addOneAfter(item, index, array, { maxSize = null } = {}) {
   if (maxSize && maxSize >= array.length) return array;
   const updatedArray = [...array];
+
   updatedArray.splice(index, 0, item);
+
   return updatedArray;
 }
 
@@ -20,9 +22,11 @@ export function addOneAfter(item, index, array, { maxSize = null } = {}) {
  */
 export function removeOne(index, array, { atLeastOne = false } = {}) {
   const updatedArray = [...array];
+
   if (atLeastOne && array.length < 2) return array;
 
   updatedArray.splice(index, 1);
+
   return updatedArray;
 }
 

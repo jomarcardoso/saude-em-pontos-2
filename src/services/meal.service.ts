@@ -56,27 +56,27 @@ function calculateCarbohidrates(portions: Array<Portion> = []): number {
 }
 
 function calculateGI(portions: Array<Portion> = []): number {
-  const sum = portions.reduce((sum, portion) => {
+  const total = portions.reduce((sum, portion) => {
     return sum + portion.food.gi;
   }, 0);
 
-  return sum / portions.length;
+  return total / portions.length;
 }
 
 function calculateGC(portions: Array<Portion> = []): number {
-  const sum = portions.reduce((sum, portion) => {
+  const total = portions.reduce((sum, portion) => {
     return sum + portion.food.gl;
   }, 0);
 
-  return sum / portions.length;
+  return total / portions.length;
 }
 
 function calculateAcidification(portions: Array<Portion> = []) {
-  const sum = portions.reduce((sum, portion) => {
+  const total = portions.reduce((sum, portion) => {
     return sum + portion.food.acidification;
   }, 0);
 
-  return sum / portions.length;
+  return total / portions.length;
 }
 
 function format({
@@ -87,88 +87,88 @@ function format({
   foods: Array<Food>;
 }): Meal {
   const portions = mealData?.portions?.map((portionData) =>
-    PortionService.format({ portionData, foods })
+    PortionService.format({ portionData, foods }),
   );
-  const aminoAcids: AminoAcids = {
+  const allAminoAcids: AminoAcids = {
     alanine: portions.reduce(
       (sum, { aminoAcids }) => aminoAcids.alanine + sum,
-      0
+      0,
     ),
     arginine: portions.reduce(
       (sum, { aminoAcids }) => aminoAcids.arginine + sum,
-      0
+      0,
     ),
     asparagine: portions.reduce(
       (sum, { aminoAcids }) => aminoAcids.asparagine + sum,
-      0
+      0,
     ),
     asparticAcid: portions.reduce(
       (sum, { aminoAcids }) => aminoAcids.asparticAcid + sum,
-      0
+      0,
     ),
     cystine: portions.reduce(
       (sum, { aminoAcids }) => aminoAcids.cystine + sum,
-      0
+      0,
     ),
     glutamicAcid: portions.reduce(
       (sum, { aminoAcids }) => aminoAcids.glutamicAcid + sum,
-      0
+      0,
     ),
     glutamine: portions.reduce(
       (sum, { aminoAcids }) => aminoAcids.glutamine + sum,
-      0
+      0,
     ),
     glycine: portions.reduce(
       (sum, { aminoAcids }) => aminoAcids.glycine + sum,
-      0
+      0,
     ),
     histidine: portions.reduce(
       (sum, { aminoAcids }) => aminoAcids.histidine + sum,
-      0
+      0,
     ),
     isoleucine: portions.reduce(
       (sum, { aminoAcids }) => aminoAcids.isoleucine + sum,
-      0
+      0,
     ),
     leucine: portions.reduce(
       (sum, { aminoAcids }) => aminoAcids.leucine + sum,
-      0
+      0,
     ),
     lysine: portions.reduce(
       (sum, { aminoAcids }) => aminoAcids.lysine + sum,
-      0
+      0,
     ),
     methionine: portions.reduce(
       (sum, { aminoAcids }) => aminoAcids.methionine + sum,
-      0
+      0,
     ),
     phenylalanine: portions.reduce(
       (sum, { aminoAcids }) => aminoAcids.phenylalanine + sum,
-      0
+      0,
     ),
     proline: portions.reduce(
       (sum, { aminoAcids }) => aminoAcids.proline + sum,
-      0
+      0,
     ),
     serine: portions.reduce(
       (sum, { aminoAcids }) => aminoAcids.serine + sum,
-      0
+      0,
     ),
     threonine: portions.reduce(
       (sum, { aminoAcids }) => aminoAcids.threonine + sum,
-      0
+      0,
     ),
     tryptophan: portions.reduce(
       (sum, { aminoAcids }) => aminoAcids.tryptophan + sum,
-      0
+      0,
     ),
     tyrosine: portions.reduce(
       (sum, { aminoAcids }) => aminoAcids.tyrosine + sum,
-      0
+      0,
     ),
     valine: portions.reduce(
       (sum, { aminoAcids }) => aminoAcids.valine + sum,
-      0
+      0,
     ),
   };
 
@@ -182,7 +182,7 @@ function format({
     acidification: calculateAcidification(portions),
     gl: calculateGC(portions),
     carbohydrates: calculateCarbohidrates(portions),
-    aminoAcids,
+    aminoAcids: allAminoAcids,
   };
 }
 

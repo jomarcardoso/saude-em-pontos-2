@@ -21,10 +21,12 @@ export default function useAccount(foods: Array<Food>): AccountAndSet {
     });
 
     const editing = mealData.id;
+
     if (editing) {
       const indexToChange = account.meals.findIndex(
-        ({ id: mealIndex }) => mealIndex === id
+        ({ id: mealIndex }) => mealIndex === id,
       );
+
       account.meals[indexToChange] = meal;
 
       _setAccount({

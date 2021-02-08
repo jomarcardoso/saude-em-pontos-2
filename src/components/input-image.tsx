@@ -1,10 +1,11 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 import Button from '@material-ui/core/Button';
 
 export function convertToBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
+
     reader.onloadend = () => resolve(reader.result);
     reader.onabort = reject;
     reader.readAsDataURL(file);
@@ -32,10 +33,12 @@ export function resizeImage({ file = '', base64 = '', maxSize = 320 } = {}) {
       }
 
       const canvas = document.createElement('canvas');
+
       canvas.width = width;
       canvas.height = height;
 
       const ctx = canvas.getContext('2d');
+
       ctx.drawImage(img, 0, 0, width, height);
       const quality = 0.9;
       const format = fileType || 'image/jpeg';
@@ -47,6 +50,7 @@ export function resizeImage({ file = '', base64 = '', maxSize = 320 } = {}) {
     img.onerror = reject;
 
     const src = base64 || (await convertToBase64(file));
+
     img.src = src;
   });
 }
@@ -58,6 +62,7 @@ const InputImage: React.FC = ({ image = {}, setImage, maxSize = 320 }) => {
   async function _getImageBase64(target) {
     try {
       const file = target.files[0];
+
       if (!file) return null;
       const base64 = maxSize
         ? await resizeImage({ file, maxSize })
@@ -66,6 +71,7 @@ const InputImage: React.FC = ({ image = {}, setImage, maxSize = 320 }) => {
         base64,
         size: file.size / 1024 / 1024, // in MB
       };
+
       return image;
     } catch {
       return '';

@@ -1,19 +1,16 @@
 import React, { useContext } from 'react';
-import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import { Link } from 'gatsby-theme-material-ui';
 import { makeStyles } from '@material-ui/core/styles';
-import Divider from '@material-ui/core/Divider';
-import Layout from '../components/layout/layout';
-import { Food } from '../services/food.service';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import Layout from '../components/layout/layout';
 import FoodsContext from '../contexts/foods-context';
 
 const useStyles = makeStyles({
@@ -48,6 +45,7 @@ const Foods: React.SFC = () => {
     if (a.name < b.name) {
       return -1;
     }
+
     // a must be equal to b
     return 0;
   });
@@ -66,7 +64,7 @@ const Foods: React.SFC = () => {
           </TableHead>
           <TableBody>
             {orderedFood.map(
-              ({ name, image, enName, calories, acidification, gi, gl }) => (
+              ({ name, image, enName, calories, acidification, gi }) => (
                 <TableRow key={name}>
                   <TableCell component="th" scope="row">
                     <ListItem className={classes.listItem}>
@@ -86,7 +84,7 @@ const Foods: React.SFC = () => {
                   <TableCell align="right">{gi}</TableCell>
                   <TableCell align="right">{acidification}</TableCell>
                 </TableRow>
-              )
+              ),
             )}
           </TableBody>
         </Table>

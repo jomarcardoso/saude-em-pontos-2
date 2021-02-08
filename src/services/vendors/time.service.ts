@@ -3,7 +3,7 @@ function toString({ date, options }: { date: Date; options: any }): string {
 }
 
 function toLongSring(date: Date = new Date()): string {
-  var options = {
+  const options = {
     weekday: 'long',
     year: 'numeric',
     month: 'long',
@@ -11,6 +11,7 @@ function toLongSring(date: Date = new Date()): string {
     hour: 'numeric',
     minute: 'numeric',
   };
+
   return toString({ date, options });
 }
 

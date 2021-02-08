@@ -2,15 +2,15 @@ import React from 'react';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
-import TimeService from '../services/vendors/time.service';
 import Avatar from '@material-ui/core/Avatar';
-import ResumedPortion from '../components/resumed-portion';
 import Grid from '@material-ui/core/Grid';
 import { Link } from 'gatsby';
 import Typography from '@material-ui/core/Typography';
-import { Meal } from '../services/meal.service';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
+import { Meal } from '../services/meal.service';
+import ResumedPortion from './resumed-portion';
+import TimeService from '../services/vendors/time.service';
 
 const useStyles = makeStyles({
   content: {

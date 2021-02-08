@@ -1,11 +1,11 @@
+import fs from 'fs';
+import path from 'path';
 import {
   Food,
   UnitOfMeasurement,
   PraticalUnitOfMeasurement,
   SHAPE_AMINO_ACIDS,
 } from '../services/food.service';
-import fs from 'fs';
-import path from 'path';
 // import newFoods from './newFoods';
 
 // function format(food): Food {
@@ -735,5 +735,5 @@ const foods: Array<Food> = [
 
 fs.writeFileSync(
   path.resolve(__dirname, 'food.json'),
-  JSON.stringify({ foods })
+  JSON.stringify({ foods }),
 );

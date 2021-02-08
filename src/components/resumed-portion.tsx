@@ -1,11 +1,11 @@
 import React from 'react';
 import Badge from '@material-ui/core/Badge';
-import Image from '../components/image';
 import Grid, { GridProps } from '@material-ui/core/Grid';
-import { Portion } from '../services/portion.service';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import { makeStyles } from '@material-ui/core/styles';
+import { Portion } from '../services/portion.service';
+import Image from './image';
 
 const useStyles = makeStyles({
   box: {

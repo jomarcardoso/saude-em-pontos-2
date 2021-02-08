@@ -42,7 +42,7 @@ function format({
       accountData.hasReadAdvertise ?? SHAPE_ACCOUNT.hasReadAdvertise,
     meals:
       accountData?.meals?.map((mealData, index) =>
-        MealService.format({ mealData, foods, index })
+        MealService.format({ mealData, foods, index }),
       ) ?? SHAPE_ACCOUNT.meals,
   };
 }
@@ -70,6 +70,7 @@ function save(account): void {
   if (typeof window === 'undefined') return;
 
   const accountData = unFormat(account);
+
   localStorage.setItem(ACCOUNT_LOCAL_STORAGE, JSON.stringify(accountData));
 }
 

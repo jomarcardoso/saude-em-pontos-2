@@ -105,7 +105,7 @@ const Photo: React.FC = ({ setPicture }) => {
 
       setDataUri(dataUri);
     },
-    [webcamRef]
+    [webcamRef],
   );
 
   function handleOpenCamera(event: Event) {
@@ -161,7 +161,7 @@ const Photo: React.FC = ({ setPicture }) => {
           {dataUri ? (
             <>
               <div className={classes.cameraVideo}>
-                <img src={dataUri} className={classes.cameraPicture} />
+                <img src={dataUri} className={classes.cameraPicture} alt="" />
               </div>
               <div className={classes.cameraHud}>
                 <div className={classes.cameraHudBottom}>
@@ -209,10 +209,7 @@ const Photo: React.FC = ({ setPicture }) => {
                   </a>
                 </div>
                 <div className={classes.cameraHudBottom}>
-                  <a
-                    href="#load-image"
-                    className={classes.cameraButtonFlip}
-                  ></a>
+                  <a href="#load-image" className={classes.cameraButtonFlip} />
                   <a
                     onClick={capture}
                     href="#shot-a-picture"

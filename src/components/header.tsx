@@ -5,8 +5,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
-import MenuDrawer from './menu-drawer';
 import Container from '@material-ui/core/Container';
+import MenuDrawer from './menu-drawer';
 
 const useStyles = makeStyles((theme) => ({
   menuButton: {
@@ -26,7 +26,7 @@ const Header: React.SFC<Props> = ({ pageName = '' }) => {
   const [opened, setOpened] = useState(false);
 
   const toggleDrawer = (open: boolean): void => (
-    event: React.SyntheticEvent
+    event: React.SyntheticEvent,
   ): void => {
     if (
       event.type === 'keydown' &&
@@ -39,7 +39,7 @@ const Header: React.SFC<Props> = ({ pageName = '' }) => {
   };
 
   return (
-    <AppBar position="static" role="header" className={classes.root}>
+    <AppBar position="static" role="banner" className={classes.root}>
       <Container maxWidth="md" disableGutters>
         <Toolbar>
           <IconButton

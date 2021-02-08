@@ -1,14 +1,14 @@
 import React, { useContext, useState } from 'react';
-import Layout from '../components/layout/layout';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import Layout from '../components/layout/layout';
 import TimeService from '../services/vendors/time.service';
 import { SHAPE_ACCOUNT } from '../services/account.service';
 import AccountContext from '../contexts/account-context';
 import MealService, { Meal, SHAPE_MEAL } from '../services/meal.service';
 import ResumedPortion from '../components/resumed-portion';
-import Box from '@material-ui/core/Box';
 import ScoreComponent from '../components/score';
 import MealRegisterComponent from '../components/meal-register';
 import { CurrentPage } from '../services/page.service';

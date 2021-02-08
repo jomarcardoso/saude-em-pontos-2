@@ -10,5 +10,5 @@ const useStyles = makeStyles(() => ({
 export default function Image(props) {
   const classes = useStyles();
 
-  return <img className={classes.image} {...props} />;
+  return <img className={classes.image} {...props} alt="" />;
 }
