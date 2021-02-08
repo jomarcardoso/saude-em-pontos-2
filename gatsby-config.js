@@ -6,7 +6,6 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-typescript`,
-    `gatsby-plugin-flow`,
     {
       resolve: `gatsby-plugin-offline`,
       options: {
@@ -36,8 +35,6 @@ module.exports = {
         path: `${__dirname}/src/db`,
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

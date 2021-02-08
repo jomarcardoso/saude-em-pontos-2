@@ -4,11 +4,11 @@ module.exports = {
     browser: true
   },
   extends: 'airbnb-typescript-prettier',
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
-    tsconfigRootDir: __dirname,
-    project: ['./tsconfig.json'],
-  },
+  // parser: '@typescript-eslint/parser',
+  // parserOptions: {
+  //   tsconfigRootDir: __dirname,
+  //   project: ['./tsconfig.json'],
+  // },
   rules: {
     'linebreak-style': 0,
     'no-multiple-empty-lines': ['error', { 'max': 1, 'maxEOF': 1 }],
