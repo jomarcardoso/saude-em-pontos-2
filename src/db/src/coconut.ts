@@ -1,4 +1,8 @@
-const coconut = {
+/* eslint-disabled */
+import { FoodMyFoodData } from '../db.types';
+
+const coconut: FoodMyFoodData = {
+  // @ts-expect-error
   fdc_id: 170170,
   NDB_No: '170170',
   NDB_Number: 170170,

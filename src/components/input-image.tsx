@@ -1,23 +1,35 @@
-import React, { useRef } from 'react';
+import React, { ChangeEvent, useRef } from 'react';
+import isFunction from 'lodash/isFunction';
 import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 import Button from '@material-ui/core/Button';
 
-export function convertToBase64(file) {
+export function convertToBase64(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
 
-    reader.onloadend = () => resolve(reader.result);
+    reader.onloadend = (): void => resolve(reader.result as string);
     reader.onabort = reject;
     reader.readAsDataURL(file);
   });
 }
 
-export function resizeImage({ file = '', base64 = '', maxSize = 320 } = {}) {
-  const img = new Image();
-  const fileType = file.type;
+interface ResizeImageArgs {
+  file?: File;
+  base64?: string;
+  maxSize: number;
+}
 
-  return new Promise(async (resolve, reject) => {
-    img.onload = () => {
+async function resizeImage({
+  file = null,
+  base64 = '',
+  maxSize = 0,
+}: ResizeImageArgs): Promise<string> {
+  const img = new Image();
+  const fileType = file?.type;
+  const src = base64 || (await convertToBase64(file));
+
+  return new Promise<string>((resolve, reject) => {
+    img.onload = (): void => {
       const maxWidth = maxSize;
       const maxHeight = maxSize;
       let { height, width } = img;
@@ -48,40 +60,62 @@ export function resizeImage({ file = '', base64 = '', maxSize = 320 } = {}) {
     };
 
     img.onerror = reject;
-
-    const src = base64 || (await convertToBase64(file));
-
     img.src = src;
   });
 }
 
-const InputImage: React.FC = ({ image = {}, setImage, maxSize = 320 }) => {
+interface Props {
+  quantity: number;
+  setImage: (file: string) => void;
+  maxSize?: number;
+  image?: string;
+}
+
+const InputImage: React.FC<Props & React.HTMLProps<HTMLInputElement>> = ({
+  image = '',
+  setImage,
+  maxSize = 320,
+  onChange,
+}) => {
   // const [image, setImage] = useState({});
   const inputEl = useRef();
 
-  async function _getImageBase64(target) {
+  async function getImageBase64(file: File): Promise<string> {
     try {
-      const file = target.files[0];
+      const resizedBase64Image = await resizeImage({
+        file,
+        maxSize,
+      });
 
-      if (!file) return null;
-      const base64 = maxSize
-        ? await resizeImage({ file, maxSize })
-        : await convertToBase64(file);
-      const image = {
-        base64,
-        size: file.size / 1024 / 1024, // in MB
-      };
-
-      return image;
+      return resizedBase64Image;
     } catch {
       return '';
     }
   }
 
-  async function handleChange(event) {
-    const image = await _getImageBase64(event.target);
+  async function handleChange(
+    event: ChangeEvent<HTMLInputElement>,
+  ): Promise<void> {
+    const { target } = event;
+    // const markedPositions = ArrayService.createDynamic({
+    //   lengthNumber: quantity,
+    // });
 
-    setImage(image.base64);
+    // const filesPromises: Array<Promise<string> | string> = markedPositions.map(
+    //   (_reserve, imageIndex: number) => {
+    //     const file = target.files[imageIndex];
+
+    //     return file ? getImageBase64(file) : '';
+    //   },
+    // );
+
+    // const filesSelectedBase64 = await Promise.all(filesPromises);
+
+    const filesSelectedBase64 = await getImageBase64(target.files[0]);
+
+    setImage(filesSelectedBase64);
+
+    if (isFunction(onChange)) onChange(event);
   }
 
   return (
@@ -95,7 +129,7 @@ const InputImage: React.FC = ({ image = {}, setImage, maxSize = 320 }) => {
         ref={inputEl}
         id="picture"
       />
-      <img src={image} />
+      <img src={image} alt="" />
       <Button type="button" component="label" htmlFor="picture">
         <AddPhotoAlternateIcon />
       </Button>

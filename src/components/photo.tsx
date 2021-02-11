@@ -101,8 +101,6 @@ const Photo: React.FC = ({ setPicture }) => {
         height: 320,
       });
 
-      console.log(dataUri);
-
       setDataUri(dataUri);
     },
     [webcamRef],
@@ -189,48 +187,48 @@ const Photo: React.FC = ({ setPicture }) => {
               </div>
             </>
           ) : (
-            <>
-              <Webcam
-                className={classes.cameraVideo}
-                audio={false}
-                height={videoConstraints.height}
-                ref={webcamRef}
-                screenshotQuality={0.7}
-                width={videoConstraints.width}
-                videoConstraints={videoConstraints}
-              />
-              <div className={classes.cameraHud}>
-                <div className={classes.cameraHudTop}>
-                  <a onClick={handleClose} href="#close-camera">
-                    <CloseIcon
-                      className={classes.cameraCloseButton}
-                      color="inherit"
-                    />
-                  </a>
+              <>
+                <Webcam
+                  className={classes.cameraVideo}
+                  audio={false}
+                  height={videoConstraints.height}
+                  ref={webcamRef}
+                  screenshotQuality={0.7}
+                  width={videoConstraints.width}
+                  videoConstraints={videoConstraints}
+                />
+                <div className={classes.cameraHud}>
+                  <div className={classes.cameraHudTop}>
+                    <a onClick={handleClose} href="#close-camera">
+                      <CloseIcon
+                        className={classes.cameraCloseButton}
+                        color="inherit"
+                      />
+                    </a>
+                  </div>
+                  <div className={classes.cameraHudBottom}>
+                    <a href="#load-image" className={classes.cameraButtonFlip} />
+                    <a
+                      onClick={capture}
+                      href="#shot-a-picture"
+                      className={classes.cameraButtonShot}
+                    >
+                      <span className="d-none">tirar foto</span>
+                    </a>
+                    <a
+                      onClick={handleFlip}
+                      href="#flip-camera"
+                      className={classes.cameraButtonFlip}
+                    >
+                      <LoopIcon
+                        className={classes.cameraButtonFlipIcon}
+                        color="inherit"
+                      />
+                    </a>
+                  </div>
                 </div>
-                <div className={classes.cameraHudBottom}>
-                  <a href="#load-image" className={classes.cameraButtonFlip} />
-                  <a
-                    onClick={capture}
-                    href="#shot-a-picture"
-                    className={classes.cameraButtonShot}
-                  >
-                    <span className="d-none">tirar foto</span>
-                  </a>
-                  <a
-                    onClick={handleFlip}
-                    href="#flip-camera"
-                    className={classes.cameraButtonFlip}
-                  >
-                    <LoopIcon
-                      className={classes.cameraButtonFlipIcon}
-                      color="inherit"
-                    />
-                  </a>
-                </div>
-              </div>
-            </>
-          )}
+              </>
+            )}
         </div>
       )}
       <a href="#open-camera" onClick={handleOpenCamera}>

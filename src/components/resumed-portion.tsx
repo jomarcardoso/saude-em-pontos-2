@@ -4,7 +4,7 @@ import Grid, { GridProps } from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import { makeStyles } from '@material-ui/core/styles';
-import { Portion } from '../services/portion.service';
+import { Portion } from '../services/portion/portion.types';
 import Image from './image';
 
 const useStyles = makeStyles({

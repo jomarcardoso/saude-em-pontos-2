@@ -1,5 +1,6 @@
 import { Food, AminoAcids, SHAPE_AMINO_ACIDS } from './food.service';
-import PortionService, { Portion, PortionData } from './portion.service';
+import PortionService from './portion/portion.service';
+import { Portion, PortionData } from './portion/portion.types';
 
 export interface Meal {
   id: number;
@@ -87,84 +88,84 @@ function format({
   foods: Array<Food>;
 }): Meal {
   const portions = mealData?.portions?.map((portionData) =>
-    PortionService.format({ portionData, foods })
+    PortionService.format({ portionData, foods }),
   );
   const allAminoAcids: AminoAcids = {
     alanine: portions.reduce(
       (sum, { aminoAcids }) => aminoAcids.alanine + sum,
-      0
+      0,
     ),
     arginine: portions.reduce(
       (sum, { aminoAcids }) => aminoAcids.arginine + sum,
-      0
+      0,
     ),
     asparticAcid: portions.reduce(
       (sum, { aminoAcids }) => aminoAcids.asparticAcid + sum,
-      0
+      0,
     ),
     cystine: portions.reduce(
       (sum, { aminoAcids }) => aminoAcids.cystine + sum,
-      0
+      0,
     ),
     glutamicAcid: portions.reduce(
       (sum, { aminoAcids }) => aminoAcids.glutamicAcid + sum,
-      0
+      0,
     ),
     glutamine: portions.reduce(
       (sum, { aminoAcids }) => aminoAcids.glutamine + sum,
-      0
+      0,
     ),
     glycine: portions.reduce(
       (sum, { aminoAcids }) => aminoAcids.glycine + sum,
-      0
+      0,
     ),
     histidine: portions.reduce(
       (sum, { aminoAcids }) => aminoAcids.histidine + sum,
-      0
+      0,
     ),
     isoleucine: portions.reduce(
       (sum, { aminoAcids }) => aminoAcids.isoleucine + sum,
-      0
+      0,
     ),
     leucine: portions.reduce(
       (sum, { aminoAcids }) => aminoAcids.leucine + sum,
-      0
+      0,
     ),
     lysine: portions.reduce(
       (sum, { aminoAcids }) => aminoAcids.lysine + sum,
-      0
+      0,
     ),
     methionine: portions.reduce(
       (sum, { aminoAcids }) => aminoAcids.methionine + sum,
-      0
+      0,
     ),
     phenylalanine: portions.reduce(
       (sum, { aminoAcids }) => aminoAcids.phenylalanine + sum,
-      0
+      0,
     ),
     proline: portions.reduce(
       (sum, { aminoAcids }) => aminoAcids.proline + sum,
-      0
+      0,
     ),
     serine: portions.reduce(
       (sum, { aminoAcids }) => aminoAcids.serine + sum,
-      0
+      0,
     ),
     threonine: portions.reduce(
       (sum, { aminoAcids }) => aminoAcids.threonine + sum,
-      0
+      0,
     ),
     tryptophan: portions.reduce(
       (sum, { aminoAcids }) => aminoAcids.tryptophan + sum,
-      0
+      0,
     ),
     tyrosine: portions.reduce(
       (sum, { aminoAcids }) => aminoAcids.tyrosine + sum,
-      0
+      0,
     ),
     valine: portions.reduce(
       (sum, { aminoAcids }) => aminoAcids.valine + sum,
-      0
+      0,
     ),
   };
 

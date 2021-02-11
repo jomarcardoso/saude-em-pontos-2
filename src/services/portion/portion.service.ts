@@ -1,17 +1,5 @@
-import { Food, AminoAcids } from './food.service';
-
-export interface Portion {
-  food: Food;
-  quantity: number;
-  calories: number;
-  carbohydrates: number;
-  aminoAcids: AminoAcids;
-}
-
-export interface PortionData {
-  foodId: number;
-  quantity: number;
-}
+import { Food, AminoAcids } from '../food.service';
+import { Portion, PortionData, UnFormat } from './portion.types';
 
 function format({
   foods = [],
@@ -54,7 +42,7 @@ function format({
   };
 }
 
-const unFormat = ({ food: { id: foodId }, quantity }) => ({
+const unFormat: UnFormat = ({ food: { id: foodId }, quantity }) => ({
   foodId,
   quantity,
 });
