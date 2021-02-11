@@ -6,7 +6,11 @@ import {
   PraticalUnitOfMeasurement,
   SHAPE_AMINO_ACIDS,
 } from '../services/food.service';
-import { coconut as coconutData, egg as eggData } from './src';
+import {
+  coconut as coconutData,
+  egg as eggData,
+  chicken as chickenData,
+} from './src';
 
 interface FoodMyFoodData {
   name1: string;
@@ -37,7 +41,7 @@ interface FoodMyFoodData {
 }
 
 function format(
-  food: FoodMyFoodData
+  food: FoodMyFoodData,
 ): Omit<Food, 'id' | 'name' | 'acidification'> {
   return {
     saturedFats: food.FASAT,
@@ -726,7 +730,21 @@ const egg: Food = {
 
 foods.push(egg);
 
+const chicken: Food = {
+  ...format(chickenData),
+  id: 22,
+  name: 'Frango',
+  image: '/images/food/chicken.svg',
+  // oneMeasure: {
+  //   correspondingMeasure: PraticalUnitOfMeasurement.unity,
+  //   praticalUnitOfMeasurement: 50,
+  // },
+  unitOfMeasurement: UnitOfMeasurement.gram,
+};
+
+foods.push(chicken);
+
 fs.writeFileSync(
   path.resolve(__dirname, 'food.json'),
-  JSON.stringify({ foods })
+  JSON.stringify({ foods }),
 );
