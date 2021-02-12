@@ -41,8 +41,8 @@ function format({
     hasReadAdvertise:
       accountData.hasReadAdvertise ?? SHAPE_ACCOUNT.hasReadAdvertise,
     meals:
-      accountData?.meals?.map((mealData, index) =>
-        MealService.format({ mealData, foods, index }),
+      accountData?.meals?.map((mealData) =>
+        MealService.format({ mealData, foods }),
       ) ?? SHAPE_ACCOUNT.meals,
   };
 }
@@ -66,7 +66,7 @@ function unFormat(account: Account): AccountData {
   };
 }
 
-function save(account): void {
+function save(account: Account): void {
   if (typeof window === 'undefined') return;
 
   const accountData = unFormat(account);

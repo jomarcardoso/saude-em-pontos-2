@@ -14,7 +14,7 @@ import { SetAccount } from '../services/account.service';
 import { MealData } from '../services/meal.service';
 import SubmitComponent from './submit';
 import FoodsContext from '../contexts/foods-context';
-import InputImage from './input-image';
+import { PortionData } from '../services/portion/portion.types';
 
 const useStyles = makeStyles({
   formControl: {
@@ -28,6 +28,10 @@ interface Props {
   setId: (id: number) => void;
 }
 
+interface MealForm {
+  portions: Array<PortionData>;
+}
+
 const MealRegisterComponent: React.SFC<Props> = ({
   mealData,
   setAccount,
@@ -35,10 +39,7 @@ const MealRegisterComponent: React.SFC<Props> = ({
 }) => {
   const classes = useStyles();
   const foods = useContext(FoodsContext);
-  let { portions, picture: pictureData = '' } = mealData;
-  // const [picture, setPicture] = useState(pictureData);
-
-  // console.log(pictureData);
+  let { portions } = mealData;
 
   if (!portions.length) {
     portions = [
@@ -50,7 +51,6 @@ const MealRegisterComponent: React.SFC<Props> = ({
   }
 
   function handleRemove({ index = 0, remove }) {
-    console.log(index, remove);
     remove(index);
   }
 
@@ -61,18 +61,13 @@ const MealRegisterComponent: React.SFC<Props> = ({
     });
   }
 
-  function handleSubmit({ portions, picture = '' } = {}): void {
-    event.preventDefault();
-
-    console.log(picture);
-
+  function handleSubmit({ portions: portionsData }: MealForm): void {
     const id = setAccount.meal({
-      portions,
+      portions: portionsData,
       date: mealData?.date
         ? new Date(mealData?.date).toString()
         : new Date().toString(),
       id: mealData?.id ?? 0,
-      picture,
     });
 
     setId(id);
@@ -80,25 +75,14 @@ const MealRegisterComponent: React.SFC<Props> = ({
 
   return (
     <Formik
-      initialValues={{ portions, picture: pictureData }}
+      initialValues={{ portions }}
       onSubmit={handleSubmit}
-      render={({ values, handleBlur, handleChange, setValues }) => (
+      render={({ values, handleBlur, handleChange }) => (
         <Form action="/" method="post">
           <FieldArray
             name="portions"
             render={({ push, remove }) => (
               <Grid container spacing={5}>
-                <Grid item xs={12}>
-                  <InputImage
-                    image={values.picture}
-                    setImage={(picture) => {
-                      setValues({
-                        ...values,
-                        picture,
-                      });
-                    }}
-                  />
-                </Grid>
                 <Grid item xs={12}>
                   <Grid container spacing={3}>
                     {values.portions.map((value, index) => (

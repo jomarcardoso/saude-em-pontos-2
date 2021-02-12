@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { HTMLAttributes, ReactElement } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
@@ -7,8 +7,10 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function Image(props) {
+const Image = (props: HTMLAttributes<HTMLImageElement>): ReactElement => {
   const classes = useStyles();
 
-  return <img className={classes.image} {...props} alt="" />;
-}
+  return <img {...props} className={classes.image} alt="" />;
+};
+
+export default Image;

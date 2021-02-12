@@ -59,8 +59,7 @@ const foods: Array<Food> = [
     carbohydrates: 14,
     unitOfMeasurement: UnitOfMeasurement.gram,
     oneMeasure: {
-      correspondingMeasure: 192,
-      praticalUnitOfMeasurement: PraticalUnitOfMeasurement.unity,
+      unity: 192,
     },
     aminoAcids: {
       tryptophan: 1,
@@ -114,8 +113,7 @@ const foods: Array<Food> = [
     },
     unitOfMeasurement: UnitOfMeasurement.gram,
     oneMeasure: {
-      correspondingMeasure: 178,
-      praticalUnitOfMeasurement: PraticalUnitOfMeasurement.unity,
+      unity: 178,
     },
   },
   {
@@ -150,8 +148,7 @@ const foods: Array<Food> = [
     },
     unitOfMeasurement: UnitOfMeasurement.gram,
     oneMeasure: {
-      correspondingMeasure: 101,
-      praticalUnitOfMeasurement: PraticalUnitOfMeasurement.unity,
+      unity: 101,
     },
   },
   {
@@ -165,8 +162,7 @@ const foods: Array<Food> = [
     calories: 130,
     unitOfMeasurement: UnitOfMeasurement.gram,
     oneMeasure: {
-      correspondingMeasure: PraticalUnitOfMeasurement.cup,
-      praticalUnitOfMeasurement: 158,
+      cup: 158,
     },
     aminoAcids: {
       tryptophan: 31,
@@ -199,8 +195,7 @@ const foods: Array<Food> = [
     calories: 132,
     unitOfMeasurement: UnitOfMeasurement.gram,
     oneMeasure: {
-      correspondingMeasure: 172,
-      praticalUnitOfMeasurement: PraticalUnitOfMeasurement.cup,
+      cup: 172,
     },
     saturedFats: 0.1,
     totalFat: 0.5,
@@ -328,8 +323,7 @@ const foods: Array<Food> = [
       glutamine: 0,
     },
     oneMeasure: {
-      correspondingMeasure: 248,
-      praticalUnitOfMeasurement: PraticalUnitOfMeasurement.cup,
+      cup: 248,
     },
     unitOfMeasurement: UnitOfMeasurement.liter,
   },
@@ -364,8 +358,7 @@ const foods: Array<Food> = [
       glutamine: 0,
     },
     oneMeasure: {
-      correspondingMeasure: 233,
-      praticalUnitOfMeasurement: PraticalUnitOfMeasurement.cup,
+      cup: 233,
     },
     unitOfMeasurement: UnitOfMeasurement.gram,
   },
@@ -400,8 +393,7 @@ const foods: Array<Food> = [
       glutamine: 0,
     },
     oneMeasure: {
-      correspondingMeasure: 38,
-      praticalUnitOfMeasurement: PraticalUnitOfMeasurement.unity,
+      unity: 38,
     },
     unitOfMeasurement: UnitOfMeasurement.gram,
   },
@@ -534,8 +526,7 @@ const foods: Array<Food> = [
     enName: 'pineapple',
     unitOfMeasurement: UnitOfMeasurement.gram,
     oneMeasure: {
-      correspondingMeasure: 905,
-      praticalUnitOfMeasurement: PraticalUnitOfMeasurement.unity,
+      unity: 905,
     },
     image: '/images/food/pineapple.svg',
     aminoAcids: {
@@ -566,8 +557,7 @@ const foods: Array<Food> = [
     id: 17,
     image: '/images/food/carrot.svg',
     oneMeasure: {
-      correspondingMeasure: 61,
-      praticalUnitOfMeasurement: PraticalUnitOfMeasurement.unity,
+      unity: 61,
     },
     unitOfMeasurement: UnitOfMeasurement.gram,
     aminoAcids: {
@@ -620,8 +610,7 @@ const foods: Array<Food> = [
     },
     unitOfMeasurement: UnitOfMeasurement.gram,
     oneMeasure: {
-      correspondingMeasure: PraticalUnitOfMeasurement.unity,
-      praticalUnitOfMeasurement: 201,
+      unity: 201,
     },
   },
   {
@@ -647,8 +636,7 @@ const foods: Array<Food> = [
     },
     image: '/images/food/oats.svg',
     oneMeasure: {
-      praticalUnitOfMeasurement: PraticalUnitOfMeasurement.cup,
-      correspondingMeasure: 234,
+      cup: 234,
     },
     unitOfMeasurement: UnitOfMeasurement.gram,
     aminoAcids: {
@@ -681,8 +669,9 @@ const coconut: Food = {
   name: 'Coco ralado',
   image: '/images/food/coconut.svg',
   oneMeasure: {
-    correspondingMeasure: PraticalUnitOfMeasurement.cup,
-    praticalUnitOfMeasurement: 100, // revisar quando de coco vai em um copo
+    cup: 80,
+    tablespoon: 5,
+    teaspoon: 1.5,
   },
   unitOfMeasurement: UnitOfMeasurement.gram,
 };
@@ -695,8 +684,7 @@ const egg: Food = {
   name: 'Ovo',
   image: '/images/food/egg.svg',
   oneMeasure: {
-    correspondingMeasure: PraticalUnitOfMeasurement.unity,
-    praticalUnitOfMeasurement: 50,
+    unity: 46,
   },
   unitOfMeasurement: UnitOfMeasurement.gram,
 };
@@ -708,10 +696,6 @@ const chicken: Food = {
   id: 22,
   name: 'Frango',
   image: '/images/food/chicken.svg',
-  // oneMeasure: {
-  //   correspondingMeasure: PraticalUnitOfMeasurement.unity,
-  //   praticalUnitOfMeasurement: 50,
-  // },
   unitOfMeasurement: UnitOfMeasurement.gram,
 };
 

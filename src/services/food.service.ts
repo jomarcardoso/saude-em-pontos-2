@@ -3,12 +3,6 @@ export enum UnitOfMeasurement {
   liter,
 }
 
-export enum PraticalUnitOfMeasurement {
-  spoon,
-  cup,
-  unity,
-}
-
 interface EssencialAminoAcids {
   methionine: number;
   leucine: number;
@@ -114,8 +108,10 @@ export interface Food {
   aminoAcids: AminoAcids;
   unitOfMeasurement?: UnitOfMeasurement;
   oneMeasure?: {
-    praticalUnitOfMeasurement: PraticalUnitOfMeasurement;
-    correspondingMeasure: number;
+    cup?: number;
+    tablespoon?: number;
+    teaspoon?: number;
+    unity?: number;
   };
 }
 

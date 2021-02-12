@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { FC, useContext, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
@@ -20,9 +20,9 @@ const useStyles = makeStyles({
   },
 });
 
-export default function MealPage(location) {
+const MealPage: FC<{ location: Location }> = ({ location }) => {
   const classes = useStyles();
-  const initialId = Number(location?.location?.hash?.replace('#', '') ?? 0);
+  const initialId = Number(location?.hash?.replace('#', '') ?? 0);
   const [id, setId] = useState(initialId);
   const { account = SHAPE_ACCOUNT, setAccount } = useContext(AccountContext);
   const meal: Meal =
@@ -71,4 +71,6 @@ export default function MealPage(location) {
       </Grid>
     </Layout>
   );
-}
+};
+
+export default MealPage;

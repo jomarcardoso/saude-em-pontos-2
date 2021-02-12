@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
@@ -27,6 +27,14 @@ interface Props {
   meal: Meal;
 }
 
+interface RenderResultArgs {
+  name: string;
+  value: number | string;
+  status: Status;
+}
+
+type RenderResult = (ags: RenderResultArgs) => ReactElement;
+
 const ScoreComponent: React.SFC<Props> = ({ meal }) => {
   const classes = useStyles();
   const getAcidificationStatus = () => {
@@ -43,15 +51,11 @@ const ScoreComponent: React.SFC<Props> = ({ meal }) => {
     return Status.ok;
   };
 
-  function renderResult({
-    name,
-    value,
-    status,
-  }: {
-    name: string;
-    value: number | string;
-    status: Status;
-  }) {
+  const renderResult: RenderResult = ({
+    name = '',
+    value = '',
+    status = Status.ok,
+  }) => {
     return (
       <Grid item xs={6} sm={4} className={classes.result}>
         <Box
@@ -73,7 +77,7 @@ const ScoreComponent: React.SFC<Props> = ({ meal }) => {
         </Box>
       </Grid>
     );
-  }
+  };
 
   return (
     <Grid container spacing={2}>

@@ -1,9 +1,15 @@
-function toString({ date, options }: { date: Date; options: any }): string {
+function toString({
+  date,
+  options,
+}: {
+  date: Date;
+  options: Intl.DateTimeFormatOptions;
+}): string {
   return new Intl.DateTimeFormat('default', options).format(date);
 }
 
 function toLongSring(date: Date = new Date()): string {
-  const options = {
+  const options: Intl.DateTimeFormatOptions = {
     weekday: 'long',
     year: 'numeric',
     month: 'long',
