@@ -4,7 +4,6 @@ import { FoodMyFoodData } from './db.types';
 import {
   Food,
   UnitOfMeasurement,
-  PraticalUnitOfMeasurement,
   SHAPE_AMINO_ACIDS,
 } from '../services/food.service';
 import {
