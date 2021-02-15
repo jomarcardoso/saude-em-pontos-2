@@ -3,9 +3,9 @@ import { Helmet } from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 
 interface Props {
-  description: string;
-  lang: string;
-  meta: Array<Record<string, string>>;
+  description?: string;
+  lang?: string;
+  meta?: Array<Record<string, string>>;
   title: string;
 }
 

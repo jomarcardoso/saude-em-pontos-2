@@ -1,4 +1,4 @@
-import { Food, AminoAcids } from '../food.service';
+import { Food, AminoAcids, Measure } from '../food.service';
 
 export interface Portion {
   food: Food;
@@ -6,11 +6,12 @@ export interface Portion {
   calories: number;
   carbohydrates: number;
   aminoAcids: AminoAcids;
+  measure: Measure;
 }
 
 export interface PortionData {
   foodId: number;
-  quantity: number;
+  measure: Measure;
 }
 
 export type UnFormat = (portion: Portion) => PortionData;

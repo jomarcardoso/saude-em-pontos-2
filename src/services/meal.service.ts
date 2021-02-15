@@ -86,6 +86,9 @@ function format({
   const portions = mealData?.portions?.map((portionData) =>
     PortionService.format({ portionData, foods }),
   );
+
+  console.log(portions);
+
   const allAminoAcids: AminoAcids = {
     alanine: portions.reduce(
       (sum, { aminoAcids }) => aminoAcids.alanine + sum,

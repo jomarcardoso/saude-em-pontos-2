@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "outDir": "./types/",
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "esModuleInterop": true,

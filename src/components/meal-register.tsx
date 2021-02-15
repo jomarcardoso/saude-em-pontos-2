@@ -10,11 +10,12 @@ import Grid from '@material-ui/core/Grid';
 import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
 import { Formik, Form, FieldArray } from 'formik';
-import { SetAccount } from '../services/account.service';
 import { MealData } from '../services/meal.service';
 import SubmitComponent from './submit';
 import FoodsContext from '../contexts/foods-context';
 import { PortionData } from '../services/portion/portion.types';
+import { MeasurerValues } from '../services/food.service';
+import AccountContext from '../contexts/account-context';
 
 const useStyles = makeStyles({
   formControl: {
@@ -24,7 +25,6 @@ const useStyles = makeStyles({
 
 interface Props {
   mealData: MealData;
-  setAccount: SetAccount;
   setId: (id: number) => void;
 }
 
@@ -32,20 +32,20 @@ interface MealForm {
   portions: Array<PortionData>;
 }
 
-const MealRegisterComponent: React.SFC<Props> = ({
-  mealData,
-  setAccount,
-  setId,
-}) => {
+const MealRegisterComponent: React.SFC<Props> = ({ mealData, setId }) => {
   const classes = useStyles();
   const foods = useContext(FoodsContext);
+  const { setAccount } = useContext(AccountContext);
   let { portions } = mealData;
 
   if (!portions.length) {
     portions = [
       {
         foodId: 0,
-        quantity: 0,
+        measure: {
+          quantity: 0,
+          type: 'NONE',
+        },
       },
     ];
   }
@@ -88,7 +88,7 @@ const MealRegisterComponent: React.SFC<Props> = ({
                     {values.portions.map((value, index) => (
                       <Grid item xs={12}>
                         <Grid container spacing={1} alignItems="flex-end">
-                          <Grid item xs={6}>
+                          <Grid item xs={4}>
                             <FormControl
                               variant="standard"
                               className={classes.formControl}
@@ -108,15 +108,29 @@ const MealRegisterComponent: React.SFC<Props> = ({
                               </Select>
                             </FormControl>
                           </Grid>
-                          <Grid item xs={4}>
+                          <Grid item xs={3}>
                             <TextField
                               type="number"
                               label={`Quantidade ${index + 1}`}
-                              name={`portions[${index}].quantity`}
+                              name={`portions[${index}].measure.quantity`}
                               onChange={handleChange}
                               onBlur={handleBlur}
-                              value={values.portions[index].quantity}
+                              value={values.portions[index].measure.quantity}
                             />
+                          </Grid>
+                          <Grid item xs={3}>
+                            <Select
+                              name={`portions[${index}].measure.type`}
+                              onChange={handleChange}
+                              onBlur={handleBlur}
+                              value={values.portions[index].measure.type}
+                            >
+                              {Object.entries(MeasurerValues).map(
+                                ([id, name]) => (
+                                  <MenuItem value={id}>{name}</MenuItem>
+                                ),
+                              )}
+                            </Select>
                           </Grid>
                           <Grid item xs={2}>
                             <IconButton

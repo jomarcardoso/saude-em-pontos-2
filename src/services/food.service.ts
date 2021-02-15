@@ -3,6 +3,21 @@ export enum UnitOfMeasurement {
   liter,
 }
 
+export const MeasurerValues = {
+  CUP: 'xícara',
+  TABLE_SPOON: 'colhar de sopa',
+  TEA_SPOON: 'colher de chá',
+  UNITY: 'unidade',
+  NONE: '',
+};
+
+export type Measurer = keyof typeof MeasurerValues;
+
+export interface Measure {
+  type: Measurer;
+  quantity: number;
+}
+
 interface EssencialAminoAcids {
   methionine: number;
   leucine: number;
@@ -107,12 +122,8 @@ export interface Food {
   gl?: number;
   aminoAcids: AminoAcids;
   unitOfMeasurement?: UnitOfMeasurement;
-  oneMeasure?: {
-    cup?: number;
-    tablespoon?: number;
-    teaspoon?: number;
-    unity?: number;
-  };
+  oneMeasures?: Array<Measure>;
+  keys: Array<string>;
 }
 
 export enum TRANSLATED_AMINO_ACIDS {

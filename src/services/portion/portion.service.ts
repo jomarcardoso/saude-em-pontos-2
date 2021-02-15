@@ -1,5 +1,13 @@
-import { Food, AminoAcids } from '../food.service';
+import { Food, AminoAcids, Measure } from '../food.service';
 import { Portion, PortionData, UnFormat } from './portion.types';
+
+function getQuantityByMeasure(measure: Measure, food: Food): number {
+  const measureByMeasurer: Measure = food.oneMeasures.find(
+    (oneMeasure) => oneMeasure.type === measure.type,
+  );
+
+  return measure.quantity * measureByMeasurer.quantity;
+}
 
 function format({
   foods = [],
@@ -9,42 +17,46 @@ function format({
   foods: Array<Food>;
 }): Portion {
   const food = foods[portionData.foodId - 1];
-  const calories = food.calories * portionData.quantity;
-  const carbohydrates = food.carbohydrates * portionData.quantity;
+  const quantity = getQuantityByMeasure(portionData.measure, food);
+  const calories = food.calories * quantity;
+  const carbohydrates = food.carbohydrates * quantity;
   const aminoAcids: AminoAcids = {
-    alanine: food.aminoAcids.alanine * portionData.quantity,
-    valine: food.aminoAcids.valine * portionData.quantity,
-    tyrosine: food.aminoAcids.tyrosine * portionData.quantity,
-    tryptophan: food.aminoAcids.tryptophan * portionData.quantity,
-    threonine: food.aminoAcids.threonine * portionData.quantity,
-    serine: food.aminoAcids.serine * portionData.quantity,
-    proline: food.aminoAcids.proline * portionData.quantity,
-    phenylalanine: food.aminoAcids.phenylalanine * portionData.quantity,
-    methionine: food.aminoAcids.methionine * portionData.quantity,
-    lysine: food.aminoAcids.lysine * portionData.quantity,
-    leucine: food.aminoAcids.leucine * portionData.quantity,
-    isoleucine: food.aminoAcids.isoleucine * portionData.quantity,
-    histidine: food.aminoAcids.histidine * portionData.quantity,
-    glycine: food.aminoAcids.glycine * portionData.quantity,
-    glutamine: food.aminoAcids.glutamine * portionData.quantity,
-    glutamicAcid: food.aminoAcids.glutamicAcid * portionData.quantity,
-    cystine: food.aminoAcids.cystine * portionData.quantity,
-    asparticAcid: food.aminoAcids.asparticAcid * portionData.quantity,
-    arginine: food.aminoAcids.arginine * portionData.quantity,
+    alanine: food.aminoAcids.alanine * quantity,
+    valine: food.aminoAcids.valine * quantity,
+    tyrosine: food.aminoAcids.tyrosine * quantity,
+    tryptophan: food.aminoAcids.tryptophan * quantity,
+    threonine: food.aminoAcids.threonine * quantity,
+    serine: food.aminoAcids.serine * quantity,
+    proline: food.aminoAcids.proline * quantity,
+    phenylalanine: food.aminoAcids.phenylalanine * quantity,
+    methionine: food.aminoAcids.methionine * quantity,
+    lysine: food.aminoAcids.lysine * quantity,
+    leucine: food.aminoAcids.leucine * quantity,
+    isoleucine: food.aminoAcids.isoleucine * quantity,
+    histidine: food.aminoAcids.histidine * quantity,
+    glycine: food.aminoAcids.glycine * quantity,
+    glutamine: food.aminoAcids.glutamine * quantity,
+    glutamicAcid: food.aminoAcids.glutamicAcid * quantity,
+    cystine: food.aminoAcids.cystine * quantity,
+    asparticAcid: food.aminoAcids.asparticAcid * quantity,
+    arginine: food.aminoAcids.arginine * quantity,
   };
+
+  console.log(food);
 
   return {
     food,
-    quantity: portionData.quantity,
+    quantity,
     calories,
     carbohydrates,
     aminoAcids,
+    measure: portionData.measure,
   };
 }
 
-const unFormat: UnFormat = ({ food: { id: foodId }, quantity }) => ({
+const unFormat: UnFormat = ({ food: { id: foodId }, measure }) => ({
   foodId,
-  quantity,
+  measure,
 });
 
 const PortionService = {

@@ -39,6 +39,11 @@ exports.createPages = ({ graphql, actions }) => {
                 serine
                 tyrosine
               }
+              keys
+              oneMeasures {
+                quantity
+                type
+              }
             }
           }
         }

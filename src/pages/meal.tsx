@@ -10,9 +10,10 @@ import AccountContext from '../contexts/account-context';
 import MealService, { Meal, SHAPE_MEAL } from '../services/meal.service';
 import ResumedPortion from '../components/resumed-portion';
 import ScoreComponent from '../components/score';
-import MealRegisterComponent from '../components/meal-register';
+import MealRegister from '../components/meal-register';
 import { CurrentPage } from '../services/page.service';
 import AminoAcidsTable from '../components/aminoacids-table';
+import IngredientsForm from '../components/ingredients-form';
 
 const useStyles = makeStyles({
   portionsContainer: {
@@ -33,11 +34,14 @@ const MealPage: FC<{ location: Location }> = ({ location }) => {
     <Layout pageName="Refeição" currentPage={CurrentPage.MEAL}>
       <Grid container spacing={5}>
         <Grid item xs={12}>
-          <MealRegisterComponent
+          <MealRegister
             mealData={mealData}
             setAccount={setAccount}
             setId={setId}
           />
+        </Grid>
+        <Grid item xs={12}>
+          <IngredientsForm />
         </Grid>
         <Grid item xs={12}>
           <Typography component="h2" variant="h2">

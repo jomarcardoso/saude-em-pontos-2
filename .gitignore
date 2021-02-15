@@ -58,6 +58,7 @@ typings/
 .cache/
 public
 src/db/food.json
+types
 
 # Mac files
 .DS_Store

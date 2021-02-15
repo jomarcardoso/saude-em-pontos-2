@@ -36,6 +36,11 @@ const useFoods = (): Array<Food> => {
               serine
               tyrosine
             }
+            keys
+            oneMeasures {
+              quantity
+              type
+            }
           }
         }
       }

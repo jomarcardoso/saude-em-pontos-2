@@ -14,7 +14,7 @@ import {
 
 function format(
   food: FoodMyFoodData,
-): Omit<Food, 'id' | 'name' | 'acidification'> {
+): Omit<Food, 'id' | 'name' | 'acidification' | 'keys'> {
   return {
     saturedFats: food.FASAT,
     calories: food.ENERC_KCAL,
@@ -57,9 +57,12 @@ const foods: Array<Food> = [
     calories: 52,
     carbohydrates: 14,
     unitOfMeasurement: UnitOfMeasurement.gram,
-    oneMeasure: {
-      unity: 192,
-    },
+    oneMeasures: [
+      {
+        quantity: 192,
+        type: 'UNITY',
+      },
+    ],
     aminoAcids: {
       tryptophan: 1,
       threonine: 6,
@@ -81,6 +84,7 @@ const foods: Array<Food> = [
       serine: 10,
       glutamine: 0,
     },
+    keys: [],
   },
   {
     name: 'Pêra',
@@ -111,9 +115,13 @@ const foods: Array<Food> = [
       glutamine: 0,
     },
     unitOfMeasurement: UnitOfMeasurement.gram,
-    oneMeasure: {
-      unity: 178,
-    },
+    oneMeasures: [
+      {
+        quantity: 178,
+        type: 'UNITY',
+      },
+    ],
+    keys: [],
   },
   {
     name: 'Banana Prata',
@@ -146,9 +154,13 @@ const foods: Array<Food> = [
       glutamine: 0,
     },
     unitOfMeasurement: UnitOfMeasurement.gram,
-    oneMeasure: {
-      unity: 101,
-    },
+    oneMeasures: [
+      {
+        quantity: 101,
+        type: 'UNITY',
+      },
+    ],
+    keys: [],
   },
   {
     name: 'Arroz Branco',
@@ -160,9 +172,12 @@ const foods: Array<Food> = [
     image: '/images/food/rice.svg',
     calories: 130,
     unitOfMeasurement: UnitOfMeasurement.gram,
-    oneMeasure: {
-      cup: 158,
-    },
+    oneMeasures: [
+      {
+        quantity: 158,
+        type: 'CUP',
+      },
+    ],
     aminoAcids: {
       tryptophan: 31,
       threonine: 96,
@@ -184,6 +199,7 @@ const foods: Array<Food> = [
       serine: 141,
       glutamine: 0,
     },
+    keys: ['arroz'],
   },
   {
     name: 'Feijão',
@@ -193,9 +209,12 @@ const foods: Array<Food> = [
     image: '/images/food/bean.svg',
     calories: 132,
     unitOfMeasurement: UnitOfMeasurement.gram,
-    oneMeasure: {
-      cup: 172,
-    },
+    oneMeasures: [
+      {
+        quantity: 172,
+        type: 'CUP',
+      },
+    ],
     saturedFats: 0.1,
     totalFat: 0.5,
     minerals: {
@@ -228,6 +247,7 @@ const foods: Array<Food> = [
       serine: 482,
       glutamine: 0,
     },
+    keys: [],
   },
   {
     name: 'Banana Nanica',
@@ -259,6 +279,7 @@ const foods: Array<Food> = [
       serine: 40,
       glutamine: 0,
     },
+    keys: [],
   },
   {
     name: 'Banana Mysore',
@@ -290,6 +311,7 @@ const foods: Array<Food> = [
       serine: 40,
       glutamine: 0,
     },
+    keys: [],
   },
   {
     name: 'Suco de Laranja',
@@ -321,10 +343,14 @@ const foods: Array<Food> = [
       serine: 13,
       glutamine: 0,
     },
-    oneMeasure: {
-      cup: 248,
-    },
+    oneMeasures: [
+      {
+        quantity: 248,
+        type: 'CUP',
+      },
+    ],
     unitOfMeasurement: UnitOfMeasurement.liter,
+    keys: [],
   },
   {
     name: 'Polenta',
@@ -356,10 +382,14 @@ const foods: Array<Food> = [
       serine: 68,
       glutamine: 0,
     },
-    oneMeasure: {
-      cup: 233,
-    },
+    oneMeasures: [
+      {
+        quantity: 233,
+        type: 'CUP',
+      },
+    ],
     unitOfMeasurement: UnitOfMeasurement.gram,
+    keys: [],
   },
   {
     name: 'Pão Francês',
@@ -391,10 +421,14 @@ const foods: Array<Food> = [
       serine: 416,
       glutamine: 0,
     },
-    oneMeasure: {
-      unity: 38,
-    },
+    oneMeasures: [
+      {
+        quantity: 38,
+        type: 'UNITY',
+      },
+    ],
     unitOfMeasurement: UnitOfMeasurement.gram,
+    keys: [],
   },
   {
     name: 'Morango',
@@ -406,6 +440,7 @@ const foods: Array<Food> = [
     calories: 0,
     carbohydrates: 6,
     aminoAcids: SHAPE_AMINO_ACIDS,
+    keys: [],
   },
   {
     id: 12,
@@ -434,6 +469,7 @@ const foods: Array<Food> = [
       serine: 470,
       glutamine: 0,
     },
+    keys: [],
   },
   {
     id: 13,
@@ -462,6 +498,7 @@ const foods: Array<Food> = [
       serine: 40,
       glutamine: 0,
     },
+    keys: [],
   },
   {
     id: 14,
@@ -490,6 +527,7 @@ const foods: Array<Food> = [
       serine: 30,
       glutamine: 0,
     },
+    keys: [],
   },
   {
     id: 15,
@@ -518,15 +556,19 @@ const foods: Array<Food> = [
       serine: 680,
       glutamine: 0,
     },
+    keys: [],
   },
   {
     id: 16,
     name: 'Abacaxi',
     enName: 'pineapple',
     unitOfMeasurement: UnitOfMeasurement.gram,
-    oneMeasure: {
-      unity: 905,
-    },
+    oneMeasures: [
+      {
+        quantity: 905,
+        type: 'UNITY',
+      },
+    ],
     image: '/images/food/pineapple.svg',
     aminoAcids: {
       alanine: 33,
@@ -549,15 +591,19 @@ const foods: Array<Food> = [
       tyrosine: 19,
       valine: 24,
     },
+    keys: [],
   },
   {
     enName: 'carrot',
     name: 'Cenoura',
     id: 17,
     image: '/images/food/carrot.svg',
-    oneMeasure: {
-      unity: 61,
-    },
+    oneMeasures: [
+      {
+        quantity: 61,
+        type: 'UNITY',
+      },
+    ],
     unitOfMeasurement: UnitOfMeasurement.gram,
     aminoAcids: {
       tryptophan: 12,
@@ -580,6 +626,7 @@ const foods: Array<Food> = [
       serine: 54,
       glutamine: 0,
     },
+    keys: [],
   },
   {
     id: 18,
@@ -608,9 +655,13 @@ const foods: Array<Food> = [
       glutamine: 0,
     },
     unitOfMeasurement: UnitOfMeasurement.gram,
-    oneMeasure: {
-      unity: 201,
-    },
+    oneMeasures: [
+      {
+        quantity: 201,
+        type: 'UNITY',
+      },
+    ],
+    keys: [],
   },
   {
     id: 19,
@@ -634,9 +685,12 @@ const foods: Array<Food> = [
       c: 1.4,
     },
     image: '/images/food/oats.svg',
-    oneMeasure: {
-      cup: 234,
-    },
+    oneMeasures: [
+      {
+        quantity: 234,
+        type: 'CUP',
+      },
+    ],
     unitOfMeasurement: UnitOfMeasurement.gram,
     aminoAcids: {
       tryptophan: 40,
@@ -659,6 +713,7 @@ const foods: Array<Food> = [
       serine: 151,
       glutamine: 0,
     },
+    keys: [],
   },
 ];
 
@@ -667,12 +722,22 @@ const coconut: Food = {
   id: 20,
   name: 'Coco ralado',
   image: '/images/food/coconut.svg',
-  oneMeasure: {
-    cup: 80,
-    tablespoon: 5,
-    teaspoon: 1.5,
-  },
+  oneMeasures: [
+    {
+      quantity: 80,
+      type: 'CUP',
+    },
+    {
+      quantity: 5,
+      type: 'TABLE_SPOON',
+    },
+    {
+      quantity: 1.5,
+      type: 'TEA_SPOON',
+    },
+  ],
   unitOfMeasurement: UnitOfMeasurement.gram,
+  keys: ['coco', 'côco', 'cocos', 'côcos'],
 };
 
 foods.push(coconut);
@@ -682,10 +747,14 @@ const egg: Food = {
   id: 21,
   name: 'Ovo',
   image: '/images/food/egg.svg',
-  oneMeasure: {
-    unity: 46,
-  },
+  oneMeasures: [
+    {
+      quantity: 46,
+      type: 'UNITY',
+    },
+  ],
   unitOfMeasurement: UnitOfMeasurement.gram,
+  keys: ['ovos'],
 };
 
 foods.push(egg);
@@ -696,6 +765,7 @@ const chicken: Food = {
   name: 'Frango',
   image: '/images/food/chicken.svg',
   unitOfMeasurement: UnitOfMeasurement.gram,
+  keys: ['galinha'],
 };
 
 foods.push(chicken);
