@@ -25,25 +25,23 @@ const Header: React.SFC<Props> = ({ pageName = '' }) => {
   const classes = useStyles();
   const [opened, setOpened] = useState(false);
 
-  const toggleDrawer = (open: boolean): void => (
-    event: React.SyntheticEvent,
-  ): void => {
-    if (
-      event.type === 'keydown' &&
-      (event.key === 'Tab' || event.key === 'Shift')
-    ) {
-      return;
-    }
+  const toggleDrawer = (open: boolean): void => {
+    // if (
+    //   event.type === 'keydown' &&
+    //   (event.key === 'Tab' || event.key === 'Shift')
+    // ) {
+    //   return;
+    // }
 
     setOpened(open);
   };
 
   return (
-    <AppBar position="static" role="banner" className={classes.root}>
+    <AppBar position="static" role="banner">
       <Container maxWidth="md" disableGutters>
         <Toolbar>
           <IconButton
-            onClick={toggleDrawer(true)}
+            onClick={() => toggleDrawer(true)}
             edge="start"
             className={classes.menuButton}
             color="inherit"

@@ -1,4 +1,4 @@
-import { Food, AminoAcids, SHAPE_AMINO_ACIDS } from './food.service';
+import { Food, AminoAcids, SHAPE_AMINO_ACIDS } from './food';
 import PortionService from './portion/portion.service';
 import { Portion, PortionData } from './portion/portion.types';
 
@@ -86,8 +86,6 @@ function format({
   const portions = mealData?.portions?.map((portionData) =>
     PortionService.format({ portionData, foods }),
   );
-
-  console.log(portions);
 
   const allAminoAcids: AminoAcids = {
     alanine: portions.reduce(

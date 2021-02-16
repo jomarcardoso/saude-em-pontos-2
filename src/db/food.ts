@@ -1,11 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { FoodMyFoodData } from './db.types';
-import {
-  Food,
-  UnitOfMeasurement,
-  SHAPE_AMINO_ACIDS,
-} from '../services/food.service';
+import { Food, UnitOfMeasurement, SHAPE_AMINO_ACIDS } from '../services/food';
 import {
   coconut as coconutData,
   egg as eggData,

@@ -8,7 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
-import { AminoAcids, TRANSLATED_AMINO_ACIDS } from '../services/food.service';
+import { AminoAcids, TRANSLATED_AMINO_ACIDS } from '../services/food';
 
 const useStyles = makeStyles({
   cell: {
@@ -72,7 +72,7 @@ const AminoAcidsTable: React.SFC<Props> = ({ aminoAcids = {} }) => {
     0,
   );
 
-  function renderRow({ name, quantity }) {
+  function renderRow({ name = '', quantity = 0 }) {
     const veryLowQuantity = quantity >= abundantAminoAcidFromPortion / 5;
     const lowQuantity = quantity >= (abundantAminoAcidFromPortion / 5) * 2;
     const regularQuantity = quantity >= (abundantAminoAcidFromPortion / 5) * 3;

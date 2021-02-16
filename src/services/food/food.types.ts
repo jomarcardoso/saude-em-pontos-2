@@ -8,6 +8,7 @@ export const MeasurerValues = {
   TABLE_SPOON: 'colhar de sopa',
   TEA_SPOON: 'colher de chá',
   UNITY: 'unidade',
+  LITERAL: 'literal',
   NONE: '',
 };
 
@@ -18,7 +19,7 @@ export interface Measure {
   quantity: number;
 }
 
-interface EssencialAminoAcids {
+export interface EssencialAminoAcids {
   methionine: number;
   leucine: number;
   isoleucine: number;
@@ -30,7 +31,7 @@ interface EssencialAminoAcids {
   histidine: number;
 }
 
-interface NonEssencialAminoAcids {
+export interface NonEssencialAminoAcids {
   arginine: number;
   proline: number;
   glycine: number;

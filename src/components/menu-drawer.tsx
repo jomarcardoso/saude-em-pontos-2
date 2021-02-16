@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
@@ -29,18 +29,18 @@ const useStyles = makeStyles({
 
 interface Props {
   opened: boolean;
-  toggleDrawer(event: React.SyntheticEvent): void;
+  toggleDrawer(open: boolean): void;
 }
 
-const MenuDrawer: React.SFC<Props> = ({ opened, toggleDrawer }) => {
+const MenuDrawer: FC<Props> = ({ opened, toggleDrawer }) => {
   const classes = useStyles();
 
   const list = (
-    <div
+    <a
+      href="#drawer"
       className={classes.list}
-      role="presentation"
-      onClick={toggleDrawer(false)}
-      onKeyDown={toggleDrawer(false)}
+      onClick={() => toggleDrawer(false)}
+      onKeyDown={() => toggleDrawer(false)}
     >
       <List>
         <ListItem component="li" button>
@@ -71,12 +71,12 @@ const MenuDrawer: React.SFC<Props> = ({ opened, toggleDrawer }) => {
           </Link>
         </ListItem>
       </List>
-    </div>
+    </a>
   );
 
   return (
     <div>
-      <Drawer anchor="left" open={opened} onClose={toggleDrawer(false)}>
+      <Drawer anchor="left" open={opened} onClose={() => toggleDrawer(false)}>
         {list}
       </Drawer>
     </div>

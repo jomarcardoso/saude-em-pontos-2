@@ -1,5 +1,5 @@
 import { useStaticQuery, graphql } from 'gatsby';
-import { Food } from '../services/food.service';
+import { Food } from '../services/food';
 
 const useFoods = (): Array<Food> => {
   const data = useStaticQuery(graphql`

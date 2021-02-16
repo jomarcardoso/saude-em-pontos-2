@@ -3,7 +3,7 @@ import AccountService, {
   AccountAndSet,
   SetAccount,
 } from '../services/account.service';
-import { Food } from '../services/food.service';
+import { Food } from '../services/food';
 import MealService, { Meal, MealData } from '../services/meal.service';
 
 export default function useAccount(foods: Array<Food>): AccountAndSet {

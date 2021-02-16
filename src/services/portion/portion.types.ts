@@ -1,4 +1,4 @@
-import { Food, AminoAcids, Measure } from '../food.service';
+import { Food, AminoAcids, Measure } from '../food';
 
 export interface Portion {
   food: Food;

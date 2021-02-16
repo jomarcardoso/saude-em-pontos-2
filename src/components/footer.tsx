@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import HomeIcon from '@material-ui/icons/Home';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
@@ -21,7 +21,7 @@ interface Props {
   currentPage: CurrentPage;
 }
 
-const Footer: React.SFC<Props> = ({ currentPage = CurrentPage.NONE }) => {
+const Footer: FC<Props> = ({ currentPage = CurrentPage.NONE }) => {
   const classes = useStyles();
 
   return (

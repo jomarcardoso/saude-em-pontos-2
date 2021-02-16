@@ -5,14 +5,14 @@ import { useStaticQuery, graphql } from 'gatsby';
 interface Props {
   description?: string;
   lang?: string;
-  meta?: Array<Record<string, string>>;
+  meta?: HTMLMetaElement;
   title: string;
 }
 
 const SEO: FC<Props> = ({
   description = '',
   lang = 'pt',
-  meta = [],
+  meta,
   title = '',
 }) => {
   const { site } = useStaticQuery(

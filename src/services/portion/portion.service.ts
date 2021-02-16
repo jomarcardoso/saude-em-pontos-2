@@ -1,4 +1,4 @@
-import { Food, AminoAcids, Measure } from '../food.service';
+import { Food, AminoAcids, Measure } from '../food';
 import { Portion, PortionData, UnFormat } from './portion.types';
 
 function getQuantityByMeasure(measure: Measure, food: Food): number {
@@ -41,8 +41,6 @@ function format({
     asparticAcid: food.aminoAcids.asparticAcid * quantity,
     arginine: food.aminoAcids.arginine * quantity,
   };
-
-  console.log(food);
 
   return {
     food,

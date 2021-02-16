@@ -25,7 +25,7 @@ const MealPage: FC<{ location: Location }> = ({ location }) => {
   const classes = useStyles();
   const initialId = Number(location?.hash?.replace('#', '') ?? 0);
   const [id, setId] = useState(initialId);
-  const { account = SHAPE_ACCOUNT, setAccount } = useContext(AccountContext);
+  const { account = SHAPE_ACCOUNT } = useContext(AccountContext);
   const meal: Meal =
     account.meals.find(({ id: mealId }) => mealId === id) ?? SHAPE_MEAL;
   const mealData = MealService.unFormat(meal);
@@ -34,11 +34,7 @@ const MealPage: FC<{ location: Location }> = ({ location }) => {
     <Layout pageName="Refeição" currentPage={CurrentPage.MEAL}>
       <Grid container spacing={5}>
         <Grid item xs={12}>
-          <MealRegister
-            mealData={mealData}
-            setAccount={setAccount}
-            setId={setId}
-          />
+          <MealRegister mealData={mealData} setId={setId} />
         </Grid>
         <Grid item xs={12}>
           <IngredientsForm />
@@ -55,7 +51,14 @@ const MealPage: FC<{ location: Location }> = ({ location }) => {
           <Box className={classes.portionsContainer} bgcolor="grey.600">
             <Grid container spacing={2} component="ul" justify="center">
               {meal.portions.map((portion) => (
-                <ResumedPortion xs={6} sm={4} md={3} lg={2} portion={portion} />
+                <ResumedPortion
+                  key={portion.food.id}
+                  xs={6}
+                  sm={4}
+                  md={3}
+                  lg={2}
+                  portion={portion}
+                />
               ))}
             </Grid>
           </Box>

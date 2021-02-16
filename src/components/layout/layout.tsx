@@ -1,5 +1,6 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
+// @ts-expect-error instalação esquisita
 // eslint-disable-next-line import/no-extraneous-dependencies
 import ThemeTopLayout from 'gatsby-theme-material-ui-top-layout/src/components/top-layout';
 import { createMuiTheme, makeStyles } from '@material-ui/core/styles';

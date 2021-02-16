@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { FC } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import { Food } from '../services/food.service';
+import { Food } from '../services/food';
 import Layout from '../components/layout/layout';
 import AminoAcidsTable from '../components/aminoacids-table';
 
-const FoodPage: React.FC = ({
+interface Props {
+  pageContext: Food;
+}
+
+const FoodPage: FC<Props> = ({
   pageContext: {
     image,
     name: foodName,
@@ -15,10 +19,8 @@ const FoodPage: React.FC = ({
     gl,
     aminoAcids,
   },
-}: {
-  pageContext: Food;
 }) => {
-  function renderQuality({ name, value }) {
+  function renderQuality({ name = '', value = 0 }) {
     return (
       <Grid container spacing={1} justify="space-between">
         <Grid item>

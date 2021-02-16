@@ -1,5 +1,5 @@
 import MealService, { Meal, SetMeal, MealData } from './meal.service';
-import { Food } from './food.service';
+import { Food } from './food';
 
 export type SetHasReadAdvertise = (hasReadAdvertise: boolean) => void;
 
