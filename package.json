@@ -27,12 +27,16 @@
     "sass": "^1.32.6"
   },
   "devDependencies": {
+    "@types/jest": "^26.0.20",
     "@typescript-eslint/eslint-plugin": "4.14.2",
     "@typescript-eslint/parser": "^4.14.2",
+    "babel-jest": "^26.6.3",
+    "babel-preset-gatsby": "^0.12.1",
     "eslint": "^7.19.0",
     "eslint-config-airbnb-typescript-prettier": "^4.1.0",
     "eslint-webpack-plugin": "^2.5.0",
     "gatsby-plugin-eslint": "^3.0.0",
+    "jest": "^26.6.3",
     "prettier": "2.0.4",
     "surge": "^0.21.3",
     "ts-node": "^9.1.1",
@@ -48,7 +52,7 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+    "test": "jest",
     "publicate": "yarn build && surge ./public saude-em-pontos.surge.sh"
   },
   "repository": {

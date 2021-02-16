@@ -44,7 +44,7 @@ const MealRegisterComponent: FC<Props> = ({ mealData, setId }) => {
         foodId: 0,
         measure: {
           quantity: 0,
-          type: 'NONE',
+          type: 'LITERAL',
         },
       },
     ];

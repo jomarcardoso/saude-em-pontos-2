@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import Badge from '@material-ui/core/Badge';
 import Grid, { GridProps } from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
@@ -26,7 +26,7 @@ interface Props extends GridProps {
   portion: Portion;
 }
 
-const ResumedPortion: React.SFC<Props> = ({ portion, ...props }) => {
+const ResumedPortion: FC<Props> = ({ portion, ...props }) => {
   const classes = useStyles();
 
   return (
