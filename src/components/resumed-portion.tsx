@@ -34,8 +34,9 @@ const ResumedPortion: FC<Props> = ({ portion, ...props }) => {
       <Card variant="outlined" className={classes.card}>
         <CardContent className={classes.card}>
           <Badge
+            max={9999}
             className={classes.badge}
-            badgeContent={portion.quantity}
+            badgeContent={`${portion.quantity}g`}
             color="secondary"
             component="div"
           >

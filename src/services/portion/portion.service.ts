@@ -1,6 +1,6 @@
 import isNaN from 'lodash/isNaN';
 import { Food, AminoAcids, Measure, Measurer } from '../food';
-import { Portion, PortionData, SHAPE_PORTION, UnFormat } from './portion.types';
+import { Portion, SHAPE_PORTION, UnFormat } from './portion.types';
 
 function getQuantityByMeasure(measure: Measure, food: Food): number {
   const measureByMeasurer: Measure = food.oneMeasures.find(
@@ -8,59 +8,6 @@ function getQuantityByMeasure(measure: Measure, food: Food): number {
   );
 
   return measure.quantity * measureByMeasurer.quantity;
-}
-
-function format({
-  foods = [],
-  portionData,
-}: {
-  portionData: PortionData;
-  foods: Array<Food>;
-}): Portion {
-  const food = foods[portionData.foodId - 1];
-  const quantity = getQuantityByMeasure(portionData.measure, food);
-  const calories = (food.calories * quantity) / 100;
-  const carbohydrates = (food.carbohydrates * quantity) / 100;
-  const aminoAcids: AminoAcids = {
-    alanine: (food.aminoAcids.alanine * quantity) / 100,
-    valine: (food.aminoAcids.valine * quantity) / 100,
-    tyrosine: (food.aminoAcids.tyrosine * quantity) / 100,
-    tryptophan: (food.aminoAcids.tryptophan * quantity) / 100,
-    threonine: (food.aminoAcids.threonine * quantity) / 100,
-    serine: (food.aminoAcids.serine * quantity) / 100,
-    proline: (food.aminoAcids.proline * quantity) / 100,
-    phenylalanine: (food.aminoAcids.phenylalanine * quantity) / 100,
-    methionine: (food.aminoAcids.methionine * quantity) / 100,
-    lysine: (food.aminoAcids.lysine * quantity) / 100,
-    leucine: (food.aminoAcids.leucine * quantity) / 100,
-    isoleucine: (food.aminoAcids.isoleucine * quantity) / 100,
-    histidine: (food.aminoAcids.histidine * quantity) / 100,
-    glycine: (food.aminoAcids.glycine * quantity) / 100,
-    glutamine: (food.aminoAcids.glutamine * quantity) / 100,
-    glutamicAcid: (food.aminoAcids.glutamicAcid * quantity) / 100,
-    cystine: (food.aminoAcids.cystine * quantity) / 100,
-    asparticAcid: (food.aminoAcids.asparticAcid * quantity) / 100,
-    arginine: (food.aminoAcids.arginine * quantity) / 100,
-  };
-
-  return {
-    food,
-    quantity,
-    calories,
-    carbohydrates,
-    aminoAcids,
-    measure: portionData.measure,
-  };
-}
-
-const unFormat: UnFormat = ({ food: { id: foodId }, measure }) => ({
-  foodId,
-  measure,
-});
-
-interface PortionDataFromStringArgs {
-  foods: Array<Food>;
-  text: string;
 }
 
 function measureFromString(text = ''): Measure {
@@ -112,10 +59,14 @@ function measureFromString(text = ''): Measure {
   };
 }
 
-function portionDataFromString({
-  text,
-  foods,
-}: PortionDataFromStringArgs): Portion {
+const unFormat: UnFormat = ({ description }) => description;
+
+interface PortionFromStringArgs {
+  foods: Array<Food>;
+  text: string;
+}
+
+function portionFromString({ text, foods }: PortionFromStringArgs): Portion {
   let foodIndex = -1;
 
   const food = foods.find((foodItem) => {
@@ -137,19 +88,46 @@ function portionDataFromString({
 
   if (!food) return SHAPE_PORTION;
 
-  return format({
-    foods,
-    portionData: {
-      foodId: food.id,
-      measure,
-    },
-  });
+  // const food = foods[portionData.foodId - 1];
+  const quantity = getQuantityByMeasure(measure, food);
+  const calories = (food.calories * quantity) / 100;
+  const carbohydrates = (food.carbohydrates * quantity) / 100;
+  const aminoAcids: AminoAcids = {
+    alanine: (food.aminoAcids.alanine * quantity) / 100,
+    valine: (food.aminoAcids.valine * quantity) / 100,
+    tyrosine: (food.aminoAcids.tyrosine * quantity) / 100,
+    tryptophan: (food.aminoAcids.tryptophan * quantity) / 100,
+    threonine: (food.aminoAcids.threonine * quantity) / 100,
+    serine: (food.aminoAcids.serine * quantity) / 100,
+    proline: (food.aminoAcids.proline * quantity) / 100,
+    phenylalanine: (food.aminoAcids.phenylalanine * quantity) / 100,
+    methionine: (food.aminoAcids.methionine * quantity) / 100,
+    lysine: (food.aminoAcids.lysine * quantity) / 100,
+    leucine: (food.aminoAcids.leucine * quantity) / 100,
+    isoleucine: (food.aminoAcids.isoleucine * quantity) / 100,
+    histidine: (food.aminoAcids.histidine * quantity) / 100,
+    glycine: (food.aminoAcids.glycine * quantity) / 100,
+    glutamine: (food.aminoAcids.glutamine * quantity) / 100,
+    glutamicAcid: (food.aminoAcids.glutamicAcid * quantity) / 100,
+    cystine: (food.aminoAcids.cystine * quantity) / 100,
+    asparticAcid: (food.aminoAcids.asparticAcid * quantity) / 100,
+    arginine: (food.aminoAcids.arginine * quantity) / 100,
+  };
+
+  return {
+    food,
+    quantity,
+    calories,
+    carbohydrates,
+    aminoAcids,
+    measure,
+    description: text,
+  };
 }
 
 const PortionService = {
-  format,
   unFormat,
-  portionDataFromString,
+  portionFromString,
   measureFromString,
 };
 

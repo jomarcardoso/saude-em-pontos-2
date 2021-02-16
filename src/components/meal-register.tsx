@@ -1,21 +1,17 @@
 import React, { FC, useContext } from 'react';
-import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
-import MenuItem from '@material-ui/core/MenuItem';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
 import { Formik, Form, FieldArray, ArrayHelpers } from 'formik';
 import { MealData } from '../services/meal.service';
 import SubmitComponent from './submit';
-import FoodsContext from '../contexts/foods-context';
-import { PortionData } from '../services/portion/portion.types';
-import { MeasurerValues } from '../services/food';
 import AccountContext from '../contexts/account-context';
+import PortionService from '../services/portion/portion.service';
+import FoodsContext from '../contexts/foods-context';
 
 const useStyles = makeStyles({
   formControl: {
@@ -29,25 +25,17 @@ interface Props {
 }
 
 interface MealForm {
-  portions: Array<PortionData>;
+  portions: Array<string>;
 }
 
-const MealRegisterComponent: FC<Props> = ({ mealData, setId }) => {
+const MealRegister: FC<Props> = ({ mealData, setId }) => {
   const classes = useStyles();
-  const foods = useContext(FoodsContext);
   const { setAccount } = useContext(AccountContext);
-  let { portions } = mealData;
+  const foods = useContext(FoodsContext);
+  let { portions = [''] } = mealData;
 
   if (!portions.length) {
-    portions = [
-      {
-        foodId: 0,
-        measure: {
-          quantity: 0,
-          type: 'LITERAL',
-        },
-      },
-    ];
+    portions = [''];
   }
 
   function handleRemove({
@@ -62,6 +50,15 @@ const MealRegisterComponent: FC<Props> = ({ mealData, setId }) => {
       foodId: 0,
       quantity: 0,
     });
+  }
+
+  function handleBlur({ target: { value = '' } }) {
+    const portion = PortionService.portionFromString({
+      text: value,
+      foods,
+    });
+
+    console.log(portion);
   }
 
   function handleSubmit({ portions: portionsData }: MealForm): void {
@@ -80,64 +77,33 @@ const MealRegisterComponent: FC<Props> = ({ mealData, setId }) => {
     <Formik
       initialValues={{ portions }}
       onSubmit={handleSubmit}
-      render={({ values, handleBlur, handleChange }) => (
+      render={({ values, handleBlur: formikHandleBlur, handleChange }) => (
         <Form action="/" method="post">
-          <FieldArray
-            name="portions"
-            render={({ push, remove }: ArrayHelpers) => (
+          <FieldArray name="portions">
+            {({ push, remove }: ArrayHelpers) => (
               <Grid container spacing={5}>
                 <Grid item xs={12}>
                   <Grid container spacing={3}>
                     {values.portions.map((value, index) => (
-                      <Grid item xs={12} key={value.foodId}>
+                      <Grid item xs={12}>
                         <Grid container spacing={1} alignItems="flex-end">
-                          <Grid item xs={4}>
+                          <Grid item xs={10}>
                             <FormControl
                               variant="standard"
                               className={classes.formControl}
                             >
-                              <InputLabel id={`food-${index}`}>
-                                Alimento {index + 1}
-                              </InputLabel>
-                              <Select
-                                name={`portions[${index}].foodId`}
+                              <TextField
+                                type="text"
+                                label={`Ingrediente ${index + 1}`}
+                                name={`portions.${index}`}
                                 onChange={handleChange}
-                                onBlur={handleBlur}
-                                value={values.portions[index].foodId}
-                              >
-                                {foods.map(({ id, name }) => (
-                                  <MenuItem key={id} value={id}>
-                                    {name}
-                                  </MenuItem>
-                                ))}
-                              </Select>
+                                onBlur={(event) => {
+                                  formikHandleBlur(event);
+                                  handleBlur(event);
+                                }}
+                                value={value}
+                              />
                             </FormControl>
-                          </Grid>
-                          <Grid item xs={3}>
-                            <TextField
-                              type="number"
-                              label={`Quantidade ${index + 1}`}
-                              name={`portions[${index}].measure.quantity`}
-                              onChange={handleChange}
-                              onBlur={handleBlur}
-                              value={values.portions[index].measure.quantity}
-                            />
-                          </Grid>
-                          <Grid item xs={3}>
-                            <Select
-                              name={`portions[${index}].measure.type`}
-                              onChange={handleChange}
-                              onBlur={handleBlur}
-                              value={values.portions[index].measure.type}
-                            >
-                              {Object.entries(MeasurerValues).map(
-                                ([id, name]) => (
-                                  <MenuItem key={id} value={id}>
-                                    {name}
-                                  </MenuItem>
-                                ),
-                              )}
-                            </Select>
                           </Grid>
                           <Grid item xs={2}>
                             <IconButton
@@ -166,11 +132,11 @@ const MealRegisterComponent: FC<Props> = ({ mealData, setId }) => {
                 </Grid>
               </Grid>
             )}
-          />
+          </FieldArray>
         </Form>
       )}
     />
   );
 };
 
-export default MealRegisterComponent;
+export default MealRegister;

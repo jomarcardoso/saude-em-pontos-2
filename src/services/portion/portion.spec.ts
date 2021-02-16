@@ -1,4 +1,4 @@
-import { Measure, SHAPE_MEASURE } from '../food';
+import { Measure } from '../food';
 import PortionService from './portion.service';
 
 describe('PortionService', () => {

@@ -8,14 +8,10 @@ export interface Portion {
   carbohydrates: number;
   aminoAcids: AminoAcids;
   measure: Measure;
+  description: string;
 }
 
-export interface PortionData {
-  foodId: number;
-  measure: Measure;
-}
-
-export type UnFormat = (portion: Portion) => PortionData;
+export type UnFormat = (portion: Portion) => string;
 
 export const SHAPE_PORTION: Portion = {
   aminoAcids: SHAPE_AMINO_ACIDS,
@@ -27,4 +23,5 @@ export const SHAPE_PORTION: Portion = {
     type: 'LITERAL',
   },
   quantity: 0,
+  description: '',
 };

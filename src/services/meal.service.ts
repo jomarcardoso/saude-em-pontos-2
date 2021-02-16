@@ -1,6 +1,6 @@
 import { Food, AminoAcids, SHAPE_AMINO_ACIDS } from './food';
 import PortionService from './portion/portion.service';
-import { Portion, PortionData } from './portion/portion.types';
+import { Portion } from './portion/portion.types';
 
 export interface Meal {
   id: number;
@@ -17,7 +17,7 @@ export interface Meal {
 export interface MealData {
   id: number;
   date: string;
-  portions: Array<PortionData>;
+  portions: Array<string>;
 }
 
 export const SHAPE_MEAL_DATA: MealData = {
@@ -83,8 +83,8 @@ function format({
   mealData: MealData;
   foods: Array<Food>;
 }): Meal {
-  const portions = mealData?.portions?.map((portionData) =>
-    PortionService.format({ portionData, foods }),
+  const portions = mealData?.portions?.map((text) =>
+    PortionService.portionFromString({ text, foods }),
   );
 
   const allAminoAcids: AminoAcids = {

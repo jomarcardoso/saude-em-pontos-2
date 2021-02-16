@@ -13,7 +13,6 @@ import ScoreComponent from '../components/score';
 import MealRegister from '../components/meal-register';
 import { CurrentPage } from '../services/page.service';
 import AminoAcidsTable from '../components/aminoacids-table';
-import IngredientsForm from '../components/ingredients-form';
 
 const useStyles = makeStyles({
   portionsContainer: {
@@ -35,9 +34,6 @@ const MealPage: FC<{ location: Location }> = ({ location }) => {
       <Grid container spacing={5}>
         <Grid item xs={12}>
           <MealRegister mealData={mealData} setId={setId} />
-        </Grid>
-        <Grid item xs={12}>
-          <IngredientsForm />
         </Grid>
         <Grid item xs={12}>
           <Typography component="h2" variant="h2">
