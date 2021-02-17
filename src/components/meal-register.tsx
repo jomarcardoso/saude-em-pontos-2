@@ -1,8 +1,8 @@
-import React, { FC, useContext } from 'react';
+import React, { FC, useContext, useState } from 'react';
 import FormControl from '@material-ui/core/FormControl';
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
-import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
@@ -12,6 +12,7 @@ import SubmitComponent from './submit';
 import AccountContext from '../contexts/account-context';
 import PortionService from '../services/portion/portion.service';
 import FoodsContext from '../contexts/foods-context';
+import ResumedPortion from './resumed-portion';
 
 const useStyles = makeStyles({
   formControl: {
@@ -34,28 +35,30 @@ const MealRegister: FC<Props> = ({ mealData, setId }) => {
   const foods = useContext(FoodsContext);
   let { portions = [''] } = mealData;
 
+  const initialFullPortions = portions.map((portionToProcess) => {
+    return PortionService.portionFromString({
+      text: portionToProcess,
+      foods,
+    });
+  });
+
+  const [fullPortions, setFullPortions] = useState(initialFullPortions);
+
   if (!portions.length) {
     portions = [''];
   }
 
-  function handleRemove({
-    index = 0,
-    remove,
-  }: Partial<ArrayHelpers> & { index: number }) {
-    remove(index);
-  }
-
-  function handleAdd({ push }: Partial<ArrayHelpers>) {
-    push('');
-  }
-
-  function handleBlur({ target: { value = '' } }) {
+  function handleBlur({ target: { value = '' } }, index = 0) {
     const portion = PortionService.portionFromString({
       text: value,
       foods,
     });
 
-    console.log(portion);
+    const copyFullPortions = [...fullPortions];
+
+    copyFullPortions[index] = portion;
+
+    setFullPortions(copyFullPortions);
   }
 
   function handleSubmit({ portions: portionsData }: MealForm): void {
@@ -84,6 +87,12 @@ const MealRegister: FC<Props> = ({ mealData, setId }) => {
                     {values.portions.map((value, index) => (
                       <Grid item xs={12}>
                         <Grid container spacing={1} alignItems="flex-end">
+                          <ResumedPortion
+                            portion={fullPortions[index]}
+                            xs={2}
+                            hideBadge
+                            padding={6}
+                          />
                           <Grid item xs={10}>
                             <FormControl
                               variant="standard"
@@ -91,34 +100,36 @@ const MealRegister: FC<Props> = ({ mealData, setId }) => {
                             >
                               <TextField
                                 type="text"
-                                label={`Ingrediente ${index + 1}`}
+                                label={
+                                  <>
+                                    {`Ingrediente ${index + 1}`}
+                                    <IconButton
+                                      color="secondary"
+                                      aria-label={`remover alimento ${
+                                        index + 1
+                                      }`}
+                                      onClick={() => remove(index)}
+                                      size="small"
+                                    >
+                                      <CloseIcon fontSize="small" />
+                                    </IconButton>
+                                  </>
+                                }
                                 name={`portions.${index}`}
                                 onChange={handleChange}
                                 onBlur={(event) => {
                                   formikHandleBlur(event);
-                                  handleBlur(event);
+                                  handleBlur(event, index);
                                 }}
                                 value={value}
                               />
                             </FormControl>
                           </Grid>
-                          <Grid item xs={2}>
-                            <IconButton
-                              color="secondary"
-                              aria-label={`remover alimento ${index + 1}`}
-                              onClick={() => handleRemove({ index, remove })}
-                            >
-                              <DeleteForeverIcon />
-                            </IconButton>
-                          </Grid>
                         </Grid>
                       </Grid>
                     ))}
                     <Grid item xs={12}>
-                      <Button
-                        variant="outlined"
-                        onClick={() => handleAdd({ push })}
-                      >
+                      <Button variant="outlined" onClick={() => push('')}>
                         Adicionar
                       </Button>
                     </Grid>

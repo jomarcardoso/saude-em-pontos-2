@@ -4,19 +4,23 @@ import Grid, { GridProps } from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import { makeStyles } from '@material-ui/core/styles';
-import { Portion } from '../services/portion/portion.types';
+import { Portion, SHAPE_PORTION } from '../services/portion/portion.types';
 import Image from './image';
 
 const useStyles = makeStyles({
   box: {
     display: 'flex',
   },
-  card: {
+  card: (padding = 0) => ({
     display: 'flex',
     alignItems: 'flex-end',
     flex: 1,
     justifyContent: 'center',
-  },
+    padding: padding || null,
+    '&:last-child': {
+      paddingBottom: padding || null,
+    },
+  }),
   badge: {
     flex: 1,
   },
@@ -24,10 +28,17 @@ const useStyles = makeStyles({
 
 interface Props extends GridProps {
   portion: Portion;
+  hideBadge?: boolean;
+  padding?: number;
 }
 
-const ResumedPortion: FC<Props> = ({ portion, ...props }) => {
-  const classes = useStyles();
+const ResumedPortion: FC<Props> = ({
+  portion = SHAPE_PORTION,
+  hideBadge = false,
+  padding = 0,
+  ...props
+}) => {
+  const classes = useStyles(padding);
 
   return (
     <Grid item {...props} className={classes.box}>
@@ -36,7 +47,7 @@ const ResumedPortion: FC<Props> = ({ portion, ...props }) => {
           <Badge
             max={9999}
             className={classes.badge}
-            badgeContent={`${portion.quantity}g`}
+            badgeContent={!hideBadge ? `${portion.quantity}g` : null}
             color="secondary"
             component="div"
           >
