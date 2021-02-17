@@ -7,6 +7,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import { Formik, Form, FieldArray, ArrayHelpers } from 'formik';
+import { Typography } from '@material-ui/core';
+import Image from './image';
 import { MealData } from '../services/meal.service';
 import SubmitComponent from './submit';
 import AccountContext from '../contexts/account-context';
@@ -34,6 +36,7 @@ const MealRegister: FC<Props> = ({ mealData, setId }) => {
   const { setAccount } = useContext(AccountContext);
   const foods = useContext(FoodsContext);
   let { portions = [''] } = mealData;
+  const editing = true;
 
   const initialFullPortions = portions.map((portionToProcess) => {
     return PortionService.portionFromString({
@@ -83,61 +86,79 @@ const MealRegister: FC<Props> = ({ mealData, setId }) => {
             {({ push, remove }: ArrayHelpers) => (
               <Grid container spacing={5}>
                 <Grid item xs={12}>
-                  <Grid container spacing={3}>
+                  <Grid container spacing={editing ? 3 : 1}>
                     {values.portions.map((value, index) => (
                       <Grid item xs={12}>
-                        <Grid container spacing={1} alignItems="flex-end">
-                          <ResumedPortion
-                            portion={fullPortions[index]}
-                            xs={2}
-                            hideBadge
-                            padding={6}
-                          />
-                          <Grid item xs={10}>
+                        <Grid container spacing={1} alignItems="center">
+                          {editing ? (
+                            <ResumedPortion
+                              portion={fullPortions[index]}
+                              xs={2}
+                              hideBadge
+                              padding={6}
+                            />
+                          ) : (
+                            <Grid item xs={1}>
+                              <Image
+                                src={fullPortions[index].food.image}
+                                alt={fullPortions[index].food.name}
+                              />
+                            </Grid>
+                          )}
+                          <Grid item xs={editing ? 10 : 11}>
                             <FormControl
                               variant="standard"
                               className={classes.formControl}
                             >
-                              <TextField
-                                type="text"
-                                label={
-                                  <>
-                                    {`Ingrediente ${index + 1}`}
-                                    <IconButton
-                                      color="secondary"
-                                      aria-label={`remover alimento ${
-                                        index + 1
-                                      }`}
-                                      onClick={() => remove(index)}
-                                      size="small"
-                                    >
-                                      <CloseIcon fontSize="small" />
-                                    </IconButton>
-                                  </>
-                                }
-                                name={`portions.${index}`}
-                                onChange={handleChange}
-                                onBlur={(event) => {
-                                  formikHandleBlur(event);
-                                  handleBlur(event, index);
-                                }}
-                                value={value}
-                              />
+                              {editing ? (
+                                <TextField
+                                  variant="filled"
+                                  type="text"
+                                  label={
+                                    <>
+                                      {`Ingrediente ${index + 1}`}
+                                      <IconButton
+                                        color="secondary"
+                                        aria-label={`remover alimento ${
+                                          index + 1
+                                        }`}
+                                        onClick={() => remove(index)}
+                                        size="small"
+                                      >
+                                        <CloseIcon fontSize="small" />
+                                      </IconButton>
+                                    </>
+                                  }
+                                  name={`portions.${index}`}
+                                  onChange={handleChange}
+                                  onBlur={(event) => {
+                                    formikHandleBlur(event);
+                                    handleBlur(event, index);
+                                  }}
+                                  value={value}
+                                />
+                              ) : (
+                                <Typography>{value}</Typography>
+                              )}
                             </FormControl>
                           </Grid>
                         </Grid>
                       </Grid>
                     ))}
-                    <Grid item xs={12}>
-                      <Button variant="outlined" onClick={() => push('')}>
-                        Adicionar
-                      </Button>
-                    </Grid>
+                    {editing && (
+                      <Grid item xs={12}>
+                        <Button variant="outlined" onClick={() => push('')}>
+                          Adicionar
+                        </Button>
+                      </Grid>
+                    )}
                   </Grid>
                 </Grid>
-                <Grid item xs={12}>
-                  <SubmitComponent>Cadastrar refeição</SubmitComponent>
-                </Grid>
+                {editing && (
+                  <Grid item xs={12}>
+                    <SubmitComponent>Cadastrar refeição</SubmitComponent>
+                  </Grid>
+                )}
               </Grid>
             )}
           </FieldArray>
