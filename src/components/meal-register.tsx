@@ -46,10 +46,7 @@ const MealRegister: FC<Props> = ({ mealData, setId }) => {
   }
 
   function handleAdd({ push }: Partial<ArrayHelpers>) {
-    push({
-      foodId: 0,
-      quantity: 0,
-    });
+    push('');
   }
 
   function handleBlur({ target: { value = '' } }) {
