@@ -1,4 +1,4 @@
-import React, { FC, useContext, useState } from 'react';
+import React, { FC, useContext, useEffect, useState } from 'react';
 import FormControl from '@material-ui/core/FormControl';
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
@@ -9,6 +9,7 @@ import TextField from '@material-ui/core/TextField';
 import { Formik, Form, FieldArray, ArrayHelpers } from 'formik';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import EditRoundedIcon from '@material-ui/icons/EditRounded';
 import Image from './image';
 import { Meal, MealData, SHAPE_MEAL, SHAPE_MEAL_DATA } from '../services/meal';
 import SubmitComponent from './submit';
@@ -16,6 +17,7 @@ import AccountContext from '../contexts/account-context';
 import PortionService from '../services/portion/portion.service';
 import FoodsContext from '../contexts/foods-context';
 import ResumedPortion from './resumed-portion';
+import StyleContext from '../contexts/style';
 
 const useStyles = makeStyles({
   formControl: {
@@ -47,14 +49,16 @@ const MealRegister: FC<Props> = ({
   const { setAccount } = useContext(AccountContext);
   const foods = useContext(FoodsContext);
   let { portions = [''] } = mealData;
-  const editing = false;
+  const [editing, setEditing] = useState(true);
+  const { style, setStyle } = useContext(StyleContext);
 
-  const initialFullPortions = portions.map((portionToProcess) => {
-    return PortionService.portionFromString({
-      text: portionToProcess,
-      foods,
-    });
-  });
+  const initialFullPortions =
+    portions.map((portionToProcess) => {
+      return PortionService.portionFromString({
+        text: portionToProcess,
+        foods,
+      });
+    }) ?? [];
 
   const [fullPortions, setFullPortions] = useState(initialFullPortions);
 
@@ -88,7 +92,16 @@ const MealRegister: FC<Props> = ({
     });
 
     setId(id);
+    setEditing(false);
   }
+
+  useEffect(() => {
+    setStyle({
+      ...style,
+      bgBody: editing ? 'white' : '',
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [editing]);
 
   return (
     <Formik
@@ -124,6 +137,9 @@ const MealRegister: FC<Props> = ({
                   {!editing ? (
                     <Typography variant="h2" component="h2">
                       {values.name}
+                      <IconButton onClick={() => setEditing(true)}>
+                        <EditRoundedIcon />
+                      </IconButton>
                     </Typography>
                   ) : (
                     <FormControl
@@ -167,7 +183,7 @@ const MealRegister: FC<Props> = ({
                   <Grid container spacing={editing ? 3 : 1}>
                     {values.portions.map((value, index) => (
                       <Grid item xs={12}>
-                        <Grid container spacing={1} alignItems="center">
+                        <Grid container spacing={1} alignItems="stretch">
                           {editing ? (
                             <ResumedPortion
                               portion={fullPortions[index]}
@@ -177,10 +193,12 @@ const MealRegister: FC<Props> = ({
                             />
                           ) : (
                             <Grid item xs={1}>
-                              <Image
-                                src={fullPortions[index].food.image}
-                                alt={fullPortions[index].food.name}
-                              />
+                              {fullPortions.length && (
+                                <Image
+                                  src={fullPortions[index].food.image}
+                                  alt={fullPortions[index].food.name}
+                                />
+                              )}
                             </Grid>
                           )}
                           <Grid item xs={editing ? 10 : 11}>
