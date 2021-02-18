@@ -1,7 +1,7 @@
 import { Food, AminoAcids, FoodService } from '../food';
 import PortionService from '../portion/portion.service';
 import { Portion } from '../portion/portion.types';
-import { Meal, MealData, SHAPE_MEAL_DATA } from './meal.types';
+import { Meal, MealData, MEAL_DATA } from './meal.types';
 
 export function calculateCalories(portions: Array<Portion> = []): number {
   return portions.reduce((sum, portion) => {
@@ -40,7 +40,7 @@ export function calculateAcidification(portions: Array<Portion> = []): number {
 }
 
 export function format({
-  mealData = SHAPE_MEAL_DATA,
+  mealData = MEAL_DATA,
   foods = [],
 }: {
   mealData: MealData;
@@ -154,9 +154,10 @@ export function format({
 
 export function unFormat(meal: Meal): MealData {
   return {
-    id: meal.id,
-    name: meal.name,
-    description: meal.description,
-    portions: meal.portions.map(PortionService.unFormat),
+    id: meal.id ?? MEAL_DATA.id,
+    name: meal.name ?? MEAL_DATA.name,
+    description: meal.description ?? MEAL_DATA.description,
+    portions: meal.portions.map(PortionService.unFormat) ?? MEAL_DATA.portions,
+    preparation: meal.preparation ?? MEAL_DATA.preparation,
   };
 }

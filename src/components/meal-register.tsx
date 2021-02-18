@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import EditRoundedIcon from '@material-ui/icons/EditRounded';
 import Image from './image';
-import { Meal, MealData, SHAPE_MEAL, SHAPE_MEAL_DATA } from '../services/meal';
+import { Meal, MealData, MEAL, MEAL_DATA } from '../services/meal';
 import SubmitComponent from './submit';
 import AccountContext from '../contexts/account-context';
 import PortionService from '../services/portion/portion.service';
@@ -42,8 +42,8 @@ interface MealForm {
 }
 
 const MealRegister: FC<Props> = ({
-  mealData = SHAPE_MEAL_DATA,
-  meal = SHAPE_MEAL,
+  mealData = MEAL_DATA,
+  meal = MEAL,
   setId,
 }) => {
   const classes = useStyles();
@@ -139,7 +139,7 @@ const MealRegister: FC<Props> = ({
                 )}
                 <Grid item xs={12}>
                   {!editing ? (
-                    <Typography variant="h2" component="h2">
+                    <Typography variant="h1" component="h2">
                       {values.name}
                       <IconButton onClick={() => setEditing(true)}>
                         <EditRoundedIcon />
@@ -274,12 +274,18 @@ const MealRegister: FC<Props> = ({
                 ) : (
                   <>
                     <Grid item xs={12}>
-                      <Typography variant="h3" component="h3">
+                      <Typography variant="h3" component="h3" align="center">
                         Modo de preparo
                       </Typography>
                     </Grid>
                     <Grid item xs={12}>
-                      <Typography>{meal.preparation}</Typography>
+                      {meal.preparation.split(/\n\s/).map((preparationLine) => (
+                        <Grid container spacing={1}>
+                          <Grid item>
+                            <Typography>{preparationLine}</Typography>
+                          </Grid>
+                        </Grid>
+                      ))}
                     </Grid>
                   </>
                 )}

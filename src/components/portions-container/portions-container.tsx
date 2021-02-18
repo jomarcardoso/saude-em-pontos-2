@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import ResumedPortion from '../resumed-portion';
-import { SHAPE_MEAL, Meal } from '../../services/meal';
+import { MEAL, Meal } from '../../services/meal';
 
 const useStyles = makeStyles({
   portionsContainer: {
@@ -15,7 +15,7 @@ interface Props {
   meal: Meal;
 }
 
-const PortionsContainer: FC<Props> = ({ meal = SHAPE_MEAL }) => {
+const PortionsContainer: FC<Props> = ({ meal = MEAL }) => {
   const classes = useStyles();
 
   return (

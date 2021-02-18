@@ -24,7 +24,7 @@ export interface MealData {
   preparation: string;
 }
 
-export const SHAPE_MEAL_DATA: MealData = {
+export const MEAL_DATA: MealData = {
   id: 1,
   name: '',
   description: '',
@@ -32,7 +32,7 @@ export const SHAPE_MEAL_DATA: MealData = {
   preparation: '',
 };
 
-export const SHAPE_MEAL: Meal = {
+export const MEAL: Meal = {
   calories: 0,
   description: '',
   image: '',

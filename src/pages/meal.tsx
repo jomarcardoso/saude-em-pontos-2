@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Layout from '../components/layout/layout';
 import { SHAPE_ACCOUNT } from '../services/account.service';
 import AccountContext from '../contexts/account-context';
-import { MealService, Meal, SHAPE_MEAL } from '../services/meal';
+import { MealService, Meal, MEAL } from '../services/meal';
 import ScoreComponent from '../components/score';
 import MealRegister from '../components/meal-register';
 import { CurrentPage } from '../services/page.service';
@@ -15,11 +15,11 @@ const MealPage: FC<{ location: Location }> = ({ location }) => {
   const [id, setId] = useState(initialId);
   const { account = SHAPE_ACCOUNT } = useContext(AccountContext);
   const meal: Meal =
-    account.meals.find(({ id: mealId }) => mealId === id) ?? SHAPE_MEAL;
+    account.meals.find(({ id: mealId }) => mealId === id) ?? MEAL;
   const mealData = MealService.unFormat(meal);
 
   return (
-    <Layout pageName="Refeição" currentPage={CurrentPage.MEAL}>
+    <Layout currentPage={CurrentPage.MEAL} showHeader={false}>
       <Grid container spacing={4}>
         <Grid item xs={12}>
           <MealRegister mealData={mealData} meal={meal} setId={setId} />
