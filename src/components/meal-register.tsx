@@ -38,6 +38,7 @@ interface MealForm {
   portions: Array<string>;
   name: string;
   description: string;
+  preparation: string;
 }
 
 const MealRegister: FC<Props> = ({
@@ -82,6 +83,7 @@ const MealRegister: FC<Props> = ({
   function handleSubmit({
     name = '',
     description = '',
+    preparation = '',
     portions: portionsData = [],
   }: MealForm): void {
     const id = setAccount.meal({
@@ -89,6 +91,7 @@ const MealRegister: FC<Props> = ({
       name,
       description,
       id: mealData?.id ?? 0,
+      preparation,
     });
 
     setId(id);
@@ -109,6 +112,7 @@ const MealRegister: FC<Props> = ({
         portions,
         name: mealData.name,
         description: mealData.description,
+        preparation: mealData.preparation,
       }}
       onSubmit={handleSubmit}
       render={({ values, handleBlur: formikHandleBlur, handleChange }) => (
@@ -250,6 +254,35 @@ const MealRegister: FC<Props> = ({
                     )}
                   </Grid>
                 </Grid>
+                {editing ? (
+                  <Grid item xs={12}>
+                    <FormControl
+                      variant="standard"
+                      className={classes.formControl}
+                    >
+                      <TextField
+                        multiline
+                        name="preparation"
+                        label="Modo de preparo"
+                        value={values.preparation}
+                        onChange={handleChange}
+                        onBlur={formikHandleBlur}
+                        variant="filled"
+                      />
+                    </FormControl>
+                  </Grid>
+                ) : (
+                  <>
+                    <Grid item xs={12}>
+                      <Typography variant="h3" component="h3">
+                        Modo de preparo
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Typography>{meal.preparation}</Typography>
+                    </Grid>
+                  </>
+                )}
                 {editing && (
                   <Grid item xs={12}>
                     <SubmitComponent>Cadastrar refeição</SubmitComponent>

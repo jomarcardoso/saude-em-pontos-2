@@ -13,6 +13,7 @@ export interface Meal {
   carbohydrates: number;
   acidification: number;
   aminoAcids: AminoAcids;
+  preparation: string;
 }
 
 export interface MealData {
@@ -20,6 +21,7 @@ export interface MealData {
   name: string;
   description?: string;
   portions: Array<string>;
+  preparation: string;
 }
 
 export const SHAPE_MEAL_DATA: MealData = {
@@ -27,6 +29,7 @@ export const SHAPE_MEAL_DATA: MealData = {
   name: '',
   description: '',
   portions: [],
+  preparation: '',
 };
 
 export const SHAPE_MEAL: Meal = {
@@ -41,6 +44,7 @@ export const SHAPE_MEAL: Meal = {
   gl: 0,
   carbohydrates: 0,
   aminoAcids: SHAPE_AMINO_ACIDS,
+  preparation: '',
 };
 
 export type SetMeal = (mealData: MealData) => number;
