@@ -1,3 +1,7 @@
+import * as FoodServices from './food.service';
+
+export const FoodService = FoodServices;
+
 export {
   AminoAcids,
   EssencialAminoAcids,

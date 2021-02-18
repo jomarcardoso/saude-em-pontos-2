@@ -8,9 +8,8 @@ import { Link } from 'gatsby';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
-import { Meal } from '../services/meal.service';
+import { Meal } from '../services/meal';
 import ResumedPortion from './resumed-portion';
-import TimeService from '../services/vendors/time.service';
 
 const useStyles = makeStyles({
   content: {
@@ -43,11 +42,7 @@ const MealCard: React.SFC<Props> = ({ meal }) => {
         <CardHeader
           avatar={<Avatar aria-label="recipe">R</Avatar>}
           color="textSecondary"
-          title={
-            <Typography variant="h6">
-              {TimeService.toLongSring(meal.date)}
-            </Typography>
-          }
+          title={<Typography variant="h6">{meal.name}</Typography>}
         />
         <Box bgcolor="grey.600" className={classes.cardBody}>
           <CardContent>

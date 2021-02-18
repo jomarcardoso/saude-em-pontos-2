@@ -19,13 +19,16 @@ const theme = createMuiTheme({
     },
     divider: '#d6d6d6',
     grey: {
-      '600': '#e6e6e6',
+      '800': '#f4f4f4',
+      '700': '#f1f1f1',
+      '600': '#e4e4e4',
+      '400': '#c9c9c9',
     },
     primary: {
       main: '#4d7a60',
     },
     background: {
-      default: '#fdffff',
+      default: '#f4f4f4',
       // paper: '#D7D6D6',
       // paper: '#BEB2C8',
     },
@@ -106,7 +109,7 @@ const Layout: React.SFC<Props> = ({
 
   return (
     <ThemeTopLayout theme={theme}>
-      <Box className={classes.root}>
+      <Box className={classes.root} bgcolor="gray.700">
         {showHeader && <Header pageName={pageName} />}
         <Main className={classes.main}>{children}</Main>
         {showFooter && <Footer currentPage={currentPage} />}

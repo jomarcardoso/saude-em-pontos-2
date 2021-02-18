@@ -1,11 +1,22 @@
 import isNaN from 'lodash/isNaN';
-import { Food, AminoAcids, Measure, Measurer } from '../food';
+import {
+  Food,
+  AminoAcids,
+  Measure,
+  Measurer,
+  FoodService,
+  SHAPE_MEASURE,
+  SHAPE_FOOD,
+} from '../food';
 import { Portion, SHAPE_PORTION, UnFormat } from './portion.types';
 
-function getQuantityByMeasure(measure: Measure, food: Food): number {
-  const measureByMeasurer: Measure = food.oneMeasures.find(
-    (oneMeasure) => oneMeasure.type === measure.type,
-  );
+function getQuantityByMeasure(
+  measure: Measure = SHAPE_MEASURE,
+  food: Food = SHAPE_FOOD,
+): number {
+  const measureByMeasurer: Measure =
+    food.oneMeasures.find((oneMeasure) => oneMeasure.type === measure.type) ||
+    SHAPE_MEASURE;
 
   return measure.quantity * measureByMeasurer.quantity;
 }
@@ -43,7 +54,7 @@ function measureFromString(text = ''): Measure {
 
   // if (text.includes('meio') || text.includes('meia')) partialQuantity = 'half';
 
-  const valueSplit = lowText.split(' ');
+  const valueSplit = lowText.split(' ') || [];
   const quantityString =
     valueSplit.find((statement) => /^\d{1,}/.test(statement)) || '';
 
@@ -67,21 +78,9 @@ interface PortionFromStringArgs {
 }
 
 function portionFromString({ text, foods }: PortionFromStringArgs): Portion {
-  let foodIndex = -1;
-
-  const food = foods.find((foodItem) => {
-    const lowerFood = foodItem.name.toLowerCase();
-    const lowerValue = text.toLowerCase();
-
-    foodIndex = lowerValue.indexOf(lowerFood);
-
-    if (foodIndex !== -1) return true;
-
-    return foodItem.keys.find((key) => {
-      foodIndex = text.indexOf(key);
-
-      return foodIndex !== -1;
-    });
+  const { food, index: foodIndex } = FoodService.getFoodByString({
+    foods,
+    text,
   });
 
   const measure = measureFromString(text.substring(0, foodIndex));

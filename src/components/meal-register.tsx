@@ -7,9 +7,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import { Formik, Form, FieldArray, ArrayHelpers } from 'formik';
-import { Typography } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 import Image from './image';
-import { MealData } from '../services/meal.service';
+import { Meal, MealData, SHAPE_MEAL, SHAPE_MEAL_DATA } from '../services/meal';
 import SubmitComponent from './submit';
 import AccountContext from '../contexts/account-context';
 import PortionService from '../services/portion/portion.service';
@@ -20,23 +21,33 @@ const useStyles = makeStyles({
   formControl: {
     display: 'flex',
   },
+  imageBanner: {
+    padding: '30px',
+  },
 });
 
 interface Props {
   mealData: MealData;
+  meal: Meal;
   setId: (id: number) => void;
 }
 
 interface MealForm {
   portions: Array<string>;
+  name: string;
+  description: string;
 }
 
-const MealRegister: FC<Props> = ({ mealData, setId }) => {
+const MealRegister: FC<Props> = ({
+  mealData = SHAPE_MEAL_DATA,
+  meal = SHAPE_MEAL,
+  setId,
+}) => {
   const classes = useStyles();
   const { setAccount } = useContext(AccountContext);
   const foods = useContext(FoodsContext);
   let { portions = [''] } = mealData;
-  const editing = true;
+  const editing = false;
 
   const initialFullPortions = portions.map((portionToProcess) => {
     return PortionService.portionFromString({
@@ -64,12 +75,15 @@ const MealRegister: FC<Props> = ({ mealData, setId }) => {
     setFullPortions(copyFullPortions);
   }
 
-  function handleSubmit({ portions: portionsData }: MealForm): void {
+  function handleSubmit({
+    name = '',
+    description = '',
+    portions: portionsData = [],
+  }: MealForm): void {
     const id = setAccount.meal({
       portions: portionsData,
-      date: mealData?.date
-        ? new Date(mealData?.date).toString()
-        : new Date().toString(),
+      name,
+      description,
       id: mealData?.id ?? 0,
     });
 
@@ -78,13 +92,77 @@ const MealRegister: FC<Props> = ({ mealData, setId }) => {
 
   return (
     <Formik
-      initialValues={{ portions }}
+      initialValues={{
+        portions,
+        name: mealData.name,
+        description: mealData.description,
+      }}
       onSubmit={handleSubmit}
       render={({ values, handleBlur: formikHandleBlur, handleChange }) => (
         <Form action="/" method="post">
           <FieldArray name="portions">
             {({ push, remove }: ArrayHelpers) => (
-              <Grid container spacing={5}>
+              <Grid container spacing={3}>
+                {!editing && (
+                  <Grid item>
+                    <Box
+                      bgcolor="white"
+                      className={classes.imageBanner}
+                      border={1}
+                      borderColor="grey.600"
+                      borderRadius={4}
+                    >
+                      <Grid container justify="center">
+                        <Grid item xs={6}>
+                          <Image src={meal.image} />
+                        </Grid>
+                      </Grid>
+                    </Box>
+                  </Grid>
+                )}
+                <Grid item xs={12}>
+                  {!editing ? (
+                    <Typography variant="h2" component="h2">
+                      {values.name}
+                    </Typography>
+                  ) : (
+                    <FormControl
+                      variant="standard"
+                      className={classes.formControl}
+                    >
+                      <TextField
+                        name="name"
+                        label="Nome da receita"
+                        value={values.name}
+                        onChange={handleChange}
+                        onBlur={formikHandleBlur}
+                        variant="filled"
+                      />
+                    </FormControl>
+                  )}
+                </Grid>
+                {(editing || meal.description) && (
+                  <Grid item xs={12}>
+                    {editing ? (
+                      <FormControl
+                        variant="standard"
+                        className={classes.formControl}
+                      >
+                        <TextField
+                          multiline
+                          name="description"
+                          label="Descrição"
+                          value={values.description}
+                          onChange={handleChange}
+                          onBlur={formikHandleBlur}
+                          variant="filled"
+                        />
+                      </FormControl>
+                    ) : (
+                      <Typography>{meal.description}</Typography>
+                    )}
+                  </Grid>
+                )}
                 <Grid item xs={12}>
                   <Grid container spacing={editing ? 3 : 1}>
                     {values.portions.map((value, index) => (

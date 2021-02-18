@@ -1,4 +1,4 @@
-import MealService, { Meal, SetMeal, MealData } from './meal.service';
+import { MealService, Meal, SetMeal, MealData } from './meal';
 import { Food } from './food';
 
 export type SetHasReadAdvertise = (hasReadAdvertise: boolean) => void;
