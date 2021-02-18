@@ -30,3 +30,5 @@
 - [cenoura](https://www.flaticon.com/premium-icon/carrots_924384?term=carrot&page=1&position=54)
 - [abacate](https://www.flaticon.com/premium-icon/avocado_2079291?term=avocado&page=1&position=49)
 - [granola/aveia](https://www.flaticon.com/premium-icon/breakfast_1652097?term=oats&page=1&position=38)
+- [bolo de cenoura](https://www.flaticon.com/premium-icon/carrot-cake_2447809?term=carrot%20cake&page=1&position=2&page=1&position=2&related_id=2447809&origin=search)
+- [açucar](https://www.flaticon.com/premium-icon/sugar_2315968?term=sugar&page=1&position=11&page=1&position=11&related_id=2315968&origin=search)

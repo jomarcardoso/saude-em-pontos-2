@@ -6,6 +6,9 @@ import {
   coconut as coconutData,
   egg as eggData,
   chicken as chickenData,
+  oliveOil as oliveOilData,
+  sugar as sugarData,
+  wheatFlour as wheatFlourData,
 } from './src';
 
 function format(
@@ -14,7 +17,7 @@ function format(
   return {
     saturedFats: food.FASAT,
     calories: food.ENERC_KCAL,
-    enName: food.name1.toLowerCase(),
+    enName: encodeURIComponent(food.name1.toLowerCase().replace(/\s/, '-')),
     aminoAcids: {
       alanine: food.ALA_G,
       arginine: food.ARG_G,
@@ -717,6 +720,7 @@ const coconut: Food = {
   ...format(coconutData),
   id: 20,
   name: 'Coco ralado',
+  enName: 'coconut',
   image: '/images/food/coconut.svg',
   oneMeasures: [
     {
@@ -742,6 +746,7 @@ const egg: Food = {
   ...format(eggData),
   id: 21,
   name: 'Ovo',
+  enName: 'egg',
   image: '/images/food/egg.svg',
   oneMeasures: [
     {
@@ -759,12 +764,91 @@ const chicken: Food = {
   ...format(chickenData),
   id: 22,
   name: 'Frango',
+  enName: 'chicken',
   image: '/images/food/chicken.svg',
   unitOfMeasurement: UnitOfMeasurement.gram,
   keys: ['galinha'],
 };
 
 foods.push(chicken);
+
+const oliveOil: Food = {
+  ...format(oliveOilData),
+  id: 23,
+  name: 'Azeite de oliva',
+  enName: 'olive-oil',
+  image: '/images/food/olive-oil.svg',
+  unitOfMeasurement: UnitOfMeasurement.liter,
+  keys: ['azeite'],
+  oneMeasures: [
+    {
+      quantity: 240,
+      type: 'CUP',
+    },
+    {
+      quantity: 15,
+      type: 'TABLE_SPOON',
+    },
+    {
+      quantity: 5,
+      type: 'TEA_SPOON',
+    },
+  ],
+};
+
+foods.push(oliveOil);
+
+const sugar: Food = {
+  ...format(sugarData),
+  id: 24,
+  name: 'Açucar branco',
+  enName: 'sugar',
+  image: '/images/food/sugar.svg',
+  unitOfMeasurement: UnitOfMeasurement.gram,
+  keys: ['açucar'],
+  oneMeasures: [
+    {
+      quantity: 160,
+      type: 'CUP',
+    },
+    {
+      quantity: 10,
+      type: 'TABLE_SPOON',
+    },
+    {
+      quantity: 3.5,
+      type: 'TEA_SPOON',
+    },
+  ],
+};
+
+foods.push(sugar);
+
+const wheatFlour: Food = {
+  ...format(wheatFlourData),
+  id: 25,
+  name: 'Farinha de trigo',
+  enName: 'wheat-flour',
+  image: '/images/food/wheat-flour.svg',
+  unitOfMeasurement: UnitOfMeasurement.gram,
+  keys: ['farinha branca', 'farinha'],
+  oneMeasures: [
+    {
+      quantity: 120,
+      type: 'CUP',
+    },
+    {
+      quantity: 7.5,
+      type: 'TABLE_SPOON',
+    },
+    {
+      quantity: 2.5,
+      type: 'TEA_SPOON',
+    },
+  ],
+};
+
+foods.push(wheatFlour);
 
 fs.writeFileSync(
   path.resolve(__dirname, 'food.json'),
