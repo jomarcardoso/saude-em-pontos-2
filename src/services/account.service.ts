@@ -1,25 +1,27 @@
 import { MealService, Meal, SetMeal, MealData } from './meal';
 import { Food } from './food';
 
-const CURRENT_VERSION = 1;
-
-export type SetHasReadAdvertise = (hasReadAdvertise: boolean) => void;
+const CURRENT_VERSION = 2;
 
 export interface SetAccount {
-  hasReadAdvertise: SetHasReadAdvertise;
   meal: SetMeal;
 }
 
 export interface Account {
-  hasReadAdvertise: boolean;
   meals: Array<Meal>;
   version: number;
 }
 
 export interface AccountData {
-  hasReadAdvertise: boolean;
   meals: Array<MealData>;
   version: number;
+}
+
+/**
+ * @deprecated
+ */
+export interface AccountDataV1 extends AccountData {
+  hasReadAdvertise: boolean;
 }
 
 export interface AccountAndSet {
@@ -30,7 +32,6 @@ export interface AccountAndSet {
 const ACCOUNT_LOCAL_STORAGE = 'saude-em-pontos';
 
 export const SHAPE_ACCOUNT: Account = {
-  hasReadAdvertise: false,
   meals: [],
   version: 0,
 };
@@ -43,8 +44,6 @@ function format({
   foods: Array<Food>;
 }): Account {
   return {
-    hasReadAdvertise:
-      accountData.hasReadAdvertise ?? SHAPE_ACCOUNT.hasReadAdvertise,
     meals:
       accountData?.meals?.map((mealData) =>
         MealService.format({ mealData, foods }),
@@ -56,11 +55,19 @@ function format({
 function get(foods: Array<Food>): Account {
   if (typeof window === 'undefined') return SHAPE_ACCOUNT;
 
-  const accountData: AccountData =
+  const accountData: AccountData | AccountDataV1 =
     JSON.parse(localStorage.getItem(ACCOUNT_LOCAL_STORAGE)) ?? SHAPE_ACCOUNT;
 
-  if ((accountData.version ?? 0) < CURRENT_VERSION) {
-    delete accountData.meals;
+  const localVersion = accountData.version || 0;
+
+  if (localVersion < 0) {
+    accountData.meals = [];
+  }
+
+  const accountDataV1 = accountData as AccountDataV1;
+
+  if (localVersion < 2) {
+    delete accountDataV1.hasReadAdvertise;
   }
 
   return format({
@@ -71,7 +78,6 @@ function get(foods: Array<Food>): Account {
 
 function unFormat(account: Account): AccountData {
   return {
-    hasReadAdvertise: account.hasReadAdvertise,
     meals: account.meals.map((meal) => MealService.unFormat(meal)),
     version: CURRENT_VERSION,
   };

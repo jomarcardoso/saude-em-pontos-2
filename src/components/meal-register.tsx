@@ -32,6 +32,7 @@ interface Props {
   mealData: MealData;
   meal: Meal;
   setId: (id: number) => void;
+  initialEditing: boolean;
 }
 
 interface MealForm {
@@ -45,12 +46,13 @@ const MealRegister: FC<Props> = ({
   mealData = MEAL_DATA,
   meal = MEAL,
   setId,
+  initialEditing = false,
 }) => {
   const classes = useStyles();
   const { setAccount } = useContext(AccountContext);
   const foods = useContext(FoodsContext);
   let { portions = [''] } = mealData;
-  const [editing, setEditing] = useState(true);
+  const [editing, setEditing] = useState(initialEditing);
   const { style, setStyle } = useContext(StyleContext);
 
   const initialFullPortions =

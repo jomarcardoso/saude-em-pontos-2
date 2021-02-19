@@ -16,8 +16,13 @@ function theme({ bgBody = '' }: Style) {
   return createMuiTheme({
     palette: {
       secondary: {
+        main: '#666',
+        // main: '#c95a1a',
+      },
+      action: {
         // main: '#BEB2C8',
-        main: '#c95a1a',
+        // main: '#c95a1a',
+        active: '#c95a1a',
       },
       divider: '#d6d6d6',
       grey: {
