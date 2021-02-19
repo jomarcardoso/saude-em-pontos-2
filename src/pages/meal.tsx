@@ -49,7 +49,12 @@ const MealPage: FC<{ location: Location }> = ({ location }) => {
           <ShareIcon />
         </IconButton>
         <Grid item xs={12}>
-          <MealRegister mealData={mealData} meal={meal} setId={setId} />
+          <MealRegister
+            mealData={mealData}
+            meal={meal}
+            setId={setId}
+            initialEditing={!id}
+          />
         </Grid>
         <Grid item xs={12}>
           <ScoreComponent meal={meal} />
