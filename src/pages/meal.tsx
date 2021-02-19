@@ -32,7 +32,7 @@ const MealPage: FC<{ location: Location }> = ({ location }) => {
 
   function handleShare() {
     const toShare = MealService.formatToShare(mealData);
-    const url = `${location.origin}/meal?${toShare}` ?? '';
+    const url = `${location.origin}/meal/?${toShare}` ?? '';
     const title = mealData.name || 'Receita';
 
     navigator.share({
