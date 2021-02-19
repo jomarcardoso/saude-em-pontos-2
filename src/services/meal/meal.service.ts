@@ -161,3 +161,19 @@ export function unFormat(meal: Meal): MealData {
     preparation: meal.preparation ?? MEAL_DATA.preparation,
   };
 }
+
+export function formatToShare(mealData: MealData): string {
+  const json = JSON.stringify(mealData);
+
+  return new URLSearchParams({ mealData: json }).toString();
+}
+
+export function unFormatToShare(paramString: string): MealData {
+  const json = new URLSearchParams(paramString).get('mealData');
+
+  const mealData: MealData = JSON.parse(json);
+
+  delete mealData.id;
+
+  return mealData;
+}

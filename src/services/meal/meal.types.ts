@@ -17,7 +17,7 @@ export interface Meal {
 }
 
 export interface MealData {
-  id: number;
+  id?: number;
   name: string;
   description?: string;
   portions: Array<string>;
