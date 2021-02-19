@@ -801,11 +801,11 @@ foods.push(oliveOil);
 const sugar: Food = {
   ...format(sugarData),
   id: 24,
-  name: 'Açucar branco',
+  name: 'Açúcar branco',
   enName: 'sugar',
   image: '/images/food/sugar.svg',
   unitOfMeasurement: UnitOfMeasurement.gram,
-  keys: ['açucar'],
+  keys: ['açúcar'],
   oneMeasures: [
     {
       quantity: 160,

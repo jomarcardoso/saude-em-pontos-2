@@ -1,6 +1,8 @@
 import { MealService, Meal, SetMeal, MealData } from './meal';
 import { Food } from './food';
 
+const CURRENT_VERSION = 1;
+
 export type SetHasReadAdvertise = (hasReadAdvertise: boolean) => void;
 
 export interface SetAccount {
@@ -11,11 +13,13 @@ export interface SetAccount {
 export interface Account {
   hasReadAdvertise: boolean;
   meals: Array<Meal>;
+  version: number;
 }
 
 export interface AccountData {
   hasReadAdvertise: boolean;
   meals: Array<MealData>;
+  version: number;
 }
 
 export interface AccountAndSet {
@@ -28,6 +32,7 @@ const ACCOUNT_LOCAL_STORAGE = 'saude-em-pontos';
 export const SHAPE_ACCOUNT: Account = {
   hasReadAdvertise: false,
   meals: [],
+  version: 0,
 };
 
 function format({
@@ -44,6 +49,7 @@ function format({
       accountData?.meals?.map((mealData) =>
         MealService.format({ mealData, foods }),
       ) ?? SHAPE_ACCOUNT.meals,
+    version: CURRENT_VERSION,
   };
 }
 
@@ -52,6 +58,10 @@ function get(foods: Array<Food>): Account {
 
   const accountData: AccountData =
     JSON.parse(localStorage.getItem(ACCOUNT_LOCAL_STORAGE)) ?? SHAPE_ACCOUNT;
+
+  if ((accountData.version ?? 0) < CURRENT_VERSION) {
+    delete accountData.meals;
+  }
 
   return format({
     accountData,
@@ -63,6 +73,7 @@ function unFormat(account: Account): AccountData {
   return {
     hasReadAdvertise: account.hasReadAdvertise,
     meals: account.meals.map((meal) => MealService.unFormat(meal)),
+    version: CURRENT_VERSION,
   };
 }
 

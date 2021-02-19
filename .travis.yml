@@ -1,3 +1,4 @@
+if: branch = master
 language: node_js
 node_js:
   - 10
@@ -5,8 +6,13 @@ before_script:
   - yarn
 script:
   - yarn build
+  - yarn lint
+  - yarn test
+  - yarn tsc
 deploy:
   provider: surge
   project: ./public
   domain: saude-em-pontos.surge.sh
   skip_cleanup: true
+  on:
+    branch: master
