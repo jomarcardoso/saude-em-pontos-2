@@ -55,6 +55,7 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "jest",
+    "test:watch": "jest && jest --watch",
     "publicate": "yarn build && surge ./public saude-em-pontos.surge.sh"
   },
   "repository": {

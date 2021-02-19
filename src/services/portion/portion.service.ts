@@ -33,26 +33,15 @@ function measureFromString(text = ''): Measure {
     type = 'CUP';
   }
 
-  if (lowText.includes('colher') || lowText.includes('colheres')) {
+  if (lowText.includes('colher')) {
     type = 'TABLE_SPOON';
   }
 
-  if (
-    lowText.includes('colher de chá') ||
-    lowText.includes('colheres de chá') ||
-    lowText.includes('colher de cha') ||
-    lowText.includes('colheres de cha') ||
-    lowText.includes('colher pequena') ||
-    lowText.includes('colheres pequenas')
-  ) {
+  if (lowText.match(/.*colher.*chá.*/)) {
     type = 'TEA_SPOON';
   }
 
   if (/(\dg|\d\sgrama)/.test(lowText)) type = 'LITERAL';
-
-  // let partialQuantity = 'full';
-
-  // if (text.includes('meio') || text.includes('meia')) partialQuantity = 'half';
 
   const valueSplit = lowText.split(' ') || [];
   const quantityString =
@@ -63,6 +52,10 @@ function measureFromString(text = ''): Measure {
   if (valueSplit.find((statement) => statement === 'duas')) quantity = 2;
 
   if (isNaN(quantity) || !quantity) quantity = 1;
+
+  if (lowText.startsWith('meio') || lowText.startsWith('meia')) quantity = 0.5;
+
+  if (lowText.includes('e meio') || lowText.includes('e meia')) quantity += 0.5;
 
   return {
     quantity,
