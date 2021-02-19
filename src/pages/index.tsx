@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { FC, useContext } from 'react';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
@@ -16,7 +16,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Index: React.SFC = () => {
+const Index: FC = () => {
   const { account = SHAPE_ACCOUNT, setAccount }: AccountAndSet = useContext(
     AccountContext,
   );

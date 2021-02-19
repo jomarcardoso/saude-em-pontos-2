@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
@@ -35,7 +35,7 @@ interface RenderResultArgs {
 
 type RenderResult = (ags: RenderResultArgs) => ReactElement;
 
-const ScoreComponent: React.SFC<Props> = ({ meal }) => {
+const ScoreComponent: FC<Props> = ({ meal }) => {
   const classes = useStyles();
   const getAcidificationStatus = () => {
     if (meal.gi > 75) return Status.danger;

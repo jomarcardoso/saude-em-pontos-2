@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import Table from '@material-ui/core/Table';
 import Box from '@material-ui/core/Box';
 import TableBody from '@material-ui/core/TableBody';
@@ -27,7 +27,7 @@ interface Props {
   aminoAcids: AminoAcids;
 }
 
-const AminoAcidsTable: React.SFC<Props> = ({ aminoAcids = {} }) => {
+const AminoAcidsTable: FC<Props> = ({ aminoAcids = {} }) => {
   const classes = useStyles();
   const essentialAminoAcids = [
     {

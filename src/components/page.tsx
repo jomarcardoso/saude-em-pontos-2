@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { FC } from 'react';
 import useAccount from '../hooks/use-account';
 import useFoods from '../hooks/use-food';
 import AccountContext from '../contexts/account-context';
 import FoodsContext from '../contexts/foods-context';
 
-const Page: React.SFC = ({ children }) => {
+const Page: FC = ({ children }) => {
   const foods = useFoods();
   const { account, setAccount } = useAccount(foods);
 

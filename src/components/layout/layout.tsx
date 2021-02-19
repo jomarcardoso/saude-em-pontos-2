@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import Box from '@material-ui/core/Box';
 // @ts-expect-error instalação esquisita
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -101,7 +101,7 @@ interface Props {
   currentPage?: CurrentPage;
 }
 
-const Layout: React.SFC<Props> = ({
+const Layout: FC<Props> = ({
   children,
   pageName = '',
   showHeader = true,

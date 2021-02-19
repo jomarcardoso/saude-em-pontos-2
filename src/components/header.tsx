@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, FC } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -21,7 +21,7 @@ interface Props {
   pageName: string;
 }
 
-const Header: React.SFC<Props> = ({ pageName = '' }) => {
+const Header: FC<Props> = ({ pageName = '' }) => {
   const classes = useStyles();
   const [opened, setOpened] = useState(false);
 

@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { FC } from 'react';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Grid from '@material-ui/core/Grid';
 import Main from './main';
 
-const Advertise: React.SFC = () => (
+const Advertise: FC = () => (
   <Main>
     <Grid container spacing={3}>
       <Grid item xs={12}>

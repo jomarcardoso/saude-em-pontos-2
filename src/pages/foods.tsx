@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { FC, useContext } from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -35,7 +35,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Foods: React.SFC = () => {
+const Foods: FC = () => {
   const foods = useContext(FoodsContext);
   const classes = useStyles();
   const orderedFood = foods.sort((a, b) => {
