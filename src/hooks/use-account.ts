@@ -45,20 +45,12 @@ export default function useAccount(foods: Array<Food>): AccountAndSet {
     return id;
   }
 
-  function setHasReadAdvertise(hasReadAdvertise: boolean): void {
-    _setAccount({
-      ...account,
-      hasReadAdvertise,
-    });
-  }
-
   useEffect(() => {
     AccountService.save(account);
   }, [account]);
 
   const setAccount: SetAccount = {
     // account: _setAccount,
-    hasReadAdvertise: setHasReadAdvertise,
     meal: setMeal,
   };
 
