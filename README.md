@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/jomarcardoso/saude-em-pontos-2.svg?branch=master)](https://travis-ci.org/jomarcardoso/saude-em-pontos-2)
 
+Acesso o aplicativo em https://saude-em-pontos.surge.sh
+
 ## Cores
 
 - [Paleta](https://coolors.co/4d7a60-5d5e60-8d8d92-beb2c8-d7d6d6)
