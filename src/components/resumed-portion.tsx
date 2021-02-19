@@ -7,24 +7,25 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Portion, SHAPE_PORTION } from '../services/portion/portion.types';
 import Image from './image';
 
-const useStyles = makeStyles({
-  box: {
-    display: 'flex',
-  },
-  card: (padding = 0) => ({
-    display: 'flex',
-    alignItems: 'flex-end',
-    flex: 1,
-    justifyContent: 'center',
-    padding: padding || null,
-    '&:last-child': {
-      paddingBottom: padding || null,
+const useStyles = (padding = 0) =>
+  makeStyles({
+    box: {
+      display: 'flex',
     },
-  }),
-  badge: {
-    flex: 1,
-  },
-});
+    card: {
+      display: 'flex',
+      alignItems: 'flex-end',
+      flex: 1,
+      justifyContent: 'center',
+      padding: padding || null,
+      '&:last-child': {
+        paddingBottom: padding || null,
+      },
+    },
+    badge: {
+      flex: 1,
+    },
+  });
 
 interface Props extends GridProps {
   portion: Portion;
@@ -38,7 +39,7 @@ const ResumedPortion: FC<Props> = ({
   padding = 0,
   ...props
 }) => {
-  const classes = useStyles(padding);
+  const classes = useStyles(padding)();
 
   return (
     <Grid item {...props} className={classes.box}>

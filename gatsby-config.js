@@ -6,6 +6,7 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-typescript`,
+    'gatsby-plugin-typescript-checker',
     {
       resolve: `gatsby-plugin-offline`,
       options: {
