@@ -12,7 +12,7 @@ const Preparation: FC<Props> = ({ preparation = '' }) => {
     <Section title="Modo de preparo">
       <Grid container spacing={1}>
         {preparation.split(/\n\s/).map((preparationLine) => (
-          <Grid item xs={12}>
+          <Grid item xs={12} key={preparationLine}>
             <Typography>{preparationLine}</Typography>
           </Grid>
         ))}

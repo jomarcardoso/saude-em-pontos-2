@@ -17,7 +17,7 @@ const Ingredients: FC<Props> = ({ portions = [] }) => {
     <Section title="Ingredientes">
       <List>
         {portions.map(({ food = FOOD, description = '' }) => (
-          <ListItem button disableGutters>
+          <ListItem button disableGutters key={food.id}>
             <Grid container spacing={2} alignItems="center">
               <Grid item xs={2}>
                 <Image src={food.image} alt={food.name} />

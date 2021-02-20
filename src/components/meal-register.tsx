@@ -8,7 +8,6 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import { Formik, Form, FieldArray, ArrayHelpers } from 'formik';
 import Typography from '@material-ui/core/Typography';
-import EditRoundedIcon from '@material-ui/icons/EditRounded';
 import { Meal, MealData, MEAL, MEAL_DATA } from '../services/meal';
 import SubmitComponent from './submit';
 import AccountContext from '../contexts/account-context';
@@ -122,28 +121,19 @@ const MealRegister: FC<Props> = ({
             {({ push, remove }: ArrayHelpers) => (
               <Grid container spacing={3}>
                 <Grid item xs={12}>
-                  {!editing ? (
-                    <Typography variant="h1" component="h2">
-                      {values.name}
-                      <IconButton onClick={() => setEditing(true)}>
-                        <EditRoundedIcon />
-                      </IconButton>
-                    </Typography>
-                  ) : (
-                    <FormControl
-                      variant="standard"
-                      className={classes.formControl}
-                    >
-                      <TextField
-                        name="name"
-                        label="Nome da receita"
-                        value={values.name}
-                        onChange={handleChange}
-                        onBlur={formikHandleBlur}
-                        variant="filled"
-                      />
-                    </FormControl>
-                  )}
+                  <FormControl
+                    variant="standard"
+                    className={classes.formControl}
+                  >
+                    <TextField
+                      name="name"
+                      label="Nome da receita"
+                      value={values.name}
+                      onChange={handleChange}
+                      onBlur={formikHandleBlur}
+                      variant="filled"
+                    />
+                  </FormControl>
                 </Grid>
                 {(editing || meal.description) && (
                   <Grid item xs={12}>
@@ -197,7 +187,7 @@ const MealRegister: FC<Props> = ({
                                       onClick={() => remove(index)}
                                       size="small"
                                     >
-                                      <CloseIcon fontSize="small" />
+                                      <CloseIcon />
                                     </IconButton>
                                   </>
                                 }
@@ -221,46 +211,25 @@ const MealRegister: FC<Props> = ({
                     </Grid>
                   </Grid>
                 </Grid>
-                {editing ? (
-                  <Grid item xs={12}>
-                    <FormControl
-                      variant="standard"
-                      className={classes.formControl}
-                    >
-                      <TextField
-                        multiline
-                        name="preparation"
-                        label="Modo de preparo"
-                        value={values.preparation}
-                        onChange={handleChange}
-                        onBlur={formikHandleBlur}
-                        variant="filled"
-                      />
-                    </FormControl>
-                  </Grid>
-                ) : (
-                  <>
-                    <Grid item xs={12}>
-                      <Typography variant="h3" component="h3" align="center">
-                        Modo de preparo
-                      </Typography>
-                    </Grid>
-                    <Grid item xs={12}>
-                      {meal.preparation.split(/\n\s/).map((preparationLine) => (
-                        <Grid container spacing={1}>
-                          <Grid item xs={12}>
-                            <Typography>{preparationLine}</Typography>
-                          </Grid>
-                        </Grid>
-                      ))}
-                    </Grid>
-                  </>
-                )}
-                {editing && (
-                  <Grid item xs={12}>
-                    <SubmitComponent>Cadastrar refeição</SubmitComponent>
-                  </Grid>
-                )}
+                <Grid item xs={12}>
+                  <FormControl
+                    variant="standard"
+                    className={classes.formControl}
+                  >
+                    <TextField
+                      multiline
+                      name="preparation"
+                      label="Modo de preparo"
+                      value={values.preparation}
+                      onChange={handleChange}
+                      onBlur={formikHandleBlur}
+                      variant="filled"
+                    />
+                  </FormControl>
+                </Grid>
+                <Grid item xs={12}>
+                  <SubmitComponent>Cadastrar refeição</SubmitComponent>
+                </Grid>
               </Grid>
             )}
           </FieldArray>
