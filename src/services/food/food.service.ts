@@ -12,7 +12,6 @@ interface GetFoodByStringReturn {
 
 type GetFoodByString = (args: GetFoodByStringArgs) => GetFoodByStringReturn;
 
-// eslint-disable-next-line import/prefer-default-export
 export const getFoodByString: GetFoodByString = ({ foods = [], text = '' }) => {
   let index = -1;
 
