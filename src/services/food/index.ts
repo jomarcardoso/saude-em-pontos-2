@@ -15,7 +15,7 @@ export {
   UnitOfMeasurement,
   SHAPE_MEASURE,
   Minerals,
-  SHAPE_FOOD,
+  FOOD,
   SHAPE_MINERALS,
   SHAPE_VITAMINS,
 } from './food.types';
