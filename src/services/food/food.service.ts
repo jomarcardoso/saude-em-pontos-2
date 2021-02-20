@@ -1,4 +1,4 @@
-import { Food, SHAPE_FOOD } from './food.types';
+import { Food, FOOD } from './food.types';
 
 interface GetFoodByStringArgs {
   text: string;
@@ -12,7 +12,6 @@ interface GetFoodByStringReturn {
 
 type GetFoodByString = (args: GetFoodByStringArgs) => GetFoodByStringReturn;
 
-// eslint-disable-next-line import/prefer-default-export
 export const getFoodByString: GetFoodByString = ({ foods = [], text = '' }) => {
   let index = -1;
 
@@ -30,7 +29,7 @@ export const getFoodByString: GetFoodByString = ({ foods = [], text = '' }) => {
 
         return index !== -1;
       });
-    }) || SHAPE_FOOD;
+    }) || FOOD;
 
   return { food, index };
 };

@@ -196,7 +196,7 @@ export enum TRANSLATED_AMINO_ACIDS {
   valine = 'Valina',
 }
 
-export const SHAPE_FOOD: Food = {
+export const FOOD: Food = {
   aminoAcids: SHAPE_AMINO_ACIDS,
   enName: '',
   id: 0,

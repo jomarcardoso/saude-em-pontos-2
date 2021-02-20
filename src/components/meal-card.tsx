@@ -64,10 +64,10 @@ const MealCard: FC<Props> = ({ meal }) => {
             justify="space-between"
             alignItems="flex-end"
           >
-            <Grid item>
+            <Grid item xs={12}>
               <Typography variant="h3">Calorias:</Typography>
             </Grid>
-            <Grid item>
+            <Grid item xs={12}>
               <Typography variant="h4">{meal.calories}</Typography>
             </Grid>
           </Grid>

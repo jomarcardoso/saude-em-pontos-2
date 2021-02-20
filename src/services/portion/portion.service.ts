@@ -6,13 +6,13 @@ import {
   Measurer,
   FoodService,
   SHAPE_MEASURE,
-  SHAPE_FOOD,
+  FOOD,
 } from '../food';
 import { Portion, SHAPE_PORTION, UnFormat } from './portion.types';
 
 function getQuantityByMeasure(
   measure: Measure = SHAPE_MEASURE,
-  food: Food = SHAPE_FOOD,
+  food: Food = FOOD,
 ): number {
   const measureByMeasurer: Measure =
     food.oneMeasures.find((oneMeasure) => oneMeasure.type === measure.type) ||
