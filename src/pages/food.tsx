@@ -23,12 +23,12 @@ const FoodPage: FC<Props> = ({
   function renderQuality({ name = '', value = 0 }) {
     return (
       <Grid container spacing={1} justify="space-between">
-        <Grid item>
+        <Grid item xs={12}>
           <Typography variant="h6" component="h2">
             {name}
           </Typography>
         </Grid>
-        <Grid item>
+        <Grid item xs={12}>
           <Typography>{value}</Typography>
         </Grid>
       </Grid>

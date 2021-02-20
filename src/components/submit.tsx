@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 
 const SubmitComponent: FC = ({ children }) => (
   <Grid container justify="flex-end">
-    <Grid item>
+    <Grid item xs={12}>
       <Button type="submit" variant="contained" color="primary">
         {children}
       </Button>

@@ -248,7 +248,7 @@ const MealRegister: FC<Props> = ({
                     <Grid item xs={12}>
                       {meal.preparation.split(/\n\s/).map((preparationLine) => (
                         <Grid container spacing={1}>
-                          <Grid item>
+                          <Grid item xs={12}>
                             <Typography>{preparationLine}</Typography>
                           </Grid>
                         </Grid>

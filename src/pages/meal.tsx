@@ -16,6 +16,7 @@ import AminoAcidsTable from '../components/aminoacids-table';
 import FoodsContext from '../contexts/foods-context';
 import Image from '../components/image';
 import Ingredients from '../components/ingredients/ingredients';
+import Preparation from '../components/preparation/preparation';
 
 const useStyles = makeStyles({
   imageBanner: {
@@ -57,14 +58,28 @@ const MealPage: FC<{ location: Location }> = ({ location }) => {
   return (
     <Layout currentPage={CurrentPage.MEAL} showHeader={false}>
       <Grid container spacing={4}>
-        {!editing && (
-          <IconButton onClick={handleShare}>
-            <ShareIcon />
-          </IconButton>
-        )}
         {!editing ? (
           <>
-            <Grid item>
+            <Grid item xs={12}>
+              <Grid
+                container
+                alignItems="center"
+                spacing={2}
+                justify="space-between"
+              >
+                <Grid item xs={10}>
+                  <Typography variant="h1" component="h1">
+                    {meal.name}
+                  </Typography>
+                </Grid>
+                <Grid item xs={2}>
+                  <IconButton onClick={handleShare}>
+                    <ShareIcon />
+                  </IconButton>
+                </Grid>
+              </Grid>
+            </Grid>
+            <Grid item xs={12}>
               <Box
                 bgcolor="white"
                 className={classes.imageBanner}
@@ -79,8 +94,11 @@ const MealPage: FC<{ location: Location }> = ({ location }) => {
                 </Grid>
               </Box>
             </Grid>
-            <Grid item>
+            <Grid item xs={12}>
               <Ingredients portions={meal.portions} />
+            </Grid>
+            <Grid item xs={12}>
+              <Preparation preparation={meal.preparation} />
             </Grid>
           </>
         ) : (

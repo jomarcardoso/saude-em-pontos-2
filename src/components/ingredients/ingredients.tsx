@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import { Portion } from '../../services/portion/portion.types';
 import Image from '../image';
 import { FOOD } from '../../services/food';
+import Section from '../section/section';
 
 interface Props {
   portions: Array<Portion>;
@@ -13,20 +14,22 @@ interface Props {
 
 const Ingredients: FC<Props> = ({ portions = [] }) => {
   return (
-    <List>
-      {portions.map(({ food = FOOD, description = '' }) => (
-        <ListItem button>
-          <Grid container spacing={2} alignItems="center">
-            <Grid item xs={2}>
-              <Image src={food.image} alt={food.name} />
+    <Section title="Ingredientes">
+      <List>
+        {portions.map(({ food = FOOD, description = '' }) => (
+          <ListItem button disableGutters>
+            <Grid container spacing={2} alignItems="center">
+              <Grid item xs={2}>
+                <Image src={food.image} alt={food.name} />
+              </Grid>
+              <Grid item xs={10}>
+                <Typography>{description}</Typography>
+              </Grid>
             </Grid>
-            <Grid item xs={10}>
-              <Typography>{description}</Typography>
-            </Grid>
-          </Grid>
-        </ListItem>
-      ))}
-    </List>
+          </ListItem>
+        ))}
+      </List>
+    </Section>
   );
 };
 
