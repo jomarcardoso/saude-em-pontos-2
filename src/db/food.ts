@@ -474,6 +474,7 @@ const foods: Array<Food> = [
     id: 13,
     name: 'alho',
     enName: 'garlic',
+    gi: 0,
     image: '/images/food/garlic.svg',
     description: 'Alho-poró, cru',
     aminoAcids: {
@@ -503,6 +504,7 @@ const foods: Array<Food> = [
     id: 14,
     enName: 'lettuce',
     name: 'alface',
+    gi: 0,
     image: '/images/food/lettuce.svg',
     description: 'Alface, roxa, crua',
     aminoAcids: {
@@ -532,6 +534,7 @@ const foods: Array<Food> = [
     id: 15,
     name: 'Presunto',
     enName: 'ham',
+    gi: 0,
     image: '/images/food/ham.svg',
     description: 'Presunto, sem capa de gordura',
     aminoAcids: {
@@ -561,6 +564,7 @@ const foods: Array<Food> = [
     id: 16,
     name: 'Abacaxi',
     enName: 'pineapple',
+    gi: 59,
     unitOfMeasurement: UnitOfMeasurement.gram,
     oneMeasures: [
       {
@@ -596,6 +600,7 @@ const foods: Array<Food> = [
     enName: 'carrot',
     name: 'Cenoura',
     id: 17,
+    gi: 16,
     image: '/images/food/carrot.svg',
     oneMeasures: [
       {
@@ -626,11 +631,15 @@ const foods: Array<Food> = [
       glutamine: 0,
     },
     keys: [],
+    boiled: {
+      gi: 38,
+    },
   },
   {
     id: 18,
     name: 'Abacate',
     enName: 'avocado',
+    gi: 15,
     image: '/images/food/avocado.svg',
     aminoAcids: {
       tryptophan: 25,
@@ -662,64 +671,74 @@ const foods: Array<Food> = [
     ],
     keys: [],
   },
-  {
-    id: 19,
-    name: 'Aveia',
-    enName: 'oats',
-    calories: 394,
-    carbohydrates: 66.6,
-    proteins: 13.9,
-    dietaryFiber: 9.1,
-    minerals: {
-      calcium: 47.9,
-      phosphorus: 153.4,
-      manganese: 1.9,
-      magnesium: 118.8,
-      potassium: 336.3,
-      iron: 4.5,
-      zinc: 2.6,
-      sodium: 4.6,
-    },
-    vitamins: {
-      c: 1.4,
-    },
-    image: '/images/food/oats.svg',
-    oneMeasures: [
-      {
-        quantity: 234,
-        type: 'CUP',
-      },
-    ],
-    unitOfMeasurement: UnitOfMeasurement.gram,
-    aminoAcids: {
-      tryptophan: 40,
-      threonine: 96,
-      isoleucine: 116,
-      leucine: 216,
-      lysine: 135,
-      methionine: 46,
-      cystine: 97,
-      phenylalanine: 142,
-      tyrosine: 101,
-      valine: 160,
-      histidine: 54,
-      arginine: 167,
-      alanine: 124,
-      asparticAcid: 302,
-      glutamicAcid: 623,
-      glycine: 147,
-      proline: 96,
-      serine: 151,
-      glutamine: 0,
-    },
-    keys: [],
-  },
 ];
+
+const oat: Food = {
+  id: 19,
+  name: 'Aveia',
+  enName: 'oat',
+  calories: 394,
+  carbohydrates: 66.6,
+  proteins: 13.9,
+  dietaryFiber: 9.1,
+  minerals: {
+    calcium: 47.9,
+    phosphorus: 153.4,
+    manganese: 1.9,
+    magnesium: 118.8,
+    potassium: 336.3,
+    iron: 4.5,
+    zinc: 2.6,
+    sodium: 4.6,
+  },
+  vitamins: {
+    c: 1.4,
+  },
+  image: '/images/food/oats.svg',
+  oneMeasures: [
+    {
+      quantity: 234,
+      type: 'CUP',
+    },
+  ],
+  unitOfMeasurement: UnitOfMeasurement.gram,
+  aminoAcids: {
+    tryptophan: 40,
+    threonine: 96,
+    isoleucine: 116,
+    leucine: 216,
+    lysine: 135,
+    methionine: 46,
+    cystine: 97,
+    phenylalanine: 142,
+    tyrosine: 101,
+    valine: 160,
+    histidine: 54,
+    arginine: 167,
+    alanine: 124,
+    asparticAcid: 302,
+    glutamicAcid: 623,
+    glycine: 147,
+    proline: 96,
+    serine: 151,
+    glutamine: 0,
+  },
+  keys: [],
+  flour: {
+    name: 'Farinha de aveia',
+    enName: 'oat-flour',
+    keys: ['farelo de aveia'],
+    gi: 72,
+  },
+};
+
+foods.push(oat);
 
 const coconut: Food = {
   ...format(coconutData),
   id: 20,
   name: 'Coco ralado',
+  gi: 42,
   enName: 'coconut',
   image: '/images/food/coconut.svg',
   oneMeasures: [
@@ -747,6 +766,7 @@ const egg: Food = {
   id: 21,
   name: 'Ovo',
   enName: 'egg',
+  gi: 0,
   image: '/images/food/egg.svg',
   oneMeasures: [
     {
@@ -763,6 +783,7 @@ foods.push(egg);
 const chicken: Food = {
   ...format(chickenData),
   id: 22,
+  gi: 0,
   name: 'Frango',
   enName: 'chicken',
   image: '/images/food/chicken.svg',
@@ -776,6 +797,7 @@ const oliveOil: Food = {
   ...format(oliveOilData),
   id: 23,
   name: 'Azeite de oliva',
+  gi: 0,
   enName: 'olive-oil',
   image: '/images/food/olive-oil.svg',
   unitOfMeasurement: UnitOfMeasurement.liter,
@@ -803,6 +825,7 @@ const sugar: Food = {
   id: 24,
   name: 'Açúcar branco',
   enName: 'sugar',
+  gi: 92,
   image: '/images/food/sugar.svg',
   unitOfMeasurement: UnitOfMeasurement.gram,
   keys: ['açúcar'],
@@ -829,6 +852,7 @@ const wheatFlour: Food = {
   id: 25,
   name: 'Farinha de trigo',
   enName: 'wheat-flour',
+  gi: 85,
   image: '/images/food/wheat-flour.svg',
   unitOfMeasurement: UnitOfMeasurement.gram,
   keys: ['farinha branca', 'farinha'],
@@ -849,6 +873,33 @@ const wheatFlour: Food = {
 };
 
 foods.push(wheatFlour);
+
+const brownSugar: Food = {
+  ...format(sugarData), // TODO: precisa diferenciar do açúcar branco
+  id: 26,
+  name: 'Açúcar mascavo',
+  enName: 'brown-sugar',
+  gi: 80,
+  image: '/images/food/sugar.svg', // TODO: precisa diferenciar do açúcar branco
+  unitOfMeasurement: UnitOfMeasurement.gram,
+  keys: ['açúcar escuro', 'açúcar integral'],
+  oneMeasures: [
+    {
+      quantity: 160,
+      type: 'CUP',
+    },
+    {
+      quantity: 10,
+      type: 'TABLE_SPOON',
+    },
+    {
+      quantity: 3.5,
+      type: 'TEA_SPOON',
+    },
+  ],
+};
+
+foods.push(brownSugar);
 
 fs.writeFileSync(
   path.resolve(__dirname, 'food.json'),

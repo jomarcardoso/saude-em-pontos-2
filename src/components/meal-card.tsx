@@ -36,11 +36,20 @@ interface Props {
 const MealCard: FC<Props> = ({ meal }) => {
   const classes = useStyles();
 
+  const mainIngredients = meal.portions
+    .sort(
+      (portionBefore, portionCurrent) =>
+        portionCurrent.quantity - portionBefore.quantity,
+    )
+    .slice(0, 3);
+
   return (
     <Link to={`/meal#${meal.id}`} state={{ meal }} className={classes.cardLink}>
       <Card variant="outlined" className={classes.card}>
         <CardHeader
-          avatar={<Avatar aria-label="recipe">R</Avatar>}
+          avatar={
+            <Avatar aria-label="recipe" src={meal.image} variant="rounded" />
+          }
           color="textSecondary"
           title={<Typography variant="h6">{meal.name}</Typography>}
         />
@@ -49,7 +58,7 @@ const MealCard: FC<Props> = ({ meal }) => {
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <Grid container spacing={2}>
-                  {meal.portions.map((portion) => (
+                  {mainIngredients.map((portion) => (
                     <ResumedPortion portion={portion} xs={4} />
                   ))}
                 </Grid>
@@ -65,10 +74,7 @@ const MealCard: FC<Props> = ({ meal }) => {
             alignItems="flex-end"
           >
             <Grid item xs={12}>
-              <Typography variant="h3">Calorias:</Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <Typography variant="h4">{meal.calories}</Typography>
+              <Typography variant="h3">Calorias: {meal.calories}</Typography>
             </Grid>
           </Grid>
         </CardContent>

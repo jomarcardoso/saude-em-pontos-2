@@ -133,6 +133,8 @@ export interface Food {
   unitOfMeasurement?: UnitOfMeasurement;
   oneMeasures?: Array<Measure>;
   keys: Array<string>;
+  flour?: Partial<Food>;
+  boiled?: Partial<Food>;
 }
 
 export const SHAPE_MINERALS: Minerals = {
