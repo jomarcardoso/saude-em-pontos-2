@@ -1,6 +1,8 @@
 import React, { FC } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import ListItem from '@material-ui/core/ListItem';
+import List from '@material-ui/core/List';
 import { Food } from '../services/food';
 import Layout from '../components/layout/layout';
 import AminoAcidsTable from '../components/aminoacids-table';
@@ -22,16 +24,16 @@ const FoodPage: FC<Props> = ({
 }) => {
   function renderQuality({ name = '', value = 0 }) {
     return (
-      <Grid container spacing={1} justify="space-between">
-        <Grid item xs={12}>
-          <Typography variant="h6" component="h2">
-            {name}
-          </Typography>
+      <ListItem>
+        <Grid container spacing={1} justify="space-between">
+          <Grid item>
+            <Typography component="h2">{name}</Typography>
+          </Grid>
+          <Grid item>
+            <Typography>{value}</Typography>
+          </Grid>
         </Grid>
-        <Grid item xs={12}>
-          <Typography>{value}</Typography>
-        </Grid>
-      </Grid>
+      </ListItem>
     );
   }
 
@@ -42,10 +44,12 @@ const FoodPage: FC<Props> = ({
           <img src={image} alt="" />
         </Grid>
         <Grid item xs={12}>
-          {renderQuality({ name: 'Índice Glicêmico', value: gi })}
-          {renderQuality({ name: 'Calorias', value: calories })}
-          {renderQuality({ name: 'Carboidratos', value: carbohydrates })}
-          {renderQuality({ name: 'Carga Glicêmica', value: gl })}
+          <List>
+            {renderQuality({ name: 'Índice Glicêmico', value: gi })}
+            {renderQuality({ name: 'Calorias', value: calories })}
+            {renderQuality({ name: 'Carboidratos', value: carbohydrates })}
+            {renderQuality({ name: 'Carga Glicêmica', value: gl })}
+          </List>
         </Grid>
         <Grid item xs={12}>
           <Grid container spacing={2}>

@@ -38,9 +38,9 @@ const Footer: FC<Props> = ({ currentPage = CurrentPage.NONE }) => {
             label="Início"
             icon={
               currentPage === CurrentPage.HOME ? (
-                <HomeIcon color="primary" />
+                <HomeIcon color="action" />
               ) : (
-                <HomeOutlinedIcon color="secondary" />
+                <HomeOutlinedIcon />
               )
             }
           />
@@ -50,9 +50,7 @@ const Footer: FC<Props> = ({ currentPage = CurrentPage.NONE }) => {
             label="Cadastrar refeição"
             icon={
               <RestaurantOutlinedIcon
-                color={
-                  currentPage === CurrentPage.MEAL ? 'primary' : 'secondary'
-                }
+                color={currentPage === CurrentPage.MEAL ? 'action' : 'inherit'}
               />
             }
           />

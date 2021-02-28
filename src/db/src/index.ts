@@ -9,3 +9,5 @@ export { default as oliveOil } from './olive-oil';
 export { default as sugar } from './sugar';
 
 export { default as wheatFlour } from './wheat-flour';
+
+export { default as avocado } from './avocado';

@@ -9,6 +9,7 @@ import {
   oliveOil as oliveOilData,
   sugar as sugarData,
   wheatFlour as wheatFlourData,
+  avocado,
 } from './src';
 
 function format(
@@ -636,6 +637,7 @@ const foods: Array<Food> = [
     },
   },
   {
+    ...format(avocado),
     id: 18,
     name: 'Abacate',
     enName: 'avocado',

@@ -51,9 +51,9 @@ const MealCard: FC<Props> = ({ meal }) => {
             <Avatar aria-label="recipe" src={meal.image} variant="rounded" />
           }
           color="textSecondary"
-          title={<Typography variant="h6">{meal.name}</Typography>}
+          title={<Typography variant="h3">{meal.name}</Typography>}
         />
-        <Box bgcolor="grey.600" className={classes.cardBody}>
+        <Box bgcolor="grey.300" className={classes.cardBody}>
           <CardContent>
             <Grid container spacing={2}>
               <Grid item xs={12}>
@@ -74,7 +74,7 @@ const MealCard: FC<Props> = ({ meal }) => {
             alignItems="flex-end"
           >
             <Grid item xs={12}>
-              <Typography variant="h3">Calorias: {meal.calories}</Typography>
+              <Typography variant="h4">Calorias: {meal.calories}</Typography>
             </Grid>
           </Grid>
         </CardContent>

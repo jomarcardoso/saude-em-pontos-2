@@ -69,7 +69,7 @@ const ScoreComponent: FC<Props> = ({ meal }) => {
               <Typography component="p" variant="h1" align="center">
                 {Math.round(Number(value))}
               </Typography>
-              <Typography component="h3" variant="h6" align="center">
+              <Typography component="h3" variant="h4" align="center">
                 {name}
               </Typography>
             </CardContent>

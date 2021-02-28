@@ -98,7 +98,7 @@ const MealPage: FC<{ location: Location }> = ({ location }) => {
                   bgcolor="white"
                   className={classes.imageBanner}
                   border={1}
-                  borderColor="grey.600"
+                  borderColor="grey.300"
                   borderRadius={4}
                 >
                   <Grid container justify="center">
