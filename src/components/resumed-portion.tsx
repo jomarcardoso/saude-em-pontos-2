@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import Badge from '@material-ui/core/Badge';
 import Grid, { GridProps } from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import { makeStyles } from '@material-ui/core/styles';
+import makeStyles from '@material-ui/core/styles/makeStyles';
+import Card from './card/card';
 import { Portion, SHAPE_PORTION } from '../services/portion/portion.types';
 import Image from './image';
 
@@ -43,7 +43,7 @@ const ResumedPortion: FC<Props> = ({
 
   return (
     <Grid item {...props} className={classes.box}>
-      <Card variant="outlined" className={classes.card}>
+      <Card className={classes.card}>
         <CardContent className={classes.card}>
           <Badge
             max={9999}

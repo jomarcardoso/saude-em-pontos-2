@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import ListItem from '@material-ui/core/ListItem';
 import List from '@material-ui/core/List';
-import Button from '@material-ui/core/Button';
+import Button from '../components/button/button';
 import { Food } from '../services/food';
 import Layout from '../components/layout/layout';
 import AminoAcidsTable from '../components/aminoacids-table';
@@ -52,12 +52,13 @@ const FoodPage: FC<Props> = ({ pageContext: food }) => {
 
   return (
     <Layout pageName={name}>
-      <Grid container spacing={5} justify="center">
+      <Grid container spacing={4} justify="center">
         <Grid item xs={12}>
-          <Grid container spacing={5} justify="center">
+          <Grid container spacing={1}>
             <Grid item>
               <Button
                 variant={version === Version.RAW ? 'contained' : 'outlined'}
+                color="secondary"
                 onClick={() => setVersion(Version.RAW)}
               >
                 cru
@@ -68,6 +69,7 @@ const FoodPage: FC<Props> = ({ pageContext: food }) => {
                 <Button
                   variant={version === Version.JUICE ? 'contained' : 'outlined'}
                   onClick={() => setVersion(Version.JUICE)}
+                  color="secondary"
                 >
                   suco
                 </Button>

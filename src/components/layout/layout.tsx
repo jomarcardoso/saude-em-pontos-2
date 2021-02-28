@@ -3,7 +3,8 @@ import Box from '@material-ui/core/Box';
 // @ts-expect-error instalação esquisita
 // eslint-disable-next-line import/no-extraneous-dependencies
 import ThemeTopLayout from 'gatsby-theme-material-ui-top-layout/src/components/top-layout';
-import { createMuiTheme, makeStyles } from '@material-ui/core/styles';
+import makeStyles from '@material-ui/core/styles/makeStyles';
+import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 import StyleContext, { Style } from '../../contexts/style';
 import Header from '../header';
 import Main from '../main';
@@ -12,10 +13,24 @@ import './layout.scss';
 
 import { CurrentPage } from '../../services/page.service';
 
-const primary = {
+export const primary = {
   light: '#9c786c',
   main: '#6d4c41',
   dark: '#40241a',
+};
+
+export const dark = '#121212';
+
+export const light = '#f8f8f8';
+
+export const borderPrimary = {
+  borderColor: primary.light,
+  borderWidth: 2,
+};
+
+export const borderSecondary = {
+  borderColor: dark,
+  borderWidth: 1,
 };
 
 function theme({ bgBody = '' }: Style) {
@@ -23,10 +38,10 @@ function theme({ bgBody = '' }: Style) {
     palette: {
       primary,
       secondary: {
-        main: '#444',
+        main: dark,
       },
       action: {
-        active: '#0097a7',
+        active: '#1565c0',
       },
       // divider: '#d6d6d6',
       // grey: {
@@ -36,14 +51,14 @@ function theme({ bgBody = '' }: Style) {
       //   '400': '#c9c9c9',
       // },
       background: {
-        default: bgBody || '#f8f8f8',
+        default: bgBody || light,
         // paper: '#D7D6D6',
         // paper: '#BEB2C8',
       },
       // type: 'dark',
       text: {
-        primary: '#383838',
-        secondary: '#383838',
+        primary: dark,
+        secondary: dark,
       },
       // success: {
       //   main: '#4d7a60',

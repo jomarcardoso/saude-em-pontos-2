@@ -2,11 +2,11 @@ import React, { FC, useContext, useEffect, useState } from 'react';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import ShareIcon from '@material-ui/icons/Share';
-import Box from '@material-ui/core/Box';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import IconButton from '@material-ui/core/IconButton';
 import EditRoundedIcon from '@material-ui/icons/EditRounded';
 import Divider from '@material-ui/core/Divider';
+import Card from '../components/card/card';
 import StyleContext from '../contexts/style';
 import Layout from '../components/layout/layout';
 import { SHAPE_ACCOUNT } from '../services/account.service';
@@ -94,19 +94,13 @@ const MealPage: FC<{ location: Location }> = ({ location }) => {
           {!editing ? (
             <>
               <Grid item xs={12}>
-                <Box
-                  bgcolor="white"
-                  className={classes.imageBanner}
-                  border={1}
-                  borderColor="grey.300"
-                  borderRadius={4}
-                >
+                <Card className={classes.imageBanner}>
                   <Grid container justify="center">
                     <Grid item xs={6}>
                       <Image src={meal.image} />
                     </Grid>
                   </Grid>
-                </Box>
+                </Card>
               </Grid>
               <Grid item xs={12}>
                 <Grid container spacing={1} alignItems="center">

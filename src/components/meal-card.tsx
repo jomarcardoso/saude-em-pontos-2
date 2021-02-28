@@ -1,20 +1,18 @@
 import React, { FC } from 'react';
-import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
 import { Link } from 'gatsby';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import makeStyles from '@material-ui/core/styles/makeStyles';
 import Box from '@material-ui/core/Box';
+import Card from './card/card';
 import { Meal } from '../services/meal';
 import ResumedPortion from './resumed-portion';
+import { light, borderSecondary } from './layout/layout';
 
 const useStyles = makeStyles({
-  content: {
-    backgroundColor: 'info.main',
-  },
   cardLink: {
     display: 'flex',
     flex: 1,
@@ -23,9 +21,11 @@ const useStyles = makeStyles({
     display: 'flex',
     flex: 1,
     flexDirection: 'column',
+    ...borderSecondary,
   },
   cardBody: {
     flex: 1,
+    backgroundColor: light,
   },
 });
 
@@ -45,7 +45,7 @@ const MealCard: FC<Props> = ({ meal }) => {
 
   return (
     <Link to={`/meal#${meal.id}`} state={{ meal }} className={classes.cardLink}>
-      <Card variant="outlined" className={classes.card}>
+      <Card className={classes.card}>
         <CardHeader
           avatar={
             <Avatar aria-label="recipe" src={meal.image} variant="rounded" />
