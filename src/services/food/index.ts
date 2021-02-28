@@ -16,6 +16,7 @@ export {
   SHAPE_MEASURE,
   Minerals,
   FOOD,
+  PURE_FOOD,
   SHAPE_MINERALS,
   SHAPE_VITAMINS,
 } from './food.types';

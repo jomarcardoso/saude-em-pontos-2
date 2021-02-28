@@ -111,7 +111,7 @@ interface Vitamins {
   k1?: number;
 }
 
-export interface Food {
+export interface PureFood {
   id: number;
   name: string;
   description?: string;
@@ -133,8 +133,12 @@ export interface Food {
   unitOfMeasurement?: UnitOfMeasurement;
   oneMeasures?: Array<Measure>;
   keys: Array<string>;
-  flour?: Partial<Food>;
-  boiled?: Partial<Food>;
+}
+
+export interface Food extends PureFood {
+  flour: PureFood;
+  boiled: PureFood;
+  juice: PureFood;
 }
 
 export const SHAPE_MINERALS: Minerals = {
@@ -198,7 +202,7 @@ export enum TRANSLATED_AMINO_ACIDS {
   valine = 'Valina',
 }
 
-export const FOOD: Food = {
+export const PURE_FOOD: PureFood = {
   aminoAcids: SHAPE_AMINO_ACIDS,
   enName: '',
   id: 0,
@@ -220,4 +224,11 @@ export const FOOD: Food = {
   totalFat: 0,
   unitOfMeasurement: UnitOfMeasurement.gram,
   vitamins: SHAPE_VITAMINS,
+};
+
+export const FOOD: Food = {
+  ...PURE_FOOD,
+  boiled: PURE_FOOD,
+  flour: PURE_FOOD,
+  juice: PURE_FOOD,
 };

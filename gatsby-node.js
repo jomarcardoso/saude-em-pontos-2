@@ -44,12 +44,21 @@ exports.createPages = ({ graphql, actions }) => {
                 quantity
                 type
               }
+              juice {
+                name
+                image
+                enName
+                gi
+                calories
+                gl
+                carbohydrates
+              }
             }
           }
         }
       }
     `,
-    { limit: 1000 }
+    { limit: 1000 },
   ).then((result) => {
     if (result.errors) {
       throw result.errors;

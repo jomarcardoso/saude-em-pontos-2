@@ -1,7 +1,13 @@
 import fs from 'fs';
 import path from 'path';
 import { FoodMyFoodData } from './db.types';
-import { Food, UnitOfMeasurement, SHAPE_AMINO_ACIDS } from '../services/food';
+import {
+  Food,
+  UnitOfMeasurement,
+  SHAPE_AMINO_ACIDS,
+  FOOD,
+  PURE_FOOD,
+} from '../services/food';
 import {
   coconut as coconutData,
   egg as eggData,
@@ -12,10 +18,9 @@ import {
   avocado,
 } from './src';
 
-function format(
-  food: FoodMyFoodData,
-): Omit<Food, 'id' | 'name' | 'acidification' | 'keys'> {
+function format(food: FoodMyFoodData): Food {
   return {
+    ...FOOD,
     saturedFats: food.FASAT,
     calories: food.ENERC_KCAL,
     enName: encodeURIComponent(food.name1.toLowerCase().replace(/\s/, '-')),
@@ -48,6 +53,7 @@ function format(
 
 const foods: Array<Food> = [
   {
+    ...FOOD,
     name: 'Maçã Fugi',
     enName: 'apple',
     id: 1,
@@ -84,9 +90,9 @@ const foods: Array<Food> = [
       serine: 10,
       glutamine: 0,
     },
-    keys: [],
   },
   {
+    ...FOOD,
     name: 'Pêra',
     enName: 'pear',
     id: 2,
@@ -121,9 +127,9 @@ const foods: Array<Food> = [
         type: 'UNITY',
       },
     ],
-    keys: [],
   },
   {
+    ...FOOD,
     name: 'Banana Prata',
     enName: 'silver-banana',
     id: 3,
@@ -160,9 +166,9 @@ const foods: Array<Food> = [
         type: 'UNITY',
       },
     ],
-    keys: [],
   },
   {
+    ...FOOD,
     name: 'Arroz Branco',
     enName: 'white-rice',
     id: 4,
@@ -202,6 +208,7 @@ const foods: Array<Food> = [
     keys: ['arroz'],
   },
   {
+    ...FOOD,
     name: 'Feijão',
     enName: 'bean',
     id: 5,
@@ -247,9 +254,9 @@ const foods: Array<Food> = [
       serine: 482,
       glutamine: 0,
     },
-    keys: [],
   },
   {
+    ...FOOD,
     name: 'Banana Nanica',
     enName: 'nanica-banana',
     id: 6,
@@ -279,9 +286,9 @@ const foods: Array<Food> = [
       serine: 40,
       glutamine: 0,
     },
-    keys: [],
   },
   {
+    ...FOOD,
     name: 'Banana Mysore',
     enName: 'mysore-banana',
     id: 7,
@@ -311,15 +318,14 @@ const foods: Array<Food> = [
       serine: 40,
       glutamine: 0,
     },
-    keys: [],
   },
   {
-    name: 'Suco de Laranja',
-    enName: 'oragen-juice',
+    ...FOOD,
+    name: 'Laranja',
+    enName: 'orange',
     id: 8,
-    gi: 41,
-    gl: 6,
-    image: '/images/food/orange-juice.svg',
+    gi: 43,
+    image: '/images/food/orange.svg',
     calories: 0,
     carbohydrates: 14,
     aminoAcids: {
@@ -350,9 +356,17 @@ const foods: Array<Food> = [
       },
     ],
     unitOfMeasurement: UnitOfMeasurement.liter,
-    keys: [],
+    juice: {
+      ...PURE_FOOD,
+      image: '/images/food/orange-juice.svg',
+      name: 'Suco de Laranja',
+      enName: 'orange-juice',
+      gi: 50,
+      gl: 6,
+    },
   },
   {
+    ...FOOD,
     name: 'Polenta',
     enName: 'polenta',
     id: 9,
@@ -389,9 +403,9 @@ const foods: Array<Food> = [
       },
     ],
     unitOfMeasurement: UnitOfMeasurement.gram,
-    keys: [],
   },
   {
+    ...FOOD,
     name: 'Pão Francês',
     enName: 'bread-roll',
     id: 10,
@@ -428,9 +442,9 @@ const foods: Array<Food> = [
       },
     ],
     unitOfMeasurement: UnitOfMeasurement.gram,
-    keys: [],
   },
   {
+    ...FOOD,
     name: 'Morango',
     enName: 'strawberry',
     id: 11,
@@ -440,9 +454,9 @@ const foods: Array<Food> = [
     calories: 0,
     carbohydrates: 6,
     aminoAcids: SHAPE_AMINO_ACIDS,
-    keys: [],
   },
   {
+    ...FOOD,
     id: 12,
     name: 'pastel',
     enName: 'pasty',
@@ -469,9 +483,9 @@ const foods: Array<Food> = [
       serine: 470,
       glutamine: 0,
     },
-    keys: [],
   },
   {
+    ...FOOD,
     id: 13,
     name: 'alho',
     enName: 'garlic',
@@ -499,9 +513,9 @@ const foods: Array<Food> = [
       serine: 40,
       glutamine: 0,
     },
-    keys: [],
   },
   {
+    ...FOOD,
     id: 14,
     enName: 'lettuce',
     name: 'alface',
@@ -529,9 +543,9 @@ const foods: Array<Food> = [
       serine: 30,
       glutamine: 0,
     },
-    keys: [],
   },
   {
+    ...FOOD,
     id: 15,
     name: 'Presunto',
     enName: 'ham',
@@ -562,6 +576,7 @@ const foods: Array<Food> = [
     keys: [],
   },
   {
+    ...FOOD,
     id: 16,
     name: 'Abacaxi',
     enName: 'pineapple',
@@ -598,6 +613,7 @@ const foods: Array<Food> = [
     keys: [],
   },
   {
+    ...FOOD,
     enName: 'carrot',
     name: 'Cenoura',
     id: 17,
@@ -631,8 +647,8 @@ const foods: Array<Food> = [
       serine: 54,
       glutamine: 0,
     },
-    keys: [],
     boiled: {
+      ...PURE_FOOD,
       gi: 38,
     },
   },
@@ -671,11 +687,11 @@ const foods: Array<Food> = [
         type: 'UNITY',
       },
     ],
-    keys: [],
   },
 ];
 
 const oat: Food = {
+  ...FOOD,
   id: 19,
   name: 'Aveia',
   enName: 'oat',
@@ -727,6 +743,7 @@ const oat: Food = {
   },
   keys: [],
   flour: {
+    ...PURE_FOOD,
     name: 'Farinha de aveia',
     enName: 'oat-flour',
     keys: ['farelo de aveia'],
