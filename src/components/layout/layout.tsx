@@ -3,7 +3,8 @@ import Box from '@material-ui/core/Box';
 // @ts-expect-error instalação esquisita
 // eslint-disable-next-line import/no-extraneous-dependencies
 import ThemeTopLayout from 'gatsby-theme-material-ui-top-layout/src/components/top-layout';
-import { createMuiTheme, makeStyles } from '@material-ui/core/styles';
+import makeStyles from '@material-ui/core/styles/makeStyles';
+import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 import StyleContext, { Style } from '../../contexts/style';
 import Header from '../header';
 import Main from '../main';
@@ -12,76 +13,89 @@ import './layout.scss';
 
 import { CurrentPage } from '../../services/page.service';
 
+export const primary = {
+  light: '#9c786c',
+  main: '#6d4c41',
+  dark: '#40241a',
+};
+
+export const dark = '#121212';
+
+export const light = '#f8f8f8';
+
+export const borderPrimary = {
+  borderColor: primary.light,
+  borderWidth: 2,
+};
+
+export const borderSecondary = {
+  borderColor: dark,
+  borderWidth: 1,
+};
+
 function theme({ bgBody = '' }: Style) {
   return createMuiTheme({
     palette: {
+      primary,
       secondary: {
-        main: '#666',
-        // main: '#c95a1a',
+        main: dark,
       },
       action: {
-        // main: '#BEB2C8',
-        // main: '#c95a1a',
-        active: '#c95a1a',
+        active: '#1565c0',
       },
-      divider: '#d6d6d6',
-      grey: {
-        '800': '#f4f4f4',
-        '700': '#f1f1f1',
-        '600': '#e4e4e4',
-        '400': '#c9c9c9',
-      },
-      primary: {
-        main: '#4d7a60',
-      },
+      // divider: '#d6d6d6',
+      // grey: {
+      //   '800': '#f4f4f4',
+      //   '700': '#f1f1f1',
+      //   '600': '#e4e4e4',
+      //   '400': '#c9c9c9',
+      // },
       background: {
-        default: bgBody || '#f8f8f8',
+        default: bgBody || light,
         // paper: '#D7D6D6',
         // paper: '#BEB2C8',
       },
       // type: 'dark',
       text: {
-        primary: '#1D1E20',
-        secondary: '#2D2E30',
+        primary: dark,
+        secondary: dark,
       },
-      success: {
-        main: '#4d7a60',
-      },
-      warning: {
-        main: '#7a794d',
-      },
-      error: {
-        main: '#7a4d4d',
-      },
+      // success: {
+      //   main: '#4d7a60',
+      // },
+      // warning: {
+      //   main: '#7a794d',
+      // },
+      // error: {
+      //   main: '#7a4d4d',
+      // },
     },
     shape: {
       borderRadius: 4,
     },
     typography: {
       h1: {
-        fontSize: '32px',
-        fontWeight: 500,
-        textTransform: 'capitalize',
+        fontSize: '24px',
+        fontWeight: 600,
+        textTransform: 'uppercase',
+        color: primary.main,
+        letterSpacing: 1,
       },
       h2: {
-        fontSize: '22px',
-        fontWeight: 500,
-        textTransform: 'capitalize',
+        fontSize: '20px',
+        fontWeight: 600,
+        textTransform: 'uppercase',
+        letterSpacing: 1,
       },
       h3: {
+        letterSpacing: 1,
+        color: primary.main,
         fontSize: '20px',
-        fontWeight: 500,
+        fontWeight: 600,
+        textTransform: 'capitalize',
       },
       h4: {
-        fontSize: '18px',
-        fontWeight: 500,
-      },
-      h5: {
-        fontSize: '16px',
-        fontWeight: 500,
-      },
-      h6: {
-        fontSize: '14px',
+        fontSize: '20px',
         fontWeight: 500,
       },
     },

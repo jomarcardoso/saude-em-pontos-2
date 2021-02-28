@@ -1,6 +1,6 @@
 import React, { FC, useContext } from 'react';
 import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/core/styles';
+import makeStyles from '@material-ui/core/styles/makeStyles';
 import AccountContext from '../contexts/account-context';
 import { AccountAndSet, SHAPE_ACCOUNT } from '../services/account.service';
 import { CurrentPage } from '../services/page.service';

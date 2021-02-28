@@ -41,6 +41,15 @@ const useFoods = (): Array<Food> => {
               quantity
               type
             }
+            juice {
+              name
+              image
+              enName
+              gi
+              calories
+              gl
+              carbohydrates
+            }
           }
         }
       }

@@ -1,20 +1,18 @@
-import React, { FC, useContext, useEffect, useState } from 'react';
+import React, { FC, useContext, useState } from 'react';
 import FormControl from '@material-ui/core/FormControl';
-import IconButton from '@material-ui/core/IconButton';
-import Button from '@material-ui/core/Button';
-import CloseIcon from '@material-ui/icons/Close';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
 import { Formik, Form, FieldArray, ArrayHelpers } from 'formik';
 import Typography from '@material-ui/core/Typography';
+import Button from './button/button';
 import { Meal, MealData, MEAL, MEAL_DATA } from '../services/meal';
 import SubmitComponent from './submit';
 import AccountContext from '../contexts/account-context';
 import PortionService from '../services/portion/portion.service';
 import FoodsContext from '../contexts/foods-context';
 import ResumedPortion from './resumed-portion';
-import StyleContext from '../contexts/style';
+import InputIngredient from './input-ingredient/input-ingredient';
+import InputFilled from './input-filled/input-filled';
 
 const useStyles = makeStyles({
   formControl: {
@@ -51,7 +49,6 @@ const MealRegister: FC<Props> = ({
   const { setAccount } = useContext(AccountContext);
   const foods = useContext(FoodsContext);
   let { portions = [''] } = mealData;
-  const { style, setStyle } = useContext(StyleContext);
 
   const initialFullPortions =
     portions.map((portionToProcess) => {
@@ -98,14 +95,6 @@ const MealRegister: FC<Props> = ({
     setEditing(false);
   }
 
-  useEffect(() => {
-    setStyle({
-      ...style,
-      bgBody: editing ? 'white' : '',
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [editing]);
-
   return (
     <Formik
       initialValues={{
@@ -125,13 +114,12 @@ const MealRegister: FC<Props> = ({
                     variant="standard"
                     className={classes.formControl}
                   >
-                    <TextField
+                    <InputFilled
                       name="name"
                       label="Nome da receita"
                       value={values.name}
                       onChange={handleChange}
                       onBlur={formikHandleBlur}
-                      variant="filled"
                     />
                   </FormControl>
                 </Grid>
@@ -142,14 +130,13 @@ const MealRegister: FC<Props> = ({
                         variant="standard"
                         className={classes.formControl}
                       >
-                        <TextField
+                        <InputFilled
                           multiline
                           name="description"
                           label="Descrição"
                           value={values.description}
                           onChange={handleChange}
                           onBlur={formikHandleBlur}
-                          variant="filled"
                         />
                       </FormControl>
                     ) : (
@@ -173,31 +160,15 @@ const MealRegister: FC<Props> = ({
                               variant="standard"
                               className={classes.formControl}
                             >
-                              <TextField
-                                variant="filled"
-                                type="text"
-                                label={
-                                  <>
-                                    {`Ingrediente ${index + 1}`}
-                                    <IconButton
-                                      color="secondary"
-                                      aria-label={`remover alimento ${
-                                        index + 1
-                                      }`}
-                                      onClick={() => remove(index)}
-                                      size="small"
-                                    >
-                                      <CloseIcon />
-                                    </IconButton>
-                                  </>
-                                }
-                                name={`portions.${index}`}
+                              <InputIngredient
+                                index={index}
                                 onChange={handleChange}
+                                remove={remove}
+                                value={value}
                                 onBlur={(event) => {
                                   formikHandleBlur(event);
-                                  handleBlur(event, index);
+                                  handleBlur(event);
                                 }}
-                                value={value}
                               />
                             </FormControl>
                           </Grid>
@@ -216,14 +187,13 @@ const MealRegister: FC<Props> = ({
                     variant="standard"
                     className={classes.formControl}
                   >
-                    <TextField
+                    <InputFilled
                       multiline
                       name="preparation"
                       label="Modo de preparo"
                       value={values.preparation}
                       onChange={handleChange}
                       onBlur={formikHandleBlur}
-                      variant="filled"
                     />
                   </FormControl>
                 </Grid>

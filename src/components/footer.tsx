@@ -6,7 +6,7 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import RestaurantOutlinedIcon from '@material-ui/icons/RestaurantOutlined';
 import Box from '@material-ui/core/Box';
 import { Link } from 'gatsby';
-import { makeStyles } from '@material-ui/core/styles';
+import makeStyles from '@material-ui/core/styles/makeStyles';
 import { CurrentPage } from '../services/page.service';
 
 const useStyles = makeStyles({
@@ -40,7 +40,7 @@ const Footer: FC<Props> = ({ currentPage = CurrentPage.NONE }) => {
               currentPage === CurrentPage.HOME ? (
                 <HomeIcon color="primary" />
               ) : (
-                <HomeOutlinedIcon color="secondary" />
+                <HomeOutlinedIcon />
               )
             }
           />
@@ -50,9 +50,7 @@ const Footer: FC<Props> = ({ currentPage = CurrentPage.NONE }) => {
             label="Cadastrar refeição"
             icon={
               <RestaurantOutlinedIcon
-                color={
-                  currentPage === CurrentPage.MEAL ? 'primary' : 'secondary'
-                }
+                color={currentPage === CurrentPage.MEAL ? 'primary' : 'inherit'}
               />
             }
           />

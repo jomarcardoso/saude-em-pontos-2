@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-import { makeStyles } from '@material-ui/core/styles';
+import makeStyles from '@material-ui/core/styles/makeStyles';
 import ResumedPortion from '../resumed-portion';
 import { MEAL, Meal } from '../../services/meal';
 
