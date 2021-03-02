@@ -14,9 +14,9 @@ import './layout.scss';
 import { CurrentPage } from '../../services/page.service';
 
 export const primary = {
-  light: '#9c786c',
-  main: '#6d4c41',
-  dark: '#40241a',
+  light: '#be9c91',
+  main: '#8d6e63',
+  dark: '#5f4339',
 };
 
 export const dark = '#121212';
@@ -40,9 +40,7 @@ function theme({ bgBody = '' }: Style) {
       secondary: {
         main: dark,
       },
-      action: {
-        active: '#1565c0',
-      },
+      // action,
       // divider: '#d6d6d6',
       // grey: {
       //   '800': '#f4f4f4',
@@ -78,7 +76,7 @@ function theme({ bgBody = '' }: Style) {
         fontSize: '24px',
         fontWeight: 600,
         textTransform: 'uppercase',
-        color: primary.main,
+        color: primary.dark,
         letterSpacing: 1,
       },
       h2: {
@@ -89,7 +87,7 @@ function theme({ bgBody = '' }: Style) {
       },
       h3: {
         letterSpacing: 1,
-        color: primary.main,
+        color: primary.dark,
         fontSize: '20px',
         fontWeight: 600,
         textTransform: 'capitalize',
